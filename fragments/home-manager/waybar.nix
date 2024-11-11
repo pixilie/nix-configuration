@@ -6,10 +6,10 @@
     settings = {
       "mainBar" = {
         "layer" = "top";
-	      "position" = "bottom";
-	      "id" = "bar-0";
+        "position" = "bottom";
 	      "ipc" = true;
-	      "mode" = "invisible";
+        "id" = "bar-0";
+        "mode" = "hide";
 
 	      "modules-left" = [ "sway/mode" "sway/workspaces" ];
 

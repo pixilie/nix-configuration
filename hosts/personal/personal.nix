@@ -5,7 +5,7 @@
     ../../fragments/home-manager/git.nix
     ../../fragments/home-manager/helix.nix
     ../../fragments/home-manager/sway.nix
-    ../../fragments/home-manager/waybar.nix
+    ../../framents/home-manager/bar.nix
     ../../fragments/home-manager/sh.nix
   ];
   
@@ -57,6 +57,7 @@
     brightnessctl
     tree
     wireplumber
+    lm_sensors
 
     # Window manager
     wlroots
@@ -68,6 +69,7 @@
     swaybg
     mako
     xwayland
+    i3status-rust
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

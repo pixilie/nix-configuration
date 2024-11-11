@@ -18,7 +18,7 @@ in
       down = "${down}";
       left = "${left}";
       right = "${right}";
-      defaultWorkspace = "1";
+      defaultWorkspace = "workspace 1";
 
       fonts = { names = [ "JetBrainsMono" ]; size = 11.0; };
 
@@ -26,10 +26,6 @@ in
         titlebar = false;
         border = 0;
       };
-
-      bars = [
-        { command = "waybar"; }
-      ];
 
       gaps.smartGaps = false;
 
@@ -83,8 +79,8 @@ in
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPlay" = "exec playerctl play-pause";
 
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK 5%-";
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioLowerVolume" = "exec wpctl set-volume -l 0 @DEFAULT_AUDIO_SINK@ 5%-";
         "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
         "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
