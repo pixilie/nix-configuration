@@ -9,7 +9,6 @@
   - Workspaces display
 - Eza config
 - Structure
-- Decrease sound bug & cap it at 100%
 - Swaylock
 - Start sway automatically
 - Login page
