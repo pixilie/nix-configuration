@@ -18,7 +18,7 @@ in
       down = "${down}";
       left = "${left}";
       right = "${right}";
-      defaultWorkspace = "1";
+      defaultWorkspace = "workspace 1";
 
       fonts = { names = [ "JetBrainsMono" ]; size = 11.0; };
 
