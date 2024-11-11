@@ -27,10 +27,6 @@ in
         border = 0;
       };
 
-      bars = [
-        { command = "waybar"; }
-      ];
-
       gaps.smartGaps = false;
 
       keybindings = lib.mkOptionDefault {
