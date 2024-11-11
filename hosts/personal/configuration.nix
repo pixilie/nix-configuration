@@ -10,7 +10,7 @@
   boot.loader.timeout = 0;
   
   # Network
-  networking.hostName = "kristen";
+  networking.hostName = "kristen-nixos";
   networking.networkmanager.enable = true;
 
   # Garbage collector
