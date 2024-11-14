@@ -39,13 +39,18 @@
     driSupport = true;
    };
 
-  programs.dconf.enable = true;
-
   # Packages
   environment.systemPackages = with pkgs; [
     pipewire
-    dconf
+    upower
   ];
+
+  services.upower = {
+    enable = true;
+    percentageLow = 20;
+    percentageCritical = 5;
+    timeCritical = 120;
+  };
     
   # User
   users.users.kristen = {
