@@ -3,10 +3,6 @@
 ## TODO
 - Secrets management
 - Auto gh config
-- Waybar:
-  - Default fullscreen & shown when mod pressed
-  - Temperature sensor
-  - Workspaces display
 - Eza config
 - Structure
 - Swaylock
@@ -14,7 +10,14 @@
 - Login page
 - Application launcher
 - Confirm menu before shutdown & reboot
-- 
+- Fonts config
+- CLI tools setup (cf video) 
+- Onedark theme for discord
+- Low power alert
+- better pkgs organization in personal.nix
+- config control center (cf video)
+- rust setup
+- fix bg
 
 ## Structure
 
