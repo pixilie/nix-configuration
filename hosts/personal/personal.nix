@@ -68,7 +68,8 @@
     networkmanagerapplet
     unzip
     poweralertd
-
+    upower
+    
     # Window manager
     wlroots
     sway

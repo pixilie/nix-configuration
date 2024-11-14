@@ -6,6 +6,7 @@ let
   down = "j";
   left = "h";
   right = "l";
+  image = toString ../../assets/wallpaper.png;
 in
 {
   wayland.windowManager.sway = {
@@ -111,9 +112,9 @@ in
         };
       };
     };
-  
+    
     extraConfig = ''
-       exec_always swaybg -i ../../assets/wallpaper.png -m fill   
+       exec_always swaybg -i ${image} -m fill   
     '';
    };
 }
