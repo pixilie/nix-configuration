@@ -38,11 +38,8 @@
     nil
     python3
     python312Packages.python-lsp-server
-    rustc
-    cargo
-    rust-analyzer
-    clippy
     gccgo14
+    rustup
         
     # Shell related
     fish
