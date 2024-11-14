@@ -9,6 +9,11 @@ let
   image = toString ../../assets/wallpaper.png;
 in
 {
+  imports = [
+    ./swaylock.nix
+    ./swaybar.nix
+  ];
+  
   wayland.windowManager.sway = {
     enable = true;
     
