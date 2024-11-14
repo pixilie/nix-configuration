@@ -5,7 +5,7 @@
     enable = true;
     bars.default = {
       icons = "awesome6";     
-      theme = "ctp-mocha";
+      theme = "modern";
 
       settings = {
         theme =  {

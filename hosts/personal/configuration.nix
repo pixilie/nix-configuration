@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -56,13 +56,12 @@
 
   services.upower = {
     enable = true;
-    percentageLow = 20;
+    percentageLow = 10;
     percentageCritical = 5;
     timeCritical = 120;
   };
 
-  services.poweralertd.enable = true;
-
+  # SSH
   programs.ssh.startAgent = true;
     
   # User

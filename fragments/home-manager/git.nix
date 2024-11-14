@@ -8,6 +8,7 @@
 
     extraConfig = {
       push.autoSetupRemote = true;
+      pull.rebase =  true;
     };
   };
 

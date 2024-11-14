@@ -5,6 +5,7 @@
     noto-fonts
     noto-fonts-emoji 
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
     font-awesome
     merriweather       
   ];

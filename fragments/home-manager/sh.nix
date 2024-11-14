@@ -16,22 +16,20 @@
     };
         
     font = {
-      name = "JetBrainsMono";
-      size = 12;
+      #name = "JetBrainsMonoNerdFontMono";
+      name = "CaskaydiaCoveNerdFont";
+      size = 13;
     };
 
     extraConfig = ''
+      disable_ligatures never
       shell fish
     '';
   };
 
   programs.fish = {
     enable = true;
-    
-    interactiveShellInit = ''
-        abbr -a !! --position anywhere --function last_history_item
-      '';
-    
+      
     shellAliases = {
       ls = "${lib.getExe pkgs.eza} --color=auto --icons=auto --hyperlink";
       cat = "${lib.getExe pkgs.bat}";
