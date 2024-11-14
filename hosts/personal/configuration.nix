@@ -61,8 +61,7 @@
     timeCritical = 120;
   };
 
-  services.poweralertd.enable = true;
-
+  # SSH
   programs.ssh.startAgent = true;
     
   # User
