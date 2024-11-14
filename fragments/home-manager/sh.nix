@@ -3,7 +3,9 @@
 {
  programs.kitty = {
     enable = true;
-    
+ 
+    theme = "One Dark";
+        
     shellIntegration = {
       mode = "enabled";
       enableFishIntegration = true;
