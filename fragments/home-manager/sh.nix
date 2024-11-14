@@ -16,11 +16,13 @@
     };
         
     font = {
-      name = "JetBrainsMono";
-      size = 12;
+      #name = "JetBrainsMonoNerdFontMono";
+      name = "CaskaydiaCoveNerdFont";
+      size = 13;
     };
 
     extraConfig = ''
+      disable_ligatures never
       shell fish
     '';
   };
