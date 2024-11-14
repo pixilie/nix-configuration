@@ -37,10 +37,14 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
- };
+   };
+
+  programs.dconf.enable = true;
+
   # Packages
   environment.systemPackages = with pkgs; [
     pipewire
+    dconf
   ];
     
   # User
@@ -48,6 +52,7 @@
      isNormalUser = true;
      extraGroups = [ "wheel" "networkmanager" "sway" ];
    };
+  
   #System things
   system.stateVersion = "24.05";
   nix.settings.experimental-features = ["nix-command" "flakes"];
