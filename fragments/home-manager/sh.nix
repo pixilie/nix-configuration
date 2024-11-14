@@ -1,4 +1,4 @@
-{ config, pkgs, ...  }:
+{ config, pkgs, lib, ...  }:
 
 {
  programs.kitty = {
@@ -27,14 +27,24 @@
 
   programs.fish = {
     enable = true;
-
-    shellInit = '' #TODO: Disable greeting
-    '';
+    
+    interactiveShellInit = ''
+        abbr -a !! --position anywhere --function last_history_item
+      '';
     
     shellAliases = {
-      ".." = "cd ..";
-        ll = "ls -l";
+      ls = "${lib.getExe pkgs.eza} --color=auto --icons=auto --hyperlink";
+      cat = "${lib.getExe pkgs.bat}";
     };
+    
+    shellAbbrs = {
+      ll = "ls -lhaF";
+      tree = "ls -T";
+    };
+
+    functions = {
+      fish_greeting = "";
+    };  
   };
 
   programs.starship = {
