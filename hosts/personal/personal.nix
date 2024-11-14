@@ -8,6 +8,7 @@
     ../../fragments/home-manager/bar.nix
     ../../fragments/home-manager/sh.nix
     ../../fragments/home-manager/mako.nix
+    ../../fragments/nixos/fonts.nix
   ];
   
   # General informations
@@ -37,11 +38,8 @@
     nil
     python3
     python312Packages.python-lsp-server
-    rustc
-    cargo
-    rust-analyzer
-    clippy
     gccgo14
+    rustup
         
     # Shell related
     fish
@@ -51,24 +49,7 @@
     yazi
     kitty
     tokei
-    
-    # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    noto-fonts
-    font-awesome
-        
-    # Tools
-    grim
-    slurp
-    wl-clipboard
-    killall
-    brightnessctl
-    tree
-    wireplumber
-    networkmanagerapplet
-    unzip
-    poweralertd
-    upower
+    bat
     
     # Window manager
     wlroots
@@ -90,8 +71,6 @@
     "unityhub"
   ];
 
-  # Enable fonts in home-manager
-  fonts.fontconfig.enable = true;
   
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

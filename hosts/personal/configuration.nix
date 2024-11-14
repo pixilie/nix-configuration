@@ -42,6 +42,15 @@
   # Packages
   environment.systemPackages = with pkgs; [
     pipewire
+    grim
+    slurp
+    wl-clipboard
+    killall
+    brightnessctl
+    wireplumber
+    networkmanagerapplet
+    unzip
+    poweralertd
     upower
   ];
 
@@ -51,6 +60,10 @@
     percentageCritical = 5;
     timeCritical = 120;
   };
+
+  services.poweralertd.enable = true;
+
+  programs.ssh.startAgent = true;
     
   # User
   users.users.kristen = {
