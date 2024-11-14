@@ -8,7 +8,6 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Packages
     wakatime-lsp.url = "github:mrnossiom/wakatime-lsp";
     wakatime-lsp.inputs.nixpkgs.follows = "nixpkgs";
    };

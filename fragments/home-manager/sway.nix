@@ -38,7 +38,7 @@ in
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";
         "${modifier}+Shift+e" = "exec swaylock";
-        "${modifier}" = "exec swaymsg bar mode toggle bar-0";
+        "${modifier}" = "exec swaymsg bar mode toggle";
         "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
 
@@ -113,7 +113,7 @@ in
     };
   
     extraConfig = ''
-       exec_always swaybg -i /home/kristen/Images/wallpaper.png -m fill   
+       exec_always swaybg -i ../../assets/wallpaper.png -m fill   
     '';
    };
 }

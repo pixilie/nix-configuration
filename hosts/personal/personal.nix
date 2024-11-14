@@ -5,8 +5,9 @@
     ../../fragments/home-manager/git.nix
     ../../fragments/home-manager/helix.nix
     ../../fragments/home-manager/sway.nix
-    ../../framents/home-manager/bar.nix
+    ../../fragments/home-manager/bar.nix
     ../../fragments/home-manager/sh.nix
+    ../../fragments/home-manager/mako.nix
   ];
   
   # General informations
@@ -34,7 +35,14 @@
     wakatime
     inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
     nil
-    
+    python3
+    python312Packages.python-lsp-server
+    rustc
+    cargo
+    rust-analyzer
+    clippy
+    gccgo14
+        
     # Shell related
     fish
     starship
@@ -42,13 +50,13 @@
     gitui
     yazi
     kitty
+    tokei
     
-    # Fonts     
-    font-awesome
+    # Fonts
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     noto-fonts
     font-awesome
-    
+        
     # Tools
     grim
     slurp
@@ -57,14 +65,16 @@
     brightnessctl
     tree
     wireplumber
-    lm_sensors
+    networkmanagerapplet
+    unzip
+    poweralertd
 
     # Window manager
     wlroots
     sway
     wayland
     swaylock
-    waybar
+    swayidle
     wofi
     swaybg
     mako
