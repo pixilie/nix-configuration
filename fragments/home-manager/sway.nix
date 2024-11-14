@@ -113,7 +113,7 @@ in
     };
   
     extraConfig = ''
-       exec_always swaybg -i /home/kristen/Images/wallpaper.png -m fill   
+       exec_always swaybg -i ../../assets/wallpaper.png -m fill   
     '';
    };
 }
