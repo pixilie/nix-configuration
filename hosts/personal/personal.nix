@@ -5,8 +5,9 @@
     ../../fragments/home-manager/git.nix
     ../../fragments/home-manager/helix.nix
     ../../fragments/home-manager/sway.nix
-    ../../framents/home-manager/bar.nix
+    ../../fragments/home-manager/bar.nix
     ../../fragments/home-manager/sh.nix
+    ../../fragments/home-manager/mako.nix
   ];
   
   # General informations
