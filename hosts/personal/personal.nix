@@ -34,7 +34,14 @@
     wakatime
     inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
     nil
-    
+    python3
+    python312Packages.python-lsp-server
+    rustc
+    cargo
+    rust-analyzer
+    clippy
+    gccgo14
+        
     # Shell related
     fish
     starship
