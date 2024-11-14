@@ -8,6 +8,7 @@
     ../../fragments/home-manager/bar.nix
     ../../fragments/home-manager/sh.nix
     ../../fragments/home-manager/mako.nix
+    ../../fragments/nixos/fonts.nix
   ];
   
   # General informations
@@ -90,8 +91,6 @@
     "unityhub"
   ];
 
-  # Enable fonts in home-manager
-  fonts.fontconfig.enable = true;
   
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
