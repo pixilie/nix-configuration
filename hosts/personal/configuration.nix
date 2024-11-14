@@ -60,6 +60,10 @@
     percentageCritical = 5;
     timeCritical = 120;
   };
+
+  services.poweralertd.enable = true;
+
+  programs.ssh.startAgent = true;
     
   # User
   users.users.kristen = {
