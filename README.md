@@ -10,7 +10,6 @@
 - Application launcher
 - Confirm menu before shutdown & reboot
 - CLI tools setup (cf video) 
-- Onedark theme for discord
 - better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)
 - config control center (cf video)
 - rust setup
