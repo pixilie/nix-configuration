@@ -52,24 +52,7 @@
     yazi
     kitty
     tokei
-    
-    # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    noto-fonts
-    font-awesome
-        
-    # Tools
-    grim
-    slurp
-    wl-clipboard
-    killall
-    brightnessctl
-    tree
-    wireplumber
-    networkmanagerapplet
-    unzip
-    poweralertd
-    upower
+    bat
     
     # Window manager
     wlroots

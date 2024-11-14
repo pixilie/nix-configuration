@@ -42,6 +42,15 @@
   # Packages
   environment.systemPackages = with pkgs; [
     pipewire
+    grim
+    slurp
+    wl-clipboard
+    killall
+    brightnessctl
+    wireplumber
+    networkmanagerapplet
+    unzip
+    poweralertd
     upower
   ];
 
