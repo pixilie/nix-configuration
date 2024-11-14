@@ -29,11 +29,7 @@
 
   programs.fish = {
     enable = true;
-    
-    interactiveShellInit = ''
-        abbr -a !! --position anywhere --function last_history_item
-      '';
-    
+      
     shellAliases = {
       ls = "${lib.getExe pkgs.eza} --color=auto --icons=auto --hyperlink";
       cat = "${lib.getExe pkgs.bat}";
