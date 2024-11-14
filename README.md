@@ -13,11 +13,10 @@
 - Fonts config
 - CLI tools setup (cf video) 
 - Onedark theme for discord
-- Low power alert
-- better pkgs organization in personal.nix
+- better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)
 - config control center (cf video)
 - rust setup
-- fix bg
+- fix guitui bad credentials
 
 ## Structure
 
