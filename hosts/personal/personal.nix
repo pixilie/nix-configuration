@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, upkgs,  lib, inputs, ... }:
 
 { 
   imports = [
@@ -21,7 +21,7 @@
     # Unfree
     jetbrains-toolbox
     steam
-    unityhub
+    upkgs.unityhub
     
     # Free
     firefox
