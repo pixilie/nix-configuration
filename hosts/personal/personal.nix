@@ -50,13 +50,13 @@
     gitui
     yazi
     kitty
+    tokei
     
-    # Fonts     
-    font-awesome
+    # Fonts
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     noto-fonts
     font-awesome
-    
+        
     # Tools
     grim
     slurp
@@ -65,14 +65,16 @@
     brightnessctl
     tree
     wireplumber
-    lm_sensors
+    networkmanagerapplet
+    unzip
+    poweralertd
 
     # Window manager
     wlroots
     sway
     wayland
     swaylock
-    waybar
+    swayidle
     wofi
     swaybg
     mako
