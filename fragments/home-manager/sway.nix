@@ -26,7 +26,10 @@ in
       right = "${right}";
       defaultWorkspace = "workspace 1";
 
-      fonts = { names = [ "JetBrainsMonoSemiBold" ]; size = 12.0; };
+      fonts = {
+        names = [ "CaskaydiaCoveNerdFont" ];
+        size = 12.0;
+      };
 
       window = {
         titlebar = false;
