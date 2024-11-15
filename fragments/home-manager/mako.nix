@@ -3,11 +3,11 @@
 {
   services.mako = {
     enable = true;
-    
+
     sort = "-time";
     maxVisible = 3;
     defaultTimeout = 5000;
-        
+
     backgroundColor = "#17191e";
     textColor = "#ABB2BF";
     height = 100;

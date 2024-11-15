@@ -2,9 +2,7 @@
 
 ## TODO
 - Secrets management
-- Auto gh config
 - Structure
-- Swaylock
 - Start sway automatically
 - Login page
 - Application launcher
@@ -14,6 +12,5 @@
 - config control center (cf video)
 - rust setup
 - ssh config
-
-## Structure
-
+- Proper README
+- Gitui bad credentials -> link to ssh config

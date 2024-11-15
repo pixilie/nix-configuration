@@ -1,4 +1,4 @@
-{config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.git = {
@@ -8,10 +8,10 @@
 
     extraConfig = {
       push.autoSetupRemote = true;
-      pull.rebase =  true;
+      pull.rebase = true;
     };
   };
 
   programs.gh.enable = true;
-  
+
 }

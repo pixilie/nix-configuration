@@ -1,6 +1,6 @@
-{ pkgs, upkgs,  lib, inputs, ... }:
+{ pkgs, upkgs, lib, inputs, ... }:
 
-{ 
+{
   imports = [
     ../../fragments/home-manager/git.nix
     ../../fragments/home-manager/helix.nix
@@ -9,7 +9,7 @@
     ../../fragments/home-manager/mako.nix
     ../../fragments/nixos/fonts.nix
   ];
-  
+
   # General informations
   home.username = "kristen";
   home.homeDirectory = "/home/kristen";
@@ -21,13 +21,13 @@
     jetbrains-toolbox
     steam
     upkgs.unityhub
-    
+
     # Free
     firefox
     vesktop
     thunderbird
     tidal-hifi
-    bitwarden-desktop    
+    bitwarden-desktop
 
     # Dev related
     git
@@ -35,11 +35,12 @@
     wakatime
     inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
     nil
+    nixfmt-classic
     python3
     python312Packages.python-lsp-server
     gccgo14
     rustup
-        
+
     # Shell related
     fish
     starship
@@ -49,12 +50,12 @@
     kitty
     tokei
     bat
-    
+
     # Window manager
     wlroots
     sway
     wayland
-    swaylock
+    swaylock-effects
     swayidle
     wofi
     swaybg
@@ -63,15 +64,16 @@
     i3status-rust
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "jetbrains-toolbox"
-    "steam-original"
-    "steam"
-    "unityhub"
-  ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "jetbrains-toolbox"
+      "steam-original"
+      "steam"
+      "unityhub"
+    ];
 
   # Low power alert
-  services.poweralertd.enable = true;  
+  services.poweralertd.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

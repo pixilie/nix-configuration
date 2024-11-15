@@ -1,18 +1,28 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
   programs.swaylock = {
     enable = true;
+    package = pkgs.swaylock-effects;
 
     settings = {
       daemonize = true;
       ignore-empty-password = true;
       show-failed-attempts = true;
+      screenshots = true;
+      clock = true;
+      indicator = true;
 
-      image = toString ../../assets/wallpaper.png;
-
-      indicator-y-position = -100;
-      indicator-x-position = 100;
+      font = "CaskaydiaCoveNerdFont";
+      indicator-radius = 100;
+      indicator-thickness = 7;
+      effect-blur = "7x5";
+      effect-vignette = "0.5:0.5";
+      ring-color = "bb00cc";
+      key-hl-color = "880033";
+      line-color = "00000000";
+      inside-color = "00000088";
+      separator-color = "00000000";
     };
   };
 }

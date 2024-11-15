@@ -1,4 +1,4 @@
-{config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 let
   modifier = "Mod4";
   terminal = "kitty";
@@ -7,16 +7,12 @@ let
   left = "h";
   right = "l";
   image = toString ../../assets/wallpaper.png;
-in
-{
-  imports = [
-    ./swaylock.nix
-    ./swaybar.nix
-  ];
-  
+in {
+  imports = [ ./swaylock.nix ./swaybar.nix ];
+
   wayland.windowManager.sway = {
     enable = true;
-    
+
     config = {
       modifier = "${modifier}";
       terminal = "${terminal}";
@@ -26,7 +22,10 @@ in
       right = "${right}";
       defaultWorkspace = "workspace 1";
 
-      fonts = { names = [ "JetBrainsMonoSemiBold" ]; size = 12.0; };
+      fonts = {
+        names = [ "CaskaydiaCoveNerdFont" ];
+        size = 12.0;
+      };
 
       window = {
         titlebar = false;
@@ -37,13 +36,14 @@ in
 
       keybindings = lib.mkOptionDefault {
         # Basics keys
-        "${modifier}+Return" = "exec ${terminal}";       
+        "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+q" = "kill";
         "${modifier}+d" = "exec wofi --show drun";
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";
-        "${modifier}+Shift+e" = "exec swaylock";
+        "${modifier}+Shift+e" =
+          "exec swaylock -c /home/kristen/.config/swaylock/config";
         "${modifier}" = "exec swaymsg bar mode toggle";
         "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
@@ -65,7 +65,7 @@ in
         "${modifier}+8" = "workspace 8";
         "${modifier}+9" = "workspace 9";
         "${modifier}+0" = "workspace 10";
-      
+
         "${modifier}+Shift+1" = "move container to workspace 1";
         "${modifier}+Shift+2" = "move container to workspace 2";
         "${modifier}+Shift+3" = "move container to workspace 3";
@@ -79,23 +79,24 @@ in
 
         # Switch to resize mode
         "${modifier}+r" = "mode resize";
-        
+
         # Control keys
         "XF86AudioPrev" = "exec playerctl previous";
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPlay" = "exec playerctl play-pause";
 
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume -l 0 @DEFAULT_AUDIO_SINK@ 5%-";
+        "XF86AudioRaiseVolume" =
+          "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioLowerVolume" =
+          "exec wpctl set-volume -l 0 @DEFAULT_AUDIO_SINK@ 5%-";
         "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
         "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
         "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
 
-        "Print" = "exec grim -g \"$(slurp)\" - | wl-copy";
+        "Print" = ''exec grim -g "$(slurp)" - | wl-copy'';
       };
 
-      
       # Resize mode
       modes = {
         resize = {
@@ -117,9 +118,9 @@ in
         };
       };
     };
-    
+
     extraConfig = ''
-       exec_always swaybg -i ${image} -m fill   
+      exec_always swaybg -i ${image} -m fill   
     '';
-   };
+  };
 }
