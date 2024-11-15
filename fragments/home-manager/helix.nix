@@ -1,13 +1,13 @@
-{...}:
+{ ... }:
 
 {
   programs.helix = {
     enable = true;
     defaultEditor = true;
-    
+
     settings = {
       theme = "onedark";
-      
+
       editor = {
         auto-format = true;
         auto-save = true;
@@ -15,11 +15,11 @@
 
         indent-guides = {
           render = true;
-          characters = "╎";  
+          characters = "╎";
         };
       };
     };
-   
+
     languages = {
       language-server = {
         wakatime.command = "wakatime-lsp";

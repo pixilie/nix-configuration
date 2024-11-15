@@ -1,22 +1,21 @@
-{ config, pkgs, lib, ...  }:
+{ config, pkgs, lib, ... }:
 
 {
- programs.kitty = {
+  programs.kitty = {
     enable = true;
 
     settings = {
-        confirm_os_window_close = 0;
-        enable_audio_bell = "no";
-        macos_option_as_alt = "left";
+      confirm_os_window_close = 0;
+      enable_audio_bell = "no";
+      macos_option_as_alt = "left";
     };
-       
+
     shellIntegration = {
       mode = "enabled";
       enableFishIntegration = true;
     };
-        
+
     font = {
-      #name = "JetBrainsMonoNerdFontMono";
       name = "CaskaydiaCoveNerdFont";
       size = 13;
     };
@@ -29,20 +28,18 @@
 
   programs.fish = {
     enable = true;
-      
+
     shellAliases = {
       ls = "${lib.getExe pkgs.eza} --color=auto --icons=auto --hyperlink";
       cat = "${lib.getExe pkgs.bat}";
     };
-    
+
     shellAbbrs = {
       ll = "ls -lhaF";
       tree = "ls -T";
     };
 
-    functions = {
-      fish_greeting = "";
-    };  
+    functions = { fish_greeting = ""; };
   };
 
   programs.starship = {

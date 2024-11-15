@@ -5,16 +5,16 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     wakatime-lsp.url = "github:mrnossiom/wakatime-lsp";
     wakatime-lsp.inputs.nixpkgs.follows = "nixpkgs";
-   };
+  };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, ...}@inputs:
-    let 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+    let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -35,7 +35,10 @@
       homeConfigurations = {
         kristen = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {inherit inputs; inherit upkgs; };
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit upkgs;
+          };
           modules = [ ./hosts/personal/personal.nix ];
         };
       };
