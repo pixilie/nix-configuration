@@ -57,11 +57,11 @@
     wayland
     swaylock-effects
     swayidle
-    wofi
     swaybg
     mako
     xwayland
     i3status-rust
+    fuzzel
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
