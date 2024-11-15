@@ -54,7 +54,7 @@
     wlroots
     sway
     wayland
-    swaylock
+    swaylock-effects
     swayidle
     wofi
     swaybg

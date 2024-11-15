@@ -61,16 +61,19 @@
     timeCritical = 120;
   };
 
+  # Security
+  security.pam.services.swaylock = { };
+
   # SSH
   programs.ssh.startAgent = true;
-    
+
   # User
   users.users.kristen = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "sway" ];
-   };
-  
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "sway" ];
+  };
+
   #System things
   system.stateVersion = "24.05";
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
