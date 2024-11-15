@@ -23,7 +23,7 @@ in {
       defaultWorkspace = "workspace 1";
 
       fonts = {
-        names = [ "CaskaydiaCoveNerdFont" ];
+        names = [ "Noto Sans" ];
         size = 12.0;
       };
 
