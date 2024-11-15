@@ -13,9 +13,14 @@
   networking.hostName = "kristen-nixos";
   networking.networkmanager.enable = true;
 
-  # Garbage collector
+  # System upgrade
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
+
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than-30d";
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";

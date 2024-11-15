@@ -2,10 +2,8 @@
 
 ## TODO
 - Secrets management
-- Structure
 - Start sway automatically
 - Login page
-- Application launcher
 - Confirm menu before shutdown & reboot
 - CLI tools setup (cf video) 
 - better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)

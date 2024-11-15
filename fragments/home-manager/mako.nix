@@ -8,6 +8,7 @@
     maxVisible = 3;
     defaultTimeout = 5000;
 
+    font = "Noto Sans";
     backgroundColor = "#17191e";
     textColor = "#ABB2BF";
     height = 100;

@@ -8,7 +8,7 @@ let
   right = "l";
   image = toString ../../assets/wallpaper.png;
 in {
-  imports = [ ./swaylock.nix ./swaybar.nix ];
+  imports = [ ./swaylock.nix ./swaybar.nix ./fuzzel.nix ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -23,7 +23,7 @@ in {
       defaultWorkspace = "workspace 1";
 
       fonts = {
-        names = [ "CaskaydiaCoveNerdFont" ];
+        names = [ "Noto Sans" ];
         size = 12.0;
       };
 
@@ -38,7 +38,7 @@ in {
         # Basics keys
         "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+q" = "kill";
-        "${modifier}+d" = "exec wofi --show drun";
+        "${modifier}+d" = "exec fuzzel";
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";

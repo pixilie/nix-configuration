@@ -13,7 +13,7 @@
       clock = true;
       indicator = true;
 
-      font = "CaskaydiaCoveNerdFont";
+      font = "Noto Sans";
       indicator-radius = 100;
       indicator-thickness = 7;
       effect-blur = "7x5";
