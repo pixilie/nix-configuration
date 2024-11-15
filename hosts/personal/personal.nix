@@ -35,6 +35,7 @@
     wakatime
     inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
     nil
+    nixfmt-classic
     python3
     python312Packages.python-lsp-server
     gccgo14

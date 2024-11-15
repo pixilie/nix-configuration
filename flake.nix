@@ -18,16 +18,20 @@
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      upkgs = import nixpkgs-unstable { inherit system; config.allowUnfree = true; }; #Specific pkgs only ?
-    in 
-    {
+      upkgs = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      }; # Specific pkgs only ?
+    in {
+      formatter = pkgs.nixfmt-unstable;
+
       nixosConfigurations = {
         kristen = lib.nixosSystem {
-            inherit system;
-            modules = [ ./hosts/personal/configuration.nix ];
-        };  
+          inherit system;
+          modules = [ ./hosts/personal/configuration.nix ];
+        };
       };
-      
+
       homeConfigurations = {
         kristen = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
