@@ -1,7 +1,11 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/nixos/utilities.nix
+    ../../modules/nixos/security.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -17,33 +21,6 @@
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
 
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than-30d";
-  };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-
-  # Sway
-  security.polkit.enable = true;
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-  };
-
   # Packages
   environment.systemPackages = with pkgs; [
     pipewire
@@ -57,21 +34,8 @@
     unzip
     poweralertd
     upower
+    xdg-desktop-portal-gtk
   ];
-
-  # Power
-  services.upower = {
-    enable = true;
-    percentageLow = 10;
-    percentageCritical = 5;
-    timeCritical = 120;
-  };
-
-  # Security
-  security.pam.services.swaylock = { };
-
-  # SSH
-  programs.ssh.startAgent = true;
 
   # User
   users.users.kristen = {

@@ -12,3 +12,6 @@
 - ssh config
 - Proper README
 - Gitui bad credentials -> link to ssh config
+- keybinds to close notifications
+- battery color fix
+- Remove all packages from the list that are enable by home manager option

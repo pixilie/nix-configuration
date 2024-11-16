@@ -12,6 +12,8 @@
         auto-format = true;
         auto-save = true;
         mouse = false;
+        bufferline = "multiple";
+        file-picker.hidden = false;
 
         indent-guides = {
           render = true;
