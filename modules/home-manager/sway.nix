@@ -8,7 +8,7 @@ let
   right = "l";
   image = toString ../../assets/wallpaper.png;
 in {
-  imports = [ ./swaylock.nix ./swaybar.nix ./fuzzel.nix ];
+  imports = [ ./swaylock-fancy.nix ./swaybar.nix ./tofi.nix ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -38,7 +38,6 @@ in {
         # Basics keys
         "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+q" = "kill";
-        "${modifier}+d" = "exec fuzzel";
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";

@@ -2,12 +2,12 @@
 
 {
   imports = [
-    ../../fragments/home-manager/git.nix
-    ../../fragments/home-manager/helix.nix
-    ../../fragments/home-manager/sway.nix
-    ../../fragments/home-manager/sh.nix
-    ../../fragments/home-manager/mako.nix
-    ../../fragments/nixos/fonts.nix
+    ../../modules/home-manager/git.nix
+    ../../modules/home-manager/helix.nix
+    ../../modules/home-manager/sway.nix
+    ../../modules/home-manager/sh.nix
+    ../../modules/home-manager/mako.nix
+    ../../modules/home-manager/fonts.nix
   ];
 
   # General informations

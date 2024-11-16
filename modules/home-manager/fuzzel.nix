@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
+  wayland.windowManager.sway.config.keybindings =
+    lib.mkOptionDefault { "Mod4+d" = "exec fuzzel"; };
+
   programs.fuzzel = {
     enable = true;
 
