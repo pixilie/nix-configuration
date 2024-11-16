@@ -32,6 +32,7 @@
     # Dev related
     git
     helix
+    upkgs.zed-editor
     wakatime
     inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
     nil
