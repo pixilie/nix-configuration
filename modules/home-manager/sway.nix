@@ -46,6 +46,7 @@ in {
         "${modifier}" = "exec swaymsg bar mode toggle";
         "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
+        "${modifier}+Shift+z" = "exec makoctl dismiss";
 
         # Movements keys
         "${modifier}+${left}" = "focus left";
