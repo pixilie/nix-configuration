@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ eza gitui yazi tokei bat zellij fzf ];
+  home.packages = with pkgs; [ eza gitui yazi tokei bat fzf ];
 
   programs.kitty = {
     enable = true;
@@ -48,4 +48,8 @@
     enable = true;
     enableFishIntegration = true;
   };
+
+  programs.zellij.enable = true;
+
+  xdg.configFile."zellij/config.kdl".source = ../../config-files/zellij.kdl;
 }
