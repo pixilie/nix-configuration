@@ -34,6 +34,7 @@
     python312Packages.python-lsp-server
     gccgo14
     rustup
+
     jetbrains-toolbox
     upkgs.unityhub
 
