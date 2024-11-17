@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   # Set your time zone.

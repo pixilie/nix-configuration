@@ -131,4 +131,7 @@ in {
       exec_always swaybg -i ${image} -m fill   
     '';
   };
+
+  # Low power alert
+  services.poweralertd.enable = true;
 }

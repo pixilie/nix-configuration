@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
+  home.packages = with pkgs; [ eza gitui yazi tokei bat zellij fzf ];
+
   programs.kitty = {
     enable = true;
 
