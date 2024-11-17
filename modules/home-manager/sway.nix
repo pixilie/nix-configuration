@@ -115,6 +115,15 @@ in {
           scroll_method = "two_finger";
           natural_scroll = "enabled";
         };
+        "type:keyboard" = {
+          xkb_layout = "us,fr";
+
+          # List of all options: https://www.mankier.com/7/xkeyboard-config#Options
+          xkb_options = "grp:menu_toggle,compose:caps";
+
+          repeat_delay = toString 300;
+          repeat_rate = toString 30;
+        };
       };
     };
 
