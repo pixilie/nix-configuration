@@ -1,4 +1,4 @@
-{ pkgs, upkgs, lib, inputs, ... }:
+{ pkgs, upkgs, inputs, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
     ../../modules/home-manager/sh.nix
     ../../modules/home-manager/mako.nix
     ../../modules/home-manager/fonts.nix
+    ../../modules/home-manager/unfree.nix
   ];
 
   # General informations
@@ -17,12 +18,6 @@
 
   # Packages
   home.packages = with pkgs; [
-    # Unfree
-    jetbrains-toolbox
-    steam
-    upkgs.unityhub
-
-    # Free
     firefox
     vesktop
     thunderbird
@@ -30,9 +25,7 @@
     bitwarden-desktop
 
     # Dev related
-    git
-    helix
-    upkgs.zed-editor
+    # TODO: Wait HM update for the fix
     wakatime
     inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
     nil
@@ -41,16 +34,8 @@
     python312Packages.python-lsp-server
     gccgo14
     rustup
-
-    # Shell related
-    fish
-    starship
-    eza
-    gitui
-    yazi
-    kitty
-    tokei
-    bat
+    jetbrains-toolbox
+    upkgs.unityhub
 
     # Window manager
     wlroots
@@ -59,22 +44,8 @@
     swaylock-effects
     swayidle
     swaybg
-    mako
     xwayland
-    i3status-rust
-    fuzzel
   ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "jetbrains-toolbox"
-      "steam-original"
-      "steam"
-      "unityhub"
-    ];
-
-  # Low power alert
-  services.poweralertd.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
