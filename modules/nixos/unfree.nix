@@ -6,6 +6,7 @@
       "jetbrains-toolbox"
       "steam-original"
       "steam"
+      "steam-run"
       "unityhub"
     ];
 }
