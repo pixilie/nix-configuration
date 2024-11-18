@@ -23,6 +23,7 @@
     thunderbird
     tidal-hifi
     bitwarden-desktop
+    skypeforlinux
 
     # Dev related
     # TODO: Wait HM update for the fix

@@ -8,5 +8,6 @@
       "steam"
       "steam-run"
       "unityhub"
+      "skypeforlinux"
     ];
 }
