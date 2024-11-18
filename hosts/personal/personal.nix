@@ -23,6 +23,7 @@
     thunderbird
     tidal-hifi
     bitwarden-desktop
+    skypeforlinux
 
     # Dev related
     # TODO: Wait HM update for the fix
@@ -34,6 +35,7 @@
     python312Packages.python-lsp-server
     gccgo14
     rustup
+    dotnetCorePackages.sdk_9_0
 
     jetbrains-toolbox
     upkgs.unityhub

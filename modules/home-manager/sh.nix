@@ -1,7 +1,18 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ eza gitui yazi tokei bat fzf ];
+  home.packages = with pkgs; [
+    eza
+    lazygit
+    yazi
+    tokei
+    bat
+    fzf
+    gh-dash
+    zoxide
+    delta
+    tlrc
+  ];
 
   programs.kitty = {
     enable = true;
@@ -39,6 +50,8 @@
     shellAbbrs = {
       ll = "ls -lhaF";
       tree = "ls -T";
+
+      ghd = "gh-dash";
     };
 
     functions = { fish_greeting = ""; };
@@ -50,6 +63,11 @@
   };
 
   programs.zellij.enable = true;
-
   xdg.configFile."zellij/config.kdl".source = ../../config-files/zellij.kdl;
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+    options = [ "--cmd cd" ];
+  };
 }
