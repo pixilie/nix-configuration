@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
     ../../modules/nixos/utilities.nix
     ../../modules/nixos/security.nix
+    ../../modules/nixos/gaming.nix
+    ../../modules/nixos/unfree.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -8,7 +8,7 @@
     ../../modules/home-manager/sh.nix
     ../../modules/home-manager/mako.nix
     ../../modules/home-manager/fonts.nix
-    ../../modules/home-manager/unfree.nix
+    ../../modules/nixos/unfree.nix
   ];
 
   # General informations
