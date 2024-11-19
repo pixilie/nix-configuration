@@ -40,6 +40,12 @@
           block = "battery";
           driver = "upower";
           interval = 30;
+
+          empty_threshold = 5;
+          full_threshold = 95;
+
+          info = 20;
+          good = 20;
           warning = 20;
           critical = 10;
         }
