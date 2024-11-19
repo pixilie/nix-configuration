@@ -24,6 +24,7 @@
     tidal-hifi
     bitwarden-desktop
     skypeforlinux
+    prismlauncher
 
     # Dev related
     # TODO: Wait HM update for the fix
