@@ -38,6 +38,16 @@
     rustup
     dotnetCorePackages.sdk_9_0
 
+    # Ocaml config
+    dune_3
+    ocaml
+    ocamlPackages.ocaml-lsp
+    ocamlPackages.utop
+    ocamlPackages.ocamlformat
+    ocamlPackages.junit
+    ocamlPackages.junit_alcotest
+    ocamlPackages.zarith
+
     jetbrains-toolbox
     upkgs.unityhub
 
