@@ -7,4 +7,5 @@
 - better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)
 - config control center (cf video)
 - Proper README
-- battery color fix
+- projects's flake 
+- epita computer setup
