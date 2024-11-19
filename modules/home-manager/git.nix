@@ -9,7 +9,7 @@
     userEmail = "kristen.couty@gmail.com";
 
     aliases = {
-      ui = "lazygit";
+      ui = "!lazygit";
 
       pu = "push";
       puf = "push --force-with-lease";
