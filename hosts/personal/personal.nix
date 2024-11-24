@@ -25,6 +25,7 @@
     bitwarden-desktop
     skypeforlinux
     prismlauncher
+    gnome.nautilus
 
     # Dev related
     # TODO: Wait HM update for the fix

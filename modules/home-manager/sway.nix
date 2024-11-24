@@ -47,6 +47,7 @@ in {
         "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
         "${modifier}+Shift+z" = "exec makoctl dismiss";
+        "${modifier}+Shift+f" = "exec nautilus";
 
         # Movements keys
         "${modifier}+${left}" = "focus left";
