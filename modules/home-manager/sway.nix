@@ -6,7 +6,7 @@ let
   down = "j";
   left = "h";
   right = "l";
-  image = toString ../../assets/wallpaper.png;
+  image = toString ../../assets/media/wallpaper.png;
 in {
   imports = [ ./swaylock-fancy.nix ./swaybar.nix ./tofi.nix ];
 

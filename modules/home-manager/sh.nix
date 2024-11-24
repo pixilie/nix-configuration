@@ -63,7 +63,7 @@
   };
 
   programs.zellij.enable = true;
-  xdg.configFile."zellij/config.kdl".source = ../../config-files/zellij.kdl;
+  xdg.configFile."zellij/config.kdl".source = ../../assets/config/zellij.kdl;
 
   programs.zoxide = {
     enable = true;
