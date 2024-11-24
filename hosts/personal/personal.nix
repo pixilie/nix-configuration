@@ -37,7 +37,7 @@
     python312Packages.python-lsp-server
     gccgo14
     rustup
-    dotnetCorePackages.sdk_9_0
+    dotnetCorePackages.sdk_7_0
 
     # Ocaml config
     dune_3
