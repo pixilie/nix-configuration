@@ -6,13 +6,13 @@
 - CLI tools setup (cf video) 
 - better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)
 - config control center (cf video)
-- Proper README
 - projects's flake 
 - epita computer setup
 - can't stream discord
-- file manager theme
 - gtk theming
 - media keybind not working
+- screen popup when changign volume, brightness ...
+- wrap helix related package with helix
 
 ## Structure
 - `assets`: Files that don't fit in Nix files
