@@ -25,6 +25,7 @@
 
   # Packages
   environment.systemPackages = with pkgs; [
+    # TODO: split system pkg and tool in two specific files
     pipewire
     grim
     slurp
@@ -37,6 +38,7 @@
     poweralertd
     upower
     xdg-desktop-portal-gtk
+    pkg-config
   ];
 
   # User

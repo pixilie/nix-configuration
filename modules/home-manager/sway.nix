@@ -6,7 +6,7 @@ let
   down = "j";
   left = "h";
   right = "l";
-  image = toString ../../assets/wallpaper.png;
+  image = toString ../../assets/media/wallpaper.png;
 in {
   imports = [ ./swaylock-fancy.nix ./swaybar.nix ./tofi.nix ];
 
@@ -47,6 +47,7 @@ in {
         "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
         "${modifier}+Shift+z" = "exec makoctl dismiss";
+        "${modifier}+Shift+f" = "exec nautilus";
 
         # Movements keys
         "${modifier}+${left}" = "focus left";

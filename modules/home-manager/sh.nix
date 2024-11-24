@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     eza
     lazygit
-    yazi
     tokei
     bat
     fzf
@@ -63,7 +62,7 @@
   };
 
   programs.zellij.enable = true;
-  xdg.configFile."zellij/config.kdl".source = ../../config-files/zellij.kdl;
+  xdg.configFile."zellij/config.kdl".source = ../../assets/config/zellij.kdl;
 
   programs.zoxide = {
     enable = true;
