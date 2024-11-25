@@ -29,6 +29,12 @@
           render = true;
           characters = "╎";
         };
+
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
       };
     };
 
