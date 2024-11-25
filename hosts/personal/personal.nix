@@ -1,4 +1,4 @@
-{ pkgs, upkgs, inputs, ... }:
+{ pkgs, upkgs, ... }:
 
 {
   imports = [
@@ -51,6 +51,10 @@
 
     jetbrains-toolbox
     upkgs.unityhub
+    gccgo14
+    rustup
+    python3
+    dotnetCorePackages.sdk_7_0
 
     # Window manager
     wlroots

@@ -1,9 +1,19 @@
-{ ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.helix = {
     enable = true;
     defaultEditor = true;
+
+    extraPackages = with pkgs; [
+      wakatime
+      inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
+      nil
+      nixfmt-classic
+      python312Packages.python-lsp-server
+      clang-tools
+      marksman
+    ];
 
     settings = {
       theme = "onedark";
