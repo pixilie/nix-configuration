@@ -26,18 +26,7 @@
     skypeforlinux
     prismlauncher
     gnome.nautilus
-
-    # Dev related
-    # TODO: Wait HM update for the fix
-    wakatime
-    inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
-    nil
-    nixfmt-classic
-    python3
-    python312Packages.python-lsp-server
-    gccgo14
-    rustup
-    dotnetCorePackages.sdk_7_0
+    masterpdfeditor
 
     # Ocaml config
     dune_3
