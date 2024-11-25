@@ -9,5 +9,6 @@
       "steam-run"
       "unityhub"
       "skypeforlinux"
+      "masterpdfeditor"
     ];
 }
