@@ -6,13 +6,30 @@
     defaultEditor = true;
 
     extraPackages = with pkgs; [
+      # Wakatime related
       wakatime
       inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
+
+      # Nix Related
       nil
       nixfmt-classic
-      python312Packages.python-lsp-server
+
+      # C related
       clang-tools
+
+      # markdown
       marksman
+
+      # Python related
+      ruff
+      ruff-lsp
+      python312Packages.jedi
+
+      # Ocaml related
+      ocamlPackages.ocaml-lsp
+      ocamlPackages.utop
+      ocamlPackages.ocamlformat
+
     ];
 
     settings = {
@@ -42,6 +59,7 @@
       language-server = {
         wakatime.command = "wakatime-lsp";
         rust-analyzer.config = { check.command = "clippy"; };
+        ruff.command = "ruff-lsp";
       };
 
       language = [
@@ -54,12 +72,21 @@
         {
           name = "python";
           auto-format = true;
-          language-servers = [ "pylsp" "wakatime" ];
+          language-servers = [ "ruff" "jedi" "wakatime" ];
         }
         {
           name = "rust";
           auto-format = true;
           language-servers = [ "rust-analyzer" "wakatime" ];
+        }
+        {
+          name = "markdown";
+          language-servers = [ "marksman" "wakatime" ];
+        }
+        {
+          name = "ocaml";
+          auto-format = true;
+          language-servers = [ "ocamllsp" "wakatime" ];
         }
       ];
     };

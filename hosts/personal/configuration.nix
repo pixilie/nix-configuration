@@ -23,23 +23,8 @@
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
 
-  # Packages
-  environment.systemPackages = with pkgs; [
-    # TODO: split system pkg and tool in two specific files
-    pipewire
-    grim
-    slurp
-    wl-clipboard
-    killall
-    brightnessctl
-    wireplumber
-    networkmanagerapplet
-    unzip
-    poweralertd
-    upower
-    xdg-desktop-portal-gtk
-    pkg-config
-  ];
+  # System packages: drivers, services ...
+  #environment.systemPackages = with pkgs; [ wireplumber ];
 
   # User
   users.users.kristen = {
@@ -52,7 +37,7 @@
     [[ "$(tty)" == /dev/tty1 ]] && sway
   '';
 
-  #System things
+  # System things
   system.stateVersion = "24.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

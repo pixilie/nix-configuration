@@ -9,6 +9,7 @@
     ../../modules/home-manager/mako.nix
     ../../modules/home-manager/fonts.nix
     ../../modules/nixos/unfree.nix
+    ../../modules/home-manager/tools.nix
   ];
 
   # General informations
@@ -28,16 +29,7 @@
     gnome.nautilus
     masterpdfeditor
 
-    # Ocaml config
-    dune_3
-    ocaml
-    ocamlPackages.ocaml-lsp
-    ocamlPackages.utop
-    ocamlPackages.ocamlformat
-    ocamlPackages.junit
-    ocamlPackages.junit_alcotest
-    ocamlPackages.zarith
-
+    # Dev related
     jetbrains-toolbox
     upkgs.unityhub
     gccgo14
