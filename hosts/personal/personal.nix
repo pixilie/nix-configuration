@@ -9,6 +9,7 @@
     ../../modules/home-manager/mako.nix
     ../../modules/home-manager/fonts.nix
     ../../modules/nixos/unfree.nix
+    ../../modules/home-manager/tools.nix
   ];
 
   # General informations
