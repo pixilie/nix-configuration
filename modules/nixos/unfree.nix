@@ -10,5 +10,6 @@
       "unityhub"
       "skypeforlinux"
       "masterpdfeditor"
+      "lunar-client"
     ];
 }

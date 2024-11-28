@@ -19,15 +19,13 @@
 
   # Packages
   home.packages = with pkgs; [
-    firefox
     vesktop
-    thunderbird
     tidal-hifi
     bitwarden-desktop
     skypeforlinux
     prismlauncher
-    gnome.nautilus
     masterpdfeditor
+    lunar-client
 
     # Dev related
     jetbrains-toolbox
