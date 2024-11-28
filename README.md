@@ -12,7 +12,9 @@
 - gtk theming
 - media keybind not working
 - screen popup when changign volume, brightness ...
-- wrap helix related package with helix
+- swaync (https://github.com/ErikReider/SwayNotificationCenter)
+- zellij config
+- 
 
 ## Structure
 - `assets`: Files that don't fit in Nix files
