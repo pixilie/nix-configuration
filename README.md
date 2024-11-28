@@ -8,7 +8,6 @@
 - config control center (cf video)
 - projects's flake 
 - epita computer setup
-- can't stream discord
 - gtk theming
 - media keybind not working
 - screen popup when changign volume, brightness ...
