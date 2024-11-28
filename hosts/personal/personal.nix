@@ -19,9 +19,7 @@
 
   # Packages
   home.packages = with pkgs; [
-    firefox
     vesktop
-    thunderbird
     tidal-hifi
     bitwarden-desktop
     skypeforlinux

@@ -10,5 +10,9 @@
     networkmanagerapplet
     unzip
     poweralertd
+
+    # Global software    
+    gnome.nautilus
+    firefox
   ];
 }
