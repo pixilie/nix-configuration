@@ -24,8 +24,8 @@
     bitwarden-desktop
     skypeforlinux
     prismlauncher
-    gnome.nautilus
     masterpdfeditor
+    lunar-client
 
     # Dev related
     jetbrains-toolbox
