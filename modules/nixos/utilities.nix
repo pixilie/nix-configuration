@@ -24,10 +24,6 @@
 
   # Sway
   security.polkit.enable = true;
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-  };
 
   # Power
   services.upower = {

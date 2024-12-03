@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -6,7 +6,7 @@
     ../../modules/nixos/utilities.nix
     ../../modules/nixos/security.nix
     ../../modules/nixos/gaming.nix
-    ../../modules/nixos/unfree.nix
+    ../../modules/special-packages.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -25,7 +25,7 @@
   system.autoUpgrade.allowReboot = true;
 
   # System packages: drivers, services ...
-  #environment.systemPackages = with pkgs; [ wireplumber ];
+  #environment.systemPackages = with pkgs; [  ];
 
   # User
   users.users.kristen = {
@@ -39,6 +39,6 @@
   '';
 
   # System things
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
