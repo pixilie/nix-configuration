@@ -10,6 +10,16 @@
     networkmanagerapplet
     unzip
     poweralertd
+    playerctl
+    dconf
+    notify-desktop
+
+    # Bluetooth devices
+    bluez
+    libinput
+    bluez-tools
+    evtest
+    blueman
 
     # Global software    
     gnome.nautilus

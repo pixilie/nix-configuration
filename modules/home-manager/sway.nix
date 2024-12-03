@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 let
   modifier = "Mod4";
   terminal = "kitty";
@@ -87,14 +87,18 @@ in {
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPlay" = "exec playerctl play-pause";
 
-        "XF86AudioRaiseVolume" =
-          "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
-        "XF86AudioLowerVolume" =
-          "exec wpctl set-volume -l 0 @DEFAULT_AUDIO_SINK@ 5%-";
-        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "XF86AudioRaiseVolume" = ''
+          exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && notify-desktop "Volume Level" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"Volume: %.0f%%\", $2*100;}')"'';
 
-        "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
-        "XF86MonBrightnessDown" = "exec brightnessctl s 10%-";
+        "XF86AudioLowerVolume" = ''
+          exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- && notify-desktop "Volume Level" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"Volume: %.0f%%\", $2*100;}')"'';
+        "XF86AudioMute" =
+          "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-desktop $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q 'MUTED' && printf 'Sound OFF' || printf 'Sound ON')";
+
+        "XF86MonBrightnessUp" = ''
+          exec brightnessctl s +10% && notify-desktop "Brightness Level" "$(brightnessctl get | awk -v max=$(brightnessctl max) '{printf "Brightness: %.0f%%", ($1/max)*100;}')"'';
+        "XF86MonBrightnessDown" = ''
+          exec brightnessctl s 10%- && notify-desktop "Brightness Level" "$(brightnessctl get | awk -v max=$(brightnessctl max) '{printf "Brightness: %.0f%%", ($1/max)*100;}')"'';
 
         "Print" = ''exec grim -g "$(slurp)" - | wl-copy'';
       };
@@ -118,14 +122,15 @@ in {
           scroll_method = "two_finger";
           natural_scroll = "enabled";
         };
+
         "type:keyboard" = {
           xkb_layout = "us,fr";
 
           # List of all options: https://www.mankier.com/7/xkeyboard-config#Options
           xkb_options = "grp:ctrl_alt_toggle";
 
-          repeat_delay = toString 300;
-          repeat_rate = toString 30;
+          #repeat_delay = toString 300;
+          #repeat_rate = toString 30;
         };
       };
     };
@@ -137,11 +142,4 @@ in {
 
   # Low power alert
   services.poweralertd.enable = true;
-
-  # Start sway
-  programs.fish.loginShellInit = ''
-    if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"
-      exec sway 
-    end
-  '';
 }
