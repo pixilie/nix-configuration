@@ -9,11 +9,8 @@
 - projects's flake 
 - epita computer setup
 - gtk theming
-- media keybind not working
-- screen popup when changign volume, brightness ...
-- swaync (https://github.com/ErikReider/SwayNotificationCenter)
 - zellij config
-- 
+- Bluetooth input (mouse, keyboard) not working
 
 ## Structure
 - `assets`: Files that don't fit in Nix files
