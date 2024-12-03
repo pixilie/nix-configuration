@@ -8,7 +8,7 @@
     extraPackages = with pkgs; [
       # Wakatime related
       wakatime
-      inputs.wakatime-lsp.packages."x86_64-linux".wakatime-lsp
+      inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
 
       # Nix Related
       nil
@@ -57,7 +57,7 @@
 
     languages = {
       language-server = {
-        wakatime.command = "wakatime-lsp";
+        wakatime.command = "wakatime-ls";
         rust-analyzer.config = { check.command = "clippy"; };
         ruff.command = "ruff-lsp";
       };

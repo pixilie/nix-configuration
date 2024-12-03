@@ -4,13 +4,12 @@
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
-    ../../modules/home-manager/sway.nix
     ../../modules/home-manager/sh.nix
-    ../../modules/home-manager/mako.nix
     ../../modules/home-manager/fonts.nix
-    ../../modules/nixos/unfree.nix
+    ../../modules/special-packages.nix
     ../../modules/home-manager/tools.nix
-    ../../modules/home-manager/gtk.nix
+    ../../modules/home-manager/display/sway.nix
+    ../../modules/home-manager/display/mako.nix
   ];
 
   # General informations
@@ -28,6 +27,8 @@
     masterpdfeditor
     lunar-client
     insomnia
+    nautilus
+    firefox
 
     # Dev related
     jetbrains-toolbox
@@ -36,15 +37,6 @@
     rustup
     python3
     dotnetCorePackages.sdk_7_0
-
-    # Window manager
-    wlroots
-    sway
-    wayland
-    swaylock-effects
-    swayidle
-    swaybg
-    xwayland
   ];
 
   # Let Home Manager install and manage itself.

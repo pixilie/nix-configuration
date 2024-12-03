@@ -3,14 +3,14 @@
   description = "main nixos configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    wakatime-lsp.url = "github:mrnossiom/wakatime-lsp";
-    wakatime-lsp.inputs.nixpkgs.follows = "nixpkgs";
+    wakatime-ls.url = "github:mrnossiom/wakatime-ls";
+    wakatime-ls.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
@@ -20,11 +20,9 @@
       pkgs = nixpkgs.legacyPackages.${system};
       upkgs = import nixpkgs-unstable {
         inherit system;
-        config.allowUnfree = true;
-      }; # Specific pkgs only ?
+        config.allowUnfree = true; # TODO: move to special packages
+      };
     in {
-      formatter = pkgs.nixfmt-unstable;
-
       nixosConfigurations = {
         kristen = lib.nixosSystem {
           inherit system;

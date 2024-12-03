@@ -11,6 +11,7 @@
 - gtk theming
 - zellij config
 - Bluetooth input (mouse, keyboard) not working
+- swayidle
 
 ## Structure
 - `assets`: Files that don't fit in Nix files
@@ -24,5 +25,6 @@
     - `hardware-configuration`: Device-specific settings 
 - `modules`: Configurations fragments
 	- `home-manager`: Home Manager configuration fragments
+    - `display`: Window manager configuration fragments
 	- `nixos`: NixOS configuration fragments
 - `templates`: Quickstart files

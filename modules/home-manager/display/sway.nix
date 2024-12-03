@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
   modifier = "Mod4";
   terminal = "kitty";
@@ -6,12 +6,25 @@ let
   down = "j";
   left = "h";
   right = "l";
-  image = toString ../../assets/media/wallpaper.png;
+  image = toString ../../../assets/media/wallpaper.png;
 in {
   imports = [ ./swaylock-fancy.nix ./swaybar.nix ./tofi.nix ];
 
+  home.packages = with pkgs; [
+    swaylock-effects
+    swaybg
+    playerctl
+    brightnessctl
+    notify-desktop
+    grim
+    slurp
+    wlroots
+  ];
+
   wayland.windowManager.sway = {
     enable = true;
+
+    xwayland = true;
 
     config = {
       modifier = "${modifier}";

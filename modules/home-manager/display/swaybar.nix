@@ -18,6 +18,7 @@
       };
 
       blocks = [
+        { block = "music"; }
         { block = "sound"; }
         {
           block = "net";
@@ -27,13 +28,13 @@
         {
           block = "memory";
           icons_format = "";
-          format = " $icon$mem_used_percents.eng(w:2) ";
+          format = " $icon $mem_used_percents.eng(w:2) ";
           interval = 10;
         }
         {
           block = "cpu";
           icons_format = "";
-          format = " $icon$utilization ";
+          format = " $icon $utilization ";
           interval = 10;
         }
         {
@@ -42,6 +43,9 @@
           interval = 30;
           warning = 20;
           critical = 10;
+          format = " $icon $percentage ";
+          empty_format = " $icon $percentage ";
+          full_format = " $icon $percentage ";
         }
         {
           block = "disk_space";
