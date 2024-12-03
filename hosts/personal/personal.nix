@@ -10,6 +10,7 @@
     ../../modules/home-manager/fonts.nix
     ../../modules/nixos/unfree.nix
     ../../modules/home-manager/tools.nix
+    ../../modules/home-manager/gtk.nix
   ];
 
   # General informations
