@@ -71,7 +71,7 @@
         }
         {
           name = "python";
-          auto-format = true;
+          auto-format = false;
           language-servers = [ "ruff" "jedi" "wakatime" ];
         }
         {
