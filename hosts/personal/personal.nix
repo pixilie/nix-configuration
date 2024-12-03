@@ -27,6 +27,7 @@
     prismlauncher
     masterpdfeditor
     lunar-client
+    insomnia
 
     # Dev related
     jetbrains-toolbox
