@@ -18,6 +18,7 @@
   # Network
   networking.hostName = "kristen-nixos";
   networking.networkmanager.enable = true;
+  networking.hosts = { "10.2.3.154" = [ "printer.epita" ]; };
 
   # System upgrade
   system.autoUpgrade.enable = true;
