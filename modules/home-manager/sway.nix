@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 let
   modifier = "Mod4";
   terminal = "kitty";
@@ -142,11 +142,4 @@ in {
 
   # Low power alert
   services.poweralertd.enable = true;
-
-  # Start sway
-  programs.fish.loginShellInit = ''
-    if test (id --user $USER) -ge 1000 && test (tty) = "/dev/tty1"
-      exec sway 
-    end
-  '';
 }
