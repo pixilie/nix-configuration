@@ -20,11 +20,9 @@
       pkgs = nixpkgs.legacyPackages.${system};
       upkgs = import nixpkgs-unstable {
         inherit system;
-        config.allowUnfree = true;
-      }; # Specific pkgs only ?
+        config.allowUnfree = true; # TODO: move to special packages
+      };
     in {
-      formatter = pkgs.nixfmt-unstable;
-
       nixosConfigurations = {
         kristen = lib.nixosSystem {
           inherit system;
