@@ -30,6 +30,9 @@
       ocamlPackages.utop
       ocamlPackages.ocamlformat
 
+      # JS Related
+      vscode-langservers-extracted
+      nodePackages.typescript-language-server
     ];
 
     settings = {
@@ -87,6 +90,11 @@
           name = "ocaml";
           auto-format = true;
           language-servers = [ "ocamllsp" "wakatime" ];
+        }
+        {
+          name = "javascript";
+          auto-format = true;
+          language-servers = [ "typescript-language-server" "wakatime" ];
         }
       ];
     };
