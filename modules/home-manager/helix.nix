@@ -6,7 +6,7 @@
     defaultEditor = true;
 
     extraPackages = with pkgs; [
-      # Wakatime related
+      # Global lsp
       wakatime
       inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
 
@@ -14,25 +14,8 @@
       nil
       nixfmt-classic
 
-      # C related
-      clang-tools
-
-      # markdown
+      # Markdown
       marksman
-
-      # Python related
-      ruff
-      ruff-lsp
-      python312Packages.jedi
-
-      # Ocaml related
-      ocamlPackages.ocaml-lsp
-      ocamlPackages.utop
-      ocamlPackages.ocamlformat
-
-      # JS Related
-      vscode-langservers-extracted
-      nodePackages.typescript-language-server
     ];
 
     settings = {

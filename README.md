@@ -6,7 +6,6 @@
 - CLI tools setup (cf video) 
 - better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)
 - config control center (cf video)
-- projects's flake 
 - epita computer setup
 - gtk theming
 - zellij config
