@@ -6,7 +6,7 @@
     defaultEditor = true;
 
     extraPackages = with pkgs; [
-      # Wakatime related
+      # Global lsp
       wakatime
       inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
 
@@ -14,25 +14,8 @@
       nil
       nixfmt-classic
 
-      # C related
-      clang-tools
-
-      # markdown
+      # Markdown
       marksman
-
-      # Python related
-      ruff
-      ruff-lsp
-      python312Packages.jedi
-
-      # Ocaml related
-      ocamlPackages.ocaml-lsp
-      ocamlPackages.utop
-      ocamlPackages.ocamlformat
-
-      # JS Related
-      vscode-langservers-extracted
-      nodePackages.typescript-language-server
     ];
 
     settings = {
@@ -75,7 +58,7 @@
         {
           name = "python";
           auto-format = false;
-          language-servers = [ "ruff" "jedi" "wakatime" ];
+          language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
         }
         {
           name = "rust";
@@ -84,7 +67,7 @@
         }
         {
           name = "markdown";
-          language-servers = [ "marksman" "wakatime" ];
+          language-servers = [ "marksman" ];
         }
         {
           name = "ocaml";
@@ -94,7 +77,11 @@
         {
           name = "javascript";
           auto-format = true;
-          language-servers = [ "typescript-language-server" "wakatime" ];
+          language-servers = [
+            "typescript-language-server"
+            "vscode-eslint-language-server"
+            "wakatime"
+          ];
         }
       ];
     };

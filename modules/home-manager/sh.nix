@@ -59,6 +59,11 @@
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
+
+    settings.nix_shell = {
+      format = "via [$symbol$state]($style) "; # Remove nix shell name
+      symbol = " ";
+    };
   };
 
   programs.zellij.enable = true;
@@ -69,4 +74,11 @@
     enableFishIntegration = true;
     options = [ "--cmd cd" ];
   };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+  home.sessionVariables.DIRENV_LOG_FORMAT = "";
+
 }
