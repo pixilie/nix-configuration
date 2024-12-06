@@ -19,10 +19,7 @@
       ca = "commit --amend";
     };
 
-    ignores = [
-      # Nix build result
-      "result"
-    ];
+    ignores = [ ".direnv/" "result" ];
 
     extraConfig = {
       init.defaultBranch = "main";
