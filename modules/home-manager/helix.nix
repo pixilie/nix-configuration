@@ -58,7 +58,7 @@
         {
           name = "python";
           auto-format = false;
-          language-servers = [ "ruff" "jedi" "wakatime" ];
+          language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
         }
         {
           name = "rust";
@@ -67,7 +67,7 @@
         }
         {
           name = "markdown";
-          language-servers = [ "marksman" "wakatime" ];
+          language-servers = [ "marksman" ];
         }
         {
           name = "ocaml";
@@ -77,7 +77,11 @@
         {
           name = "javascript";
           auto-format = true;
-          language-servers = [ "typescript-language-server" "wakatime" ];
+          language-servers = [
+            "typescript-language-server"
+            "vscode-eslint-language-server"
+            "wakatime"
+          ];
         }
       ];
     };
