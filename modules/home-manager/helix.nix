@@ -16,6 +16,9 @@
 
       # Markdown
       marksman
+
+      # C related
+      clang-tools
     ];
 
     settings = {
@@ -82,6 +85,12 @@
             "vscode-eslint-language-server"
             "wakatime"
           ];
+        }
+        {
+          name = "c";
+          language-servers = [ "clangd" "wakatime" ];
+          auto-format = true;
+          formatter = { command = "clang-format"; };
         }
       ];
     };
