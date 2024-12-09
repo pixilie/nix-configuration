@@ -27,7 +27,6 @@
 
       pull.rebase = true;
     };
+    difftastic.enable = true;
   };
-
-  programs.gh.enable = true;
 }
