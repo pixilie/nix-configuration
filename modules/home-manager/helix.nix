@@ -99,7 +99,7 @@
         {
           name = "c";
           language-servers = [ "clangd" "wakatime" ];
-          auto-format = true;
+          auto-format = false;
           formatter = { command = "clang-format"; };
         }
       ];
