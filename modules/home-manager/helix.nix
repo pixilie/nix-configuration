@@ -3,6 +3,7 @@
 {
   programs.helix = {
     enable = true;
+    package = inputs.helix-editor.packages."x86_64-linux".helix;
     defaultEditor = true;
 
     extraPackages = with pkgs; [
@@ -40,6 +41,15 @@
           insert = "bar";
           normal = "block";
           select = "underline";
+        };
+      };
+
+      keys = {
+        normal = {
+          up = "no_op";
+          down = "no_op";
+          left = "no_op";
+          right = "no_op";
         };
       };
     };
@@ -89,7 +99,7 @@
         {
           name = "c";
           language-servers = [ "clangd" "wakatime" ];
-          auto-format = true;
+          auto-format = false;
           formatter = { command = "clang-format"; };
         }
       ];

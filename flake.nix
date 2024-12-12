@@ -11,6 +11,9 @@
 
     wakatime-ls.url = "github:mrnossiom/wakatime-ls";
     wakatime-ls.inputs.nixpkgs.follows = "nixpkgs";
+
+    helix-editor.url = "github:helix-editor/helix";
+    helix-editor.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
