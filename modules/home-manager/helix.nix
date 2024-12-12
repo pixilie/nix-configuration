@@ -43,6 +43,15 @@
           select = "underline";
         };
       };
+
+      keys = {
+        normal = {
+          up = "no_op";
+          down = "no_op";
+          left = "no_op";
+          right = "no_op";
+        };
+      };
     };
 
     languages = {
