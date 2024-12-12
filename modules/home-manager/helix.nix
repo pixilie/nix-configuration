@@ -3,6 +3,7 @@
 {
   programs.helix = {
     enable = true;
+    package = inputs.helix-editor.packages."x86_64-linux".helix;
     defaultEditor = true;
 
     extraPackages = with pkgs; [
