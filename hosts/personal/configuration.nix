@@ -31,7 +31,7 @@
   # User
   users.users.kristen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "sway" ];
+    extraGroups = [ "wheel" "networkmanager" "sway" "input" ];
   };
 
   # Start sway 
