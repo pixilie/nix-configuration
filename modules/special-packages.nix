@@ -12,6 +12,7 @@
       "skypeforlinux"
       "masterpdfeditor"
       "lunarclient"
+      "google-chrome"
     ];
 
   nixpkgs.config.permittedInsecurePackages =

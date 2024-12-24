@@ -15,7 +15,7 @@
   # General informations
   home.username = "kristen";
   home.homeDirectory = "/home/kristen";
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   # Packages
   home.packages = with pkgs; [
@@ -29,6 +29,7 @@
     insomnia
     nautilus
     firefox
+    google-chrome
 
     # Dev related
     jetbrains-toolbox

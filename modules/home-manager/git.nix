@@ -29,4 +29,6 @@
     };
     difftastic.enable = true;
   };
+
+  programs.gh.enable = true;
 }

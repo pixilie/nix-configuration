@@ -2,15 +2,13 @@
 
 ## TODO
 - Secrets management
-- Confirm menu before shutdown & reboot
 - CLI tools setup (cf video) 
 - better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)
 - config control center (cf video)
 - epita computer setup
 - gtk theming
 - zellij config
-- Bluetooth input (mouse, keyboard) not working
-- swayidle
+- lock computer on screen close
 
 ## Structure
 - `assets`: Files that don't fit in Nix files

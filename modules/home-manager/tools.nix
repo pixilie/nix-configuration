@@ -10,6 +10,7 @@
     dconf
     openssl
     wdisplays
+    fastfetch
 
     # Dev related
     gccgo14
@@ -17,5 +18,6 @@
     python3
     dotnetCorePackages.sdk_7_0
     direnv
+    gnumake
   ];
 }

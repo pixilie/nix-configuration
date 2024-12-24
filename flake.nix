@@ -42,6 +42,14 @@
           };
           modules = [ ./hosts/personal/personal.nix ];
         };
+        epita = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit upkgs;
+          };
+          modules = [ ./hosts/personal/epita.nix ];
+        };
       };
     };
 }
