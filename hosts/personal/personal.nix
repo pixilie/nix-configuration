@@ -29,6 +29,7 @@
     insomnia
     nautilus
     firefox
+    google-chrome
 
     # Dev related
     jetbrains-toolbox
