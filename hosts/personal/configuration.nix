@@ -7,6 +7,7 @@
     ../../modules/nixos/security.nix
     ../../modules/nixos/gaming.nix
     ../../modules/special-packages.nix
+    ../../modules/nixos/docker.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
