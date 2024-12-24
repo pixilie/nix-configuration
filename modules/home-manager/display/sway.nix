@@ -140,12 +140,7 @@ in {
 
         "type:keyboard" = {
           xkb_layout = "us,fr";
-
-          # List of all options: https://www.mankier.com/7/xkeyboard-config#Options
           xkb_options = "grp:ctrl_alt_toggle";
-
-          #repeat_delay = toString 300;
-          #repeat_rate = toString 30;
         };
       };
     };
