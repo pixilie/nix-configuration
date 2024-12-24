@@ -9,19 +9,19 @@
       daemonize = true;
       ignore-empty-password = true;
       show-failed-attempts = true;
-      screenshots = true;
-      clock = true;
-      indicator = true;
-
-      #image = toString ../../../assets/media/epileptic.gif;
-
+      # screenshots = true;
+      #clock = true;
       font = "Noto Sans";
 
+      indicator = false;
       indicator-radius = 100;
       indicator-thickness = 7;
+      hide-keyboard-layout = true;
+      indicator-x-position = 150;
+      indicator-y-position = 930;
 
-      effect-blur = "7x5";
-      effect-vignette = "0.5:0.5";
+      #effect-blur = "7x5";
+      #effect-vignette = "0.5:0.5";
 
       ring-color = "17191e";
       key-hl-color = "880033";
