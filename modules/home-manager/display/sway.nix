@@ -54,7 +54,7 @@ in {
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";
-        "${modifier}+Shift+e" =
+        "${modifier}+Escape" =
           "exec sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
         "${modifier}" = "exec swaymsg bar mode toggle";
         "${modifier}+Shift+s" =
@@ -62,6 +62,8 @@ in {
         "${modifier}+Shift+n" = "swaymsg exit";
         "${modifier}+Shift+z" = "exec makoctl dismiss";
         "${modifier}+Shift+f" = "exec nautilus";
+        "${modifier}+Shift+Escape" =
+          "exec sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
 
         # Movements keys
         "${modifier}+${left}" = "focus left";
@@ -138,12 +140,7 @@ in {
 
         "type:keyboard" = {
           xkb_layout = "us,fr";
-
-          # List of all options: https://www.mankier.com/7/xkeyboard-config#Options
           xkb_options = "grp:ctrl_alt_toggle";
-
-          #repeat_delay = toString 300;
-          #repeat_rate = toString 30;
         };
       };
     };
