@@ -20,6 +20,9 @@
 
       # C related
       clang-tools
+
+      # Web related
+      vscode-langservers-extracted
     ];
 
     settings = {
@@ -101,6 +104,16 @@
           language-servers = [ "clangd" "wakatime" ];
           auto-format = false;
           formatter = { command = "clang-format"; };
+        }
+        {
+          name = "html";
+          auto-format = true;
+          language-servers = [ "vscode-html-language-server" "wakatime" ];
+        }
+        {
+          name = "css";
+          auto-format = true;
+          language-servers = [ "vscode-css-language-server" "wakatime" ];
         }
       ];
     };
