@@ -23,6 +23,7 @@
 
       # Web related
       vscode-langservers-extracted
+      typescript-language-server
     ];
 
     settings = {
