@@ -14,6 +14,7 @@
       pu = "push";
       puf = "push --force-with-lease";
       pl = "pull";
+      st = "status";
 
       cm = "commit --message";
       ca = "commit --amend";
