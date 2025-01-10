@@ -48,7 +48,7 @@
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/personal/epita.nix ];
+          modules = [ ./hosts/epita/epita.nix ];
         };
       };
     };

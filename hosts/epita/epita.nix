@@ -9,8 +9,8 @@
   ];
 
   # General informations
-  home.username = "kristen-epita";
-  home.homeDirectory = "/home/kristen-epita";
+  home.username = "kristen.couty";
+  home.homeDirectory = "/home/kristen.couty";
   home.stateVersion = "24.11";
 
   # Packages
