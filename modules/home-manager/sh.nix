@@ -61,7 +61,7 @@
     enableFishIntegration = true;
 
     settings.nix_shell = {
-      format = "via [$symbol$state]($style) "; # Remove nix shell name
+      format = "via [$symbol$state]($style) ";
       symbol = " ";
     };
   };
