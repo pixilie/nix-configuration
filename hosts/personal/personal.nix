@@ -30,6 +30,7 @@
     nautilus
     firefox
     google-chrome
+    zed-editor
 
     # Dev related
     jetbrains-toolbox
