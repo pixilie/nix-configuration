@@ -60,6 +60,11 @@
           down = "no_op";
           left = "no_op";
           right = "no_op";
+
+          "space" = {
+            f = "file_picker_in_current_directory";
+            F = "file_picker";
+          };
         };
       };
     };
