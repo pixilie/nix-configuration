@@ -29,6 +29,12 @@
       # Web related
       vscode-langservers-extracted
       typescript-language-server
+
+      # Python
+      ruff
+      ruff-lsp
+      python312Packages.jedi-language-server
+      pkgs.python312Packages.python-lsp-server
     ];
 
     settings = {
@@ -91,7 +97,8 @@
         {
           name = "python";
           auto-format = false;
-          language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
+          language-servers =
+            [ "ruff" "jedi-language-server" "pylsp" "wakatime" ];
         }
         {
           name = "rust";
