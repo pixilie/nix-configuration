@@ -36,6 +36,12 @@
         bufferline = "multiple";
         file-picker.hidden = false;
 
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "error";
+          other-lines = "error";
+        };
+
         indent-guides = {
           render = true;
           characters = "╎";
