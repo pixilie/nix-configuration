@@ -2,12 +2,11 @@
 
 ## TODO
 - Secrets management
-- CLI tools setup (cf video) 
-- better pkgs organization in personal.nix & slit beetwin home pkg (home config) and system pkg (nix config)
-- config control center (cf video)
 - gtk theming
 - zellij config
 - lock computer on screen close
+- wakatime config
+- discord can't open browser
 
 ## Structure
 - `assets`: Files that don't fit in Nix files
@@ -25,7 +24,7 @@
 	- `nixos`: NixOS configuration fragments
 - `templates`: Quickstart files
 
-## Switch to EPITA profile
+## Switch to another profile
 ```
-nix run nixpkgs#home-manager -- switch --flake .#epita
+nix run nixpkgs#home-manager -- switch --flake .#<profile>
 ```
