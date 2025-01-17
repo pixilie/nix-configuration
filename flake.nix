@@ -1,5 +1,4 @@
 {
-
   description = "main nixos configuration";
 
   inputs = {
@@ -50,6 +49,14 @@
             inherit upkgs;
           };
           modules = [ ./hosts/epita/epita.nix ];
+        };
+        epita-light = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit upkgs;
+          };
+          modules = [ ./hosts/epita/epita-light.nix ];
         };
       };
     };
