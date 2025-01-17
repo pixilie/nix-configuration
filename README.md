@@ -28,3 +28,7 @@
 ```
 nix run nixpkgs#home-manager -- switch --flake .#<profile>
 ```
+
+- `personal`: Profile for my main computer
+- `epita`: Profile for school computers
+- `epita-light`: Profile for school computer designed to build fast

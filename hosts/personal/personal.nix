@@ -10,6 +10,7 @@
     ../../modules/home-manager/tools.nix
     ../../modules/home-manager/display/sway.nix
     ../../modules/home-manager/display/mako.nix
+    ../../modules/options.nix
   ];
 
   # General informations

@@ -1,5 +1,4 @@
 {
-
   description = "main nixos configuration";
 
   inputs = {
@@ -24,17 +23,18 @@
       upkgs = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true; # TODO: move to special packages
+        # config.allowUnfreePredicate = import ./lib/unfree.nix { lib = nixpkgs.lib; };
       };
     in {
       nixosConfigurations = {
-        kristen = lib.nixosSystem {
+        personal = lib.nixosSystem {
           inherit system;
           modules = [ ./hosts/personal/configuration.nix ];
         };
       };
 
       homeConfigurations = {
-        kristen = home-manager.lib.homeManagerConfiguration {
+        personal = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
@@ -49,6 +49,14 @@
             inherit upkgs;
           };
           modules = [ ./hosts/epita/epita.nix ];
+        };
+        epita-light = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit upkgs;
+          };
+          modules = [ ./hosts/epita/epita-light.nix ];
         };
       };
     };

@@ -1,13 +1,13 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 
 {
   programs.helix = {
     enable = true;
 
-    package = if true then
-      inputs.helix-editor.packages."x86_64-linux".helix
+    package = if config.useCache then
+      pkgs.helix
     else
-      pkgs.helix;
+      inputs.helix-editor.packages."x86_64-linux".helix;
 
     defaultEditor = true;
 
@@ -47,11 +47,12 @@
         bufferline = "multiple";
         file-picker.hidden = false;
 
-        end-of-line-diagnostics = "hint";
-        inline-diagnostics = {
-          cursor-line = "error";
+        end-of-line-diagnostics = if !config.useCache then "hint" else null;
+        inline-diagnostics = if !config.useCache then {
+          cursor-line = "hint";
           other-lines = "error";
-        };
+        } else
+          null;
 
         indent-guides = {
           render = true;

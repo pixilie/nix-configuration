@@ -6,6 +6,8 @@
     ../../modules/home-manager/helix.nix
     ../../modules/home-manager/sh.nix
     ../../modules/home-manager/fonts.nix
+    ../../modules/options.nix
+    ../../modules/home-manager/display/i3.nix
   ];
 
   # General informations
