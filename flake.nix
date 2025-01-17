@@ -27,14 +27,14 @@
       };
     in {
       nixosConfigurations = {
-        kristen = lib.nixosSystem {
+        personal = lib.nixosSystem {
           inherit system;
           modules = [ ./hosts/personal/configuration.nix ];
         };
       };
 
       homeConfigurations = {
-        kristen = home-manager.lib.homeManagerConfiguration {
+        personal = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
