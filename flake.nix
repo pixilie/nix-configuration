@@ -24,6 +24,7 @@
       upkgs = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true; # TODO: move to special packages
+        # config.allowUnfreePredicate = import ./lib/unfree.nix { lib = nixpkgs.lib; };
       };
     in {
       nixosConfigurations = {
