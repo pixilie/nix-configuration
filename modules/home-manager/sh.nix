@@ -52,7 +52,12 @@
       ghd = "gh-dash";
     };
 
-    functions = { fish_greeting = ""; };
+    functions = {
+      fish_greeting = "";
+      init-tp = {
+        body = "python3 ./assets/scripts/init-tp.py $argv[1] $argv[2]";
+      };
+    };
   };
 
   programs.starship = {
