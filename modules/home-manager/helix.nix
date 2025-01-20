@@ -32,9 +32,8 @@
 
       # Python
       ruff
-      ruff-lsp
       python312Packages.jedi-language-server
-      pkgs.python312Packages.python-lsp-server
+      python312Packages.python-lsp-server
     ];
 
     settings = {
@@ -85,7 +84,6 @@
       language-server = {
         wakatime.command = "wakatime-ls";
         rust-analyzer.config = { check.command = "clippy"; };
-        ruff.command = "ruff-lsp";
       };
 
       language = [
@@ -98,8 +96,7 @@
         {
           name = "python";
           auto-format = false;
-          language-servers =
-            [ "ruff" "jedi-language-server" "pylsp" "wakatime" ];
+          language-servers = [ "ruff" "jedi" "pylsp" ];
         }
         {
           name = "rust";
