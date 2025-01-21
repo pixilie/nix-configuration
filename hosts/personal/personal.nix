@@ -24,18 +24,21 @@
     tidal-hifi
     bitwarden-desktop
     skypeforlinux
-    prismlauncher
     masterpdfeditor
-    lunar-client
-    insomnia
     nautilus
     firefox
     google-chrome
-    zed-editor
 
     # Dev related
     jetbrains-toolbox
     upkgs.unityhub
+    zed-editor
+    insomnia
+
+    # Games
+    superTuxKart
+    lunar-client
+    prismlauncher
   ];
 
   # Let Home Manager install and manage itself.
