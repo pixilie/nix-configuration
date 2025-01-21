@@ -8,15 +8,15 @@
     (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
     font-awesome
     merriweather
+    inter
   ];
 
   fonts.fontconfig = {
     enable = true;
-
     defaultFonts = {
-      serif = [ "Noto Sans" ];
-      sansSerif = [ "Merriweather" ];
-      monospace = [ "JetBrainsMono" ];
+      serif = [ "Noto Sans" "Merriweather" ];
+      sansSerif = [ "Inter" ];
+      monospace = [ "CascadiaCode" ];
       emoji = [ "Noto Color Emoji" ];
     };
   };
