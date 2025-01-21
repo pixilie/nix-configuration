@@ -36,8 +36,7 @@ def main():
     subprocess.run(["git", "clone", repository_link])
     os.rename(f"{repository_name}", f"{formatted_repository_name}")
     os.chdir(formatted_repository_name)
-    # subprocess.run(["git", "branch", "master"])
-    # subprocess.run(["git", "switch", "master"])      
+    subprocess.run(["git", "switch", "--create" "master"])      
 
     # Create basics repo files
     with open(".gitignore", "w") as gitignore:
