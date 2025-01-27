@@ -5,9 +5,10 @@
     ./hardware-configuration.nix
     ../../modules/nixos/utilities.nix
     ../../modules/nixos/security.nix
-    ../../modules/nixos/gaming.nix
+    ../../modules/nixos/steam.nix
     ../../modules/special-packages.nix
     ../../modules/nixos/docker.nix
+    ../../modules/nixos/system-packages.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -24,9 +25,6 @@
   # System upgrade
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
-
-  # System packages: drivers, services ...
-  #environment.systemPackages = with pkgs; [  ];
 
   # User
   users.users.kristen = {
