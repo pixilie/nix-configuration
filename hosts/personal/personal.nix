@@ -20,6 +20,7 @@
 
   # Packages
   home.packages = with pkgs; [
+    # General apps
     vesktop
     tidal-hifi
     bitwarden-desktop
@@ -39,6 +40,7 @@
     superTuxKart
     lunar-client
     prismlauncher
+    ferium
   ];
 
   # Let Home Manager install and manage itself.
