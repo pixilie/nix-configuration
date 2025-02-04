@@ -8,7 +8,7 @@ let
   right = "l";
   image = toString ../../../assets/media/wallpaper.png;
 in {
-  imports = [ ./swaylock-fancy.nix ./swaybar.nix ./tofi.nix ];
+  imports = [ ./swaylock-troll.nix ./swaybar.nix ./tofi.nix ];
 
   home.packages = with pkgs; [
     swaylock-effects
@@ -136,6 +136,7 @@ in {
           click_method = "clickfinger";
           scroll_method = "two_finger";
           natural_scroll = "enabled";
+          dwt = "disabled";
         };
 
         "type:keyboard" = {
