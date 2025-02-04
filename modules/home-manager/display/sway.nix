@@ -136,6 +136,7 @@ in {
           click_method = "clickfinger";
           scroll_method = "two_finger";
           natural_scroll = "enabled";
+          dwt = "disabled";
         };
 
         "type:keyboard" = {
