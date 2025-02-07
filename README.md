@@ -6,7 +6,6 @@
 - zellij config
 - lock computer on screen close
 - wakatime config
-- discord can't open browser
 
 ## Structure
 - `assets`: Files that don't fit in Nix files
