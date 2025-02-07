@@ -6,11 +6,12 @@
     ../../modules/home-manager/helix.nix
     ../../modules/home-manager/sh.nix
     ../../modules/home-manager/fonts.nix
-    ../../modules/special-packages.nix
     ../../modules/home-manager/tools.nix
     ../../modules/home-manager/display/sway.nix
     ../../modules/home-manager/display/mako.nix
+    ../../modules/home-manager/xdg.nix
     ../../modules/options.nix
+    ../../modules/special-packages.nix
   ];
 
   # General informations
