@@ -11,6 +11,9 @@
     openssl
     wdisplays
     fastfetch
+    pkg-config
+    imv
+    xdg-utils
 
     # Dev related
     gccgo14
@@ -19,5 +22,6 @@
     dotnetCorePackages.sdk_7_0
     direnv
     gnumake
+    jdk17
   ];
 }
