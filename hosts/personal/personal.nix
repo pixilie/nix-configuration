@@ -30,6 +30,7 @@
     nautilus
     firefox
     google-chrome
+    rustdesk
 
     # Dev related
     jetbrains-toolbox
