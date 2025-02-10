@@ -13,6 +13,7 @@
       "masterpdfeditor"
       "lunarclient"
       "google-chrome"
+      "libsciter"
     ];
 
   nixpkgs.config.permittedInsecurePackages =
