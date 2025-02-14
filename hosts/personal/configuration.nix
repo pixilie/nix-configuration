@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -18,7 +18,6 @@
       systemd-boot.configurationLimit = 1;
       timeout = 0;
     };
-    kernelPackages = pkgs.linuxPackages_zen; # To test
   };
 
   networking = {
