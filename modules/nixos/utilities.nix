@@ -35,7 +35,7 @@
     enable = true;
     percentageLow = 10;
     percentageCritical = 5;
-    timeCritical = 120;
+    timeCritical = 30;
   };
 
   xdg.portal = {
