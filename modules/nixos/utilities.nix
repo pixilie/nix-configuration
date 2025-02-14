@@ -25,6 +25,9 @@
 
   # Sway
   security.polkit.enable = true;
+  environment.loginShellInit = ''
+    [[ "$(tty)" == /dev/tty1 ]] && sway
+  '';
 
   # Power
   services.upower = {

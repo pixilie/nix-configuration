@@ -37,10 +37,5 @@
     extraGroups = [ "wheel" "networkmanager" "sway" "input" ];
   };
 
-  # Start sway 
-  environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty1 ]] && sway
-  '';
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
