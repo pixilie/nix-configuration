@@ -96,7 +96,7 @@
         {
           name = "python";
           auto-format = false;
-          language-servers = [ "ruff" "jedi" "pylsp" ];
+          language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
         }
         {
           name = "rust";
