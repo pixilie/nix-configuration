@@ -22,6 +22,7 @@
   # Enable bluetooth
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  services.libinput.enable = true;
 
   # Sway
   security.polkit.enable = true;
