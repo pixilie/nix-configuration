@@ -23,7 +23,6 @@ in {
 
   wayland.windowManager.sway = {
     enable = true;
-
     xwayland = true;
 
     config = {
@@ -150,6 +149,27 @@ in {
       exec_always swaybg -i ${image} -m fill   
     '';
   };
+
+  # gtk = {
+  #   enable = true;
+
+  #   # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
+  #   theme = {
+  #     name = "Arc-Dark";
+  #     package = pkgs.arc-theme;
+  #   };
+
+  #   # cursorTheme = {
+  #   #   name = "Bibata-Modern-Ice";
+  #   #   package = pkgs.bibata-cursors;
+  #   # };
+
+  #   iconTheme = {
+  #     name = "Papirus";
+  #     package = pkgs.papirus-icon-theme;
+  #   };
+  # };
 
   # Low power alert
   services.poweralertd.enable = true;
