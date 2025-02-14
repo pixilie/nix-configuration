@@ -43,6 +43,7 @@
     lunar-client
     prismlauncher
     ferium
+    modrinth-app
   ];
 
   # Let Home Manager install and manage itself.

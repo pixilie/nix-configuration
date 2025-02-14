@@ -16,7 +16,7 @@
     defaultFonts = {
       serif = [ "Noto Sans" "Merriweather" ];
       sansSerif = [ "Inter" ];
-      monospace = [ "CascadiaCode" ];
+      monospace = [ "JetBrainsMonoNerdFont-Regular" ];
       emoji = [ "Noto Color Emoji" ];
     };
   };

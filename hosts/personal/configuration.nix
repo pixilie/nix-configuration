@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -18,7 +18,6 @@
       systemd-boot.configurationLimit = 1;
       timeout = 0;
     };
-    kernelPackages = pkgs.linuxPackages_zen; # To test
   };
 
   networking = {
@@ -37,11 +36,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "sway" "input" ];
   };
-
-  # Start sway 
-  environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty1 ]] && sway
-  '';
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

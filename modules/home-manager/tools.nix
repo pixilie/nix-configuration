@@ -14,6 +14,7 @@
     pkg-config
     imv
     xdg-utils
+    wireguard-tools
 
     # Dev related
     gccgo14
