@@ -14,6 +14,8 @@
       "lunarclient"
       "google-chrome"
       "libsciter"
+      "modrinth-app"
+      "modrinth-app-unwrapped"
     ];
 
   nixpkgs.config.permittedInsecurePackages =
