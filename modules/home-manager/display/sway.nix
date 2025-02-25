@@ -52,15 +52,12 @@ in {
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";
         "${modifier}+Escape" =
-          "exec sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
+          "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
         "${modifier}" = "exec swaymsg bar mode toggle";
-        "${modifier}+Shift+s" =
-          "exec systemctl suspend && sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
+        "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
         "${modifier}+Shift+z" = "exec makoctl dismiss";
         "${modifier}+Shift+f" = "exec nautilus";
-        "${modifier}+Shift+Escape" =
-          "exec sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
 
         # Movements keys
         "${modifier}+${left}" = "focus left";
