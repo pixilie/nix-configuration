@@ -11,6 +11,8 @@
     aliases = {
       ui = "!lazygit";
 
+      lla = "log --graph --oneline --all";
+
       pu = "push";
       puf = "push --force-with-lease";
       pl = "pull";
