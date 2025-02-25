@@ -1,12 +1,10 @@
 { pkgs, lib, ... }:
 let
   modifier = "Mod4";
-  terminal = "kitty";
   up = "k";
   down = "j";
   left = "h";
   right = "l";
-  image = toString ../../../assets/media/wallpaper.png;
 in {
   imports = [ ./swaylock-troll.nix ./swaybar.nix ./tofi.nix ];
 
@@ -27,7 +25,7 @@ in {
 
     config = {
       modifier = "${modifier}";
-      terminal = "${terminal}";
+      terminal = "kitty";
       up = "${up}";
       down = "${down}";
       left = "${left}";
@@ -48,7 +46,7 @@ in {
 
       keybindings = lib.mkOptionDefault {
         # Basics keys
-        "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+Return" = "exec kitty";
         "${modifier}+Shift+q" = "kill";
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
@@ -146,7 +144,9 @@ in {
     };
 
     extraConfig = ''
-      exec_always swaybg -i ${image} -m fill   
+      exec_always swaybg -i ${
+        toString ../../../assets/media/wallpaper.png
+      } -m fill   
     '';
   };
 
