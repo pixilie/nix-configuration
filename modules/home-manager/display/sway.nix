@@ -1,12 +1,10 @@
 { pkgs, lib, ... }:
 let
   modifier = "Mod4";
-  terminal = "kitty";
   up = "k";
   down = "j";
   left = "h";
   right = "l";
-  image = toString ../../../assets/media/wallpaper.png;
 in {
   imports = [ ./swaylock-troll.nix ./swaybar.nix ./tofi.nix ];
 
@@ -27,7 +25,7 @@ in {
 
     config = {
       modifier = "${modifier}";
-      terminal = "${terminal}";
+      terminal = "kitty";
       up = "${up}";
       down = "${down}";
       left = "${left}";
@@ -48,21 +46,18 @@ in {
 
       keybindings = lib.mkOptionDefault {
         # Basics keys
-        "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+Return" = "exec kitty";
         "${modifier}+Shift+q" = "kill";
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";
         "${modifier}+Escape" =
-          "exec sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
+          "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
         "${modifier}" = "exec swaymsg bar mode toggle";
-        "${modifier}+Shift+s" =
-          "exec systemctl suspend && sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
+        "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
         "${modifier}+Shift+z" = "exec makoctl dismiss";
         "${modifier}+Shift+f" = "exec nautilus";
-        "${modifier}+Shift+Escape" =
-          "exec sleep 0.3 && swaylock -c /home/kristen/.config/swaylock/config";
 
         # Movements keys
         "${modifier}+${left}" = "focus left";
@@ -146,30 +141,70 @@ in {
     };
 
     extraConfig = ''
-      exec_always swaybg -i ${image} -m fill   
+      exec_always swaybg -i ${
+        toString ../../../assets/media/wallpaper.png
+      } -m fill   
     '';
   };
 
-  # gtk = {
-  #   enable = true;
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        timeout = 180;
+        command =
+          "${pkgs.notify-desktop}/bin/notify-desktop 'Locking in 5 seconds'";
+      }
+      {
+        timeout = 185;
+        command = "${pkgs.playerctl}/bin/playerctl pause";
+      }
+      {
+        timeout = 185;
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        timeout = 190;
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+      }
+      {
+        timeout = 195;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ];
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        event = "before-sleep";
+        command = "${pkgs.playerctl}/bin/playerctl pause";
+      }
+    ];
+  };
 
-  #   # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+  gtk = {
+    enable = true;
 
-  #   theme = {
-  #     name = "Arc-Dark";
-  #     package = pkgs.arc-theme;
-  #   };
+    # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
-  #   # cursorTheme = {
-  #   #   name = "Bibata-Modern-Ice";
-  #   #   package = pkgs.bibata-cursors;
-  #   # };
+    # theme = {
+    #   name = "Dracula";
+    #   package = pkgs.dracula-theme;
+    # };
 
-  #   iconTheme = {
-  #     name = "Papirus";
-  #     package = pkgs.papirus-icon-theme;
-  #   };
-  # };
+    cursorTheme = {
+      name = "Posy's Cursor Mono";
+      package = pkgs.posy-cursors;
+    };
+
+    iconTheme = {
+      name = "Arc";
+      package = pkgs.arc-icon-theme;
+    };
+  };
 
   # Low power alert
   services.poweralertd.enable = true;

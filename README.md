@@ -2,9 +2,7 @@
 
 ## TODO
 - Secrets management
-- gtk theming
 - zellij config
-- lock computer on screen close
 - wakatime config
 
 ## Structure

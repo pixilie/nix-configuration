@@ -16,6 +16,7 @@
       "libsciter"
       "modrinth-app"
       "modrinth-app-unwrapped"
+      "posy-cursors"
     ];
 
   nixpkgs.config.permittedInsecurePackages =
