@@ -147,26 +147,64 @@ in {
     '';
   };
 
-  # gtk = {
-  #   enable = true;
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      {
+        timeout = 180;
+        command =
+          "${pkgs.notify-desktop}/bin/notify-desktop 'Locking in 5 seconds'";
+      }
+      {
+        timeout = 185;
+        command = "${pkgs.playerctl}/bin/playerctl pause";
+      }
+      {
+        timeout = 185;
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        timeout = 190;
+        command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+      }
+      {
+        timeout = 195;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ];
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        event = "before-sleep";
+        command = "${pkgs.playerctl}/bin/playerctl pause";
+      }
+    ];
+  };
 
-  #   # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+  gtk = {
+    enable = true;
 
-  #   theme = {
-  #     name = "Arc-Dark";
-  #     package = pkgs.arc-theme;
-  #   };
+    # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
-  #   # cursorTheme = {
-  #   #   name = "Bibata-Modern-Ice";
-  #   #   package = pkgs.bibata-cursors;
-  #   # };
+    # theme = {
+    #   name = "Dracula";
+    #   package = pkgs.dracula-theme;
+    # };
 
-  #   iconTheme = {
-  #     name = "Papirus";
-  #     package = pkgs.papirus-icon-theme;
-  #   };
-  # };
+    cursorTheme = {
+      name = "Posy's Cursor Mono";
+      package = pkgs.posy-cursors;
+    };
+
+    iconTheme = {
+      name = "Arc";
+      package = pkgs.arc-icon-theme;
+    };
+  };
 
   # Low power alert
   services.poweralertd.enable = true;
