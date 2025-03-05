@@ -137,6 +137,11 @@
           auto-format = true;
           language-servers = [ "vscode-css-language-server" "wakatime" ];
         }
+        {
+          name = "json";
+          auto-format = true;
+          language-servers = [ "vscode-json-language-server" ];
+        }
       ];
     };
   };
