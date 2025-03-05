@@ -31,6 +31,7 @@
     firefox
     google-chrome
     rustdesk
+    gnote
 
     # Dev related
     jetbrains-toolbox
