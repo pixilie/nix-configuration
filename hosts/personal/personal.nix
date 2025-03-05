@@ -31,11 +31,12 @@
     firefox
     google-chrome
     rustdesk
+    gnote
 
     # Dev related
     jetbrains-toolbox
     upkgs.unityhub
-    zed-editor
+    upkgs.zed-editor
     insomnia
 
     # Games
