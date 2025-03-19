@@ -208,17 +208,10 @@ in {
   gtk = {
     enable = true;
 
-    # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
     # theme = {
     #   name = "Dracula";
     #   package = pkgs.dracula-theme;
     # };
-
-    cursorTheme = {
-      name = "Posy's Cursor Mono";
-      package = pkgs.posy-cursors;
-    };
 
     iconTheme = {
       name = "Arc";
