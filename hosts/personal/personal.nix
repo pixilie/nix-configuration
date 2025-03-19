@@ -44,7 +44,6 @@
     lunar-client
     prismlauncher
     ferium
-    modrinth-app
   ];
 
   # Reload system units when switching config
