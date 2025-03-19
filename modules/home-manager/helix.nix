@@ -34,6 +34,9 @@
       ruff
       python312Packages.jedi-language-server
       python312Packages.python-lsp-server
+
+      # Ocaml
+      ocamlPackages.lsp
     ];
 
     settings = {
