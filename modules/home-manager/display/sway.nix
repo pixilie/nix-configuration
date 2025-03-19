@@ -40,6 +40,21 @@ in {
       window = {
         titlebar = false;
         border = 0;
+        commands = [
+          {
+            criteria.all = true;
+            command = "inhibit_idle fullscreen";
+          }
+          {
+            criteria = {
+              title = "^((?!^Unity - ).)*$";
+              class = "^Unity$";
+              instance = "^Unity$";
+            };
+            command = "floating enable";
+          }
+
+        ];
       };
 
       gaps.smartGaps = false;
