@@ -40,6 +40,21 @@ in {
       window = {
         titlebar = false;
         border = 0;
+        commands = [
+          {
+            criteria.all = true;
+            command = "inhibit_idle fullscreen";
+          }
+          {
+            criteria = {
+              title = "^((?!^Unity - ).)*$";
+              class = "^Unity$";
+              instance = "^Unity$";
+            };
+            command = "floating enable";
+          }
+
+        ];
       };
 
       gaps.smartGaps = false;
@@ -152,53 +167,51 @@ in {
     timeouts = [
       {
         timeout = 180;
-        command =
-          "${pkgs.notify-desktop}/bin/notify-desktop 'Locking in 5 seconds'";
-      }
-      {
-        timeout = 185;
-        command = "${pkgs.playerctl}/bin/playerctl pause";
-      }
-      {
-        timeout = 185;
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
-      }
-      {
-        timeout = 190;
         command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
-        timeout = 195;
+        timeout = 300;
+        command =
+          "${pkgs.notify-desktop}/bin/notify-desktop 'Locking in 5 seconds'";
+      }
+      {
+        timeout = 305;
+        command = "${pkgs.playerctl}/bin/playerctl pause";
+      }
+      {
+        timeout = 305;
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        timeout = 330;
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
+        command = "loginctl lock-session";
       }
       {
         event = "before-sleep";
         command = "${pkgs.playerctl}/bin/playerctl pause";
       }
+      {
+        event = "lock";
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+
     ];
   };
 
   gtk = {
     enable = true;
 
-    # gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
     # theme = {
     #   name = "Dracula";
     #   package = pkgs.dracula-theme;
     # };
-
-    cursorTheme = {
-      name = "Posy's Cursor Mono";
-      package = pkgs.posy-cursors;
-    };
 
     iconTheme = {
       name = "Arc";
