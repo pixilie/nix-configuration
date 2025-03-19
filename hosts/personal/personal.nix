@@ -4,6 +4,7 @@
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
+    ../../modules/home-manager/zed.nix
     ../../modules/home-manager/sh.nix
     ../../modules/home-manager/fonts.nix
     ../../modules/home-manager/tools.nix
@@ -44,7 +45,6 @@
     lunar-client
     prismlauncher
     ferium
-    modrinth-app
   ];
 
   # Reload system units when switching config
