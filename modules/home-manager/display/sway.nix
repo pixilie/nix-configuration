@@ -166,25 +166,25 @@ in {
     enable = true;
     timeouts = [
       {
+        timeout = 175;
+        command =
+          "${pkgs.notify-desktop}/bin/notify-desktop 'Screen shuting down in 5 seconds'";
+      }
+      {
         timeout = 180;
         command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
         timeout = 300;
-        command =
-          "${pkgs.notify-desktop}/bin/notify-desktop 'Locking in 5 seconds'";
-      }
-      {
-        timeout = 305;
         command = "${pkgs.playerctl}/bin/playerctl pause";
       }
       {
-        timeout = 305;
+        timeout = 300;
         command = "${pkgs.swaylock-effects}/bin/swaylock";
       }
       {
-        timeout = 330;
+        timeout = 600;
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
@@ -201,17 +201,11 @@ in {
         event = "lock";
         command = "${pkgs.swaylock-effects}/bin/swaylock";
       }
-
     ];
   };
 
   gtk = {
     enable = true;
-
-    # theme = {
-    #   name = "Dracula";
-    #   package = pkgs.dracula-theme;
-    # };
 
     iconTheme = {
       name = "Arc";
