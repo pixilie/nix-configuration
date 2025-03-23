@@ -207,11 +207,6 @@ in {
   gtk = {
     enable = true;
 
-    # theme = {
-    #   name = "Dracula";
-    #   package = pkgs.dracula-theme;
-    # };
-
     iconTheme = {
       name = "Arc";
       package = pkgs.arc-icon-theme;
