@@ -125,6 +125,15 @@
           ];
         }
         {
+          name = "typescript";
+          auto-format = true;
+          language-servers = [
+            "typescript-language-server"
+            "vscode-eslint-language-server"
+            "wakatime"
+          ];
+        }
+        {
           name = "c";
           language-servers = [ "clangd" "wakatime" ];
           auto-format = false;
