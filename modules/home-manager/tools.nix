@@ -15,6 +15,7 @@
     imv
     xdg-utils
     wireguard-tools
+    jless
 
     # Dev related
     gccgo14
