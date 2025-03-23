@@ -1,10 +1,5 @@
 # My NixOS & home-manager configuration
 
-## TODO
-- Secrets management
-- zellij config
-- wakatime config
-
 ## Structure
 - `assets`: Files that don't fit in Nix files
   - `scripts`: Shell scripts
