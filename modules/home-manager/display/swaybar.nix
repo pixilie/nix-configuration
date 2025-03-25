@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.i3status-rust = {
@@ -18,24 +18,20 @@
       };
 
       blocks = [
-        { block = "music"; }
         { block = "sound"; }
         {
           block = "net";
           format = " $icon  $ssid ($signal_strength) ";
-          interval = 60;
         }
         {
           block = "memory";
           icons_format = "";
           format = " $icon $mem_used_percents.eng(w:2) ";
-          interval = 10;
         }
         {
           block = "cpu";
           icons_format = "";
           format = " $icon $utilization ";
-          interval = 10;
         }
         {
           block = "battery";
@@ -51,12 +47,27 @@
           block = "disk_space";
           path = "/";
           info_type = "available";
-          interval = 60;
         }
         {
           block = "time";
-          interval = 60;
           format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
+        }
+        {
+          block = "custom";
+          command = ''
+            mode=$(${lib.getExe' pkgs.mako "makoctl"} mode)
+            if [ "$mode" = "dnd" ]; then
+              echo " DND"
+            else
+              echo " $mode"
+            fi
+          '';
+          click = [{
+            button = "left";
+            cmd = "${lib.getExe' pkgs.mako "makoctl"} mode -t dnd";
+            update = true;
+          }];
+          interval = "once";
         }
       ];
     };

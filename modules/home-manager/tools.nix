@@ -16,6 +16,8 @@
     xdg-utils
     wireguard-tools
     jless
+    trash-cli
+    pavucontrol
 
     # Dev related
     gccgo14

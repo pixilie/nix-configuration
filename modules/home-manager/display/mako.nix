@@ -17,5 +17,10 @@
     borderSize = 0;
     maxIconSize = 55;
     padding = "10";
+
+    extraConfig = ''
+      [mode="dnd"]
+      invisible=1
+    '';
   };
 }
