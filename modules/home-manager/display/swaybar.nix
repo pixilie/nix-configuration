@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.i3status-rust = {
@@ -50,8 +50,24 @@
         }
         {
           block = "time";
-          interval = 60;
           format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
+        }
+        {
+          block = "custom";
+          command = ''
+            mode=$(${lib.getExe' pkgs.mako "makoctl"} mode)
+            if [ "$mode" = "dnd" ]; then
+              echo " DND"
+            else
+              echo " $mode"
+            fi
+          '';
+          click = [{
+            button = "left";
+            cmd = "${lib.getExe' pkgs.mako "makoctl"} mode -t dnd";
+            update = true;
+          }];
+          interval = "once";
         }
       ];
     };
