@@ -18,24 +18,20 @@
       };
 
       blocks = [
-        { block = "music"; }
         { block = "sound"; }
         {
           block = "net";
           format = " $icon  $ssid ($signal_strength) ";
-          interval = 60;
         }
         {
           block = "memory";
           icons_format = "";
           format = " $icon $mem_used_percents.eng(w:2) ";
-          interval = 10;
         }
         {
           block = "cpu";
           icons_format = "";
           format = " $icon $utilization ";
-          interval = 10;
         }
         {
           block = "battery";
@@ -51,7 +47,6 @@
           block = "disk_space";
           path = "/";
           info_type = "available";
-          interval = 60;
         }
         {
           block = "time";
