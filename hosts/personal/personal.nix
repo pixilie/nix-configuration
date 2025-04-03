@@ -1,6 +1,6 @@
 { pkgs, upkgs, ... }:
-
-{
+let badlion = pkgs.callPackage ../../derivations/badlion.nix { };
+in {
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
@@ -42,9 +42,10 @@
 
     # Games
     superTuxKart
-    lunar-client
+    upkgs.lunar-client
     prismlauncher
     ferium
+    badlion
   ];
 
   # Reload system units when switching config

@@ -14,9 +14,7 @@
       "lunarclient"
       "google-chrome"
       "libsciter"
-      "modrinth-app"
-      "modrinth-app-unwrapped"
-      "posy-cursors"
+      "badlion-client"
     ];
 
   nixpkgs.config.permittedInsecurePackages =
