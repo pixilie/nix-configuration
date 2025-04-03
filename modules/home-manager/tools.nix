@@ -18,6 +18,7 @@
     jless
     trash-cli
     pavucontrol
+    ascii
 
     # Dev related
     gccgo14
