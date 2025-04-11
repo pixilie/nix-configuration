@@ -1,4 +1,4 @@
-{ lib, fetchurl, appimageTools, }:
+{ lib, fetchurl, appimageTools }:
 
 let
   pname = "badlion-client";

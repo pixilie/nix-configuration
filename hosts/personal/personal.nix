@@ -1,5 +1,5 @@
 { pkgs, upkgs, ... }:
-let badlion = pkgs.callPackage ../../derivations/badlion.nix { };
+let badlion = pkgs.callPackage ../../pkgs/badlion.nix { };
 in {
   imports = [
     ../../modules/home-manager/git.nix
