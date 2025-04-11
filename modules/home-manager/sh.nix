@@ -50,6 +50,7 @@
       ll = "ls -lhaF";
       tree = "ls -T";
       ghd = "gh-dash";
+      findg = "find . -name .git -type d -prune";
     };
 
     functions = {
