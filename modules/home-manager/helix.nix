@@ -66,6 +66,8 @@
           normal = "block";
           select = "underline";
         };
+
+        lsp = { display-inlay-hints = true; };
       };
 
       keys = {
