@@ -19,6 +19,8 @@
     trash-cli
     pavucontrol
     ascii
+    dust
+    ripgrep
 
     # Dev related
     gccgo14
