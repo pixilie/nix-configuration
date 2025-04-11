@@ -21,6 +21,7 @@
     ascii
     dust
     ripgrep
+    btop
 
     # Dev related
     gccgo14
