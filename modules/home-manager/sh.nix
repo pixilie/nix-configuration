@@ -13,29 +13,64 @@
     tlrc
   ];
 
-  programs.kitty = {
+  programs.foot = {
+    enable = true;
+  };
+
+  programs.alacritty = {
     enable = true;
 
     settings = {
-      confirm_os_window_close = 0;
-      enable_audio_bell = "no";
-      macos_option_as_alt = "left";
-    };
+      window = { decorations = "buttonless"; };
 
-    shellIntegration = {
-      mode = "enabled";
-      enableFishIntegration = true;
-    };
+      font = {
+        size = 13.0;
+        normal.family = "CaskaydiaCoveNerdFont";
+        bold.family = "CaskaydiaCoveNerdFont";
+        italic.family = "CaskaydiaCoveNerdFont";
+      };
 
-    font = {
-      name = "CaskaydiaCoveNerdFont";
-      size = 13;
-    };
+      cursor = {
+        style = {
+          shape = "Beam";
+          blinking = "Always";
+        };
+      };
 
-    extraConfig = ''
-      disable_ligatures never
-      shell fish
-    '';
+      terminal.shell = { program = "fish"; };
+
+      colors = {
+        # Default colors
+        primary = {
+          background = "#000000";
+          foreground = "#fffaf3";
+        };
+
+        # Normal colors
+        normal = {
+          black = "#222222";
+          red = "#ff000f";
+          green = "#8ce00a";
+          yellow = "#ffb900";
+          blue = "#008df8";
+          magenta = "#FF00FF";
+          cyan = "#00d7eb";
+          white = "#ffffff";
+        };
+
+        # Bright colors
+        bright = {
+          black = "#444444";
+          red = "#ff273f";
+          green = "#abe05a";
+          yellow = "#ffd141";
+          blue = "#0092ff";
+          magenta = "#6c43a5";
+          cyan = "#67ffef";
+          white = "#ffffff";
+        };
+      };
+    };
   };
 
   programs.fish = {
