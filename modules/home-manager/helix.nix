@@ -29,6 +29,7 @@
       # Web related
       vscode-langservers-extracted
       typescript-language-server
+      svelte-language-server
 
       # Python
       ruff
@@ -39,6 +40,18 @@
       ocamlPackages.lsp
     ];
 
+    ignores = [
+      "*.png"
+      "*.properties"
+      "*.gif"
+      "*.mcmeta"
+      "*.eot"
+      "*.webp"
+      "*.ttf"
+      "*.woff"
+      "*.jpg"
+    ];
+
     settings = {
       theme = "onedark";
 
@@ -47,7 +60,6 @@
         auto-save = true;
         mouse = false;
         bufferline = "multiple";
-        file-picker.hidden = false;
 
         end-of-line-diagnostics = if !config.useCache then "hint" else null;
         inline-diagnostics = if !config.useCache then {
@@ -76,6 +88,7 @@
           down = "no_op";
           left = "no_op";
           right = "no_op";
+          A-u = ":toggle lsp.display-inlay-hints";
 
           "space" = {
             f = "file_picker_in_current_directory";
@@ -133,6 +146,11 @@
             "vscode-eslint-language-server"
             "wakatime"
           ];
+        }
+        {
+          name = "svelte";
+          auto-format = true;
+          language-servers = [ "svelteserver" "wakatime" ];
         }
         {
           name = "c";
