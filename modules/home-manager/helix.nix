@@ -60,7 +60,6 @@
         auto-save = true;
         mouse = false;
         bufferline = "multiple";
-        file-picker.hidden = false;
 
         end-of-line-diagnostics = if !config.useCache then "hint" else null;
         inline-diagnostics = if !config.useCache then {
