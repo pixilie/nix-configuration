@@ -29,6 +29,7 @@
       # Web related
       vscode-langservers-extracted
       typescript-language-server
+      svelte-language-server
 
       # Python
       ruff
@@ -144,6 +145,11 @@
           name = "html";
           auto-format = true;
           language-servers = [ "vscode-html-language-server" "wakatime" ];
+        }
+        {
+          name = "svelte";
+          auto-format = true;
+          language-servers = [ "svelteserver" "wakatime" ];
         }
         {
           name = "css";
