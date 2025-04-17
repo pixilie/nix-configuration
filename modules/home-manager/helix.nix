@@ -88,6 +88,7 @@
           down = "no_op";
           left = "no_op";
           right = "no_op";
+          A-u = ":toggle lsp.display-inlay-hints";
 
           "space" = {
             f = "file_picker_in_current_directory";
@@ -147,6 +148,11 @@
           ];
         }
         {
+          name = "svelte";
+          auto-format = true;
+          language-servers = [ "svelteserver" "wakatime" ];
+        }
+        {
           name = "c";
           language-servers = [ "clangd" "wakatime" ];
           auto-format = false;
@@ -156,11 +162,6 @@
           name = "html";
           auto-format = true;
           language-servers = [ "vscode-html-language-server" "wakatime" ];
-        }
-        {
-          name = "svelte";
-          auto-format = true;
-          language-servers = [ "svelteserver" "wakatime" ];
         }
         {
           name = "css";
