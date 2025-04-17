@@ -40,6 +40,18 @@
       ocamlPackages.lsp
     ];
 
+    ignores = [
+      "*.png"
+      "*.properties"
+      "*.gif"
+      "*.mcmeta"
+      "*.eot"
+      "*.webp"
+      "*.ttf"
+      "*.woff"
+      "*.jpg"
+    ];
+
     settings = {
       theme = "onedark";
 
