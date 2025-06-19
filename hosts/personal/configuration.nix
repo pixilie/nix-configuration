@@ -9,7 +9,9 @@
     ../../modules/nixos/steam.nix
     ../../modules/nixos/docker.nix
     ../../modules/nixos/system-packages.nix
+    # ../../modules/nixos/sddm.nix
   ];
+
 
   boot = {
     loader = {
