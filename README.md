@@ -1,5 +1,10 @@
 # My NixOS & home-manager configuration
 
+## TODO
+- Mako DnD mode switch
+- sddm login screen
+- fix epita config
+
 ## Structure
 - `assets`: Files that don't fit in Nix files
   - `scripts`: Shell scripts
@@ -10,11 +15,10 @@
     - `configuration.nix`: Bases for NixOS configuration
     - `<profile>.nix`: Bases for Home Manager config
     - `hardware-configuration`: Device-specific settings 
-- `modules`: Configurations fragments
-	- `home-manager`: Home Manager configuration fragments
-    - `display`: Window manager configuration fragments
-	- `nixos`: NixOS configuration fragments
-- `templates`: Quickstart files
+- `modules`: Configurations parts
+	- `home-manager`: Home Manager related configurations
+    - `display`: Window manager related configurations
+	- `nixos`: NixOS related configurations
 
 ## Switch to another profile
 ```
