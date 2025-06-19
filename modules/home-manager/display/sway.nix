@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   modifier = "Mod4";
+  terminal = "alacritty";
   up = "k";
   down = "j";
   left = "h";
@@ -25,7 +26,7 @@ in {
 
     config = {
       modifier = "${modifier}";
-      terminal = "kitty";
+      terminal = "${terminal}";
       up = "${up}";
       down = "${down}";
       left = "${left}";
@@ -61,7 +62,7 @@ in {
 
       keybindings = lib.mkOptionDefault {
         # Basics keys
-        "${modifier}+Return" = "exec kitty";
+        "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+q" = "kill";
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
