@@ -27,6 +27,9 @@
     hostName = "kristen-nixos";
     networkmanager.enable = true;
     hosts = { "10.45.3.4" = [ "printer.epita" ]; };
+    firewall = {
+      enable = true;
+    };
   };
 
   system = {
