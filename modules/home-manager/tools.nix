@@ -22,6 +22,7 @@
     dust
     ripgrep
     btop
+    jq
 
     # Dev related
     gccgo14
@@ -31,5 +32,6 @@
     direnv
     gnumake
     jdk17
+    ldtk
   ];
 }

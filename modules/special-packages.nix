@@ -9,12 +9,13 @@
       "steam-unwrapped"
       "steam-run"
       "unityhub"
-      "skypeforlinux"
-      "masterpdfeditor"
       "lunarclient"
       "google-chrome"
       "libsciter"
       "badlion-client"
+      "castlabs-electron"
+      "vscode"
+      "zoom"
     ];
 
   nixpkgs.config.permittedInsecurePackages =

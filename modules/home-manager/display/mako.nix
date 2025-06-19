@@ -4,23 +4,19 @@
   services.mako = {
     enable = true;
 
-    sort = "-time";
-    maxVisible = 3;
-    defaultTimeout = 5000;
-
-    font = "Noto Sans";
-    backgroundColor = "#17191e";
-    textColor = "#ABB2BF";
-    height = 100;
-    width = 300;
-    borderRadius = 5;
-    borderSize = 0;
-    maxIconSize = 55;
-    padding = "10";
-
-    extraConfig = ''
-      [mode="dnd"]
-      invisible=1
-    '';
+    settings = {
+      default-timeout = 5000;
+      max-icon-size = 55;
+      border-radius = 5;
+      padding = 10;
+      border-size = 0;
+      width = 300;
+      height = 100;
+      text-color = "#ABB2BF";
+      background-color = "#17191E";
+      font = "Noto Sans";
+      sort = "-time";
+      max-visible = 3;
+    };
   };
 }

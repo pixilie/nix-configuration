@@ -13,10 +13,6 @@
     tlrc
   ];
 
-  programs.foot = {
-    enable = true;
-  };
-
   programs.alacritty = {
     enable = true;
 

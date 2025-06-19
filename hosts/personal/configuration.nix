@@ -9,7 +9,9 @@
     ../../modules/nixos/steam.nix
     ../../modules/nixos/docker.nix
     ../../modules/nixos/system-packages.nix
+    # ../../modules/nixos/sddm.nix
   ];
+
 
   boot = {
     loader = {
@@ -25,12 +27,15 @@
     hostName = "kristen-nixos";
     networkmanager.enable = true;
     hosts = { "10.45.3.4" = [ "printer.epita" ]; };
+    firewall = {
+      enable = true;
+    };
   };
 
   system = {
     autoUpgrade.enable = true;
     autoUpgrade.allowReboot = true;
-    stateVersion = "24.11";
+    stateVersion = "25.05";
   };
 
   users.users.kristen = {

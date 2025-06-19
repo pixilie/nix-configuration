@@ -13,7 +13,7 @@
   # General informations
   home.username = "kristen.couty";
   home.homeDirectory = "/home/kristen.couty";
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   # Packages
   home.packages = with pkgs; [ tidal-hifi ];

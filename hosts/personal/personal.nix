@@ -18,30 +18,36 @@ in {
   # General informations
   home.username = "kristen";
   home.homeDirectory = "/home/kristen";
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   # Packages
   home.packages = with pkgs; [
     # General apps
     vesktop
     tidal-hifi
+
     bitwarden-desktop
-    skypeforlinux
-    masterpdfeditor
     nautilus
     firefox
     google-chrome
-    rustdesk
     gnote
+
+    gimp-with-plugins
+
+    thunderbird
+    teams-for-linux
+    zoom-us
+    rustdesk
+    libreoffice-still-unwrapped
 
     # Dev related
     jetbrains-toolbox
     upkgs.unityhub
     upkgs.zed-editor
     insomnia
+    vscode
 
     # Games
-    superTuxKart
     upkgs.lunar-client
     prismlauncher
     ferium

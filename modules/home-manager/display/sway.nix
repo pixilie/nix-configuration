@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   modifier = "Mod4";
+  terminal = "alacritty";
   up = "k";
   down = "j";
   left = "h";
@@ -25,7 +26,7 @@ in {
 
     config = {
       modifier = "${modifier}";
-      terminal = "kitty";
+      terminal = "${terminal}";
       up = "${up}";
       down = "${down}";
       left = "${left}";
@@ -61,7 +62,7 @@ in {
 
       keybindings = lib.mkOptionDefault {
         # Basics keys
-        "${modifier}+Return" = "exec kitty";
+        "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+q" = "kill";
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
@@ -153,6 +154,14 @@ in {
           xkb_options = "grp:ctrl_alt_toggle";
         };
       };
+
+      output = {
+        "eDP-1" = {
+          resolution = "1920x1080";
+          scale = "1.0";
+          pos = "0 0";
+        };
+      };
     };
 
     extraConfig = ''
@@ -206,11 +215,16 @@ in {
 
   gtk = {
     enable = true;
-
     iconTheme = {
       name = "Arc";
       package = pkgs.arc-icon-theme;
     };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style.name = "gtk2";
   };
 
   # Low power alert

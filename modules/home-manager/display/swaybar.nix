@@ -52,23 +52,6 @@
           block = "time";
           format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
         }
-        {
-          block = "custom";
-          command = ''
-            mode=$(${lib.getExe' pkgs.mako "makoctl"} mode)
-            if [ "$mode" = "dnd" ]; then
-              echo " DND"
-            else
-              echo " $mode"
-            fi
-          '';
-          click = [{
-            button = "left";
-            cmd = "${lib.getExe' pkgs.mako "makoctl"} mode -t dnd";
-            update = true;
-          }];
-          interval = "once";
-        }
       ];
     };
   };
