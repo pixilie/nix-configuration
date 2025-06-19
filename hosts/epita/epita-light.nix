@@ -4,7 +4,7 @@
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
-    ../../modules/home-manager/sh-light.nix
+    ../../modules/home-manager/sh.nix
     ../../modules/home-manager/fonts.nix
     ../../modules/options.nix
     ../../modules/home-manager/display/i3.nix
