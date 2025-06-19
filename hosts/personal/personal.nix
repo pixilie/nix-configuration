@@ -30,17 +30,24 @@ in {
     nautilus
     firefox
     google-chrome
-    rustdesk
     gnote
+
+    gimp-with-plugins
+
+    thunderbird
+    teams-for-linux
+    zoom-us
+    rustdesk
+    libreoffice-still-unwrapped
 
     # Dev related
     jetbrains-toolbox
     upkgs.unityhub
     upkgs.zed-editor
     insomnia
+    vscode
 
     # Games
-    superTuxKart
     upkgs.lunar-client
     prismlauncher
     ferium

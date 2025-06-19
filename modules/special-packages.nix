@@ -13,6 +13,9 @@
       "google-chrome"
       "libsciter"
       "badlion-client"
+      "castlabs-electron"
+      "vscode"
+      "zoom"
     ];
 
   nixpkgs.config.permittedInsecurePackages =
