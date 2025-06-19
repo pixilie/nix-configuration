@@ -45,6 +45,8 @@
       selection-background-padding = "4, 10";
 
       clip-to-padding = false;
+
+      history = true;
     };
   };
 }
