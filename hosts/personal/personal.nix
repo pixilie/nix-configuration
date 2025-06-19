@@ -31,8 +31,10 @@ in {
     firefox
     google-chrome
     gnote
+    kdePackages.kdeconnect-kde
 
     gimp-with-plugins
+    kdePackages.kdenlive
 
     thunderbird
     teams-for-linux
