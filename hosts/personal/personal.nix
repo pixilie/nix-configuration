@@ -25,9 +25,8 @@ in {
     # General apps
     vesktop
     tidal-hifi
+
     bitwarden-desktop
-    skypeforlinux
-    masterpdfeditor
     nautilus
     firefox
     google-chrome

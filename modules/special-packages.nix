@@ -9,8 +9,6 @@
       "steam-unwrapped"
       "steam-run"
       "unityhub"
-      "skypeforlinux"
-      "masterpdfeditor"
       "lunarclient"
       "google-chrome"
       "libsciter"
