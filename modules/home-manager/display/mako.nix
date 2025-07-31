@@ -17,6 +17,7 @@
       font = "Noto Sans";
       sort = "-time";
       max-visible = 3;
+      "mode=dnd" = { invisible = 1; };
     };
   };
 }
