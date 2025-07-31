@@ -61,12 +61,11 @@
         mouse = false;
         bufferline = "multiple";
 
-        end-of-line-diagnostics = if !config.useCache then "hint" else null;
-        inline-diagnostics = if !config.useCache then {
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
           cursor-line = "hint";
           other-lines = "error";
-        } else
-          null;
+        };
 
         indent-guides = {
           render = true;
