@@ -1,7 +1,6 @@
 # My NixOS & home-manager configuration
 
 ## TODO
-- Mako DnD mode switch
 - sddm login screen
 - fix epita config
 

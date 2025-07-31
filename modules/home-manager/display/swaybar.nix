@@ -50,7 +50,28 @@
         }
         {
           block = "time";
-          format = " $icon $timestamp.datetime(f:'%a %d/%m %R') ";
+          format = " $icon $timestamp.datetime(f:'%a %d/%m %R')";
+        }
+        {
+          block = "custom";
+          json = true;
+          command = ''
+            if ${lib.getExe' pkgs.ripgrep "rg"} -q dnd <<< "$(${
+              lib.getExe' pkgs.mako "makoctl"
+            } mode)"; then
+              echo '{"text": " "}'
+            else
+              echo '{"text": " "}'
+            fi
+          '';
+          click = [{
+            button = "left";
+            cmd = ''
+              ${lib.getExe' pkgs.mako "makoctl"} mode -t dnd
+            '';
+            update = true;
+          }];
+          interval = 5;
         }
       ];
     };
