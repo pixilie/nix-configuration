@@ -20,10 +20,15 @@
     pavucontrol
     ascii
     dust
-    ripgrep
     btop
     jq
     rclone
+    nix-inspect
+    nixos-anywhere
+    nix-tree
+    glow
+    speedtest-go
+    dogdns
 
     # Dev related
     gccgo14

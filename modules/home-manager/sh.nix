@@ -10,7 +10,8 @@
     gh-dash
     zoxide
     delta
-    tlrc
+    tealdeer
+    ripgrep
   ];
 
   programs.alacritty = {
