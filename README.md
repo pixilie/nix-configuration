@@ -18,6 +18,7 @@
 	- `home-manager`: Home Manager related configurations
     - `display`: Window manager related configurations
 	- `nixos`: NixOS related configurations
+- `pkgs`: Custom nix packages
 
 ## Switch to another profile
 ```
