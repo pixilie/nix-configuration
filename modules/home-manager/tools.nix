@@ -20,7 +20,6 @@
     pavucontrol
     ascii
     dust
-    ripgrep
     btop
     jq
     rclone
