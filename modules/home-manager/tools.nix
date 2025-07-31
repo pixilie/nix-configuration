@@ -23,6 +23,7 @@
     ripgrep
     btop
     jq
+    rclone
 
     # Dev related
     gccgo14

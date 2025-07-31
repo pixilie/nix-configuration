@@ -1,6 +1,4 @@
-{ pkgs, upkgs, ... }:
-let badlion = pkgs.callPackage ../../pkgs/badlion.nix { };
-in {
+{ pkgs, upkgs, ... }: {
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
@@ -31,7 +29,6 @@ in {
     firefox
     google-chrome
     gnote
-    kdePackages.kdeconnect-kde
 
     gimp-with-plugins
     kdePackages.kdenlive
@@ -52,9 +49,9 @@ in {
     # Games
     upkgs.lunar-client
     prismlauncher
-    ferium
-    badlion
   ];
+
+  services.kdeconnect.enable = true;
 
   # Reload system units when switching config
   systemd.user.startServices = "sd-switch";
