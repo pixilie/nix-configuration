@@ -6,12 +6,13 @@
     ../../modules/special-packages.nix
     ../../modules/nixos/utilities.nix
     ../../modules/nixos/security.nix
+    ../../modules/nixos/networking.nix
     ../../modules/nixos/steam.nix
     ../../modules/nixos/docker.nix
     ../../modules/nixos/system-packages.nix
+    ../../modules/nixos/banquise.nix
     # ../../modules/nixos/sddm.nix
   ];
-
 
   boot = {
     loader = {
@@ -23,14 +24,6 @@
     };
   };
 
-  networking = {
-    hostName = "kristen-nixos";
-    networkmanager.enable = true;
-    hosts = { "10.45.3.4" = [ "printer.epita" ]; };
-    firewall = {
-      enable = true;
-    };
-  };
 
   system = {
     autoUpgrade.enable = true;
