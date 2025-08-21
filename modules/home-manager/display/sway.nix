@@ -165,9 +165,9 @@ in {
     };
 
     extraConfig = ''
-      exec_always swaybg -i ${
+      exec_always swaybg --image ${
         toString ../../../assets/media/wallpaper.png
-      } -m fill   
+      }
     '';
   };
 
