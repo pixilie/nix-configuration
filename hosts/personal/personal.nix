@@ -37,6 +37,7 @@
     teams-for-linux
     zoom-us
     rustdesk
+    whatsie
     libreoffice-still-unwrapped
 
     # Dev related
