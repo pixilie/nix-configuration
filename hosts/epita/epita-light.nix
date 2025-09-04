@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -13,7 +13,6 @@
   config = {
     useCache = true;
   
-    home.packages = with pkgs; [ ];
     home.username = "kristen.couty";
     home.homeDirectory = "/home/kristen.couty";
     home.stateVersion = "25.05";

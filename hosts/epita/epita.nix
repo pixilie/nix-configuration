@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -8,13 +8,17 @@
     ../../modules/home-manager/fonts.nix
     ../../modules/options.nix
     ../../modules/home-manager/display/i3.nix
+    ../../modules/special-packages.nix
   ];
 
   home.username = "kristen.couty";
   home.homeDirectory = "/home/kristen.couty";
   home.stateVersion = "25.05";
 
-  home.packages = with pkgs; [ tidal-hifi nautilus];
+  home.packages = with pkgs; [
+    nautilus
+    inputs.tidaLuna.packages.${system}.default
+  ];
 
   programs.home-manager.enable = true;
 }
