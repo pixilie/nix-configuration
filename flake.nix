@@ -13,6 +13,9 @@
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
+
+    tidaLuna.url = "github:Inrixia/TidaLuna";
+    tidaLuna.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
