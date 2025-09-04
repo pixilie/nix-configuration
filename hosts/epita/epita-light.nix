@@ -11,7 +11,8 @@
   ];
 
   config = {
-    useCache = true;
+    useHelixCache = true;
+    useFulli3 = false;
   
     home.username = "kristen.couty";
     home.homeDirectory = "/home/kristen.couty";
