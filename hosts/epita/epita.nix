@@ -10,14 +10,11 @@
     ../../modules/home-manager/display/i3.nix
   ];
 
-  # General informations
   home.username = "kristen.couty";
   home.homeDirectory = "/home/kristen.couty";
   home.stateVersion = "25.05";
 
-  # Packages
-  home.packages = with pkgs; [ tidal-hifi ];
+  home.packages = with pkgs; [ tidal-hifi nautilus];
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
