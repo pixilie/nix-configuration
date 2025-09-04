@@ -1,9 +1,5 @@
 # My NixOS & home-manager configuration
 
-## TODO
-- sddm login screen
-- fix epita config
-
 ## Structure
 - `assets`: Files that don't fit in Nix files
   - `scripts`: Shell scripts
