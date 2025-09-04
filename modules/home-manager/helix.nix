@@ -4,7 +4,7 @@
   programs.helix = {
     enable = true;
 
-    package = if config.useCache then
+    package = if config.useHelixCache then
       pkgs.helix
     else
       inputs.helix-editor.packages."x86_64-linux".helix;

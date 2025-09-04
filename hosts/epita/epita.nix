@@ -11,14 +11,19 @@
     ../../modules/special-packages.nix
   ];
 
-  home.username = "kristen.couty";
-  home.homeDirectory = "/home/kristen.couty";
-  home.stateVersion = "25.05";
+  config = {
+    useHelixCache = true;
+    useFulli3 = true;
+    
+    home.username = "kristen.couty";
+    home.homeDirectory = "/home/kristen.couty";
+    home.stateVersion = "25.05";
 
-  home.packages = with pkgs; [
-    nautilus
-    inputs.tidaLuna.packages.${system}.default
-  ];
+    home.packages = with pkgs; [
+      nautilus
+      inputs.tidaLuna.packages.${system}.default
+    ];
 
-  programs.home-manager.enable = true;
+    programs.home-manager.enable = true;
+  };
 }
