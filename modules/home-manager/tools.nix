@@ -29,6 +29,7 @@
     glow
     speedtest-go
     dogdns
+    onefetch
 
     # Dev related
     gccgo14
