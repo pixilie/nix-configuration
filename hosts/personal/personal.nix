@@ -1,4 +1,4 @@
-{ pkgs, upkgs, ... }: {
+{ pkgs, upkgs, inputs, ... }: {
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
