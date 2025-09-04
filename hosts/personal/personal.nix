@@ -22,7 +22,7 @@
   home.packages = with pkgs; [
     # General apps
     vesktop
-    tidal-hifi
+    inputs.tidaLuna.packages.${system}.default
 
     bitwarden-desktop
     nautilus
