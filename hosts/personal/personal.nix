@@ -1,4 +1,4 @@
-{ pkgs, upkgs, inputs, ... }: {
+{ pkgs, upkgs, ... }: {
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
@@ -22,7 +22,7 @@
   home.packages = with pkgs; [
     # General apps
     vesktop
-    inputs.tidaLuna.packages.${system}.default
+    tidal-hifi
 
     bitwarden-desktop
     nautilus
@@ -35,14 +35,14 @@
 
     thunderbird
     teams-for-linux
-    zoom-us
-    rustdesk
+    # zoom-us
+    # rustdesk
     whatsie
     libreoffice-still-unwrapped
 
     # Dev related
-    jetbrains-toolbox
-    upkgs.unityhub
+    # jetbrains-toolbox
+    # upkgs.unityhub
     upkgs.zed-editor
     insomnia
     vscode
