@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -21,7 +21,7 @@
 
     home.packages = with pkgs; [
       nautilus
-      inputs.tidaLuna.packages.${system}.default
+      tidal-hifi
     ];
 
     programs.home-manager.enable = true;
