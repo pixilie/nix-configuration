@@ -35,14 +35,14 @@
 
     thunderbird
     teams-for-linux
-    zoom-us
-    rustdesk
+    # zoom-us
+    # rustdesk
     whatsie
     libreoffice-still-unwrapped
 
     # Dev related
-    jetbrains-toolbox
-    upkgs.unityhub
+    # jetbrains-toolbox
+    # upkgs.unityhub
     upkgs.zed-editor
     insomnia
     vscode
