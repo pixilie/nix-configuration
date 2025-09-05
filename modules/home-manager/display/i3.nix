@@ -8,6 +8,8 @@ let
   left = "h";
   right = "l";
 in {
+  imports = [ ./rofi.nix ];
+  
   home.packages = with pkgs; [
     playerctl
     maim
