@@ -29,7 +29,7 @@
       # Web related
       vscode-langservers-extracted
       typescript-language-server
-      svelte-language-server
+      # svelte-language-server
 
       # Python
       ruff
@@ -37,7 +37,7 @@
       python312Packages.python-lsp-server
 
       # Ocaml
-      ocamlPackages.lsp
+      # ocamlPackages.lsp
     ];
 
     ignores = [
@@ -123,11 +123,11 @@
           name = "markdown";
           language-servers = [ "marksman" ];
         }
-        {
-          name = "ocaml";
-          auto-format = true;
-          language-servers = [ "ocamllsp" "wakatime" ];
-        }
+        # {
+        #   name = "ocaml";
+        #   auto-format = true;
+        #   language-servers = [ "ocamllsp" "wakatime" ];
+        # }
         {
           name = "javascript";
           auto-format = true;
@@ -146,11 +146,11 @@
             "wakatime"
           ];
         }
-        {
-          name = "svelte";
-          auto-format = true;
-          language-servers = [ "svelteserver" "wakatime" ];
-        }
+        # {
+        #   name = "svelte";
+        #   auto-format = true;
+        #   language-servers = [ "svelteserver" "wakatime" ];
+        # }
         {
           name = "c";
           language-servers = [ "clangd" "wakatime" ];
