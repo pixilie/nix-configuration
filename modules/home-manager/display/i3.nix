@@ -13,7 +13,8 @@ in {
     maim
     xclip
     feh
-    i3lock-fancy
+    # i3lock-fancy
+    i3lock-fancy-rapid
   ];
 
   xsession.enable = true;
@@ -31,7 +32,7 @@ in {
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";
-        "${modifier}+Escape" = "exec i3lock-fancy";
+        "${modifier}+Escape" = "exec sleep 0.3 && i3lock-fancy-rapid 0 1";
         "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+e" = "exit";
         "${modifier}+Shift+f" = "exec nautilus";
