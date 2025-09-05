@@ -1,4 +1,4 @@
-{ pkgs, upkgs, inputs, ... }: {
+{ pkgs, upkgs, ... }: {
   imports = [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
@@ -22,7 +22,7 @@
   home.packages = with pkgs; [
     # General apps
     vesktop
-    inputs.tidaLuna.packages.${system}.default
+    tidal-hifi
 
     bitwarden-desktop
     nautilus
