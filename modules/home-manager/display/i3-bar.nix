@@ -11,7 +11,7 @@
         theme = {
           theme = "modern";
           overrides = {
-            separator = "<span size='18000'></span>";
+            separator = "<span size='14000'></span>";
             idle_bg = "#17191e";
           };
         };
@@ -20,8 +20,7 @@
       blocks = [
         { block = "sound"; }
         {
-          block = "net";
-          format = " $icon  $ssid ($signal_strength) ";
+          block = "music";
         }
         {
           block = "memory";
@@ -32,21 +31,6 @@
           block = "cpu";
           icons_format = "";
           format = " $icon $utilization ";
-        }
-        {
-          block = "battery";
-          driver = "upower";
-          interval = 30;
-          warning = 20;
-          critical = 10;
-          format = " $icon $percentage ";
-          empty_format = " $icon $percentage ";
-          full_format = " $icon $percentage ";
-        }
-        {
-          block = "disk_space";
-          path = "/";
-          info_type = "available";
         }
         {
           block = "time";
