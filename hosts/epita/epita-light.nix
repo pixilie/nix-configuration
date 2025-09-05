@@ -2,17 +2,16 @@
 
 {
   imports = [
+    ../../modules/home-manager/display/i3.nix
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
     ../../modules/home-manager/sh.nix
     ../../modules/home-manager/fonts.nix
     ../../modules/options.nix
-    ../../modules/home-manager/display/i3.nix
   ];
 
   config = {
     useHelixCache = true;
-    useFulli3 = false;
   
     home.username = "kristen.couty";
     home.homeDirectory = "/home/kristen.couty";
