@@ -12,8 +12,8 @@ in {
     playerctl
     maim
     xclip
-    i3lock
     feh
+    i3lock-fancy
   ];
 
   xsession.enable = true;
@@ -31,7 +31,7 @@ in {
         "${modifier}+Shift+Return" = "exec firefox";
         "${modifier}+Shift+r" = "exec reboot";
         "${modifier}+Shift+p" = "exec shutdown -h now";
-        "${modifier}+Escape" = "exec i3lock -i ../../../assets/media/wallpaper.png";
+        "${modifier}+Escape" = "exec i3lock-fancy";
         "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+e" = "exit";
         "${modifier}+Shift+f" = "exec nautilus";

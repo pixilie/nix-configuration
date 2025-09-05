@@ -11,7 +11,7 @@
         theme = {
           theme = "modern";
           overrides = {
-            separator = "<span size='18000'></span>";
+            separator = "<span size='14000'></span>";
             idle_bg = "#17191e";
           };
         };
@@ -20,8 +20,7 @@
       blocks = [
         { block = "sound"; }
         {
-          block = "net";
-          format = " $icon  $ssid ($signal_strength) ";
+          block = "music";
         }
         {
           block = "memory";
@@ -34,21 +33,6 @@
           format = " $icon $utilization ";
         }
         {
-          block = "battery";
-          driver = "upower";
-          interval = 30;
-          warning = 20;
-          critical = 10;
-          format = " $icon $percentage ";
-          empty_format = " $icon $percentage ";
-          full_format = " $icon $percentage ";
-        }
-        {
-          block = "disk_space";
-          path = "/";
-          info_type = "available";
-        }
-        {
           block = "time";
           format = " $icon $timestamp.datetime(f:'%a %d/%m %R')";
         }
@@ -58,7 +42,7 @@
 
   xsession.windowManager.i3.config.bars = [{
     statusCommand =
-      "${pkgs.i3status-rust}/bin/i3status-rs /home/kristen/.config/i3status-rust/config-default.toml";
+      "${pkgs.i3status-rust}/bin/i3status-rs /home/kristen.couty/.config/i3status-rust/config-default.toml";
     mode = "hide";
     fonts.size = 11.0;
 
