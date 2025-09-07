@@ -1,6 +1,8 @@
 { pkgs, inputs, config, ... }:
 
 {
+  imports = [ ./wakatime.nix ];
+
   programs.helix = {
     enable = true;
 

@@ -14,11 +14,11 @@
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
 
-    tidaLuna.url = "github:Inrixia/TidaLuna";
-    tidaLuna.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, agenix, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -32,7 +32,7 @@
       nixosConfigurations = {
         personal = lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/personal/configuration.nix ];
+          modules = [ ./hosts/personal/configuration.nix agenix.nixosModules.default ];
         };
       };
 
@@ -43,7 +43,7 @@
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/personal/personal.nix ];
+          modules = [ ./hosts/personal/personal.nix agenix.homeManagerModules.default ];
         };
         epita = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -51,7 +51,7 @@
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/epita/epita.nix ];
+          modules = [ ./hosts/epita/epita.nix agenix.homeManagerModules.default ];
         };
         epita-light = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -59,7 +59,7 @@
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/epita/epita-light.nix ];
+          modules = [ ./hosts/epita/epita-light.nix agenix.homeManagerModules.default ];
         };
       };
     };
