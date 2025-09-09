@@ -49,15 +49,7 @@
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/epita/epita.nix agenix.homeManagerModules.default ];
-        };
-        epita-light = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit upkgs;
-          };
-          modules = [ ./hosts/epita/epita-light.nix agenix.homeManagerModules.default ];
+          modules = [ ./hosts/epita/epita.nix ];
         };
       };
     };
