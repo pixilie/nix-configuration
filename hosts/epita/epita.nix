@@ -13,16 +13,15 @@
   ];
 
   config = {
+    # Set to false to use the latest version of Helix (and not th one cached by nixpkgs)
     useHelixCache = true;
-    
+    isSchoolProfile = true;
+
     home.username = "kristen.couty";
     home.homeDirectory = "/home/kristen.couty";
     home.stateVersion = "25.05";
 
-    home.packages = with pkgs; [
-      nautilus
-      tidal-hifi
-    ];
+    home.packages = with pkgs; [ nautilus ];
 
     programs.home-manager.enable = true;
   };
