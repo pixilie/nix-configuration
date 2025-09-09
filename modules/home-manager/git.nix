@@ -14,9 +14,13 @@
       lla = "log --graph --oneline --all";
 
       pu = "push";
+      put = "push --follow-tags";
       puf = "push --force-with-lease";
       pl = "pull";
       st = "status";
+
+      a = "add";
+      aa = "add -A";
 
       cm = "commit --message";
       ca = "commit --amend";
