@@ -19,10 +19,7 @@
     home.homeDirectory = "/home/kristen.couty";
     home.stateVersion = "25.05";
 
-    home.packages = with pkgs; [
-      nautilus
-      tidal-hifi
-    ];
+    home.packages = with pkgs; [ nautilus ];
 
     programs.home-manager.enable = true;
   };
