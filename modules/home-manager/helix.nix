@@ -1,8 +1,6 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, inputs, config, lib, ... }:
 
 {
-  imports = [ ./wakatime.nix ];
-
   programs.helix = {
     enable = true;
 
@@ -13,34 +11,23 @@
 
     defaultEditor = true;
 
-    extraPackages = with pkgs; [
-      # Global lsp
-      wakatime
-      inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
-
-      # Nix Related
-      nil
-      nixfmt-classic
-
-      # Markdown
-      marksman
-
-      # C related
-      clang-tools
-
-      # Web related
-      vscode-langservers-extracted
-      typescript-language-server
-      svelte-language-server
-
-      # Python
-      ruff
-      python312Packages.jedi-language-server
-      python312Packages.python-lsp-server
-
-      # Ocaml
-      ocamlPackages.lsp
-    ];
+    extraPackages = with pkgs;
+      [
+        wakatime
+        inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
+        nil
+        nixfmt-classic
+        clang-tools
+      ] ++ lib.optionals (!config.isSchoolProfile) [
+        marksman
+        vscode-langservers-extracted
+        typescript-language-server
+        svelte-language-server
+        ruff
+        python312Packages.jedi-language-server
+        python312Packages.python-lsp-server
+        ocamlPackages.lsp
+      ];
 
     ignores = [
       "*.png"
@@ -56,7 +43,6 @@
 
     settings = {
       theme = "onedark";
-
       editor = {
         auto-format = true;
         auto-save = true;
@@ -112,6 +98,13 @@
           language-servers = [ "nil" "wakatime" ];
         }
         {
+          name = "c";
+          auto-format = false;
+          language-servers = [ "clangd" "wakatime" ];
+          formatter = { command = "clang-format"; };
+        }
+      ] ++ lib.optionals (!config.isSchoolProfile) [
+        {
           name = "python";
           auto-format = false;
           language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
@@ -152,12 +145,6 @@
           name = "svelte";
           auto-format = true;
           language-servers = [ "svelteserver" "wakatime" ];
-        }
-        {
-          name = "c";
-          language-servers = [ "clangd" "wakatime" ];
-          auto-format = false;
-          formatter = { command = "clang-format"; };
         }
         {
           name = "html";
