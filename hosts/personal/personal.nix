@@ -37,15 +37,15 @@
     teams-for-linux
     # zoom-us
     # rustdesk
-    whatsie
+    # whatsie
     libreoffice-still-unwrapped
 
     # Dev related
-    # jetbrains-toolbox
-    # upkgs.unityhub
     upkgs.zed-editor
     insomnia
-    vscode
+    # jetbrains-toolbox
+    # upkgs.unityhub
+    # vscode
 
     # Games
     upkgs.lunar-client
