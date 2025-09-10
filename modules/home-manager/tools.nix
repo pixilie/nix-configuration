@@ -10,26 +10,17 @@
     dconf
     openssl
     wdisplays
-    fastfetch
     pkg-config
     imv
     xdg-utils
     wireguard-tools
     jless
-    trash-cli
     pavucontrol
-    ascii
-    dust
-    btop
     jq
     rclone
     nix-inspect
     nixos-anywhere
     nix-tree
-    glow
-    speedtest-go
-    dogdns
-    onefetch
 
     # Dev related
     gccgo14

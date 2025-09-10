@@ -10,8 +10,16 @@
     gh-dash
     zoxide
     delta
-    tealdeer
+    tlrc
     ripgrep
+    dust
+    btop
+    onefetch
+    fastfetch
+    glow
+    dogdns
+    speedtest-go
+    ascii
   ];
 
   programs.alacritty = {
