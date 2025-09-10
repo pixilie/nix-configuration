@@ -3,7 +3,6 @@ import subprocess
 import re
 import sys
 
-tp_directory = "/home/kristen/documents/epita/sup/programmation"
 login = "kristen.couty"
 
 def format_tp_name(tp_name):
@@ -27,6 +26,13 @@ def format_repository_name(repository_name, parsed_tp_name):
 def main():
     tp_name = sys.argv[1]
     repository_link = sys.argv[2]
+    is_school = sys.argv[3]
+
+    if is_school == "true":
+        tp_directory = "/home/kristen.couty/afs/practicals"
+    else:
+        tp_directory = "/home/kristen/documents/epita/spe/programmation/"
+    
     formatted_tp_name = format_tp_name(tp_name)
     repository_name = get_repository_name(repository_link)
     formatted_repository_name = format_repository_name(repository_name, formatted_tp_name)
