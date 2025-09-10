@@ -3,7 +3,6 @@ import subprocess
 import re
 import sys
 
-tp_directory = "/home/kristen/documents/epita/sup/programmation"
 login = "kristen.couty"
 
 def format_tp_name(tp_name):
@@ -27,6 +26,13 @@ def format_repository_name(repository_name, parsed_tp_name):
 def main():
     tp_name = sys.argv[1]
     repository_link = sys.argv[2]
+    is_school = sys.argv[3]
+
+    if is_school == "true":
+        tp_directory = "/home/kristen.couty/afs/practicals"
+    else:
+        tp_directory = "/home/kristen/documents/epita/spe/programmation/"
+    
     formatted_tp_name = format_tp_name(tp_name)
     repository_name = get_repository_name(repository_link)
     formatted_repository_name = format_repository_name(repository_name, formatted_tp_name)
@@ -40,15 +46,13 @@ def main():
 
     # Create basics repo files
     with open(".gitignore", "w") as gitignore:
-        gitignore.write("bin/\nobj/\n.idea/\n*~\n*.DotSettings.user")
+        gitignore.write("*.a\n*.lib\n*.o\n*.obj\n*.out\n.idea/\n*~\n*.DotSettings.user")
 
     with open("README", "w") as readme:
         readme.write(f"# {tp_name}")
 
-    # Create c# solution
-    subprocess.run(["dotnet", "new", "sln", "--name", tp_name])
-    subprocess.run(["dotnet", "new", "console", "-n", tp_name, "-f", "net7.0", "-lang", "C#"])
-    subprocess.run(["dotnet", "sln", "add", f"{tp_name}/{tp_name}.csproj"])
+    with open("AUTHORS", "w") as readme:
+        readme.write("Kristen\nCouty\nkristen.couty\nkristen.couty@epita.fr")
 
     print(f"Succesfully initialized {tp_name}")
     
