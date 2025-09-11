@@ -37,10 +37,10 @@
     gccgo14
     rustup
     python3
-    dotnetCorePackages.sdk_7_0
+    # dotnetCorePackages.sdk_7_0
     direnv
     gnumake
-    jdk17
-    ldtk
+    # jdk17
+    # ldtk
   ];
 }

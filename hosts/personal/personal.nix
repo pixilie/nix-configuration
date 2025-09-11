@@ -31,7 +31,7 @@
     gnote
 
     gimp-with-plugins
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
 
     thunderbird
     teams-for-linux
