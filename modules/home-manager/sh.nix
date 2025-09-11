@@ -7,18 +7,9 @@
     tokei
     bat
     fzf
-    gh-dash
     zoxide
     delta
     tlrc
-    ripgrep
-    dust
-    btop
-    onefetch
-    fastfetch
-    glow
-    dogdns
-    speedtest-go
     ascii
   ];
 
