@@ -89,7 +89,7 @@
       fish_greeting = "";
       init-tp = {
         body =
-          "python3 /home/kristen/developement/github.com/pixilie/nix-configuration/assets/scripts/init-tp.py $argv[1] $argv[2]";
+          "python3 /home/kristen/developement/github.com/pixilie/nix-configuration/assets/scripts/init-tp.py $argv[1] $argv[2] $argv[3]";
       };
     };
   };
