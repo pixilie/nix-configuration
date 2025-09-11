@@ -15,8 +15,6 @@
       [
         wakatime
         inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
-        nil
-        nixfmt-classic
         clang-tools
       ] ++ lib.optionals (!config.isSchoolProfile) [
         marksman
@@ -27,6 +25,8 @@
         python312Packages.jedi-language-server
         python312Packages.python-lsp-server
         ocamlPackages.lsp
+        nil
+        nixfmt-classic
       ];
 
     ignores = [
