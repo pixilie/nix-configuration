@@ -7,18 +7,9 @@
     tokei
     bat
     fzf
-    gh-dash
     zoxide
     delta
     tlrc
-    ripgrep
-    dust
-    btop
-    onefetch
-    fastfetch
-    glow
-    dogdns
-    speedtest-go
     ascii
   ];
 
@@ -98,7 +89,7 @@
       fish_greeting = "";
       init-tp = {
         body =
-          "python3 /home/kristen/developement/github.com/pixilie/nix-configuration/assets/scripts/init-tp.py $argv[1] $argv[2]";
+          "python3 /home/kristen/developement/github.com/pixilie/nix-configuration/assets/scripts/init-tp.py $argv[1] $argv[2] $argv[3]";
       };
     };
   };
@@ -113,8 +104,8 @@
     };
   };
 
-  programs.zellij.enable = true;
-  xdg.configFile."zellij/config.kdl".source = ../../assets/config/zellij.kdl;
+  # programs.zellij.enable = true;
+  # xdg.configFile."zellij/config.kdl".source = ../../assets/config/zellij.kdl;
 
   programs.zoxide = {
     enable = true;

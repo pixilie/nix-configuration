@@ -14,13 +14,24 @@
     imv
     xdg-utils
     wireguard-tools
-    jless
     pavucontrol
-    jq
     rclone
     nix-inspect
     nixos-anywhere
     nix-tree
+
+    # Cli
+    dust
+    btop
+    onefetch
+    fastfetch
+    glow
+    dogdns
+    speedtest-go
+    gh-dash
+    ripgrep
+    jless
+    jq
 
     # Dev related
     gccgo14
