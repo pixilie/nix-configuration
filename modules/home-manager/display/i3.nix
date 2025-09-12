@@ -8,7 +8,7 @@ let
   left = "h";
   right = "l";
 in {
-  imports = [ ./rofi.nix ];
+  imports = [ ./rofi.nix ./i3-bar.nix ];
   
   home.packages = with pkgs; [
     playerctl

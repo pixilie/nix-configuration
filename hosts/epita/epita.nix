@@ -1,8 +1,7 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
-    ../../modules/home-manager/display/i3-bar.nix
     ../../modules/home-manager/display/i3.nix
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
