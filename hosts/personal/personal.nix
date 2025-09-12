@@ -23,22 +23,19 @@
     # General apps
     vesktop
     tidal-hifi
-
     bitwarden-desktop
     nautilus
     firefox
     google-chrome
     gnote
-
     gimp-with-plugins
-    # kdePackages.kdenlive
-
     thunderbird
     teams-for-linux
+    libreoffice-still-unwrapped
     # zoom-us
     # rustdesk
     # whatsie
-    libreoffice-still-unwrapped
+    # kdePackages.kdenlive
 
     # Dev related
     upkgs.zed-editor
