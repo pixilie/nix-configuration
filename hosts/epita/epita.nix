@@ -8,7 +8,6 @@
     ../../modules/home-manager/sh.nix
     ../../modules/home-manager/fonts.nix
     ../../modules/options.nix
-    ../../modules/special-packages.nix
   ];
 
   config = {

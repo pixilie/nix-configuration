@@ -32,12 +32,8 @@ in {
         "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+q" = "kill";
         "${modifier}+Shift+Return" = "exec firefox";
-        "${modifier}+Shift+r" = "exec reboot";
-        "${modifier}+Shift+p" = "exec shutdown -h now";
         "${modifier}+Escape" = "exec sleep 0.3 && i3lock-fancy-rapid 0 1";
-        "${modifier}+Shift+s" = "exec systemctl suspend";
         "${modifier}+Shift+e" = "exit";
-        "${modifier}+Shift+f" = "exec nautilus";
 
         # Movements
         "${modifier}+${left}" = "focus left";
