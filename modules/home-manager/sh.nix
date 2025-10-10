@@ -83,6 +83,7 @@
       ghd = "gh-dash";
       findg = "find . -name .git -type d -prune";
       nixd = "nix develop -c fish";
+      geany = "nohup geany . > /dev/null &";
     };
 
     functions = {
