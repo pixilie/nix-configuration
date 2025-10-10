@@ -16,14 +16,15 @@
         wakatime
         inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
         clang-tools
+        lldb_21
+        ruff
+        python312Packages.jedi-language-server
+        python312Packages.python-lsp-server
       ] ++ lib.optionals (!config.isSchoolProfile) [
         marksman
         vscode-langservers-extracted
         typescript-language-server
         svelte-language-server
-        ruff
-        python312Packages.jedi-language-server
-        python312Packages.python-lsp-server
         ocamlPackages.lsp
         nil
         nixfmt-classic
@@ -91,23 +92,22 @@
         rust-analyzer.config = { check.command = "clippy"; };
       };
 
-      language = [
+      language = [{
+        name = "c";
+        auto-format = false;
+        language-servers = [ "clangd" "wakatime" "lldb" ];
+        formatter = {
+          command = "clang-format";
+        } {
+          name = "python";
+          auto-format = false;
+          language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
+        };
+      }] ++ lib.optionals (!config.isSchoolProfile) [
         {
           name = "nix";
           formatter = { command = "nixfmt"; };
           language-servers = [ "nil" "wakatime" ];
-        }
-        {
-          name = "c";
-          auto-format = false;
-          language-servers = [ "clangd" "wakatime" ];
-          formatter = { command = "clang-format"; };
-        }
-      ] ++ lib.optionals (!config.isSchoolProfile) [
-        {
-          name = "python";
-          auto-format = false;
-          language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
         }
         {
           name = "rust";
