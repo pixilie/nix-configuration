@@ -1,6 +1,12 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    gh-dash
+    lazygit
+    onefetch
+  ];
+
   programs.git = {
     enable = true;
     lfs.enable = true;

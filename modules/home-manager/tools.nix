@@ -19,12 +19,10 @@
     # Cli
     dust
     btop
-    onefetch
     fastfetch
     glow
     dogdns
     speedtest-go
-    gh-dash
     ripgrep
     jless
     jq
@@ -32,6 +30,7 @@
     nixos-anywhere
     nix-tree
     killall
+    tokei
 
     # Dev related
     gccgo14

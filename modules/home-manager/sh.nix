@@ -3,14 +3,11 @@
 {
   home.packages = with pkgs; [
     eza
-    lazygit
-    tokei
     bat
     fzf
     zoxide
     delta
     tlrc
-    ascii
   ];
 
   programs.alacritty = {
