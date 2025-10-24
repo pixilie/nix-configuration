@@ -20,10 +20,13 @@
       window = { decorations = "buttonless"; };
 
       font = {
-        size = 13.0;
+        size = 14.0;
         normal.family = "CaskaydiaCoveNerdFont";
         bold.family = "CaskaydiaCoveNerdFont";
         italic.family = "CaskaydiaCoveNerdFont";
+        # normal.family = "Monocraft";
+        # bold.family = "Monocraft";
+        # italic.family = "Monocraft";
       };
 
       cursor = {
@@ -105,7 +108,10 @@
     };
   };
 
-  programs.zellij.enable = true;
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   xdg.configFile."zellij/config.kdl".source = ../../assets/config/zellij.kdl;
 
   programs.zoxide = {
@@ -117,6 +123,7 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    silent = true;
   };
   home.sessionVariables.DIRENV_LOG_FORMAT = "";
 }
