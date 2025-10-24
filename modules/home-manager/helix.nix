@@ -96,14 +96,13 @@
         name = "c";
         auto-format = false;
         language-servers = [ "clangd" "wakatime" "lldb" ];
-        formatter = {
-          command = "clang-format";
-        } {
+        formatter = { command = "clang-format"; };
+      }] ++ lib.optionals (!config.isSchoolProfile) [
+        {
           name = "python";
           auto-format = false;
           language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
-        };
-      }] ++ lib.optionals (!config.isSchoolProfile) [
+        }
         {
           name = "nix";
           formatter = { command = "nixfmt"; };
