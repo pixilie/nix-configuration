@@ -31,7 +31,7 @@
     gimp-with-plugins
     thunderbird
     teams-for-linux
-    libreoffice-still-unwrapped
+    # libreoffice-still-unwrapped
     # zoom-us
     # rustdesk
     # whatsie
