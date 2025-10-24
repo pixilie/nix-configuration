@@ -105,7 +105,10 @@
     };
   };
 
-  programs.zellij.enable = true;
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   xdg.configFile."zellij/config.kdl".source = ../../assets/config/zellij.kdl;
 
   programs.zoxide = {
