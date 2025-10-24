@@ -4,6 +4,7 @@
   programs.zed-editor = {
     enable = true;
     package = upkgs.zed-editor;
+
     userSettings = {
       base_keymap = "VSCode";
       autosave = "on_focus_change";
@@ -17,6 +18,15 @@
       buffer_font_size = 16;
       buffer_font_weight = 500;
       tab_size = 4;
+
+      "auto_install_extensions" = {
+        "html" = true;
+        "python" = true;
+        "c" = true;
+        "nix" = true;
+        "wakatime" = true;
+        "rust" = true;
+      };
 
       theme = {
         mode = "dark";
