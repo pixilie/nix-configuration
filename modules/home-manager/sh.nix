@@ -20,10 +20,13 @@
       window = { decorations = "buttonless"; };
 
       font = {
-        size = 13.0;
+        size = 14.0;
         normal.family = "CaskaydiaCoveNerdFont";
         bold.family = "CaskaydiaCoveNerdFont";
         italic.family = "CaskaydiaCoveNerdFont";
+        # normal.family = "Monocraft";
+        # bold.family = "Monocraft";
+        # italic.family = "Monocraft";
       };
 
       cursor = {
