@@ -123,6 +123,7 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    silent = true;
   };
   home.sessionVariables.DIRENV_LOG_FORMAT = "";
 }
