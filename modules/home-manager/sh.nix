@@ -83,18 +83,24 @@
     shellAbbrs = {
       ll = "ls -lhaF";
       tree = "ls -T";
+
       ghd = "gh-dash";
+
       findg = "find . -name .git -type d -prune";
+
       nixd = "nix develop -c fish";
+
       geany = "nohup geany . > /dev/null &";
     };
 
     functions = {
       fish_greeting = "";
-      init-tp = {
-        body =
-          "python3 /home/kristen/developement/github.com/pixilie/nix-configuration/assets/scripts/init-tp.py $argv[1] $argv[2] $argv[3]";
-      };
+
+      cdtmp = ''
+        set ash (openssl rand -hex 4)
+        mkdir /tmp/$ash
+        cd /tmp/$ash
+      '';
     };
   };
 
