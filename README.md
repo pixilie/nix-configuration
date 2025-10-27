@@ -17,9 +17,16 @@
 - `pkgs`: Custom nix packages
 
 ## Switch to another profile
-```
-nix run nixpkgs#home-manager -- switch --flake .#<profile>
-```
+``` nix run nixpkgs#home-manager -- switch --flake .#<profile> ```
 
 - `personal`: Profile for my main computer
-- `epita`: Profile for school computers
+- `epita`: Profile for school computers (`./epita-setup.sh`)
+
+## Templates
+
+``` nix flake init --template github:/pixilie/nix-configuration#<template> ```
+
+### Templates available :
+- ``python`` : template for blank python project
+- ``c`` : template for blank c project
+- ``epita-c`` : template for epita practical in c
