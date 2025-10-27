@@ -17,10 +17,10 @@
         inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
         clang-tools
         lldb_21
+      ] ++ lib.optionals (!config.isSchoolProfile) [
         ruff
         python312Packages.jedi-language-server
         python312Packages.python-lsp-server
-      ] ++ lib.optionals (!config.isSchoolProfile) [
         marksman
         vscode-langservers-extracted
         typescript-language-server

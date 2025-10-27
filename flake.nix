@@ -27,6 +27,7 @@
         # config.allowUnfreePredicate = import ./lib/unfree.nix { lib = nixpkgs.lib; };
       };
     in {
+      templates = import ./templates;
       nixosConfigurations = {
         personal = lib.nixosSystem {
           inherit system;
