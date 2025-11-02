@@ -21,7 +21,7 @@
         in {
           default = mkClangShell rec {
             nativeBuildInputs = with pkgs;
-              [ clang-tools lldb_21 ] ++ (with llvmPackages; [ clang lldb ]);
+              [ clang-tools lldb_21 bear ] ++ (with llvmPackages; [ clang lldb ]);
 
             buildInputs = with pkgs;
               [
