@@ -17,6 +17,7 @@ in {
     notify-desktop
     grim
     slurp
+    satty
     wlroots
   ];
 
@@ -125,7 +126,7 @@ in {
         "XF86MonBrightnessDown" = ''
           exec brightnessctl --exponent=2 s 10%- && makoctl dismiss -a && notify-desktop "Brightness Level" "$(brightnessctl get | awk -v max=$(brightnessctl max) '{printf "Brightness: %.0f%%", ($1/max)*100;}')"'';
 
-        "Print" = ''exec grim -g "$(slurp)" - | wl-copy'';
+        "Print" = ''exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
       };
 
       # Resize mode
