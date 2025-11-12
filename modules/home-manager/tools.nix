@@ -16,7 +16,7 @@
     pavucontrol
     rclone
 
-    # Cli
+    # CLI / TUI
     dust
     btop
     fastfetch
@@ -31,6 +31,8 @@
     nix-tree
     killall
     tokei
+    television
+    miniserve
 
     # Dev related
     gccgo14
