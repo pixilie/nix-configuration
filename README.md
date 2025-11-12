@@ -28,5 +28,6 @@
 
 ### Templates available :
 - ``python`` : template for blank python project
+- ``rust`` : template for blank rust project
 - ``c`` : template for blank c project
-- ``epita`` : template for epita practical in c
+- ``epita-c`` : template for epita practical in c
