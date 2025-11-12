@@ -20,7 +20,7 @@
 ``` nix run nixpkgs#home-manager -- switch --flake .#<profile> ```
 
 - `personal`: Profile for my main computer
-- `epita`: Profile for school computers (`./epita-setup.sh`)
+- `epita`: Profile for school computers
 
 ## Templates
 
@@ -29,4 +29,4 @@
 ### Templates available :
 - ``python`` : template for blank python project
 - ``c`` : template for blank c project
-- ``epita-c`` : template for epita practical in c
+- ``epita`` : template for epita practical in c

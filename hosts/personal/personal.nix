@@ -40,7 +40,7 @@
     # Dev related
     upkgs.zed-editor
     insomnia
-    vim
+    # vim
     # jetbrains-toolbox
     # upkgs.unityhub
     # vscode
