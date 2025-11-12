@@ -29,4 +29,4 @@
 ### Templates available :
 - ``python`` : template for blank python project
 - ``c`` : template for blank c project
-- ``epita-c`` : template for epita practical in c
+- ``epita`` : template for epita practical in c
