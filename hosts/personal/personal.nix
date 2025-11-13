@@ -22,6 +22,7 @@
   home.packages = with pkgs; [
     # General apps
     legcord
+    vesktop
     tidal-hifi
     bitwarden-desktop
     nautilus
@@ -31,7 +32,7 @@
     gimp-with-plugins
     thunderbird
     teams-for-linux
-    # libreoffice-still-unwrapped
+    libreoffice-still
     # zoom-us
     # rustdesk
     # whatsie
