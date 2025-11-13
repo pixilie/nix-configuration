@@ -19,7 +19,7 @@ configuration {
     active:         #98C379FF;
     urgent:         #E06C75FF;
 
-    font: "JetBrainsMonoNerdFont-Regular 12";
+    font: "CaskaydiaCoveNerdFont 12";
 
 
     border-colour:               var(selected);
