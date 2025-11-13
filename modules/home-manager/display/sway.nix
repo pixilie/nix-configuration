@@ -7,7 +7,7 @@ let
   left = "h";
   right = "l";
 in {
-  imports = [ ./swaylock.nix ./swaybar.nix ./tofi.nix ];
+  imports = [ ./swaylock.nix ./swaybar.nix ./rofi.nix ];
 
   home.packages = with pkgs; [
     swaylock-effects
