@@ -21,8 +21,7 @@
   # Packages
   home.packages = with pkgs; [
     # General apps
-    legcord
-    vesktop
+    discord
     tidal-hifi
     bitwarden-desktop
     nautilus

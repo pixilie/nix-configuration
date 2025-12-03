@@ -8,14 +8,12 @@
       "steam"
       "steam-unwrapped"
       "steam-run"
-      "unityhub"
       "lunarclient"
       "google-chrome"
       "libsciter"
-      "badlion-client"
       "castlabs-electron"
       "vscode"
-      "zoom"
+      "discord"
     ];
 
   nixpkgs.config.permittedInsecurePackages =
