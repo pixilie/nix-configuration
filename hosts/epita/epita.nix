@@ -21,6 +21,7 @@
 
     home.packages = with pkgs; [
       nautilus
+      spotify
     ];
 
     programs.home-manager.enable = true;

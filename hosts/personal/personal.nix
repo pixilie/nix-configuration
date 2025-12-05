@@ -22,7 +22,7 @@
   home.packages = with pkgs; [
     # General apps
     discord
-    tidal-hifi
+    spotify
     bitwarden-desktop
     nautilus
     firefox
