@@ -14,6 +14,7 @@
       "castlabs-electron"
       "vscode"
       "discord"
+      "spotify"
     ];
 
   nixpkgs.config.permittedInsecurePackages =
