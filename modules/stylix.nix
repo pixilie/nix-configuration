@@ -1,0 +1,1 @@
+{ ... }: { stylix.enable = true; }

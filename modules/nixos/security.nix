@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 
 {
   # SSH
@@ -14,7 +14,7 @@
   # How power button handle presses
   services.logind = {
     lidSwitch = "suspend";
-    extraConfig = lib.generators.toKeyValue { } {
+    settings.Login = {
       IdleAction = "lock";
       HandlePowerKey = "lock";
       HandlePowerKeyLongPress = "suspend";

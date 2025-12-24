@@ -2,10 +2,10 @@
   description = "main nixos configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     wakatime-ls.url = "github:mrnossiom/wakatime-ls";
@@ -13,10 +13,13 @@
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
+
+    stylix.url = "github:nix-community/stylix/release-25.11";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+    { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -31,7 +34,8 @@
       nixosConfigurations = {
         personal = lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/personal/configuration.nix ];
+          modules =
+            [ ./hosts/personal/configuration.nix stylix.nixosModules.stylix ];
         };
       };
 
@@ -42,7 +46,7 @@
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/personal/personal.nix ];
+          modules = [ ./hosts/personal/personal.nix stylix.homeModules.stylix ];
         };
         epita = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
