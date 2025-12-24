@@ -13,7 +13,7 @@
 
     extraPackages = with pkgs;
       [
-        wakatime
+        wakatime-cli
         inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
         clang-tools
         lldb_21

@@ -24,11 +24,10 @@
     };
   };
 
-
   system = {
     autoUpgrade.enable = true;
     autoUpgrade.allowReboot = true;
-    stateVersion = "25.05";
+    stateVersion = "25.11";
   };
 
   users.users.kristen = {
