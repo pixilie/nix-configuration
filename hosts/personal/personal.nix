@@ -16,7 +16,7 @@
   # General informations
   home.username = "kristen";
   home.homeDirectory = "/home/kristen";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   # Packages
   home.packages = with pkgs; [
