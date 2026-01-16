@@ -26,10 +26,10 @@
     bitwarden-desktop
     nautilus
     firefox
-    google-chrome
-    gnote
+    # google-chrome
+    # gnote
     gimp-with-plugins
-    thunderbird
+    # thunderbird
     teams-for-linux
     libreoffice-still
     # zoom-us
@@ -39,7 +39,7 @@
 
     # Dev related
     upkgs.zed-editor
-    insomnia
+    # insomnia
     # vim
     # jetbrains-toolbox
     # upkgs.unityhub
@@ -50,7 +50,7 @@
     prismlauncher
   ];
 
-  services.kdeconnect.enable = true;
+  # services.kdeconnect.enable = true;
 
   # Reload system units when switching config
   systemd.user.startServices = "sd-switch";
