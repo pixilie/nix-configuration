@@ -12,9 +12,9 @@
     pkg-config
     imv
     xdg-utils
-    wireguard-tools
+    # wireguard-tools
     pavucontrol
-    rclone
+    # rclone
 
     # CLI / TUI
     dust
