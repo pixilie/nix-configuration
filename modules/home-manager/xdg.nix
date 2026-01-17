@@ -3,7 +3,7 @@ let
   files = [ "org.gnome.Nautilus.desktop" ];
   browser = [ "firefox.desktop" ];
   images = [ "imv.desktop" ];
-  terminal = [ "kitty-open.desktop" ];
+  terminal = [ "Alacritty.desktop" ];
 in {
   xdg.mimeApps = {
     enable = true;
