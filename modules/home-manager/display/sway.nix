@@ -126,7 +126,8 @@ in {
         "XF86MonBrightnessDown" = ''
           exec brightnessctl --exponent=2 s 10%- && makoctl dismiss -a && notify-desktop "Brightness Level" "$(brightnessctl get | awk -v max=$(brightnessctl max) '{printf "Brightness: %.0f%%", ($1/max)*100;}')"'';
 
-        "Print" = ''exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
+        "Print" = ''
+          exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
       };
 
       # Resize mode
@@ -166,9 +167,7 @@ in {
     };
 
     extraConfig = ''
-      exec_always swaybg --image ${
-        toString ../../../assets/media/wallpaper.png
-      }
+      exec_always swaybg --image ${toString ../../../assets/media/wallpaper.png}
     '';
   };
 
