@@ -167,6 +167,7 @@ in {
     };
 
     extraConfig = ''
+      exec dbus-update-activation-environment --systemd --all
       exec_always swaybg --image ${toString ../../../assets/media/wallpaper.png}
     '';
   };
