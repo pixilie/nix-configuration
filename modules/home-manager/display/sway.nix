@@ -142,7 +142,7 @@ in {
       };
 
       input = {
-        "1267:12637:ELAN0729:00_04F3:315D_Touchpad" = {
+        "type:touchpad" = {
           tap = "enabled";
           tap_button_map = "lrm";
           click_method = "clickfinger";
