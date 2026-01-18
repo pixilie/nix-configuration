@@ -178,38 +178,24 @@ in {
       {
         timeout = 175;
         command =
-          "${pkgs.notify-desktop}/bin/notify-desktop 'Screen shuting down in 5 seconds'";
+          "${pkgs.notify-desktop}/bin/notify-desktop 'Screen locking in 5 seconds'";
+      }
+      {
+        timeout = 179;
+        command = "${pkgs.playerctl}/bin/playerctl pause";
       }
       {
         timeout = 180;
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        timeout = 190;
         command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
         timeout = 300;
-        command = "${pkgs.playerctl}/bin/playerctl pause";
-      }
-      {
-        timeout = 300;
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
-      }
-      {
-        timeout = 600;
         command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
-    events = [
-      {
-        event = "before-sleep";
-        command = "loginctl lock-session";
-      }
-      {
-        event = "before-sleep";
-        command = "${pkgs.playerctl}/bin/playerctl pause";
-      }
-      {
-        event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
       }
     ];
   };
