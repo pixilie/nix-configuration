@@ -10,7 +10,7 @@
     ../../modules/nixos/steam.nix
     ../../modules/nixos/docker.nix
     ../../modules/nixos/system-packages.nix
-    ../../modules/nixos/banquise.nix
+    ../../modules/nixos/power-management.nix
     # ../../modules/nixos/sddm.nix
   ];
 
