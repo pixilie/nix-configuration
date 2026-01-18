@@ -2,7 +2,7 @@
 
 {
   # Set your time zone.
-  time.timeZone = "Europe/Paris";
+  time.timeZone = "Europe/Riga";
 
   # Garbage collector
   nix.gc = {
