@@ -71,7 +71,7 @@ in {
         "${modifier}+Escape" =
           "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
         "${modifier}" = "exec swaymsg bar mode toggle";
-        "${modifier}+Shift+s" = "exec systemctl suspend";
+        "${modifier}+Shift+s" = "exec ${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
         "${modifier}+Shift+z" = "exec makoctl dismiss";
         "${modifier}+Shift+f" = "exec nautilus";
@@ -178,38 +178,24 @@ in {
       {
         timeout = 175;
         command =
-          "${pkgs.notify-desktop}/bin/notify-desktop 'Screen shuting down in 5 seconds'";
+          "${pkgs.notify-desktop}/bin/notify-desktop 'Screen locking in 5 seconds'";
+      }
+      {
+        timeout = 179;
+        command = "${pkgs.playerctl}/bin/playerctl pause";
       }
       {
         timeout = 180;
+        command = "${pkgs.swaylock-effects}/bin/swaylock";
+      }
+      {
+        timeout = 190;
         command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
       {
         timeout = 300;
-        command = "${pkgs.playerctl}/bin/playerctl pause";
-      }
-      {
-        timeout = 300;
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
-      }
-      {
-        timeout = 600;
         command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
-    events = [
-      {
-        event = "before-sleep";
-        command = "loginctl lock-session";
-      }
-      {
-        event = "before-sleep";
-        command = "${pkgs.playerctl}/bin/playerctl pause";
-      }
-      {
-        event = "lock";
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
       }
     ];
   };
