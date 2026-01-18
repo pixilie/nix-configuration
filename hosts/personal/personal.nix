@@ -9,6 +9,7 @@
     ../../modules/home-manager/display/sway.nix
     ../../modules/home-manager/display/mako.nix
     ../../modules/home-manager/xdg.nix
+    ../../modules/home-manager/ssh.nix
     ../../modules/options.nix
     ../../modules/special-packages.nix
   ];
