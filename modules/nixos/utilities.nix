@@ -24,13 +24,13 @@
   services.blueman.enable = true;
   services.libinput.enable = true;
 
-  # Sway
+  # Required by sway
   security.polkit.enable = true;
   environment.loginShellInit = ''
     [[ "$(tty)" == /dev/tty1 ]] && sway
   '';
 
-  # Power
+  # Power management
   services.upower = {
     enable = true;
     percentageLow = 10;
@@ -38,6 +38,7 @@
     timeCritical = 30;
   };
 
+  # XDG
   xdg.portal = {
     enable = true;
     wlr.enable = true;
