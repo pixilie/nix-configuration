@@ -28,8 +28,7 @@
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      # Select last derivation instantly
-      systemd-boot.configurationLimit = 1;
+      systemd-boot.configurationLimit = 10;
       timeout = 0;
     };
   };
