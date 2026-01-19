@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   # Set your time zone.
@@ -23,31 +23,4 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   services.libinput.enable = true;
-
-  # Required by sway
-  security.polkit.enable = true;
-  environment.loginShellInit = ''
-    [[ "$(tty)" == /dev/tty1 ]] && sway
-  '';
-
-  # Power management
-  services.upower = {
-    enable = true;
-    percentageLow = 10;
-    percentageCritical = 5;
-    timeCritical = 30;
-  };
-
-  # XDG
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-
-    config = {
-      common = {
-        default = [ "gtk" ];
-      };
-    };
-  };
 }

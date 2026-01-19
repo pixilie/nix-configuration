@@ -20,7 +20,4 @@
       HandlePowerKeyLongPress = "suspend";
     };
   };
-
-  # Required by swaylock
-  security.pam.services.swaylock = { };
 }
