@@ -10,10 +10,9 @@
     ../../modules/nixos/networking.nix
     ../../modules/nixos/steam.nix
     ../../modules/nixos/docker.nix
-    ../../modules/nixos/system-packages.nix
     ../../modules/nixos/power-management.nix
     ../../modules/nixos/sway.nix
-    # ../../modules/nixos/sddm.nix
+    ../../modules/nixos/sddm.nix
   ];
 
   time.timeZone = "Europe/Riga";
