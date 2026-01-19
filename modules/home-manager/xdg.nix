@@ -5,6 +5,11 @@ let
   images = [ "imv.desktop" ];
   terminal = [ "Alacritty.desktop" ];
 in {
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
   xdg.mimeApps = {
     enable = true;
 
