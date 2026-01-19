@@ -4,7 +4,8 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/special-packages.nix
-    ../../modules/nixos/utilities.nix
+    ../../modules/nixos/sound.nix
+    ../../modules/nixos/bluetooth.nix
     ../../modules/nixos/security.nix
     ../../modules/nixos/networking.nix
     ../../modules/nixos/steam.nix
@@ -14,6 +15,13 @@
     ../../modules/nixos/sway.nix
     # ../../modules/nixos/sddm.nix
   ];
+
+  time.timeZone = "Europe/Riga";
+
+  nix.gc = {
+    automatic = true;
+    dates = "monthly";
+  };
 
   boot = {
     loader = {
