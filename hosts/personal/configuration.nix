@@ -11,6 +11,7 @@
     ../../modules/nixos/docker.nix
     ../../modules/nixos/system-packages.nix
     ../../modules/nixos/power-management.nix
+    ../../modules/nixos/sway.nix
     # ../../modules/nixos/sddm.nix
   ];
 
