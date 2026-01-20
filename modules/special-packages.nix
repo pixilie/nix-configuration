@@ -8,7 +8,6 @@
       "steam-unwrapped"
       "steam-run"
       "lunarclient"
-      "google-chrome"
       "libsciter"
       "castlabs-electron"
       "vscode"
