@@ -71,7 +71,8 @@ in {
         "${modifier}+Escape" =
           "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
         "${modifier}" = "exec swaymsg bar mode toggle";
-        "${modifier}+Shift+s" = "exec ${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend";
+        "${modifier}+Shift+s" =
+          "exec ${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend";
         "${modifier}+Shift+n" = "swaymsg exit";
         "${modifier}+Shift+z" = "exec makoctl dismiss";
         "${modifier}+Shift+f" = "exec nautilus";
@@ -200,20 +201,5 @@ in {
     ];
   };
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Arc";
-      package = pkgs.arc-icon-theme;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name = "gtk2";
-  };
-
-  # Low power alert
   services.poweralertd.enable = true;
 }
