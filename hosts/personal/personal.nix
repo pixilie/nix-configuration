@@ -41,6 +41,7 @@
     # Games
     upkgs.lunar-client
     prismlauncher
+    protonup-qt
   ];
 
   # Reload system units when switching config
