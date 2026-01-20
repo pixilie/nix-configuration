@@ -40,11 +40,7 @@
 
     # Dev related
     upkgs.zed-editor
-    # insomnia
-    # vim
-    # jetbrains-toolbox
-    # upkgs.unityhub
-    # vscode
+    insomnia
 
     # Games
     upkgs.lunar-client
