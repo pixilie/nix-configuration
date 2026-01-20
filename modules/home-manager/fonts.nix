@@ -4,13 +4,11 @@
   home.packages = with pkgs; [
     noto-fonts
     noto-fonts-color-emoji
-    # nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
     nerd-fonts.caskaydia-mono
     font-awesome
     merriweather
     inter
-    # monocraft
   ];
 
   fonts.fontconfig = {

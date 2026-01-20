@@ -27,16 +27,9 @@
     bitwarden-desktop
     nautilus
     firefox
-    # google-chrome
-    # gnote
     gimp-with-plugins
-    # thunderbird
     teams-for-linux
     libreoffice-still
-    # zoom-us
-    # rustdesk
-    # whatsie
-    # kdePackages.kdenlive
 
     # Dev related
     upkgs.zed-editor
@@ -46,8 +39,6 @@
     upkgs.lunar-client
     prismlauncher
   ];
-
-  # services.kdeconnect.enable = true;
 
   # Reload system units when switching config
   systemd.user.startServices = "sd-switch";

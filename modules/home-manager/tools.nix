@@ -12,9 +12,7 @@
     pkg-config
     imv
     xdg-utils
-    # wireguard-tools
     pavucontrol
-    # rclone
 
     # CLI / TUI
     dust
@@ -40,8 +38,5 @@
     python3
     direnv
     gnumake
-    # dotnetCorePackages.sdk_7_0
-    # jdk17
-    # ldtk
   ];
 }
