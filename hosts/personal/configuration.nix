@@ -15,7 +15,24 @@
     ../../modules/nixos/sddm.nix
   ];
 
-  time.timeZone = "Europe/Riga";
+  services.automatic-timezoned.enable = true;
+
+  services.geoclue2 = {
+    enable = true;
+    enableDemoAgent = true;
+    geoProviderUrl = "";
+  };
+
+  location = {
+    provider = "manual";
+    # Paris
+    # latitude = 48.85;
+    # longitude = 2.35;
+
+    # Riga
+    latitude = 56.95;
+    longitude = 24.11;
+  };
 
   nix.gc = {
     automatic = true;
