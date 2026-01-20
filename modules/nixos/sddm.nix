@@ -30,6 +30,5 @@
   environment.variables = {
     XDG_SESSION_TYPE = "wayland";
     XDG_CURRENT_DESKTOP = "sway";
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
 }
