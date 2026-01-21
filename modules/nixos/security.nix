@@ -1,7 +1,6 @@
 { ... }:
 
 {
-  # SSH
   services.openssh = {
     enable = true;
     settings = {
@@ -9,12 +8,11 @@
       PasswordAuthentication = false;
     };
   };
-  programs.ssh.startAgent = true;
+  # programs.ssh.startAgent = true;
 
-  # How power button handle presses
   services.logind = {
-    lidSwitch = "suspend";
     settings.Login = {
+      HandleLidSwitch = "suspend";
       IdleAction = "lock";
       HandlePowerKey = "lock";
       HandlePowerKeyLongPress = "suspend";
