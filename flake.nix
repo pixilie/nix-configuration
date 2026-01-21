@@ -13,13 +13,10 @@
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
-
-    stylix.url = "github:nix-community/stylix/release-25.11";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, ... }@inputs:
+    { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
@@ -35,7 +32,7 @@
         personal = lib.nixosSystem {
           inherit system;
           modules =
-            [ ./hosts/personal/configuration.nix stylix.nixosModules.stylix ];
+            [ ./hosts/personal/configuration.nix ];
         };
       };
 
@@ -46,7 +43,7 @@
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/personal/personal.nix stylix.homeModules.stylix ];
+          modules = [ ./hosts/personal/personal.nix ];
         };
         epita = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
