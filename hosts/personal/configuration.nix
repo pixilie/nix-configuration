@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -60,6 +60,9 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "sway" "input" ];
   };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc.lib zlib openssl curl ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

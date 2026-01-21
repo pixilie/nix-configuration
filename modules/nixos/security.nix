@@ -1,7 +1,6 @@
 { ... }:
 
 {
-  # SSH
   services.openssh = {
     enable = true;
     settings = {
@@ -9,15 +8,17 @@
       PasswordAuthentication = false;
     };
   };
-  programs.ssh.startAgent = true;
+  # programs.ssh.startAgent = true;
 
-  # How power button handle presses
   services.logind = {
-    lidSwitch = "suspend";
     settings.Login = {
+      HandleLidSwitch = "suspend";
       IdleAction = "lock";
       HandlePowerKey = "lock";
       HandlePowerKeyLongPress = "suspend";
     };
   };
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
 }

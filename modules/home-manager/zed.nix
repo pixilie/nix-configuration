@@ -1,9 +1,11 @@
-{ upkgs, ... }:
+{ upkgs, pkgs, lib, ... }:
 
 {
   programs.zed-editor = {
     enable = true;
     package = upkgs.zed-editor;
+
+    extraPackages = [ pkgs.wakatime-cli ];
 
     userSettings = {
       base_keymap = "VSCode";
@@ -19,6 +21,8 @@
       ui_font_family = ".ZedMono";
       ui_font_size = 16;
       ui_font_weight = 500;
+
+      terminal.shell.program = "fish";
 
       auto_install_extensions = {
         "html" = true;
@@ -46,7 +50,6 @@
       };
 
       indent_guides = {
-        enable = true;
         line_width = 1;
         active_line_width = 2;
       };
