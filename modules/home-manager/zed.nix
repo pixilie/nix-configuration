@@ -8,28 +8,34 @@
     userSettings = {
       base_keymap = "VSCode";
       autosave = "on_focus_change";
-
       restore_on_startup = "last_session";
+      tab_size = 4;
+      formatter = "language_server";
 
-      ui_font_size = 16;
-      ui_font_family = ".SystemUIFont";
-      ui_font_weight = 500;
-      buffer_font_family = ".SystemUIFont";
+      buffer_font_family = "CaskaydiaCove Nerd Font";
       buffer_font_size = 16;
       buffer_font_weight = 500;
-      tab_size = 4;
 
-      "auto_install_extensions" = {
+      ui_font_family = ".ZedMono";
+      ui_font_size = 16;
+      ui_font_weight = 500;
+
+      auto_install_extensions = {
         "html" = true;
         "python" = true;
-        "c" = true;
-        "nix" = true;
         "wakatime" = true;
-        "rust" = true;
+        "git-firefly" = true;
+        "sql" = true;
+        "one-dark-pro" = true;
+        "csharp" = true;
+        "toml" = true;
+        "dockerfile" = true;
+        "scss" = true;
+        "log" = true;
       };
 
       theme = {
-        mode = "dark";
+        mode = "system";
         light = "One Light";
         dark = "One Dark Pro";
       };
@@ -38,8 +44,6 @@
         file_icons = true;
         git_status = true;
       };
-
-      formatter = "language_server";
 
       indent_guides = {
         enable = true;
