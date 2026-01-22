@@ -20,7 +20,7 @@ let
   '';
 
   themeLight = ''
-    @define-color base00 #fafafaff;
+    @define-color base00 #fafafa;
     @define-color base03 #e5e5e6;
     @define-color base05 #383a42;
     @define-color base07 #52556d;
@@ -148,7 +148,7 @@ let
       format-ethernet = "{ipaddr}/{cidr}  ";
       tooltip-format = "{ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)  ";
-      format-disconnected = "Disconnected ⚠ ";
+      format-disconnected = "Disconnected <span size='130%'>󰤮</span> ";
       format-alt = "{ifname}: {ipaddr}/{cidr}";
     };
   };
