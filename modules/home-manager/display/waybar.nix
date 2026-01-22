@@ -20,7 +20,7 @@ let
   '';
 
   themeLight = ''
-    @define-color base00 #fafafa;
+    @define-color base00 #fafafaff;
     @define-color base03 #e5e5e6;
     @define-color base05 #383a42;
     @define-color base07 #52556d;
