@@ -118,8 +118,8 @@ let
       scroll-step = 5;
       tooltip = false;
       format = "{volume}% {icon}{format_source}";
-      format-bluetooth = "{volume}% {icon}{format_source}";
-      format-bluetooth-muted = "<span size='150%'>󰝟</span> {icon} {format_source}";
+      format-bluetooth = "{volume}% {icon}{format_source}";
+      format-bluetooth-muted = "<span size='150%'>󰝟</span> {format_source}";
       format-muted = "<span size='150%'>󰝟</span> {format_source}";
       format-source = "";
       format-source-muted = "  ";
