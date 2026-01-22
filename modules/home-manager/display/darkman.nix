@@ -1,6 +1,7 @@
 { pkgs, config, ... }:
 
-{
+let pkillExe = "${pkgs.procps}/bin/pkill";
+in {
   services.darkman = {
     enable = true;
     package = pkgs.darkman;
@@ -25,6 +26,11 @@
       rofi = ''
         ln -sf ${config.xdg.dataHome}/rofi/themes/dark.rasi ${config.xdg.dataHome}/rofi/themes/current.rasi
       '';
+
+      waybar-theme = ''
+        ln -sf ${config.xdg.configHome}/waybar/colors-dark.css ${config.xdg.configHome}/waybar/colors.css
+        ${pkillExe} -SIGUSR2 waybar
+      '';
     };
 
     lightModeScripts = {
@@ -44,6 +50,11 @@
 
       rofi = ''
         ln -sf ${config.xdg.dataHome}/rofi/themes/light.rasi ${config.xdg.dataHome}/rofi/themes/current.rasi
+      '';
+
+      waybar-theme = ''
+        ln -sf ${config.xdg.configHome}/waybar/colors-light.css ${config.xdg.configHome}/waybar/colors.css
+        ${pkillExe} -SIGUSR2 waybar
       '';
     };
   };
