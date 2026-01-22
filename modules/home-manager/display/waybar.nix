@@ -103,11 +103,15 @@ let
         warning = 30;
         critical = 15;
       };
+
+      format-time = "{H}h {M}min";
       format = "{capacity}% {icon}";
-      format-full = "{capacity}% {icon}";
-      format-charging = "{capacity}% ";
+      format-alt = "{time} {icon}";
+      format-charging = "{capacity}%  ({time})";
       format-plugged = "{capacity}% ";
       format-icons = [ " " " " " " " " " " ];
+      tooltip = true;
+      tooltip-format = "{timeTo}";
     };
 
     pulseaudio = {
