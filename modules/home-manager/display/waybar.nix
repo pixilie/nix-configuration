@@ -148,7 +148,7 @@ let
       format-ethernet = "{ipaddr}/{cidr}  ";
       tooltip-format = "{ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)  ";
-      format-disconnected = "Disconnected ⚠ ";
+      format-disconnected = "Disconnected <span size='130%'>󰤮</span> ";
       format-alt = "{ifname}: {ipaddr}/{cidr}";
     };
   };
