@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -13,6 +13,7 @@
     ../../modules/nixos/power-management.nix
     ../../modules/nixos/sway.nix
     ../../modules/nixos/sddm.nix
+    ../../modules/nixos/nix_ld.nix
   ];
 
   services.automatic-timezoned.enable = true;
@@ -60,9 +61,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "sway" "input" ];
   };
-
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc.lib zlib openssl curl ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
