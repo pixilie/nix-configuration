@@ -12,7 +12,6 @@ configuration {
 
 
 * {
-    /* --- COULEURS LIGHT (One Light) --- */
     background:     #FAFAFAFF;  /* Fond clair */
     background-alt: #E5E5E6FF;  /* Gris très clair pour l'alternance */
     foreground:     #383A42FF;  /* Gris foncé/Noir pour le texte */
@@ -22,7 +21,6 @@ configuration {
 
     font: "CaskaydiaCoveNerdFont 12";
 
-    /* Le reste ne change pas, cela utilise les variables ci-dessus */
     border-colour:               var(selected);
     handle-colour:               var(foreground);
     background-colour:           var(background);
@@ -36,8 +34,6 @@ configuration {
     active-foreground:           var(background);
     selected-normal-background:  var(selected);
     
-    /* Ici, var(background) devient BLANC en mode light. 
-       Donc texte blanc sur fond bleu = Parfait */
     selected-normal-foreground:  var(background); 
     
     selected-urgent-background:  var(active);
