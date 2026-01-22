@@ -5,6 +5,7 @@ let
   pavucontrolExe = "${pkgs.pavucontrol}/bin/pavucontrol";
   waybarExe = "${pkgs.waybar}/bin/waybar";
   pkillExe = "${pkgs.procps}/bin/pkill";
+  bluemanExe = "${pkgs.blueman}/bin/blueman-manager";
 
   themeDark = ''
     @define-color base00 #1e2127;
@@ -102,19 +103,23 @@ let
         warning = 30;
         critical = 15;
       };
+
+      format-time = "{H}h {M}min";
       format = "{capacity}% {icon}";
-      format-full = "{capacity}% {icon}";
-      format-charging = "{capacity}% ";
+      format-alt = "{time} {icon}";
+      format-charging = "{capacity}%  ({time})";
       format-plugged = "{capacity}% ";
       format-icons = [ " " " " " " " " " " ];
+      tooltip = true;
+      tooltip-format = "{timeTo}";
     };
 
     pulseaudio = {
       scroll-step = 5;
       tooltip = false;
       format = "{volume}% {icon}{format_source}";
-      format-bluetooth = "{volume}% {icon}{format_source}";
-      format-bluetooth-muted = "<span size='150%'>󰝟</span> {icon} {format_source}";
+      format-bluetooth = "{volume}% {icon}{format_source}";
+      format-bluetooth-muted = "<span size='150%'>󰝟</span> {format_source}";
       format-muted = "<span size='150%'>󰝟</span> {format_source}";
       format-source = "";
       format-source-muted = "  ";
@@ -128,6 +133,16 @@ let
         default = [ "" " " "  " ];
       };
       on-click = "${pavucontrolExe}";
+    };
+
+    bluetooth = {
+      format = "";
+      format-disabled = "";
+      format-connected = " {device_alias}";
+      format-connected-battery =
+        " {device_alias} {device_battery_percentage}%";
+      on-click = "${bluemanExe}";
+      tooltip = false;
     };
 
     mpris = {
@@ -160,6 +175,7 @@ in {
     pavucontrol
     font-awesome
     procps
+    blueman
   ];
 
   services.playerctld.enable = true;
@@ -189,6 +205,7 @@ in {
         modules-right = [
           "cava"
           "mpris"
+          "bluetooth"
           "pulseaudio"
           "network"
           "battery"
@@ -261,6 +278,9 @@ in {
 
       #pulseaudio { color: @base00; background-color: @base0B; }
       #pulseaudio.muted { background-color: @base09; }
+
+      #bluetooth { color: @base00; background-color: @base0D; } 
+      #bluetooth.disconnected { background-color: transparent; }
 
       #mpris { color: @base00; background-color: @base0E; }
 
