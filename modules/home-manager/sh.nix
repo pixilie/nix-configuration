@@ -1,14 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [
-    eza
-    bat
-    fzf
-    zoxide
-    delta
-    tlrc
-  ];
+  home.packages = with pkgs; [ eza bat fzf zoxide delta tlrc fd ];
 
   programs.alacritty = {
     enable = true;
@@ -102,9 +95,18 @@
     enable = true;
     enableFishIntegration = true;
 
-    settings.nix_shell = {
-      format = "via [$symbol$state]($style) ";
-      symbol = " ";
+    settings = {
+      nix_shell = {
+        format = "via [$symbol$state]($style) ";
+        symbol = " ";
+      };
+
+      git_branch.disabled = false;
+      git_commit.disabled = false;
+      git_metrics.disabled = false;
+      git_state.disabled = false;
+      git_status.disabled = false;
+
     };
   };
 
@@ -126,4 +128,6 @@
     silent = true;
   };
   home.sessionVariables.DIRENV_LOG_FORMAT = "";
+
+  programs.bat.extraPackages = with pkgs.bat-extras; [ batman ];
 }
