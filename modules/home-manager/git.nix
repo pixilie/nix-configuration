@@ -27,6 +27,10 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;
+
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/github.pub";
+      commit.gpgsign = true;
     };
 
     ignores = [ ".direnv/" "result" ];
