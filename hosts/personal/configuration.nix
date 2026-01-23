@@ -16,12 +16,15 @@
     ../../modules/nixos/nix_ld.nix
   ];
 
+  # Localisation services
   services.automatic-timezoned.enable = true;
 
   services.geoclue2 = {
     enable = true;
     enableDemoAgent = true;
-    geoProviderUrl = "";
+    geoProviderUrl = "https://beacondb.net/v1/geolocate";
+    submissionUrl = "https://beacondb.net/v1/geolocate";
+    submitData = true;
   };
 
   location = {
@@ -31,10 +34,17 @@
     # longitude = 2.35;
 
     # Riga
-    latitude = 56.95;
-    longitude = 24.11;
+    latitude = 56.504668;
+    longitude = 21.010806;
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  # Garbage collector
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -42,7 +52,10 @@
   };
   nix.settings.auto-optimise-store = true;
 
+  # Boot settings
   boot = {
+    kernelParams = [ "quiet" ];
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -51,16 +64,20 @@
     };
   };
 
+  # User related settings
+  users.users.kristen = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" ];
+  };
+
+  # System related settings
   system = {
     autoUpgrade.enable = true;
     autoUpgrade.allowReboot = true;
     stateVersion = "25.11";
   };
 
-  users.users.kristen = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" ];
-  };
+  services.thermald.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

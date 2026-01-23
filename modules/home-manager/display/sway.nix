@@ -165,6 +165,10 @@ in {
           pos = "0 0";
         };
       };
+
+      startup =
+        [{ command = "${pkgs.geoclue2}/libexec/geoclue-2.0/demos/agent"; }];
+
     };
 
     extraConfig = ''
