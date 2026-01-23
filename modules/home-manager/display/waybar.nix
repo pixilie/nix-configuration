@@ -166,6 +166,19 @@ let
       format-disconnected = "Disconnected <span size='130%'>󰤮</span> ";
       format-alt = "{ifname}: {ipaddr}/{cidr}";
     };
+
+    gamemode = {
+      format = "{glyph}";
+      format-alt = "{glyph} {count}";
+      glyph = " ";
+      hide-not-running = true;
+      use-icon = true;
+      icon-name = "input-gaming-symbolic";
+      icon-spacing = 4;
+      icon-size = 20;
+      tooltip = true;
+      tooltip-format = "Games running: {count}";
+    };
   };
 in {
   home.packages = with pkgs; [
@@ -205,6 +218,7 @@ in {
         modules-right = [
           "cava"
           "mpris"
+          "gamemode"
           "bluetooth"
           "pulseaudio"
           "network"
@@ -222,7 +236,7 @@ in {
           [ "DP-1" "DP-2" "DP-3" "DP-4" "HDMI-1" "HDMI-2" "HDMI-3" "HDMI-4" ];
 
         modules-left = [ "sway/workspaces" ];
-        modules-right = [ "network" "clock" "group/misc" ];
+        modules-right = [ "gamemode" "network" "clock" "group/misc" ];
       } // modules-settings;
     };
 
@@ -283,7 +297,6 @@ in {
       #bluetooth.disconnected { background-color: transparent; }
 
       #mpris { color: @base00; background-color: @base0E; }
-
       #mpris.stopped {
         background-color: transparent;
         color: transparent;
@@ -298,12 +311,18 @@ in {
 
       #network { color: @base00; background-color: @base0C; }
 
+      #gamemode {
+        color: @base00;
+        background-color: @base08;
+        padding: 0 .7rem;
+      }
+
       .modules-right widget .module {
         padding: 0 .7rem;
         color: @base07;
       }
 
-      #battery, #pulseaudio, #mpris, #cava, #network {
+      #battery, #pulseaudio, #mpris, #cava, #network, #gamemode {
         color: @base00;
       }
 

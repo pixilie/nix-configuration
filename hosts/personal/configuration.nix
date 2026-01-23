@@ -59,7 +59,7 @@
 
   users.users.kristen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "sway" "input" ];
+    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" ];
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
