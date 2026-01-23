@@ -16,12 +16,15 @@
     ../../modules/nixos/nix_ld.nix
   ];
 
+  # Localisation services
   services.automatic-timezoned.enable = true;
 
   services.geoclue2 = {
     enable = true;
     enableDemoAgent = true;
-    geoProviderUrl = "";
+    geoProviderUrl = "https://beacondb.net/v1/geolocate";
+    submissionUrl = "https://beacondb.net/v1/geolocate";
+    submitData = true;
   };
 
   location = {
