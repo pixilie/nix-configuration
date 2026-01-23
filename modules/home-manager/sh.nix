@@ -128,4 +128,6 @@
     silent = true;
   };
   home.sessionVariables.DIRENV_LOG_FORMAT = "";
+
+  programs.bat.extraPackages = with pkgs.bat-extras; [ batman ];
 }
