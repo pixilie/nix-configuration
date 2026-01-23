@@ -99,9 +99,9 @@ let
 
     battery = {
       states = {
-        good = 95;
+        good = 60;
         warning = 30;
-        critical = 15;
+        critical = 10;
       };
 
       format-time = "{H}h {M}min";
