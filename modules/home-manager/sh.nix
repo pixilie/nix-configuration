@@ -1,14 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [
-    eza
-    bat
-    fzf
-    zoxide
-    delta
-    tlrc
-  ];
+  home.packages = with pkgs; [ eza bat fzf zoxide delta tlrc fd ];
 
   programs.alacritty = {
     enable = true;
