@@ -64,16 +64,20 @@
     };
   };
 
+  # User related settings
+  users.users.kristen = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" ];
+  };
+
+  # System related settings
   system = {
     autoUpgrade.enable = true;
     autoUpgrade.allowReboot = true;
     stateVersion = "25.11";
   };
 
-  users.users.kristen = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" ];
-  };
+  services.thermald.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
