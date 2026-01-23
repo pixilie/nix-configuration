@@ -8,7 +8,6 @@
       PasswordAuthentication = false;
     };
   };
-  # programs.ssh.startAgent = true;
 
   services.logind = {
     settings.Login = {
