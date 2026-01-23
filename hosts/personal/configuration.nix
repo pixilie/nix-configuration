@@ -52,7 +52,10 @@
   };
   nix.settings.auto-optimise-store = true;
 
+  # Boot settings
   boot = {
+    kernelParams = [ "quiet" ];
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
