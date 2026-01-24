@@ -29,6 +29,7 @@
     spotify
     bitwarden-desktop
     nautilus
+    baobab
     firefox
     gimp-with-plugins
     teams-for-linux

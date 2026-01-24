@@ -79,5 +79,9 @@
 
   services.thermald.enable = true;
 
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
