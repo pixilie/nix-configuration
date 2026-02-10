@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -38,5 +38,9 @@
     python3
     direnv
     gnumake
+    nil
+    nixd
+    wakatime-cli
+    inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
   ];
 }
