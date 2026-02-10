@@ -34,10 +34,14 @@
     gimp-with-plugins
     teams-for-linux
     libreoffice-still
+    logseq
 
     # Games
     upkgs.lunar-client
     prismlauncher
+    # jdk17
+    jdk8
+    heroic
   ];
 
   # Reload system units when switching config
