@@ -34,6 +34,7 @@
     gimp-with-plugins
     teams-for-linux
     libreoffice-still
+    logseq
 
     # Games
     upkgs.lunar-client
