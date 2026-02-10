@@ -160,6 +160,12 @@
           auto-format = true;
           language-servers = [ "vscode-json-language-server" ];
         }
+        {
+          name = "cpp";
+          auto-format = false;
+          language-servers = [ "clangd" "wakatime" "lldb" ];
+          formatter = { command = "clang-format"; };
+        }
       ];
     };
   };
