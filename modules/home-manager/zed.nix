@@ -22,6 +22,10 @@
 
       terminal.shell.program = "fish";
 
+      show_edit_predictions = false;
+      features = { edit_prediction_provider = "none"; };
+      show_completions_on_input = true;
+
       auto_install_extensions = {
         "html" = true;
         "python" = true;
