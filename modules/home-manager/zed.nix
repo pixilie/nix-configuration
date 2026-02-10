@@ -1,11 +1,9 @@
-{ upkgs, pkgs, lib, ... }:
+{ upkgs, ... }:
 
 {
   programs.zed-editor = {
     enable = true;
     package = upkgs.zed-editor;
-
-    extraPackages = [ pkgs.wakatime-cli ];
 
     userSettings = {
       base_keymap = "VSCode";
@@ -24,6 +22,10 @@
 
       terminal.shell.program = "fish";
 
+      show_edit_predictions = false;
+      features = { edit_prediction_provider = "none"; };
+      show_completions_on_input = true;
+
       auto_install_extensions = {
         "html" = true;
         "python" = true;
@@ -36,6 +38,8 @@
         "dockerfile" = true;
         "scss" = true;
         "log" = true;
+        "html-snippets" = true;
+        "nix" = true;
       };
 
       theme = {
