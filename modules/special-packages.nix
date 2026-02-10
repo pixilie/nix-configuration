@@ -10,7 +10,6 @@
       "lunarclient"
       "libsciter"
       "castlabs-electron"
-      "vscode"
       "discord"
       "spotify"
     ];
