@@ -14,6 +14,7 @@
     ../../modules/nixos/sway.nix
     ../../modules/nixos/sddm.nix
     ../../modules/nixos/nix_ld.nix
+    ../../modules/nixos/virtulisation.nix
   ];
 
   # Localisation services
@@ -67,7 +68,7 @@
   # User related settings
   users.users.kristen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" ];
+    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" "libvirtd" ];
   };
 
   # System related settings
