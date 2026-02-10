@@ -38,6 +38,8 @@
         "dockerfile" = true;
         "scss" = true;
         "log" = true;
+        "html-snippets" = true;
+        "nix" = true;
       };
 
       theme = {
