@@ -1,9 +1,14 @@
-{ upkgs, ... }:
+{ upkgs, inputs, ... }:
 
 {
   programs.zed-editor = {
     enable = true;
     package = upkgs.zed-editor;
+
+    extraPackages = [
+      upkgs.wakatime-cli
+      inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
+    ];
 
     userSettings = {
       base_keymap = "VSCode";
