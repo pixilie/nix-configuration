@@ -13,6 +13,7 @@
     imv
     xdg-utils
     pavucontrol
+    gnome-calculator
 
     # CLI / TUI
     dust
