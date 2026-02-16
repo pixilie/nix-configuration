@@ -1,13 +1,12 @@
-{ upkgs, inputs, ... }:
+{ pkgs, upkgs, ... }:
 
 {
   programs.zed-editor = {
     enable = true;
     package = upkgs.zed-editor;
 
-    extraPackages = [
-      upkgs.wakatime-cli
-      inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
+    extraPackages = with pkgs; [
+      wakatime-cli
     ];
 
     userSettings = {

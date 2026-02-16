@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -40,8 +40,6 @@
     gnumake
     nil
     nixd
-    wakatime-cli
-    inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
     dbeaver-bin
   ];
 }

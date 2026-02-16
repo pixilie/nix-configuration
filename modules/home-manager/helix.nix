@@ -1,4 +1,4 @@
-{ pkgs, upkgs, inputs, config, lib, ... }:
+{ pkgs, inputs, config, lib, ... }:
 
 {
   programs.helix = {
@@ -13,7 +13,7 @@
 
     extraPackages = with pkgs;
       [
-        upkgs.wakatime-cli
+        wakatime-cli
         inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
         clang-tools
         lldb_21
