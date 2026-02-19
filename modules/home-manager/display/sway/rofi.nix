@@ -1,7 +1,7 @@
 { lib, config, ... }:
 let
-  darkTheme = ../../../assets/themes/rofi_dark.rasi;
-  lightTheme = ../../../assets/themes/rofi_light.rasi;
+  darkTheme = ../../../../assets/themes/rofi_dark.rasi;
+  lightTheme = ../../../../assets/themes/rofi_light.rasi;
 in {
   xsession.windowManager.i3.config.keybindings = lib.mkOptionDefault {
     "Mod4+d" = "exec rofi -show drun";
