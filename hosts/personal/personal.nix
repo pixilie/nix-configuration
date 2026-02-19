@@ -41,7 +41,6 @@
     # Games
     upkgs.lunar-client
     prismlauncher
-    # jdk17
     jdk8
     heroic
   ];

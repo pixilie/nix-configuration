@@ -72,7 +72,8 @@
   # User related settings
   users.users.kristen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "sway" "input" "gamemode" "libvirtd" ];
+    extraGroups =
+      [ "wheel" "networkmanager" "sway" "input" "gamemode" "libvirtd" ];
   };
 
   # System related settings
@@ -83,7 +84,6 @@
   };
 
   services.thermald.enable = true;
-
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.devmon.enable = true;

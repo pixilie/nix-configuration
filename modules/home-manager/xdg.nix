@@ -4,7 +4,8 @@ let
   browser = [ "firefox.desktop" ];
   images = [ "imv.desktop" ];
   terminal = [ "Alacritty.desktop" ];
-in {
+in
+{
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
