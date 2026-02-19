@@ -35,7 +35,8 @@
     teams-for-linux
     libreoffice-still
     logseq
-    revolt-desktop
+    element-desktop
+    arduino-ide
 
     # Games
     upkgs.lunar-client
