@@ -1,10 +1,9 @@
-{ pkgs, upkgs, ... }: {
+{ pkgs, upkgs, ... }:
+{
   imports = [
-    ../../modules/home-manager/display/sway.nix
-    ../../modules/home-manager/display/mako.nix
-    ../../modules/home-manager/display/darkman.nix
-    ../../modules/home-manager/display/gammastep.nix
-    ../../modules/home-manager/display/gtk.nix
+    ../../modules/home-manager/display/sway/sway.nix
+    ../../modules/home-manager/display/hyprland/hyprland.nix
+
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
     ../../modules/home-manager/zed.nix
@@ -13,6 +12,7 @@
     ../../modules/home-manager/tools.nix
     ../../modules/home-manager/xdg.nix
     ../../modules/home-manager/ssh.nix
+
     ../../modules/options.nix
     ../../modules/special-packages.nix
   ];

@@ -15,7 +15,7 @@ in {
 
       wallpaper = ''
         ${pkgs.sway}/bin/swaymsg output "*" bg ${
-          ../../../assets/media/wallpaper_dark.png
+          ../../../../assets/media/wallpaper_dark.png
         } fill
       '';
 
@@ -40,7 +40,7 @@ in {
 
       wallpaper = ''
         ${pkgs.sway}/bin/swaymsg output "*" bg ${
-          ../../../assets/media/wallpaper_light.png
+          ../../../../assets/media/wallpaper_light.png
         } fill
       '';
 
