@@ -17,7 +17,6 @@
     ../../modules/nixos/steam.nix
 
     ../../modules/nixos/sway.nix
-    ../../modules/nixos/hyprland.nix
   ];
 
   # Localisation services

@@ -2,7 +2,6 @@
 {
   imports = [
     ../../modules/home-manager/display/sway/sway.nix
-    ../../modules/home-manager/display/hyprland/hyprland.nix
 
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/helix.nix
