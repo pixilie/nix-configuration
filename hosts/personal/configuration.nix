@@ -8,7 +8,6 @@
     ../../modules/nixos/bluetooth.nix
     ../../modules/nixos/security.nix
     ../../modules/nixos/networking.nix
-    ../../modules/nixos/xdg.nix
     ../../modules/nixos/power-management.nix
     ../../modules/nixos/sddm.nix
     ../../modules/nixos/nix_ld.nix
@@ -18,7 +17,6 @@
     ../../modules/nixos/steam.nix
 
     ../../modules/nixos/sway.nix
-    ../../modules/nixos/hyprland.nix
   ];
 
   # Localisation services
