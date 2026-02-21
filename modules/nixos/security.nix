@@ -9,6 +9,11 @@
     };
   };
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   services.logind = {
     settings.Login = {
       HandleLidSwitch = "suspend";

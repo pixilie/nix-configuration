@@ -5,6 +5,11 @@
     enable = true;
     lfs.enable = true;
 
+    signing = {
+      key = "F89FAB6CA27348D0";
+      signByDefault = true;
+    };
+
     settings = {
       user.name = "Kristen Couty";
       user.email = "kristen.couty@gmail.com";
@@ -46,4 +51,11 @@
 
   home.packages =
     lib.optionals (!config.isSchoolProfile) (with pkgs; [ onefetch ]);
+
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-qt;
+    defaultCacheTtl = 31536000;
+    maxCacheTtl = 31536000;
+  };
 }
