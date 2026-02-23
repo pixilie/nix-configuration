@@ -28,14 +28,22 @@
     spotify
     bitwarden-desktop
     nautilus
-    baobab
     firefox
     gimp-with-plugins
     teams-for-linux
     libreoffice-still
     logseq
     element-desktop
-    arduino-ide
+    onlyoffice-desktopeditors
+    image-roll
+
+    # Utilities
+    localsend
+    pavucontrol
+    gnome-calculator
+    baobab
+    wdisplays
+    networkmanagerapplet
 
     # Games
     upkgs.lunar-client
