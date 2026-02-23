@@ -7,7 +7,16 @@ let
   left = "h";
   right = "l";
 in {
-  imports = [ ./swaylock.nix ./waybar.nix ./rofi.nix ./mako.nix ./darkman.nix ./gammastep.nix ./gtk.nix ];
+  imports = [
+    ./swaylock.nix
+    ./waybar.nix
+    ./rofi.nix
+    ./mako.nix
+    ./darkman.nix
+    ./gammastep.nix
+    ./gtk.nix
+    ./sway_osd.nix
+  ];
 
   home.packages = with pkgs; [
     swaylock-effects
@@ -110,22 +119,18 @@ in {
         "${modifier}+r" = "mode resize";
 
         # Control keys
-        "XF86AudioPrev" = "exec playerctl previous";
-        "XF86AudioNext" = "exec playerctl next";
-        "XF86AudioPlay" = "exec playerctl play-pause";
+        "XF86AudioNext" = "exec swayosd-client --playerctl next";
+        "XF86AudioPrev" = "exec swayosd-client --playerctl previous";
+        "XF86AudioPlay" = "exec swayosd-client --playerctl play-pause";
 
-        "XF86AudioRaiseVolume" = ''
-          exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && makoctl dismiss -a && notify-desktop "Volume Level" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"Volume: %.0f%%\", $2*100;}')"'';
+        "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
+        "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
+        "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
 
-        "XF86AudioLowerVolume" = ''
-          exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- &&  makoctl dismiss -a && notify-desktop "Volume Level" "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"Volume: %.0f%%\", $2*100;}')"'';
-        "XF86AudioMute" =
-          "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && makoctl dismiss -a && notify-desktop $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q 'MUTED' && printf 'Sound OFF' || printf 'Sound ON')";
+        "XF86MonBrightnessUp" = "exec swayosd-client --brightness raise";
+        "XF86MonBrightnessDown" = "exec swayosd-client --brightness lower";
 
-        "XF86MonBrightnessUp" = ''
-          exec brightnessctl --exponent=2 s +10% && makoctl dismiss -a && notify-desktop "Brightness Level" "$(brightnessctl get | awk -v max=$(brightnessctl max) '{printf "Brightness: %.0f%%", ($1/max)*100;}')"'';
-        "XF86MonBrightnessDown" = ''
-          exec brightnessctl --exponent=2 s 10%- && makoctl dismiss -a && notify-desktop "Brightness Level" "$(brightnessctl get | awk -v max=$(brightnessctl max) '{printf "Brightness: %.0f%%", ($1/max)*100;}')"'';
+        "Caps_Lock" = "exec swayosd-client --caps-lock";
 
         "Print" = ''
           exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
