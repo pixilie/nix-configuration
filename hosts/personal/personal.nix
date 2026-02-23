@@ -48,8 +48,12 @@
     # Games
     upkgs.lunar-client
     prismlauncher
-    jdk8
+    jdk21
     heroic
+
+    # Dev related
+    dbeaver-bin
+    arduino-ide
   ];
 
   # Reload system units when switching config

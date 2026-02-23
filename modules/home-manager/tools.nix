@@ -37,6 +37,5 @@
     gnumake
     nil
     nixd
-    dbeaver-bin
   ];
 }
