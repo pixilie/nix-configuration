@@ -2,18 +2,13 @@
 
 {
   home.packages = with pkgs; [
+    # Systen utilities
     wl-clipboard
-    networkmanagerapplet
-    unzip
     poweralertd
     dconf
     openssl
-    wdisplays
     pkg-config
-    imv
     xdg-utils
-    pavucontrol
-    gnome-calculator
 
     # CLI / TUI
     dust
@@ -32,6 +27,7 @@
     tokei
     television
     miniserve
+    unzip
 
     # Dev related
     gccgo14
@@ -41,6 +37,5 @@
     gnumake
     nil
     nixd
-    dbeaver-bin
   ];
 }

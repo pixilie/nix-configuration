@@ -28,20 +28,32 @@
     spotify
     bitwarden-desktop
     nautilus
-    baobab
     firefox
     gimp-with-plugins
     teams-for-linux
     libreoffice-still
     logseq
     element-desktop
-    arduino-ide
+    onlyoffice-desktopeditors
+    image-roll
+
+    # Utilities
+    localsend
+    pavucontrol
+    gnome-calculator
+    baobab
+    wdisplays
+    networkmanagerapplet
 
     # Games
     upkgs.lunar-client
     prismlauncher
-    jdk8
+    jdk21
     heroic
+
+    # Dev related
+    dbeaver-bin
+    arduino-ide
   ];
 
   # Reload system units when switching config

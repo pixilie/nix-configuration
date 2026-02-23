@@ -2,7 +2,7 @@
 let
   files = [ "org.gnome.Nautilus.desktop" ];
   browser = [ "firefox.desktop" ];
-  images = [ "imv.desktop" ];
+  images = [ "Image-Roll.desktop" ];
   terminal = [ "Alacritty.desktop" ];
 in
 {
