@@ -31,7 +31,6 @@
     firefox
     gimp-with-plugins
     teams-for-linux
-    libreoffice-still
     logseq
     element-desktop
     onlyoffice-desktopeditors
