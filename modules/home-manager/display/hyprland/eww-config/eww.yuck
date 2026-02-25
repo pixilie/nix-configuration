@@ -1,0 +1,55 @@
+;; --- VARIABLES ---
+;; Sondage de l'heure toutes les secondes
+(defpoll time :interval "1s" "date '+%H:%M'")
+(defpoll date :interval "1h" "date '+%A %d %B'")
+
+;; Variable d'état pour afficher/cacher le calendrier
+(defvar reveal_calendar false)
+
+;; --- WIDGETS ---
+
+;; Le widget de l'horloge
+(defwidget clock []
+  (eventbox :onclick "eww open --toggle calendar_window"
+            :cursor "pointer"
+    (box :class "clock_box" :orientation "h" :space-evenly false :spacing 8
+      (label :text "" :class "clock_icon")
+      (label :text time :class "clock_text"))))
+
+;; La disposition de la barre (Gauche, Centre, Droite)
+(defwidget bar_layout []
+  (centerbox :orientation "h"
+    (box :class "left" :halign "start" 
+      (label :text "Workspaces ici plus tard"))
+    (box :class "center" :halign "center"
+      (label :text "Fenêtre active ici"))
+    (box :class "right" :halign "end" :space-evenly false
+      ;; Bouton pour ouvrir SwayNC (Notifications)
+      (button :onclick "swaync-client -t &" :class "notif_btn" "")
+      (clock))))
+
+;; Le widget du Calendrier Eww
+(defwidget cal []
+  (box :class "cal_container" :orientation "v" :space-evenly false
+    (label :text date :class "cal_date")
+    (calendar :class "cal_widget" 
+              :day {formattime(EWW_TIME, "%d")} 
+              :month {formattime(EWW_TIME, "%m")} 
+              :year {formattime(EWW_TIME, "%Y")})))
+
+;; --- FENÊTRES ---
+
+;; La fenêtre de la barre principale
+(defwindow bar
+  :monitor 0
+  :exclusive true
+  :geometry (geometry :x "0%" :y "10px" :width "98%" :height "40px" :anchor "top center")
+  :stacking "fg"
+  (bar_layout))
+
+;; La fenêtre du calendrier (flottante)
+(defwindow calendar_window
+  :monitor 0
+  :geometry (geometry :x "1%" :y "60px" :width "300px" :anchor "top right")
+  :stacking "overlay"
+  (cal))

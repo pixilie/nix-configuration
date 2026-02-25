@@ -1,0 +1,57 @@
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+}
+
+.left,
+.center,
+.right {
+  padding: 0 10px;
+}
+
+.clock_box {
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid #cba6f7;
+}
+
+.clock_icon {
+  color: #89b4fa;
+  font-size: 1.2rem;
+}
+
+.notif_btn {
+  background-color: #1e1e2e;
+  color: #f9e2af;
+  padding: 4px 12px;
+  border-radius: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* --- Calendrier --- */
+.cal_container {
+  background-color: #1e1e2e;
+  border: 2px solid #cba6f7;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.cal_date {
+  color: #cba6f7;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cal_widget {
+  color: #cdd6f4;
+}
+
+.cal_widget:selected {
+  background-color: #cba6f7;
+  color: #11111b;
+  border-radius: 4px;
+}

@@ -13,10 +13,13 @@
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
+
+    anyrun.url = "github:Kirottu/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+    { self, nixpkgs, nixpkgs-unstable, home-manager, anyrun, ... }@inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
