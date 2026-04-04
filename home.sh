@@ -1,1 +1,1 @@
-home-manager switch --flake .#personal
+home-manager switch --flake .#laptop

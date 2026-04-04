@@ -35,18 +35,18 @@
         personal = lib.nixosSystem {
           inherit system;
           modules =
-            [ ./hosts/personal/configuration.nix ];
+            [ ./hosts/laptop/configuration.nix ];
         };
       };
 
       homeConfigurations = {
-        personal = home-manager.lib.homeManagerConfiguration {
+        laptop = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
             inherit upkgs;
           };
-          modules = [ ./hosts/personal/personal.nix ];
+          modules = [ ./hosts/laptop/laptop.nix ];
         };
         epita = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
