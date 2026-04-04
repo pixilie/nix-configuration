@@ -35,6 +35,8 @@
     element-desktop
     onlyoffice-desktopeditors
     image-roll
+    obs-studio
+    vlc
 
     # Utilities
     localsend
