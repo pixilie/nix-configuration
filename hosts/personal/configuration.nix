@@ -71,7 +71,7 @@
   users.users.kristen = {
     isNormalUser = true;
     extraGroups =
-      [ "wheel" "networkmanager" "sway" "input" "gamemode" "libvirtd" ];
+      [ "wheel" "networkmanager" "sway" "input" "gamemode" "libvirtd" "dialout" ];
   };
 
   # System related settings
