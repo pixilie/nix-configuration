@@ -1,172 +1,225 @@
-{ pkgs, inputs, config, lib, ... }:
-
+{ self, inputs, ... }:
 {
-  programs.helix = {
-    enable = true;
 
-    package = if config.useHelixCache then
-      pkgs.helix
-    else
-      inputs.helix-editor.packages."x86_64-linux".helix;
+  flake.homeModules.helix =
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    {
+      programs.helix = {
+        enable = true;
 
-    defaultEditor = true;
+        package =
+          if config.useHelixCache then pkgs.helix else inputs.helix-editor.packages.${pkgs.system}.helix;
 
-    extraPackages = with pkgs;
-      [
-        wakatime-cli
-        inputs.wakatime-ls.packages."x86_64-linux".wakatime-ls
-        clang-tools
-        lldb_21
-      ] ++ lib.optionals (!config.isSchoolProfile) [
-        ruff
-        python312Packages.jedi-language-server
-        python312Packages.python-lsp-server
-        marksman
-        vscode-langservers-extracted
-        typescript-language-server
-        svelte-language-server
-        ocamlPackages.lsp
-        nil
-        nixfmt-classic
-      ];
+        defaultEditor = true;
 
-    ignores = [
-      "*.png"
-      "*.properties"
-      "*.gif"
-      "*.mcmeta"
-      "*.eot"
-      "*.webp"
-      "*.ttf"
-      "*.woff"
-      "*.jpg"
-    ];
+        extraPackages =
+          with pkgs;
+          [
+            wakatime-cli
+            inputs.wakatime-ls.packages.${pkgs.system}.wakatime-ls
+            clang-tools
+            lldb_21
+          ]
+          ++ lib.optionals (!config.isSchoolProfile) [
+            ruff
+            python312Packages.jedi-language-server
+            python312Packages.python-lsp-server
+            marksman
+            vscode-langservers-extracted
+            typescript-language-server
+            svelte-language-server
+            ocamlPackages.lsp
+            nil
+            nixfmt-classic
+          ];
 
-    settings = {
-      theme = "onedark";
-      editor = {
-        auto-format = true;
-        auto-save = true;
-        mouse = false;
-        bufferline = "multiple";
+        ignores = [
+          "*.png"
+          "*.properties"
+          "*.gif"
+          "*.mcmeta"
+          "*.eot"
+          "*.webp"
+          "*.ttf"
+          "*.woff"
+          "*.jpg"
+        ];
 
-        end-of-line-diagnostics = "hint";
-        inline-diagnostics = {
-          cursor-line = "hint";
-          other-lines = "error";
-        };
+        settings = {
+          theme = "onedark";
+          editor = {
+            auto-format = true;
+            auto-save = true;
+            mouse = false;
+            bufferline = "multiple";
 
-        indent-guides = {
-          render = true;
-          characters = "╎";
-        };
+            end-of-line-diagnostics = "hint";
+            inline-diagnostics = {
+              cursor-line = "hint";
+              other-lines = "error";
+            };
 
-        cursor-shape = {
-          insert = "bar";
-          normal = "block";
-          select = "underline";
-        };
+            indent-guides = {
+              render = true;
+              characters = "╎";
+            };
 
-        lsp = { display-inlay-hints = true; };
-      };
+            cursor-shape = {
+              insert = "bar";
+              normal = "block";
+              select = "underline";
+            };
 
-      keys = {
-        normal = {
-          up = "no_op";
-          down = "no_op";
-          left = "no_op";
-          right = "no_op";
-          A-u = ":toggle lsp.display-inlay-hints";
+            lsp = {
+              display-inlay-hints = true;
+            };
+          };
 
-          "space" = {
-            f = "file_picker_in_current_directory";
-            F = "file_picker";
+          keys = {
+            normal = {
+              up = "no_op";
+              down = "no_op";
+              left = "no_op";
+              right = "no_op";
+              A-u = ":toggle lsp.display-inlay-hints";
+
+              "space" = {
+                f = "file_picker_in_current_directory";
+                F = "file_picker";
+              };
+            };
           };
         };
+
+        languages = {
+          language-server = {
+            wakatime.command = "wakatime-ls";
+            rust-analyzer.config = {
+              check.command = "clippy";
+            };
+          };
+
+          language = [
+            {
+              name = "c";
+              auto-format = false;
+              language-servers = [
+                "clangd"
+                "wakatime"
+                "lldb"
+              ];
+              formatter = {
+                command = "clang-format";
+              };
+            }
+          ]
+          ++ lib.optionals (!config.isSchoolProfile) [
+            {
+              name = "python";
+              auto-format = false;
+              language-servers = [
+                "ruff"
+                "jedi"
+                "pylsp"
+                "wakatime"
+              ];
+            }
+            {
+              name = "nix";
+              formatter = {
+                command = "nixfmt";
+              };
+              language-servers = [
+                "nil"
+                "wakatime"
+              ];
+            }
+            {
+              name = "rust";
+              auto-format = true;
+              language-servers = [
+                "rust-analyzer"
+                "wakatime"
+              ];
+            }
+            {
+              name = "markdown";
+              language-servers = [ "marksman" ];
+            }
+            {
+              name = "ocaml";
+              auto-format = true;
+              language-servers = [
+                "ocamllsp"
+                "wakatime"
+              ];
+            }
+            {
+              name = "javascript";
+              auto-format = true;
+              language-servers = [
+                "typescript-language-server"
+                "vscode-eslint-language-server"
+                "wakatime"
+              ];
+            }
+            {
+              name = "typescript";
+              auto-format = true;
+              language-servers = [
+                "typescript-language-server"
+                "vscode-eslint-language-server"
+                "wakatime"
+              ];
+            }
+            {
+              name = "svelte";
+              auto-format = true;
+              language-servers = [
+                "svelteserver"
+                "wakatime"
+              ];
+            }
+            {
+              name = "html";
+              auto-format = true;
+              language-servers = [
+                "vscode-html-language-server"
+                "wakatime"
+              ];
+            }
+            {
+              name = "css";
+              auto-format = true;
+              language-servers = [
+                "vscode-css-language-server"
+                "wakatime"
+              ];
+            }
+            {
+              name = "json";
+              auto-format = true;
+              language-servers = [ "vscode-json-language-server" ];
+            }
+            {
+              name = "cpp";
+              auto-format = false;
+              language-servers = [
+                "clangd"
+                "wakatime"
+                "lldb"
+              ];
+              formatter = {
+                command = "clang-format";
+              };
+            }
+          ];
+        };
       };
     };
-
-    languages = {
-      language-server = {
-        wakatime.command = "wakatime-ls";
-        rust-analyzer.config = { check.command = "clippy"; };
-      };
-
-      language = [{
-        name = "c";
-        auto-format = false;
-        language-servers = [ "clangd" "wakatime" "lldb" ];
-        formatter = { command = "clang-format"; };
-      }] ++ lib.optionals (!config.isSchoolProfile) [
-        {
-          name = "python";
-          auto-format = false;
-          language-servers = [ "ruff" "jedi" "pylsp" "wakatime" ];
-        }
-        {
-          name = "nix";
-          formatter = { command = "nixfmt"; };
-          language-servers = [ "nil" "wakatime" ];
-        }
-        {
-          name = "rust";
-          auto-format = true;
-          language-servers = [ "rust-analyzer" "wakatime" ];
-        }
-        {
-          name = "markdown";
-          language-servers = [ "marksman" ];
-        }
-        {
-          name = "ocaml";
-          auto-format = true;
-          language-servers = [ "ocamllsp" "wakatime" ];
-        }
-        {
-          name = "javascript";
-          auto-format = true;
-          language-servers = [
-            "typescript-language-server"
-            "vscode-eslint-language-server"
-            "wakatime"
-          ];
-        }
-        {
-          name = "typescript";
-          auto-format = true;
-          language-servers = [
-            "typescript-language-server"
-            "vscode-eslint-language-server"
-            "wakatime"
-          ];
-        }
-        {
-          name = "svelte";
-          auto-format = true;
-          language-servers = [ "svelteserver" "wakatime" ];
-        }
-        {
-          name = "html";
-          auto-format = true;
-          language-servers = [ "vscode-html-language-server" "wakatime" ];
-        }
-        {
-          name = "css";
-          auto-format = true;
-          language-servers = [ "vscode-css-language-server" "wakatime" ];
-        }
-        {
-          name = "json";
-          auto-format = true;
-          language-servers = [ "vscode-json-language-server" ];
-        }
-        {
-          name = "cpp";
-          auto-format = false;
-          language-servers = [ "clangd" "wakatime" "lldb" ];
-          formatter = { command = "clang-format"; };
-        }
-      ];
-    };
-  };
 }

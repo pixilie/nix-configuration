@@ -20,6 +20,9 @@
   };
 
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; }
-    (inputs.import-tree ./modules);
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ (inputs.import-tree ./modules) ];
+      perSystem = { pkgs, ... }: { formatter = pkgs.nixfmt-rfc-style; };
+    };
 }

@@ -1,66 +1,72 @@
-{ pkgs, upkgs, ... }:
-
+{ self, inputs, ... }:
 {
-  programs.zed-editor = {
-    enable = true;
-    package = upkgs.zed-editor;
 
-    extraPackages = with pkgs; [
-      wakatime-cli
-    ];
+  flake.homeModules.zed =
+    { pkgs, upkgs, ... }:
+    {
+      programs.zed-editor = {
+        enable = true;
+        package = upkgs.zed-editor;
 
-    userSettings = {
-      base_keymap = "VSCode";
-      autosave = "on_focus_change";
-      restore_on_startup = "last_session";
-      tab_size = 4;
-      formatter = "language_server";
+        extraPackages = with pkgs; [
+          wakatime-cli
+        ];
 
-      buffer_font_family = "CaskaydiaCove Nerd Font";
-      buffer_font_size = 16;
-      buffer_font_weight = 500;
+        userSettings = {
+          base_keymap = "VSCode";
+          autosave = "on_focus_change";
+          restore_on_startup = "last_session";
+          tab_size = 4;
+          formatter = "language_server";
 
-      ui_font_family = ".ZedMono";
-      ui_font_size = 16;
-      ui_font_weight = 500;
+          buffer_font_family = "CaskaydiaCove Nerd Font";
+          buffer_font_size = 16;
+          buffer_font_weight = 500;
 
-      terminal.shell.program = "fish";
+          ui_font_family = ".ZedMono";
+          ui_font_size = 16;
+          ui_font_weight = 500;
 
-      show_edit_predictions = false;
-      features = { edit_prediction_provider = "none"; };
-      show_completions_on_input = true;
+          terminal.shell.program = "fish";
 
-      auto_install_extensions = {
-        "html" = true;
-        "python" = true;
-        "wakatime" = true;
-        "git-firefly" = true;
-        "sql" = true;
-        "one-dark-pro" = true;
-        "csharp" = true;
-        "toml" = true;
-        "dockerfile" = true;
-        "scss" = true;
-        "log" = true;
-        "html-snippets" = true;
-        "nix" = true;
-      };
+          show_edit_predictions = false;
+          features = {
+            edit_prediction_provider = "none";
+          };
+          show_completions_on_input = true;
 
-      theme = {
-        mode = "system";
-        light = "One Light";
-        dark = "One Dark Pro";
-      };
+          auto_install_extensions = {
+            "html" = true;
+            "python" = true;
+            "wakatime" = true;
+            "git-firefly" = true;
+            "sql" = true;
+            "one-dark-pro" = true;
+            "csharp" = true;
+            "toml" = true;
+            "dockerfile" = true;
+            "scss" = true;
+            "log" = true;
+            "html-snippets" = true;
+            "nix" = true;
+          };
 
-      tabs = {
-        file_icons = true;
-        git_status = true;
-      };
+          theme = {
+            mode = "system";
+            light = "One Light";
+            dark = "One Dark Pro";
+          };
 
-      indent_guides = {
-        line_width = 1;
-        active_line_width = 2;
+          tabs = {
+            file_icons = true;
+            git_status = true;
+          };
+
+          indent_guides = {
+            line_width = 1;
+            active_line_width = 2;
+          };
+        };
       };
     };
-  };
 }

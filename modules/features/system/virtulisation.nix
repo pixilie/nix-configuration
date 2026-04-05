@@ -1,6 +1,10 @@
-{ ... }:
-
+{ self, inputs, ... }:
 {
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
+
+  flake.nixosModules.virtualisation =
+    { ... }:
+    {
+      virtualisation.libvirtd.enable = true;
+      programs.virt-manager.enable = true;
+    };
 }

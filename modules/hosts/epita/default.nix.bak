@@ -7,7 +7,8 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-in {
+in
+{
   flake.homeConfigurations.epita = inputs.home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
     extraSpecialArgs = { inherit inputs upkgs; };

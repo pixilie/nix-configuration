@@ -1,130 +1,139 @@
-{ pkgs, lib, ... }:
-
+{ self, inputs, ... }:
 {
-  home.packages = with pkgs; [ eza bat fzf zoxide delta tlrc fd ];
 
-  programs.alacritty = {
-    enable = true;
+  flake.homeModules.sh =
+    { pkgs, lib, ... }:
+    {
+      home.packages = with pkgs; [
+        eza
+        bat
+        fzf
+        zoxide
+        delta
+        tlrc
+        fd
+      ];
 
-    settings = {
-      window = { decorations = "buttonless"; };
+      programs.alacritty = {
+        enable = true;
 
-      font = {
-        size = 14.0;
-        normal.family = "CaskaydiaCoveNerdFont";
-        bold.family = "CaskaydiaCoveNerdFont";
-        italic.family = "CaskaydiaCoveNerdFont";
-      };
+        settings = {
+          window = {
+            decorations = "buttonless";
+          };
 
-      cursor = {
-        style = {
-          shape = "Beam";
-          blinking = "Always";
+          font = {
+            size = 14.0;
+            normal.family = "CaskaydiaCoveNerdFont";
+            bold.family = "CaskaydiaCoveNerdFont";
+            italic.family = "CaskaydiaCoveNerdFont";
+          };
+
+          cursor = {
+            style = {
+              shape = "Beam";
+              blinking = "Always";
+            };
+          };
+
+          terminal.shell = {
+            program = "fish";
+          };
+
+          colors = {
+            # Default colors
+            primary = {
+              background = "#000000";
+              foreground = "#fffaf3";
+            };
+
+            # Normal colors
+            normal = {
+              black = "#222222";
+              red = "#ff000f";
+              green = "#8ce00a";
+              yellow = "#ffb900";
+              blue = "#008df8";
+              magenta = "#FF00FF";
+              cyan = "#00d7eb";
+              white = "#ffffff";
+            };
+
+            # Bright colors
+            bright = {
+              black = "#444444";
+              red = "#ff273f";
+              green = "#abe05a";
+              yellow = "#ffd141";
+              blue = "#0092ff";
+              magenta = "#6c43a5";
+              cyan = "#67ffef";
+              white = "#ffffff";
+            };
+          };
         };
       };
 
-      terminal.shell = { program = "fish"; };
+      programs.fish = {
+        enable = true;
 
-      colors = {
-        # Default colors
-        primary = {
-          background = "#000000";
-          foreground = "#fffaf3";
+        shellAliases = {
+          ls = "${lib.getExe pkgs.eza} --color=auto --icons=auto --hyperlink";
+          cat = "${lib.getExe pkgs.bat}";
         };
 
-        # Normal colors
-        normal = {
-          black = "#222222";
-          red = "#ff000f";
-          green = "#8ce00a";
-          yellow = "#ffb900";
-          blue = "#008df8";
-          magenta = "#FF00FF";
-          cyan = "#00d7eb";
-          white = "#ffffff";
+        shellAbbrs = {
+          ll = "ls -lhaF";
+          tree = "ls -T";
+          ghd = "gh-dash";
+          findg = "find . -name .git -type d -prune";
+          nixd = "nix develop -c fish";
+          geany = "nohup geany . > /dev/null &";
+          vps = "ssh -i '~/.ssh/vps' ubuntu@vps.pixilie.net";
         };
 
-        # Bright colors
-        bright = {
-          black = "#444444";
-          red = "#ff273f";
-          green = "#abe05a";
-          yellow = "#ffd141";
-          blue = "#0092ff";
-          magenta = "#6c43a5";
-          cyan = "#67ffef";
-          white = "#ffffff";
+        functions = {
+          fish_greeting = "";
+
+          cdtmp = ''
+            set ash (openssl rand -hex 4)
+            mkdir /tmp/$ash
+            cd /tmp/$ash
+          '';
         };
       };
-    };
-  };
 
-  programs.fish = {
-    enable = true;
+      programs.starship = {
+        enable = true;
+        enableFishIntegration = true;
 
-    shellAliases = {
-      ls = "${lib.getExe pkgs.eza} --color=auto --icons=auto --hyperlink";
-      cat = "${lib.getExe pkgs.bat}";
-    };
+        settings = {
+          nix_shell = {
+            format = "via [$symbol$state]($style) ";
+            symbol = " ";
+          };
 
-    shellAbbrs = {
-      ll = "ls -lhaF";
-      tree = "ls -T";
-      ghd = "gh-dash";
-      findg = "find . -name .git -type d -prune";
-      nixd = "nix develop -c fish";
-      geany = "nohup geany . > /dev/null &";
-      vps = "ssh -i '~/.ssh/vps' ubuntu@vps.pixilie.net";
-    };
-
-    functions = {
-      fish_greeting = "";
-
-      cdtmp = ''
-        set ash (openssl rand -hex 4)
-        mkdir /tmp/$ash
-        cd /tmp/$ash
-      '';
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    enableFishIntegration = true;
-
-    settings = {
-      nix_shell = {
-        format = "via [$symbol$state]($style) ";
-        symbol = " ";
+          git_branch.disabled = false;
+          git_commit.disabled = false;
+          git_metrics.disabled = false;
+          git_state.disabled = false;
+          git_status.disabled = false;
+        };
       };
 
-      git_branch.disabled = false;
-      git_commit.disabled = false;
-      git_metrics.disabled = false;
-      git_state.disabled = false;
-      git_status.disabled = false;
+      programs.zoxide = {
+        enable = true;
+        enableFishIntegration = true;
+        options = [ "--cmd cd" ];
+      };
 
+      programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+        silent = true;
+      };
+      home.sessionVariables.DIRENV_LOG_FORMAT = "";
+
+      programs.bat.extraPackages = with pkgs.bat-extras; [ batman ];
     };
-  };
-
-  # programs.zellij = {
-  #   enable = true;
-  #   enableFishIntegration = true;
-  # };
-  # xdg.configFile."zellij/config.kdl".source = ../../assets/config/zellij.kdl;
-
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-    options = [ "--cmd cd" ];
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    silent = true;
-  };
-  home.sessionVariables.DIRENV_LOG_FORMAT = "";
-
-  programs.bat.extraPackages = with pkgs.bat-extras; [ batman ];
 }

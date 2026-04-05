@@ -1,17 +1,21 @@
-{ pkgs, ... }:
-
+{ self, inputs, ... }:
 {
-  virtualisation.docker = {
-    enable = true;
 
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+  flake.nixosModules.docker =
+    { ... }:
+    {
+      virtualisation.docker = {
+        enable = true;
 
-    autoPrune = {
-      enable = true;
-      dates = "weekly";
+        rootless = {
+          enable = true;
+          setSocketVariable = true;
+        };
+
+        autoPrune = {
+          enable = true;
+          dates = "weekly";
+        };
+      };
     };
-  };
 }

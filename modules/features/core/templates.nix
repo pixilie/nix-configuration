@@ -1,3 +1,4 @@
-{ self, inputs, ... }: {
-  flake.templates = import ../../templates;
+{ self, inputs, ... }:
+{
+  flake.templates = import ../../../templates;
 }

@@ -7,8 +7,9 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-in {
-  flake.nixosConfigurations.personal = inputs.nixpkgs.lib.nixosSystem {
+in
+{
+  flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
     inherit system;
     specialArgs = { inherit inputs upkgs; };
     modules = [
