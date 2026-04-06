@@ -13,11 +13,6 @@
         enable = true;
         lfs.enable = true;
 
-        signing = {
-          key = "F89FAB6CA27348D0";
-          signByDefault = true;
-        };
-
         settings = {
           user.name = "Kristen Couty";
           user.email = "kristen.couty@gmail.com";

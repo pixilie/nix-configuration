@@ -12,17 +12,11 @@
       right = "l";
     in
     {
-      imports = [
-        self.homeModules.rofi
-        self.homeModules.i3bar
-      ];
-
       home.packages = with pkgs; [
         playerctl
         maim
         xclip
         feh
-        # i3lock-fancy
         i3lock-fancy-rapid
       ];
 
@@ -95,7 +89,7 @@
 
           startup = [
             {
-              command = "feh --bg-fill ${../../../../assets/media/wallpaper.png}";
+              command = "feh --bg-fill ${../../../../assets/media/wallpaper_dark.png}";
               always = true;
             }
           ];

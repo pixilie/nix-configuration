@@ -2,8 +2,8 @@
 
   flake.homeModules.rofi = { pkgs, config, lib, ... }:
     let
-      darkTheme = ../../../assets/themes/rofi_dark.rasi;
-      lightTheme = ../../../assets/themes/rofi_light.rasi;
+      darkTheme = ../../../../assets/themes/rofi_dark.rasi;
+      lightTheme = ../../../../assets/themes/rofi_light.rasi;
     in
     {
       xsession.windowManager.i3.config.keybindings = lib.mkOptionDefault {

@@ -14,6 +14,8 @@
         self.homeModules.sh
         self.homeModules.fonts
         self.homeModules.options
+
+        self.homeModules.specialPackages
       ];
 
       config = {
