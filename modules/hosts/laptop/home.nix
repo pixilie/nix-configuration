@@ -2,27 +2,27 @@
 
   flake.homeModules.laptopHome = { pkgs, upkgs, ... }: {
     imports = [
-      # self.homeModules.sway
-      # self.homeModules.swaylock
-      # self.homeModules.waybar
-      # self.homeModules.rofi
-      # self.homeModules.mako
-      # self.homeModules.darkman
-      # self.homeModules.gammastep
-      # self.homeModules.gtk
-      # self.homeModules.sway_osd
+      self.homeModules.sway
+      self.homeModules.swaylock
+      self.homeModules.waybar
+      self.homeModules.rofi
+      self.homeModules.mako
+      self.homeModules.darkman
+      self.homeModules.gammastep
+      self.homeModules.gtk
+      self.homeModules.sway_osd
 
-      # self.homeModules.git
-      # self.homeModules.helix
-      # self.homeModules.zed
-      # self.homeModules.sh
-      # self.homeModules.fonts
-      # self.homeModules.tools
-      # self.homeModules.xdg
-      # self.homeModules.ssh
+      self.homeModules.git
+      self.homeModules.helix
+      self.homeModules.zed
+      self.homeModules.sh
+      self.homeModules.fonts
+      self.homeModules.tools
+      self.homeModules.xdg
+      self.homeModules.ssh
 
-      # self.homeModules.options
-      # self.homeModules.specialPackages
+      self.homeModules.options
+      self.homeModules.specialPackages
     ];
 
     # General informations

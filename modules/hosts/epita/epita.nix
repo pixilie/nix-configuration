@@ -5,12 +5,15 @@
     { config, pkgs, ... }:
     {
       imports = [
-        # self.homeModules.i3Home
-        # self.homeModules.git
-        # self.homeModules.helix
-        # self.homeModules.sh
-        # self.homeModules.fonts
-        # self.homeModules.options
+        self.homeModules.i3
+        self.homeModules.rofi
+        self.homeModules.i3bar
+
+        self.homeModules.git
+        self.homeModules.helix
+        self.homeModules.sh
+        self.homeModules.fonts
+        self.homeModules.options
       ];
 
       config = {

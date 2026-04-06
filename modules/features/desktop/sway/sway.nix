@@ -20,20 +20,11 @@
     let
       modifier = "Mod4";
       terminal = "alacritty";
-      up = "k"; down = "j"; left = "h"; right = "l";
-    in
-    {
-      # imports = [
-      #   self.homeModules.swaylock
-      #   self.homeModules.waybar
-      #   self.homeModules.rofi
-      #   self.homeModules.mako
-      #   self.homeModules.darkman
-      #   self.homeModules.gammastep
-      #   self.homeModules.gtk
-      #   self.homeModules.sway_osd
-      # ];
-
+      up = "k";
+      down = "j";
+      left = "h";
+      right = "l";
+    in {
       home.packages = with pkgs; [
         swaylock-effects
         swaybg
@@ -52,15 +43,25 @@
         config = {
           inherit modifier terminal up down left right;
           defaultWorkspace = "workspace 1";
-          fonts = { names = [ "Noto Sans" ]; size = 12.0; };
+          fonts = {
+            names = [ "Noto Sans" ];
+            size = 12.0;
+          };
 
           window = {
             titlebar = false;
             border = 0;
             commands = [
-              { criteria.all = true; command = "inhibit_idle fullscreen"; }
               {
-                criteria = { title = "^((?!^Unity - ).)*$"; class = "^Unity$"; instance = "^Unity$"; };
+                criteria.all = true;
+                command = "inhibit_idle fullscreen";
+              }
+              {
+                criteria = {
+                  title = "^((?!^Unity - ).)*$";
+                  class = "^Unity$";
+                  instance = "^Unity$";
+                };
                 command = "floating enable";
               }
             ];
@@ -72,9 +73,11 @@
             "${modifier}+Shift+Return" = "exec firefox";
             "${modifier}+Shift+r" = "exec reboot";
             "${modifier}+Shift+p" = "exec shutdown -h now";
-            "${modifier}+Escape" = "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
+            "${modifier}+Escape" =
+              "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
             "${modifier}" = "exec swaymsg bar mode toggle";
-            "${modifier}+Shift+s" = "exec ${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend";
+            "${modifier}+Shift+s" =
+              "exec ${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend";
             "${modifier}+Shift+n" = "swaymsg exit";
             "${modifier}+Shift+z" = "exec makoctl dismiss";
             "${modifier}+Shift+f" = "exec nautilus";
@@ -86,11 +89,16 @@
             "${modifier}+${down}" = "focus down";
 
             # Workspaces (1-0)
-            "${modifier}+1" = "workspace 1"; "${modifier}+2" = "workspace 2";
-            "${modifier}+3" = "workspace 3"; "${modifier}+4" = "workspace 4";
-            "${modifier}+5" = "workspace 5"; "${modifier}+6" = "workspace 6";
-            "${modifier}+7" = "workspace 7"; "${modifier}+8" = "workspace 8";
-            "${modifier}+9" = "workspace 9"; "${modifier}+0" = "workspace 10";
+            "${modifier}+1" = "workspace 1";
+            "${modifier}+2" = "workspace 2";
+            "${modifier}+3" = "workspace 3";
+            "${modifier}+4" = "workspace 4";
+            "${modifier}+5" = "workspace 5";
+            "${modifier}+6" = "workspace 6";
+            "${modifier}+7" = "workspace 7";
+            "${modifier}+8" = "workspace 8";
+            "${modifier}+9" = "workspace 9";
+            "${modifier}+0" = "workspace 10";
 
             "${modifier}+Shift+1" = "move container to workspace 1";
             "${modifier}+Shift+2" = "move container to workspace 2";
@@ -109,14 +117,17 @@
             "XF86AudioNext" = "exec swayosd-client --playerctl next";
             "XF86AudioPrev" = "exec swayosd-client --playerctl previous";
             "XF86AudioPlay" = "exec swayosd-client --playerctl play-pause";
-            "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
-            "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
+            "XF86AudioRaiseVolume" =
+              "exec swayosd-client --output-volume raise";
+            "XF86AudioLowerVolume" =
+              "exec swayosd-client --output-volume lower";
             "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
             "XF86MonBrightnessUp" = "exec swayosd-client --brightness raise";
             "XF86MonBrightnessDown" = "exec swayosd-client --brightness lower";
             "Caps_Lock" = "exec swayosd-client --caps-lock";
 
-            "Print" = ''exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
+            "Print" = ''
+              exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
           };
 
           modes.resize = {
@@ -139,8 +150,13 @@
             };
           };
 
-          output."eDP-1" = { resolution = "1920x1080"; scale = "1.0"; pos = "0 0"; };
-          startup = [ { command = "${pkgs.geoclue2}/libexec/geoclue-2.0/demos/agent"; } ];
+          output."eDP-1" = {
+            resolution = "1920x1080";
+            scale = "1.0";
+            pos = "0 0";
+          };
+          startup =
+            [{ command = "${pkgs.geoclue2}/libexec/geoclue-2.0/demos/agent"; }];
         };
 
         extraConfig = ''
@@ -151,11 +167,28 @@
       services.swayidle = {
         enable = true;
         timeouts = [
-          { timeout = 175; command = "${pkgs.notify-desktop}/bin/notify-desktop 'Screen locking in 5 seconds'"; }
-          { timeout = 179; command = "${pkgs.playerctl}/bin/playerctl pause"; }
-          { timeout = 180; command = "${pkgs.swaylock-effects}/bin/swaylock"; }
-          { timeout = 190; command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'"; resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'"; }
-          { timeout = 300; command = "${pkgs.systemd}/bin/systemctl suspend"; }
+          {
+            timeout = 175;
+            command =
+              "${pkgs.notify-desktop}/bin/notify-desktop 'Screen locking in 5 seconds'";
+          }
+          {
+            timeout = 179;
+            command = "${pkgs.playerctl}/bin/playerctl pause";
+          }
+          {
+            timeout = 180;
+            command = "${pkgs.swaylock-effects}/bin/swaylock";
+          }
+          {
+            timeout = 190;
+            command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
+            resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+          }
+          {
+            timeout = 300;
+            command = "${pkgs.systemd}/bin/systemctl suspend";
+          }
         ];
       };
 
