@@ -89,7 +89,6 @@
           findg = "find . -name .git -type d -prune";
           nixd = "nix develop -c fish";
           geany = "nohup geany . > /dev/null &";
-          vps = "ssh -i '~/.ssh/vps' ubuntu@vps.pixilie.net";
         };
 
         functions = {
