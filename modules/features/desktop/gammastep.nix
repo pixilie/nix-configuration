@@ -13,6 +13,8 @@
       settings = {
         general.fade = "1";
       };
+
+      settings.general.method = "wayland";
     };
   };
 }

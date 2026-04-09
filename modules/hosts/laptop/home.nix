@@ -2,16 +2,9 @@
 
   flake.homeModules.laptopHome = { pkgs, upkgs, ... }: {
     imports = [
-      self.homeModules.sway
-      self.homeModules.swaylock
-      self.homeModules.waybar
-      self.homeModules.rofi
-      self.homeModules.mako
-      self.homeModules.darkman
-      self.homeModules.gammastep
       self.homeModules.gtk
-      self.homeModules.sway_osd
-
+      self.homeModules.gammastep
+      
       self.homeModules.git
       self.homeModules.helix
       self.homeModules.zed
@@ -39,8 +32,6 @@
       firefox
       gimp-with-plugins
       teams-for-linux
-      logseq
-      element-desktop
       onlyoffice-desktopeditors
       image-roll
       obs-studio
@@ -53,7 +44,7 @@
       networkmanagerapplet
       upkgs.lunar-client
       prismlauncher
-      jdk21
+      jdk25
       heroic
       dbeaver-bin
       arduino-ide
