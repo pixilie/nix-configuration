@@ -13,7 +13,7 @@
         enable = true;
 
         package =
-          if config.useHelixCache then pkgs.helix else inputs.helix-editor.packages.${pkgs.system}.helix;
+          if config.useHelixCache then pkgs.helix else inputs.helix-editor.packages.${pkgs.stdenv.hostPlatform.system}.helix;
 
         defaultEditor = true;
 
@@ -21,7 +21,7 @@
           with pkgs;
           [
             wakatime-cli
-            inputs.wakatime-ls.packages.${pkgs.system}.wakatime-ls
+            inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.wakatime-ls
             clang-tools
             lldb_21
           ]
