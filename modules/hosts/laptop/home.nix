@@ -4,6 +4,7 @@
     imports = [
       self.homeModules.gtk
       self.homeModules.gammastep
+      self.homeModules.darkman
       
       self.homeModules.git
       self.homeModules.helix
