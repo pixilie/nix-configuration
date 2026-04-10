@@ -36,10 +36,13 @@
           layout = {
             gaps = 5;
             border.width = 0;
-            focus-ring = {
-              width = 0;
-            };
+            focus-ring = { width = 0; };
           };
+
+          window-rules = [{
+            geometry-corner-radius = 12;
+            clip-to-geometry = true;
+          }];
 
           input = {
             keyboard.xkb = {
@@ -75,7 +78,9 @@
             "Mod+Shift+S".spawn = [
               "sh"
               "-c"
-              "${lib.getExe self'.packages.noctalia} ipc call lockscreen lock && systemctl suspend"
+              "${
+                lib.getExe self'.packages.noctalia
+              } ipc call lockscreen lock && systemctl suspend"
             ];
             "Mod+Shift+N".quit = null;
             "Mod+Shift+Z".spawn = [ "makoctl" "dismiss" ];

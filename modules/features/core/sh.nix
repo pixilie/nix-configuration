@@ -19,7 +19,7 @@
 
         settings = {
           window = {
-            decorations = "buttonless";
+            decorations = "None";
           };
 
           font = {
