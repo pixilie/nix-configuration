@@ -14,7 +14,7 @@
   epita-c = {
     path = ./epita-c;
     description = "template for epita c tp";
-    welcomeTex = "direnv allow";
+    welcomeText = "direnv allow";
   };
 
   rust = {
