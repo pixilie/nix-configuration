@@ -4,7 +4,7 @@
     imports = [
       self.homeModules.gtk
       self.homeModules.gammastep
-      self.homeModules.darkman
+      self.homeModules.darkmanNiri
       
       self.homeModules.git
       self.homeModules.helix
@@ -30,7 +30,7 @@
       spotify
       bitwarden-desktop
       nautilus
-      firefox
+      upkgs.firefox
       gimp-with-plugins
       teams-for-linux
       onlyoffice-desktopeditors

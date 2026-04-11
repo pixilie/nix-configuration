@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.homeModules.darkman = { pkgs, config, lib, ... }: {
+  flake.homeModules.darkmanNiri = { pkgs, config, lib, ... }: {
     services.darkman = {
       enable = true;
       package = pkgs.darkman;

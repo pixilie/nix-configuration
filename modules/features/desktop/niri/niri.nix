@@ -9,6 +9,8 @@
     environment.systemPackages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia
       pkgs.qt6.qtwayland
+      pkgs.playerctl
+      pkgs.brightnessctl
     ];
 
     environment.sessionVariables = {
@@ -73,20 +75,9 @@
             "Mod+Shift+Q".close-window = null;
             "Mod+Shift+R".spawn = [ "reboot" ];
             "Mod+Shift+P".spawn = [ "shutdown" "-h" "now" ];
-            "Mod+Escape".spawn = [
-              "sh"
-              "-c"
-              "${lib.getExe self'.packages.noctalia} ipc call lockscreen lock"
-            ];
-            "Mod+Shift+S".spawn = [
-              "sh"
-              "-c"
-              "${
-                lib.getExe self'.packages.noctalia
-              } ipc call lockscreen lock && systemctl suspend"
-            ];
+            "Mod+Escape".spawn =
+              [ "noctalia-shell" "ipc" "call" "lockscreen" "lock" ];
             "Mod+Shift+N".quit = null;
-            "Mod+Shift+Z".spawn = [ "makoctl" "dismiss" ];
 
             "Mod+Shift+Space".toggle-window-floating = null;
             "Mod+F".fullscreen-window = null;

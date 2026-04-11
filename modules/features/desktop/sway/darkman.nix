@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.homeModules.darkman = { pkgs, config, lib, ... }:
+  flake.homeModules.darkmanSway = { pkgs, config, lib, ... }:
     let
       pkillExe = "${pkgs.procps}/bin/pkill";
     in
