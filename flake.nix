@@ -8,54 +8,21 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+
     wakatime-ls.url = "github:mrnossiom/wakatime-ls";
     wakatime-ls.inputs.nixpkgs.follows = "nixpkgs";
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
-
-    anyrun.url = "github:Kirottu/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    { self, nixpkgs, nixpkgs-unstable, home-manager, anyrun, ... }@inputs:
-    let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      upkgs = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true; # TODO: move to special packages
-        # config.allowUnfreePredicate = import ./lib/unfree.nix { lib = nixpkgs.lib; };
-      };
-    in {
-      templates = import ./templates;
-      nixosConfigurations = {
-        personal = lib.nixosSystem {
-          inherit system;
-          modules =
-            [ ./hosts/laptop/configuration.nix ];
-        };
-      };
-
-      homeConfigurations = {
-        laptop = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit upkgs;
-          };
-          modules = [ ./hosts/laptop/laptop.nix ];
-        };
-        epita = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit upkgs;
-          };
-          modules = [ ./hosts/epita/epita.nix ];
-        };
-      };
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ (inputs.import-tree ./modules) ];
+      perSystem = { pkgs, ... }: { formatter = pkgs.nixfmt-rfc-style; };
     };
 }
