@@ -23,6 +23,7 @@
         self.nixosModules.niri
         self.nixosModules.nix_ld
         self.nixosModules.specialPackages
+        self.nixosModules.nh
       ];
 
       networking.hostName = "kristen-nixos";

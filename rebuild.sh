@@ -1,1 +1,1 @@
-sudo nixos-rebuild switch --flake .#laptop
+nh os switch . -H laptop
