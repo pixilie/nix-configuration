@@ -30,8 +30,8 @@
             nativeBuildInputs = with pkgs; [
               python312Packages.ipython
               ruff
-              python312Packages.jedi-language-server
-              python312Packages.python-lsp-server
+              pyright
+              python3
             ];
             buildInputs = with pkgs; [ ];
 

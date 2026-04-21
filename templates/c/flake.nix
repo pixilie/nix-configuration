@@ -38,6 +38,8 @@
                 clang-tools
                 lldb_21
                 bear
+                gnumake
+                gcc
               ]
               ++ (with llvmPackages; [
                 clang
