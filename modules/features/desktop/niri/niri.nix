@@ -6,11 +6,20 @@
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
     };
 
+    programs.dconf.enable = true;
+    services.gvfs.enable = true;
+
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.valent;
+    };
+
     environment.systemPackages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia
       pkgs.qt6.qtwayland
       pkgs.playerctl
       pkgs.brightnessctl
+      pkgs.xwayland-satellite
     ];
 
     environment.sessionVariables = {
@@ -18,6 +27,7 @@
       GDK_BACKEND = "wayland";
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "";
+      SSH_AUTH_SOCK = "/run/user/1000/gnupg/S.gpg-agent.ssh";
     };
 
     xdg.portal = {
@@ -36,7 +46,18 @@
         pkgs = upkgs;
         settings = {
 
-          spawn-at-startup = [ (lib.getExe self'.packages.noctalia) ];
+          spawn-at-startup = [
+            [
+              "systemctl"
+              "--user"
+              "import-environment"
+              "WAYLAND_DISPLAY"
+              "XDG_CURRENT_DESKTOP"
+              "SSH_AUTH_SOCK"
+            ]
+            [ "${lib.getExe pkgs.valent}" "--gapplication-service" ]
+            [ (lib.getExe self'.packages.noctalia) ]
+          ];
 
           layout = {
             gaps = 5;
@@ -73,8 +94,6 @@
             ];
 
             "Mod+Shift+Q".close-window = null;
-            "Mod+Shift+R".spawn = [ "reboot" ];
-            "Mod+Shift+P".spawn = [ "shutdown" "-h" "now" ];
             "Mod+Escape".spawn =
               [ "noctalia-shell" "ipc" "call" "lockscreen" "lock" ];
             "Mod+Shift+N".quit = null;

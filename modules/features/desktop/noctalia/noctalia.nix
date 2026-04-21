@@ -6,8 +6,7 @@
       packages.noctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
         pkgs = upkgs;
 
-        settings = (builtins.fromJSON (builtins.readFile
-          ./noctalia.json)).settings;
+        settings = builtins.fromJSON (builtins.readFile ./noctalia.json);
       };
     };
 }
