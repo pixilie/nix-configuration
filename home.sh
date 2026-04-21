@@ -1,1 +1,1 @@
-home-manager switch --flake .#laptop
+nh home switch . -c laptop
