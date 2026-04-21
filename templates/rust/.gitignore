@@ -1,0 +1,11 @@
+/target/
+**/*.rs.bk
+
+*.pdb
+
+crash.log
+*.core
+
+.direnv/
+result
+result-*
