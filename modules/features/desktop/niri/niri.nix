@@ -18,6 +18,7 @@
       GDK_BACKEND = "wayland";
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "";
+      SSH_AUTH_SOCK = "/run/user/1000/gnupg/S.gpg-agent.ssh";
     };
 
     xdg.portal = {
