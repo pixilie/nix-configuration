@@ -12,6 +12,7 @@
         openssl
         pkg-config
         xdg-utils
+        direnv
 
         # CLI / TUI
         dust
@@ -31,15 +32,6 @@
         television
         miniserve
         unzip
-
-        # Dev related
-        gccgo14
-        rustup
-        python3
-        direnv
-        gnumake
-        nil
-        nixd
       ];
     };
 }
