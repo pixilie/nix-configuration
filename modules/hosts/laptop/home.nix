@@ -48,6 +48,7 @@
       heroic
       dbeaver-bin
       arduino-ide
+      simulide
     ];
 
     # Reload system units when switching config
