@@ -19,6 +19,7 @@
       pkgs.qt6.qtwayland
       pkgs.playerctl
       pkgs.brightnessctl
+      pkgs.xwayland-satellite
     ];
 
     environment.sessionVariables = {
