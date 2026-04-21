@@ -3,7 +3,6 @@
   flake.homeModules.laptopHome = { pkgs, upkgs, ... }: {
     imports = [
       self.homeModules.gtk
-      self.homeModules.gammastep
       self.homeModules.darkmanNiri
       
       self.homeModules.git
