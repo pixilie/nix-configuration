@@ -94,8 +94,6 @@
             ];
 
             "Mod+Shift+Q".close-window = null;
-            "Mod+Shift+R".spawn = [ "reboot" ];
-            "Mod+Shift+P".spawn = [ "shutdown" "-h" "now" ];
             "Mod+Escape".spawn =
               [ "noctalia-shell" "ipc" "call" "lockscreen" "lock" ];
             "Mod+Shift+N".quit = null;
