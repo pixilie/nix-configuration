@@ -6,6 +6,14 @@
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
     };
 
+    programs.dconf.enable = true;
+    services.gvfs.enable = true;
+
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.valent;
+    };
+
     environment.systemPackages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia
       pkgs.qt6.qtwayland
@@ -37,7 +45,18 @@
         pkgs = upkgs;
         settings = {
 
-          spawn-at-startup = [ (lib.getExe self'.packages.noctalia) ];
+          spawn-at-startup = [
+            [
+              "systemctl"
+              "--user"
+              "import-environment"
+              "WAYLAND_DISPLAY"
+              "XDG_CURRENT_DESKTOP"
+              "SSH_AUTH_SOCK"
+            ]
+            [ "${lib.getExe pkgs.valent}" "--gapplication-service" ]
+            [ (lib.getExe self'.packages.noctalia) ]
+          ];
 
           layout = {
             gaps = 5;

@@ -33,6 +33,12 @@
           "useCustomFont": false
         },
         {
+          "defaultSettings": {
+            "mainDeviceId": ""
+          },
+          "id": "plugin:valent-connect"
+        },
+        {
           "compactMode": true,
           "diskPath": "/",
           "iconColor": "none",
