@@ -7,13 +7,7 @@
 
   c = {
     path = ./c;
-    description = "template for c project";
-    welcomeText = "direnv allow";
-  };
-
-  epita-c = {
-    path = ./epita-c;
-    description = "template for epita c tp";
+    description = "Template for C project";
     welcomeText = "direnv allow";
   };
 
