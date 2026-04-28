@@ -416,13 +416,10 @@
           "id": "AirplaneMode"
         },
         {
-          "id": "DarkMode"
+          "id": "Notifications"
         }
       ],
       "right": [
-        {
-          "id": "Notifications"
-        },
         {
           "id": "PowerProfile"
         },
@@ -430,7 +427,10 @@
           "id": "KeepAwake"
         },
         {
-          "id": "NightLight"
+          "id": "DarkMode"
+        },
+        {
+          "id": "NoctaliaPerformance"
         }
       ]
     },
@@ -456,7 +456,7 @@
         "id": "weather-card"
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "media-sysmon-card"
       }
     ]
