@@ -416,13 +416,10 @@
           "id": "AirplaneMode"
         },
         {
-          "id": "DarkMode"
+          "id": "Notifications"
         }
       ],
       "right": [
-        {
-          "id": "Notifications"
-        },
         {
           "id": "PowerProfile"
         },
@@ -430,7 +427,10 @@
           "id": "KeepAwake"
         },
         {
-          "id": "NightLight"
+          "id": "DarkMode"
+        },
+        {
+          "id": "NoctaliaPerformance"
         }
       ]
     },
@@ -456,7 +456,7 @@
         "id": "weather-card"
       },
       {
-        "enabled": true,
+        "enabled": false,
         "id": "media-sysmon-card"
       }
     ]
@@ -530,7 +530,7 @@
     "bluetoothAutoConnect": true
   },
   "sessionMenu": {
-    "enableCountdown": true,
+    "enableCountdown": false,
     "countdownDuration": 5000,
     "position": "center",
     "showHeader": true,
@@ -585,6 +585,13 @@
         "command": "",
         "countdownEnabled": true,
         "enabled": true,
+        "keybind": "7"
+      },
+      {
+        "action": "userspaceReboot",
+        "command": "",
+        "countdownEnabled": true,
+        "enabled": false,
         "keybind": ""
       }
     ]
@@ -652,7 +659,7 @@
   "brightness": {
     "brightnessStep": 5,
     "enforceMinimum": true,
-    "enableDdcSupport": false,
+    "enableDdcSupport": true,
     "backlightDeviceMappings": []
   },
   "colorSchemes": {
@@ -696,10 +703,10 @@
     "notifyUpdates": false
   },
   "idle": {
-    "enabled": false,
-    "screenOffTimeout": 600,
-    "lockTimeout": 660,
-    "suspendTimeout": 1800,
+    "enabled": true,
+    "screenOffTimeout": 300,
+    "lockTimeout": 180,
+    "suspendTimeout": 600,
     "fadeDuration": 5,
     "screenOffCommand": "",
     "lockCommand": "",
