@@ -217,7 +217,7 @@
     "allowPanelsOnScreenWithoutBar": true,
     "showChangelogOnStartup": true,
     "telemetryEnabled": true,
-    "enableLockScreenCountdown": true,
+    "enableLockScreenCountdown": false,
     "lockScreenCountdownDuration": 1000,
     "autoStartAuth": false,
     "allowPasswordWithFprintd": false,
