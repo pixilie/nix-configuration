@@ -45,7 +45,8 @@
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         pkgs = upkgs;
         settings = {
-
+          prefer-no-csd = true;
+          
           spawn-at-startup = [
             [
               "systemctl"
