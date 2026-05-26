@@ -44,6 +44,7 @@
       networkmanagerapplet
       upkgs.lunar-client
       prismlauncher
+      r2modman
       jdk25
       heroic
       dbeaver-bin
