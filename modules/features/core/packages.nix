@@ -15,6 +15,7 @@ let
           "castlabs-electron"
           "discord"
           "spotify"
+          "rider"
         ];
     };
 in

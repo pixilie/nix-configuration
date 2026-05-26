@@ -4,7 +4,7 @@
     imports = [
       self.homeModules.gtk
       self.homeModules.darkmanNiri
-      
+
       self.homeModules.git
       self.homeModules.helix
       self.homeModules.zed
@@ -50,6 +50,7 @@
       dbeaver-bin
       arduino-ide
       simulide
+      jetbrains.rider
     ];
 
     # Reload system units when switching config
