@@ -4,7 +4,7 @@
     imports = [
       self.homeModules.gtk
       self.homeModules.darkmanNiri
-      
+
       self.homeModules.git
       self.homeModules.helix
       self.homeModules.zed
@@ -44,11 +44,13 @@
       networkmanagerapplet
       upkgs.lunar-client
       prismlauncher
+      r2modman
       jdk25
       heroic
       dbeaver-bin
       arduino-ide
       simulide
+      jetbrains.rider
     ];
 
     # Reload system units when switching config
