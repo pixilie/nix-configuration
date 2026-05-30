@@ -3,7 +3,13 @@
   flake.homeModules.laptopHome = { pkgs, upkgs, ... }: {
     imports = [
       self.homeModules.gtk
-      self.homeModules.darkmanNiri
+      self.homeModules.darkmanSway
+      self.homeModules.sway
+      self.homeModules.sway_osd
+      self.homeModules.swaylock
+      self.homeModules.mako
+      self.homeModules.waybar
+      self.homeModules.rofi
 
       self.homeModules.git
       self.homeModules.helix
@@ -26,6 +32,7 @@
     # Packages
     home.packages = with pkgs; [
       vesktop
+      discord
       spotify
       bitwarden-desktop
       nautilus

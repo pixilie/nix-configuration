@@ -6,11 +6,18 @@
       wrapperFeatures.gtk = true;
     };
 
+    environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+
     xdg.portal = {
       enable = true;
       wlr.enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      config.common.default = [ "gtk" ];
+
+      config.sway = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+      };
     };
 
     security.pam.services.swaylock = { };
@@ -30,6 +37,8 @@
         swaybg
         playerctl
         brightnessctl
+        qt6.qtwayland
+        xwayland-satellite
         notify-desktop
         grim
         slurp
@@ -160,7 +169,8 @@
         };
 
         extraConfig = ''
-          exec dbus-update-activation-environment --systemd --all
+          exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+          exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
         '';
       };
 

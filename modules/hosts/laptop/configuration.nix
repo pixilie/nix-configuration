@@ -20,10 +20,10 @@
         self.nixosModules.virtualisation
         self.nixosModules.docker
         self.nixosModules.steam
-        self.nixosModules.niri
         self.nixosModules.nix_ld
         self.nixosModules.specialPackages
         self.nixosModules.nh
+        self.nixosModules.sway
       ];
 
       networking.hostName = "kristen-nixos";
