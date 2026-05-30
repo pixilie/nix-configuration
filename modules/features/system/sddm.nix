@@ -10,7 +10,7 @@
         qt6Packages.qt6ct
       ];
 
-      services.displayManager.defaultSession = "niri";
+      services.displayManager.defaultSession = "sway";
 
       services.displayManager.sddm = {
         enable = true;
@@ -32,7 +32,7 @@
 
       environment.variables = {
         XDG_SESSION_TYPE = "wayland";
-        XDG_CURRENT_DESKTOP = "Niri";
+        XDG_CURRENT_DESKTOP = "Sway";
       };
     };
 }
