@@ -32,6 +32,7 @@
     # Packages
     home.packages = with pkgs; [
       vesktop
+      discord
       spotify
       bitwarden-desktop
       nautilus
