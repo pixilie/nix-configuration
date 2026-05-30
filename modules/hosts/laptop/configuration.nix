@@ -76,7 +76,7 @@
         extraGroups = [
           "wheel"
           "networkmanager"
-          "sway"
+          # "sway"
           "input"
           "gamemode"
           "libvirtd"

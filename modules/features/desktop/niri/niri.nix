@@ -1,21 +1,13 @@
 { self, inputs, ... }: {
 
   flake.nixosModules.niri = { pkgs, lib, ... }: {
-    programs.niri = {
-      enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri;
-    };
+    imports = [ inputs.niri.nixosModules.niri ];
 
+    programs.niri.enable = true;
     programs.dconf.enable = true;
     services.gvfs.enable = true;
 
-    programs.kdeconnect = {
-      enable = true;
-      package = pkgs.valent;
-    };
-
     environment.systemPackages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia
       pkgs.qt6.qtwayland
       pkgs.playerctl
       pkgs.brightnessctl
@@ -27,7 +19,6 @@
       GDK_BACKEND = "wayland";
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "";
-      SSH_AUTH_SOCK = "/run/user/1000/gnupg/S.gpg-agent.ssh";
     };
 
     xdg.portal = {
@@ -39,124 +30,131 @@
     };
   };
 
-  perSystem = { pkgs, system, lib, self', ... }:
-    let upkgs = import inputs.nixpkgs-unstable { inherit system; };
-    in {
-      packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
-        pkgs = upkgs;
-        settings = {
-          prefer-no-csd = true;
-          
-          spawn-at-startup = [
-            [
+  flake.homeModules.niri = { pkgs, lib, config, ... }: {
+    imports = [ inputs.niri.homeModules.niri ];
+
+    home.packages = with pkgs; [ swaybg notify-desktop grim slurp satty ];
+
+    programs.niri = {
+      enable = true;
+
+      settings = {
+        prefer-no-csd = true;
+
+        spawn-at-startup = [
+          {
+            command = [
               "systemctl"
               "--user"
               "import-environment"
               "WAYLAND_DISPLAY"
               "XDG_CURRENT_DESKTOP"
               "SSH_AUTH_SOCK"
-            ]
-            [ "${lib.getExe pkgs.valent}" "--gapplication-service" ]
-            [ (lib.getExe self'.packages.noctalia) ]
+            ];
+          }
+          {
+            command = [ "${lib.getExe pkgs.valent}" "--gapplication-service" ];
+          }
+          { command = [ "${pkgs.geoclue2}/libexec/geoclue-2.0/demos/agent" ]; }
+        ];
+
+        layout = {
+          gaps = 5;
+          border.width = 0;
+          focus-ring.width = 0;
+        };
+
+        input = {
+          keyboard.xkb = {
+            layout = "us,fr";
+            options = "grp:ctrl_alt_toggle";
+          };
+          touchpad = {
+            tap = true;
+            natural-scroll = true;
+          };
+        };
+
+        outputs."eDP-1" = { scale = 1.0; };
+
+        binds = {
+          "Mod+Return".action.spawn = "alacritty";
+          "Mod+Shift+Q".action.close-window = [ ];
+          "Mod+Shift+Return".action.spawn = "firefox";
+
+          "Mod+Shift+R".action.spawn = "reboot";
+          "Mod+Shift+P".action.spawn = [ "shutdown" "-h" "now" ];
+          "Mod+Escape".action.spawn =
+            [ "sh" "-c" "sleep 0.3 && swaylock -C ~/.config/swaylock/config" ];
+          "Mod+Shift+S".action.spawn = [
+            "sh"
+            "-c"
+            "${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend"
           ];
+          "Mod+Shift+N".action.quit = [ ];
+          "Mod+Shift+Z".action.spawn = [ "makoctl" "dismiss" ];
+          "Mod+Shift+F".action.spawn = "nautilus";
 
-          layout = {
-            gaps = 5;
-            border.width = 0;
-            focus-ring = { width = 0; };
-          };
+          "Mod+D".action.spawn = "fuzzel";
 
-          window-rules = [{
-            geometry-corner-radius = 12;
-            clip-to-geometry = true;
-          }];
+          "Mod+Space".action.toggle-window-floating = [ ];
+          "Mod+F".action.fullscreen-window = [ ];
 
-          input = {
-            keyboard.xkb = {
-              layout = "us,fr";
-              options = "grp:ctrl_alt_toggle";
-            };
-            touchpad = {
-              tap = { };
-              natural-scroll = { };
-            };
-          };
-          outputs."eDP-1" = { scale = 1.0; };
+          "Mod+H".action.focus-column-left = [ ];
+          "Mod+L".action.focus-column-right = [ ];
+          "Mod+K".action.focus-window-up = [ ];
+          "Mod+J".action.focus-window-down = [ ];
 
-          binds = {
-            "Mod+Return".spawn = [ "alacritty" ];
-            "Mod+Shift+Return".spawn = [ "firefox" ];
-            "Mod+Shift+F".spawn = [ "nautilus" ];
+          "Mod+Shift+H".action.move-column-left = [ ];
+          "Mod+Shift+L".action.move-column-right = [ ];
+          "Mod+Shift+K".action.move-window-up = [ ];
+          "Mod+Shift+J".action.move-window-down = [ ];
 
-            "Mod+D".spawn = [
-              "sh"
-              "-c"
-              "${lib.getExe self'.packages.noctalia} ipc call launcher toggle"
-            ];
+          "Mod+1".action.focus-workspace = 1;
+          "Mod+2".action.focus-workspace = 2;
+          "Mod+3".action.focus-workspace = 3;
+          "Mod+4".action.focus-workspace = 4;
+          "Mod+5".action.focus-workspace = 5;
+          "Mod+6".action.focus-workspace = 6;
+          "Mod+7".action.focus-workspace = 7;
+          "Mod+8".action.focus-workspace = 8;
+          "Mod+9".action.focus-workspace = 9;
 
-            "Mod+Shift+Q".close-window = null;
-            "Mod+Escape".spawn =
-              [ "noctalia-shell" "ipc" "call" "lockscreen" "lock" ];
-            "Mod+Shift+N".quit = null;
+          "Mod+Shift+1".action.move-column-to-workspace = 1;
+          "Mod+Shift+2".action.move-column-to-workspace = 2;
+          "Mod+Shift+3".action.move-column-to-workspace = 3;
+          "Mod+Shift+4".action.move-column-to-workspace = 4;
+          "Mod+Shift+5".action.move-column-to-workspace = 5;
+          "Mod+Shift+6".action.move-column-to-workspace = 6;
+          "Mod+Shift+7".action.move-column-to-workspace = 7;
+          "Mod+Shift+8".action.move-column-to-workspace = 8;
+          "Mod+Shift+9".action.move-column-to-workspace = 9;
 
-            "Mod+Shift+Space".toggle-window-floating = null;
-            "Mod+F".fullscreen-window = null;
+          "Mod+Ctrl+H".action.set-column-width = "-10%";
+          "Mod+Ctrl+L".action.set-column-width = "+10%";
+          "Mod+Ctrl+K".action.set-window-height = "-10%";
+          "Mod+Ctrl+J".action.set-window-height = "+10%";
 
-            "Mod+H".focus-column-left = null;
-            "Mod+L".focus-column-right = null;
-            "Mod+K".focus-window-up = null;
-            "Mod+J".focus-window-down = null;
+          "XF86AudioNext".action.spawn = [ "playerctl" "next" ];
+          "XF86AudioPrev".action.spawn = [ "playerctl" "previous" ];
+          "XF86AudioPlay".action.spawn = [ "playerctl" "play-pause" ];
+          "XF86AudioRaiseVolume".action.spawn =
+            [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" ];
+          "XF86AudioLowerVolume".action.spawn =
+            [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ];
+          "XF86AudioMute".action.spawn =
+            [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ];
+          "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "s" "5%+" ];
+          "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "s" "5%-" ];
 
-            "Mod+Shift+H".move-column-left = null;
-            "Mod+Shift+L".move-column-right = null;
-            "Mod+Shift+K".move-window-up = null;
-            "Mod+Shift+J".move-window-down = null;
-
-            "Mod+1".focus-workspace = 1;
-            "Mod+2".focus-workspace = 2;
-            "Mod+3".focus-workspace = 3;
-            "Mod+4".focus-workspace = 4;
-            "Mod+5".focus-workspace = 5;
-            "Mod+6".focus-workspace = 6;
-            "Mod+7".focus-workspace = 7;
-            "Mod+8".focus-workspace = 8;
-            "Mod+9".focus-workspace = 9;
-
-            "Mod+Shift+1".move-column-to-workspace = 1;
-            "Mod+Shift+2".move-column-to-workspace = 2;
-            "Mod+Shift+3".move-column-to-workspace = 3;
-            "Mod+Shift+4".move-column-to-workspace = 4;
-            "Mod+Shift+5".move-column-to-workspace = 5;
-            "Mod+Shift+6".move-column-to-workspace = 6;
-            "Mod+Shift+7".move-column-to-workspace = 7;
-            "Mod+Shift+8".move-column-to-workspace = 8;
-            "Mod+Shift+9".move-column-to-workspace = 9;
-
-            "Mod+Ctrl+H".set-column-width = "-10%";
-            "Mod+Ctrl+L".set-column-width = "+10%";
-            "Mod+Ctrl+K".set-window-height = "-10%";
-            "Mod+Ctrl+J".set-window-height = "+10%";
-
-            "XF86AudioNext".spawn = [ "playerctl" "next" ];
-            "XF86AudioPrev".spawn = [ "playerctl" "previous" ];
-            "XF86AudioPlay".spawn = [ "playerctl" "play-pause" ];
-            "XF86AudioRaiseVolume".spawn =
-              [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" ];
-            "XF86AudioLowerVolume".spawn =
-              [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ];
-            "XF86AudioMute".spawn =
-              [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ];
-            "XF86MonBrightnessUp".spawn = [ "brightnessctl" "s" "5%+" ];
-            "XF86MonBrightnessDown".spawn = [ "brightnessctl" "s" "5%-" ];
-
-            "Print".spawn = [
-              "sh"
-              "-c"
-              ''
-                grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard''
-            ];
-          };
+          "Print".action.spawn = [
+            "sh"
+            "-c"
+            ''
+              grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard''
+          ];
         };
       };
     };
+  };
 }

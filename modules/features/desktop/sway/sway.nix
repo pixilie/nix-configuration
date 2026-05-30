@@ -113,7 +113,6 @@
 
             "${modifier}+r" = "mode resize";
 
-            # Multimedia (SwayOSD)
             "XF86AudioNext" = "exec swayosd-client --playerctl next";
             "XF86AudioPrev" = "exec swayosd-client --playerctl previous";
             "XF86AudioPlay" = "exec swayosd-client --playerctl play-pause";
