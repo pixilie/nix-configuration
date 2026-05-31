@@ -6,7 +6,10 @@
       wrapperFeatures.gtk = true;
     };
 
-    environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      SSH_AUTH_SOCK = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+    };
 
     xdg.portal = {
       enable = true;
@@ -169,8 +172,8 @@
         };
 
         extraConfig = ''
-          exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-          exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+          exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP SSH_AUTH_SOCK
+          exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP SSH_AUTH_SOCK
         '';
       };
 
