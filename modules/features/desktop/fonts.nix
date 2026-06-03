@@ -18,7 +18,7 @@
         enable = true;
         defaultFonts = {
           serif = [
-            "Noto Sans"
+            "Noto Serif"
             "Merriweather"
           ];
           sansSerif = [ "Inter" ];
