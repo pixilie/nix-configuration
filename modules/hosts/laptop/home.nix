@@ -11,6 +11,8 @@
       self.homeModules.waybar
       self.homeModules.rofi
 
+      self.homeModules.gammastep
+
       self.homeModules.git
       self.homeModules.helix
       self.homeModules.zed
@@ -58,6 +60,7 @@
       arduino-ide
       simulide
       jetbrains.rider
+      inputs.claude-desktop.packages.${pkgs.system}.claude-desktop
     ];
 
     # Reload system units when switching config

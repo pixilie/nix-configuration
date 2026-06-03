@@ -32,6 +32,9 @@
         television
         miniserve
         unzip
+        claude-code
+        claude-monitor
+        gemini-cli
       ];
     };
 }
