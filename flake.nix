@@ -17,6 +17,8 @@
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
+
+    claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
   };
 
   outputs = inputs:

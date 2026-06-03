@@ -58,6 +58,7 @@
       arduino-ide
       simulide
       jetbrains.rider
+      inputs.claude-desktop.packages.${pkgs.system}.claude-desktop
     ];
 
     # Reload system units when switching config
