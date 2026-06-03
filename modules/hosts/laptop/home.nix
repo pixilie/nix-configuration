@@ -11,6 +11,8 @@
       self.homeModules.waybar
       self.homeModules.rofi
 
+      self.homeModules.gammastep
+
       self.homeModules.git
       self.homeModules.helix
       self.homeModules.zed
