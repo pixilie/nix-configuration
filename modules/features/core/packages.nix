@@ -16,6 +16,8 @@ let
           "discord"
           "spotify"
           "rider"
+          "claude-code"
+          "gemini-cli"
         ];
     };
 in
