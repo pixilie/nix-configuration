@@ -24,7 +24,7 @@
           vscode-langservers-extracted
           typescript-language-server
           nil
-          nixfmt-classic
+          nixfmt
         ];
 
       ignores = [
