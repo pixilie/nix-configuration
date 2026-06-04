@@ -36,26 +36,30 @@
       vesktop
       discord
       spotify
+      psst
       bitwarden-desktop
       nautilus
       upkgs.firefox
+
       gimp-with-plugins
-      teams-for-linux
       onlyoffice-desktopeditors
-      image-roll
       obs-studio
-      vlc
       localsend
-      pavucontrol
       gnome-calculator
+
       baobab
+      vlc
+      image-roll
+      pavucontrol
       wdisplays
       networkmanagerapplet
+
       upkgs.lunar-client
       prismlauncher
       r2modman
       jdk25
       heroic
+
       dbeaver-bin
       arduino-ide
       simulide
