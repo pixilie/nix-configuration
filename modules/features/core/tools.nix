@@ -19,7 +19,7 @@
         btop
         fastfetch
         glow
-        dogdns
+        doggo
         speedtest-go
         ripgrep
         jless
