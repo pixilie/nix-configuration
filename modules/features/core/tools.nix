@@ -2,7 +2,7 @@
 {
 
   flake.homeModules.tools =
-    { pkgs, ... }:
+    { pkgs, upkgs, ... }:
     {
       home.packages = with pkgs; [
         # System utilities
@@ -32,8 +32,7 @@
         television
         miniserve
         unzip
-        claude-code
-        claude-monitor
+        upkgs.claude-code
         gemini-cli
       ];
     };
