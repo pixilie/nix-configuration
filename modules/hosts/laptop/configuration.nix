@@ -51,12 +51,8 @@
         openFirewall = true;
       };
 
-      # Garbage collector
-      nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 7d";
-      };
+      # Garbage collection is handled by programs.nh.clean (see nh.nix),
+      # so the native nix.gc.automatic is left disabled to avoid conflict.
       nix.settings.auto-optimise-store = true;
 
       # Boot settings
