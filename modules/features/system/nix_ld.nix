@@ -24,16 +24,16 @@
         fontconfig
 
         # X11 & Wayland
-        xorg.libX11
-        xorg.libXcomposite
-        xorg.libXdamage
-        xorg.libXext
-        xorg.libXfixes
-        xorg.libXrandr
-        xorg.libxcb
-        xorg.libXrender
-        xorg.libXi
-        xorg.libXtst
+        libx11
+        libxcomposite
+        libxdamage
+        libxext
+        libxfixes
+        libxrandr
+        libxcb
+        libxrender
+        libxi
+        libxtst
 
         # Rendu 3D
         libGL
