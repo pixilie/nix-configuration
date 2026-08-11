@@ -8,7 +8,7 @@
 
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
-      SSH_AUTH_SOCK = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+      SSH_AUTH_SOCK = "/run/user/1000/gcr/ssh";
     };
 
     xdg.portal = {

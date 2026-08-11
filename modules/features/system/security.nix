@@ -13,9 +13,12 @@
         };
       };
 
+      # gpg-agent for GPG only. SSH keys are handled by gcr-ssh-agent
+      # (enabled by default via gnome-keyring), which avoids the pinentry
+      # popup gpg-agent shows when adding ssh keys to its keystore.
       programs.gnupg.agent = {
         enable = true;
-        enableSSHSupport = true;
+        enableSSHSupport = false;
       };
 
       services.logind = {
