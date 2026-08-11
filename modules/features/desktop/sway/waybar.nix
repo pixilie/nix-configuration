@@ -136,13 +136,6 @@
           tooltip-format = "{album} ({player})";
         };
 
-        cava = {
-          bars = 6;
-          format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
-          bar_delimiter = 0;
-          hide_on_silence = true;
-        };
-
         network = {
           format-wifi = "{essid} ({signalStrength}%)  ";
           format-ethernet = "{ipaddr}/{cidr}  ";
@@ -168,7 +161,7 @@
     in
     {
       home.packages = with pkgs; [
-        playerctl cava ripgrep pavucontrol font-awesome procps blueman
+        playerctl ripgrep pavucontrol font-awesome procps blueman
       ];
 
       services.playerctld.enable = true;
@@ -193,7 +186,7 @@
             position = "bottom";
             output = [ "eDP-1" ];
             modules-left = [ "sway/workspaces" ];
-            modules-right = [ "cava" "mpris" "gamemode" "bluetooth" "pulseaudio" "network" "battery" "clock" "group/misc" ];
+            modules-right = [ "mpris" "gamemode" "bluetooth" "pulseaudio" "network" "battery" "clock" "group/misc" ];
           } // modules-settings;
 
           additional = {

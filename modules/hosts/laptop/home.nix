@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.homeModules.laptopHome = { pkgs, upkgs, ... }: {
+  flake.homeModules.laptopHome = { config, pkgs, upkgs, ... }: {
     imports = [
       self.homeModules.gtk
       self.homeModules.darkmanSway
@@ -26,52 +26,56 @@
       self.homeModules.specialPackages
     ];
 
-    # General informations
-    home.username = "kristen";
-    home.homeDirectory = "/home/kristen";
-    home.stateVersion = "25.11";
+    config = {
+      useHelixCache = true;
+      isSchoolProfile = false;
 
-    # Packages
-    home.packages = with pkgs; [
-      vesktop
-      discord
-      spotify
-      psst
-      bitwarden-desktop
-      nautilus
-      upkgs.firefox
+      # General informations
+      home.username = "kristen";
+      home.homeDirectory = "/home/kristen";
+      home.stateVersion = "25.11";
 
-      gimp-with-plugins
-      onlyoffice-desktopeditors
-      obs-studio
-      localsend
-      gnome-calculator
+      # Packages
+      home.packages = with pkgs; [
+        vesktop
+        discord
+        spotify
+        psst
+        bitwarden-desktop
+        nautilus
+        upkgs.firefox
 
-      baobab
-      vlc
-      image-roll
-      pavucontrol
-      wdisplays
-      networkmanagerapplet
+        gimp-with-plugins
+        onlyoffice-desktopeditors
+        obs-studio
+        localsend
+        gnome-calculator
 
-      upkgs.lunar-client
-      prismlauncher
-      r2modman
-      jdk25
-      heroic
+        baobab
+        vlc
+        image-roll
+        pavucontrol
+        wdisplays
+        networkmanagerapplet
 
-      dbeaver-bin
-      arduino-ide
-      simulide
-      jetbrains.rider
-      inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
-    ];
+        upkgs.lunar-client
+        prismlauncher
+        r2modman
+        jdk25
+        heroic
 
-    # Reload system units when switching config
-    systemd.user.startServices = "sd-switch";
+        dbeaver-bin
+        arduino-ide
+        simulide
+        jetbrains.rider
+        inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+      ];
 
-    # Let Home Manager install and manage itself.
-    programs.home-manager.enable = true;
+      # Reload system units when switching config
+      systemd.user.startServices = "sd-switch";
+
+      # Let Home Manager install and manage itself.
+      programs.home-manager.enable = true;
+    };
   };
-
 }
