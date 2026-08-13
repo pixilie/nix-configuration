@@ -33,7 +33,6 @@
         miniserve
         unzip
         upkgs.claude-code
-        gemini-cli
       ];
     };
 }
