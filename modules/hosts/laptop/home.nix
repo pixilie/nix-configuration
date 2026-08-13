@@ -37,7 +37,7 @@
 
       # Packages
       home.packages = with pkgs; [
-        vesktop
+        # vesktop
         discord
         spotify
         psst
@@ -51,8 +51,8 @@
         localsend
         gnome-calculator
 
-        baobab
-        vlc
+        # baobab
+        # vlc
         image-roll
         pavucontrol
         wdisplays
@@ -65,9 +65,9 @@
         heroic
 
         dbeaver-bin
-        arduino-ide
-        simulide
-        jetbrains.rider
+        # arduino-ide
+        # simulide
+        # jetbrains.rider
         inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
       ];
 
