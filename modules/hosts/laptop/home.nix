@@ -58,7 +58,7 @@
         wdisplays
         networkmanagerapplet
 
-        upkgs.lunar-client
+        lunar-client
         prismlauncher
         r2modman
         jdk25
