@@ -180,22 +180,14 @@
         systemd.enable = true;
 
         settings = {
-          primary = {
+          # No `output` key: waybar spawns an identical bar on every connected
+          # output, whatever its name (eDP-1, DP-1, HDMI-A-1, ...).
+          main = {
             mode = "hide";
             ipc = true;
             position = "bottom";
-            output = [ "eDP-1" ];
             modules-left = [ "sway/workspaces" ];
             modules-right = [ "mpris" "gamemode" "bluetooth" "pulseaudio" "network" "battery" "clock" "group/misc" ];
-          } // modules-settings;
-
-          additional = {
-            mode = "hide";
-            ipc = true;
-            position = "bottom";
-            output = [ "DP-1" "DP-2" "DP-3" "DP-4" "HDMI-1" "HDMI-2" "HDMI-3" "HDMI-4" ];
-            modules-left = [ "sway/workspaces" ];
-            modules-right = [ "gamemode" "network" "clock" "group/misc" ];
           } // modules-settings;
         };
 
