@@ -15,6 +15,7 @@
 
       self.homeModules.git
       self.homeModules.helix
+      self.homeModules.vim
       self.homeModules.zed
       self.homeModules.sh
       self.homeModules.fonts

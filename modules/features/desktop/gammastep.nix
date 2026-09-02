@@ -14,7 +14,7 @@
         general.fade = "1";
       };
 
-      settings.general.method = "wayland";
+      settings.general.adjustment-method = "wayland";
     };
   };
 }
