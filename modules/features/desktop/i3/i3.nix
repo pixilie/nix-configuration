@@ -88,10 +88,7 @@
           };
 
           startup = [
-            {
-              command = "feh --bg-fill ${../../../../assets/media/wallpaper_dark.png}";
-              always = true;
-            }
+            { command = "feh --bg-fill ${../../../../assets/media/wallpaper_dark.png}"; }
           ];
 
           fonts = {

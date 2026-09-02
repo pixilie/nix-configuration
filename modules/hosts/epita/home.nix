@@ -7,7 +7,9 @@
       imports = [
         self.homeModules.i3
         self.homeModules.rofi
-        self.homeModules.i3bar
+        self.homeModules.polybar
+        self.homeModules.darkmanI3
+        self.homeModules.gammastepI3
 
         self.homeModules.git
         self.homeModules.helix
