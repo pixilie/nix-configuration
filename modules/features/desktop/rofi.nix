@@ -24,9 +24,11 @@
       xdg.dataFile."rofi/themes/dark.rasi".source = darkTheme;
       xdg.dataFile."rofi/themes/light.rasi".source = lightTheme;
 
-      home.activation.ensureRofiTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        if [ ! -e "${config.xdg.dataHome}/rofi/themes/current.rasi" ]; then
-          ln -s "${config.xdg.dataHome}/rofi/themes/dark.rasi" "${config.xdg.dataHome}/rofi/themes/current.rasi"
+      home.activation.ensureRofiTheme = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+        themeDir="${config.xdg.dataHome}/rofi/themes"
+        run mkdir -p "$themeDir"
+        if [ ! -e "$themeDir/current.rasi" ]; then
+          run ln -sfn "$themeDir/dark.rasi" "$themeDir/current.rasi"
         fi
       '';
     };

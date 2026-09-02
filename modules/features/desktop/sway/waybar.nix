@@ -169,9 +169,11 @@
       xdg.configFile."waybar/colors-dark.css".text = themeDark;
       xdg.configFile."waybar/colors-light.css".text = themeLight;
 
-      home.activation.waybarTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        if [ ! -f "${config.xdg.configHome}/waybar/colors.css" ]; then
-          ln -sf "${config.xdg.configHome}/waybar/colors-dark.css" "${config.xdg.configHome}/waybar/colors.css"
+      home.activation.waybarTheme = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+        waybarDir="${config.xdg.configHome}/waybar"
+        run mkdir -p "$waybarDir"
+        if [ ! -e "$waybarDir/colors.css" ]; then
+          run ln -sfn "$waybarDir/colors-dark.css" "$waybarDir/colors.css"
         fi
       '';
 
