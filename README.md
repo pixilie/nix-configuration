@@ -24,6 +24,7 @@ This repository contains declarative configurations for my personal laptop and m
 │       └── epita_light/  # Same, stripped down to the bare minimum
 ├── templates/       # Nix flake templates for various programming languages
 ├── Makefile         # Entry point for every profile
+├── .envrc           # direnv hook loading the flake dev shell (provides make)
 └── flake.nix        # The entry point of the system
 ```
 
@@ -60,6 +61,14 @@ make epita-light  # Home Manager  (epita, minimal)
 ``rebuild`` and ``home`` go through [nh](https://github.com/nix-community/nh). The ``epita``
 targets build the activation package and run it directly, so nothing beyond Nix itself is
 required on the school machines.
+
+``make`` itself ships with the repository, through the flake dev shell — no system-wide
+install needed. With [direnv](https://direnv.net/) it loads on ``cd``; otherwise, or on a
+machine that has nothing set up yet:
+
+```bash
+nix develop --command make epita
+```
 
 Alternatively, using standard Nix commands:
 ```bash
