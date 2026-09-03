@@ -10,6 +10,7 @@
         nerd-fonts.caskaydia-cove
         nerd-fonts.caskaydia-mono
         font-awesome
+        cantarell-fonts
         merriweather
         inter
       ];
