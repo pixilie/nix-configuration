@@ -61,9 +61,10 @@
       programs.lazygit.enable = !config.isSchoolProfile;
       programs.difftastic.enable = !config.isSchoolProfile;
 
-      home.packages =
-        [ config.programs.gpg.package ]
-        ++ lib.optionals (!config.isSchoolProfile) (with pkgs; [ onefetch ]);
+      home.packages = [
+        config.programs.gpg.package
+      ]
+      ++ lib.optionals (!config.isSchoolProfile) (with pkgs; [ onefetch ]);
 
       home.activation.gitAllowedSigners = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
         if [ -r "${signingKey}" ]; then

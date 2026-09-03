@@ -2,7 +2,12 @@
 {
 
   flake.nixosModules.security =
-    { config, pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
 
       services.openssh = {
@@ -33,8 +38,7 @@
       # that grabs org.freedesktop.secrets before PAM can unlock it. Moving
       # gnome_keyring before systemd lets it start+unlock the daemon first and
       # export GNOME_KEYRING_CONTROL, so the autostart just attaches to it.
-      security.pam.services.login.rules.session.gnome_keyring.order =
-        lib.mkForce 11900;
+      security.pam.services.login.rules.session.gnome_keyring.order = lib.mkForce 11900;
 
       security.polkit.extraConfig = ''
         polkit.addRule(function(action, subject) {

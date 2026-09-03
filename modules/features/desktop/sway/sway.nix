@@ -26,7 +26,13 @@
     security.pam.services.swaylock = { };
   };
 
-  flake.homeModules.sway = { pkgs, config, lib, ... }:
+  flake.homeModules.sway =
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     let
       modifier = "Mod4";
       terminal = "alacritty";
@@ -34,7 +40,8 @@
       down = "j";
       left = "h";
       right = "l";
-    in {
+    in
+    {
       home.packages = with pkgs; [
         swaylock-effects
         swaybg
@@ -53,7 +60,14 @@
         enable = true;
         xwayland = true;
         config = {
-          inherit modifier terminal up down left right;
+          inherit
+            modifier
+            terminal
+            up
+            down
+            left
+            right
+            ;
           defaultWorkspace = "workspace 1";
           fonts = {
             names = [ "Noto Sans" ];
@@ -85,8 +99,7 @@
             "${modifier}+Shift+Return" = "exec firefox";
             "${modifier}+Shift+r" = "exec reboot";
             "${modifier}+Shift+p" = "exec shutdown -h now";
-            "${modifier}+Escape" =
-              "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
+            "${modifier}+Escape" = "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
             "${modifier}" = "exec swaymsg bar mode toggle";
             "${modifier}+Shift+s" =
               "exec ${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend";
@@ -129,17 +142,14 @@
             "XF86AudioNext" = "exec swayosd-client --playerctl next";
             "XF86AudioPrev" = "exec swayosd-client --playerctl previous";
             "XF86AudioPlay" = "exec swayosd-client --playerctl play-pause";
-            "XF86AudioRaiseVolume" =
-              "exec swayosd-client --output-volume raise";
-            "XF86AudioLowerVolume" =
-              "exec swayosd-client --output-volume lower";
+            "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
+            "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
             "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
             "XF86MonBrightnessUp" = "exec swayosd-client --brightness raise";
             "XF86MonBrightnessDown" = "exec swayosd-client --brightness lower";
             "Caps_Lock" = "exec swayosd-client --caps-lock";
 
-            "Print" = ''
-              exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
+            "Print" = ''exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
           };
 
           modes.resize = {
@@ -167,8 +177,7 @@
             scale = "1.0";
             pos = "0 0";
           };
-          startup =
-            [{ command = "${pkgs.geoclue2}/libexec/geoclue-2.0/demos/agent"; }];
+          startup = [ { command = "${pkgs.geoclue2}/libexec/geoclue-2.0/demos/agent"; } ];
         };
 
         extraConfig = ''
@@ -182,8 +191,7 @@
         timeouts = [
           {
             timeout = 175;
-            command =
-              "${pkgs.notify-desktop}/bin/notify-desktop 'Screen locking in 5 seconds'";
+            command = "${pkgs.notify-desktop}/bin/notify-desktop 'Screen locking in 5 seconds'";
           }
           {
             timeout = 179;

@@ -1,6 +1,12 @@
 { self, inputs, ... }: {
 
-  flake.homeModules.rofi = { pkgs, config, lib, ... }:
+  flake.homeModules.rofi =
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     let
       darkTheme = ../../../assets/themes/rofi_dark.rasi;
       lightTheme = ../../../assets/themes/rofi_light.rasi;

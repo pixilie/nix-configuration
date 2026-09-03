@@ -4,16 +4,29 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; };
-      in {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [ dotnet-sdk_8 csharp-ls netcoredbg ];
+          buildInputs = with pkgs; [
+            dotnet-sdk_8
+            csharp-ls
+            netcoredbg
+          ];
 
           shellHook = ''
             export DOTNET_ROOT="${pkgs.dotnet-sdk_8}"
           '';
         };
-      });
+      }
+    );
 }

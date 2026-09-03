@@ -33,19 +33,33 @@
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
-      extraPortals =
-        [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome ];
-      config = { common.default = [ "gnome" "*" ]; };
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-gnome
+      ];
+      config = {
+        common.default = [
+          "gnome"
+          "*"
+        ];
+      };
     };
   };
 
-  perSystem = { pkgs, lib, self', upkgs, ... }:
+  perSystem =
+    {
+      pkgs,
+      lib,
+      self',
+      upkgs,
+      ...
+    }:
     {
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         pkgs = upkgs;
         settings = {
           prefer-no-csd = true;
-          
+
           spawn-at-startup = [
             [
               "systemctl"
@@ -55,20 +69,27 @@
               "XDG_CURRENT_DESKTOP"
               "SSH_AUTH_SOCK"
             ]
-            [ "${lib.getExe pkgs.valent}" "--gapplication-service" ]
+            [
+              "${lib.getExe pkgs.valent}"
+              "--gapplication-service"
+            ]
             [ (lib.getExe self'.packages.noctalia) ]
           ];
 
           layout = {
             gaps = 5;
             border.width = 0;
-            focus-ring = { width = 0; };
+            focus-ring = {
+              width = 0;
+            };
           };
 
-          window-rules = [{
-            geometry-corner-radius = 12;
-            clip-to-geometry = true;
-          }];
+          window-rules = [
+            {
+              geometry-corner-radius = 12;
+              clip-to-geometry = true;
+            }
+          ];
 
           input = {
             keyboard.xkb = {
@@ -80,7 +101,9 @@
               natural-scroll = { };
             };
           };
-          outputs."eDP-1" = { scale = 1.0; };
+          outputs."eDP-1" = {
+            scale = 1.0;
+          };
 
           binds = {
             "Mod+Return".spawn = [ "alacritty" ];
@@ -94,8 +117,13 @@
             ];
 
             "Mod+Shift+Q".close-window = null;
-            "Mod+Escape".spawn =
-              [ "noctalia-shell" "ipc" "call" "lockscreen" "lock" ];
+            "Mod+Escape".spawn = [
+              "noctalia-shell"
+              "ipc"
+              "call"
+              "lockscreen"
+              "lock"
+            ];
             "Mod+Shift+N".quit = null;
 
             "Mod+Shift+Space".toggle-window-floating = null;
@@ -136,23 +164,51 @@
             "Mod+Ctrl+K".set-window-height = "-10%";
             "Mod+Ctrl+J".set-window-height = "+10%";
 
-            "XF86AudioNext".spawn = [ "playerctl" "next" ];
-            "XF86AudioPrev".spawn = [ "playerctl" "previous" ];
-            "XF86AudioPlay".spawn = [ "playerctl" "play-pause" ];
-            "XF86AudioRaiseVolume".spawn =
-              [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" ];
-            "XF86AudioLowerVolume".spawn =
-              [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ];
-            "XF86AudioMute".spawn =
-              [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ];
-            "XF86MonBrightnessUp".spawn = [ "brightnessctl" "s" "5%+" ];
-            "XF86MonBrightnessDown".spawn = [ "brightnessctl" "s" "5%-" ];
+            "XF86AudioNext".spawn = [
+              "playerctl"
+              "next"
+            ];
+            "XF86AudioPrev".spawn = [
+              "playerctl"
+              "previous"
+            ];
+            "XF86AudioPlay".spawn = [
+              "playerctl"
+              "play-pause"
+            ];
+            "XF86AudioRaiseVolume".spawn = [
+              "wpctl"
+              "set-volume"
+              "@DEFAULT_AUDIO_SINK@"
+              "5%+"
+            ];
+            "XF86AudioLowerVolume".spawn = [
+              "wpctl"
+              "set-volume"
+              "@DEFAULT_AUDIO_SINK@"
+              "5%-"
+            ];
+            "XF86AudioMute".spawn = [
+              "wpctl"
+              "set-mute"
+              "@DEFAULT_AUDIO_SINK@"
+              "toggle"
+            ];
+            "XF86MonBrightnessUp".spawn = [
+              "brightnessctl"
+              "s"
+              "5%+"
+            ];
+            "XF86MonBrightnessDown".spawn = [
+              "brightnessctl"
+              "s"
+              "5%-"
+            ];
 
             "Print".spawn = [
               "sh"
               "-c"
-              ''
-                grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard''
+              ''grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard''
             ];
           };
         };

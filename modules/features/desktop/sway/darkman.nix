@@ -1,15 +1,24 @@
 { self, inputs, ... }: {
 
-  flake.homeModules.darkmanSway = { pkgs, config, lib, ... }:
+  flake.homeModules.darkmanSway =
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     let
       pkillExe = "${pkgs.procps}/bin/pkill";
       lnExe = "${pkgs.coreutils}/bin/ln";
-    in {
+    in
+    {
       services.darkman = {
         enable = true;
         package = pkgs.darkman;
 
-        settings = { usegeoclue = true; };
+        settings = {
+          usegeoclue = true;
+        };
 
         darkModeScripts = {
           gtk-theme = ''
@@ -18,9 +27,7 @@
 
           wallpaper = ''
             # Ajustez le nombre de ../ si nécessaire selon l'emplacement du fichier
-            ${pkgs.sway}/bin/swaymsg output "*" bg ${
-              ../../../../assets/media/wallpaper_dark.png
-            } fill
+            ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_dark.png} fill
           '';
 
           mako = ''
@@ -43,9 +50,7 @@
           '';
 
           wallpaper = ''
-            ${pkgs.sway}/bin/swaymsg output "*" bg ${
-              ../../../../assets/media/wallpaper_light.png
-            } fill
+            ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_light.png} fill
           '';
 
           mako = ''
