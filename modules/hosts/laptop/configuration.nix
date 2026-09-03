@@ -34,15 +34,9 @@
       services.geoclue2 = {
         enable = true;
         enableDemoAgent = true;
-        geoProviderUrl = "https://beacondb.net/v1/geolocate";
-        submissionUrl = "https://beacondb.net/v1/geolocate";
+        geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+        submissionUrl = "https://beacondb.net/v2/geosubmit";
         submitData = true;
-      };
-
-      location = {
-        provider = "manual";
-        latitude = 56.504668;
-        longitude = 21.010806;
       };
 
       services.avahi = {
