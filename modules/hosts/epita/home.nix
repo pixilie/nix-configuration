@@ -18,6 +18,7 @@
         self.homeModules.fonts
         self.homeModules.options
         self.homeModules.identity
+        self.homeModules.locale
 
         self.homeModules.specialPackages
       ];
