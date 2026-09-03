@@ -8,6 +8,11 @@
       lib,
       ...
     }:
+    let
+      email = "kristen.couty@gmail.com";
+      signingKey = "${config.home.homeDirectory}/.ssh/github.pub";
+      allowedSigners = "${config.home.homeDirectory}/.ssh/allowed_signers";
+    in
     {
       programs.git = {
         enable = true;
@@ -15,7 +20,7 @@
 
         settings = {
           user.name = "Kristen Couty";
-          user.email = "kristen.couty@gmail.com";
+          user.email = email;
 
           alias = {
             ui = "!lazygit";
@@ -37,7 +42,8 @@
           pull.rebase = true;
 
           gpg.format = "ssh";
-          user.signingkey = "~/.ssh/github.pub";
+          gpg.ssh.allowedSignersFile = allowedSigners;
+          user.signingkey = signingKey;
           commit.gpgsign = true;
         };
 
@@ -55,7 +61,18 @@
       programs.lazygit.enable = !config.isSchoolProfile;
       programs.difftastic.enable = !config.isSchoolProfile;
 
-      home.packages = lib.optionals (!config.isSchoolProfile) (with pkgs; [ onefetch ]);
+      home.packages =
+        [ config.programs.gpg.package ]
+        ++ lib.optionals (!config.isSchoolProfile) (with pkgs; [ onefetch ]);
+
+      home.activation.gitAllowedSigners = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+        if [ -r "${signingKey}" ]; then
+          run ${pkgs.writeShellScript "git-allowed-signers" ''
+            umask 077
+            printf '%s %s\n' "${email}" "$(cat "${signingKey}")" > "${allowedSigners}"
+          ''}
+        fi
+      '';
 
       services.gpg-agent = {
         enable = true;

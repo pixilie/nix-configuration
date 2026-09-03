@@ -203,6 +203,12 @@
             command = "${pkgs.systemd}/bin/systemctl suspend";
           }
         ];
+
+        events = {
+          before-sleep = "${pkgs.swaylock-effects}/bin/swaylock -f";
+          lock = "${pkgs.swaylock-effects}/bin/swaylock -f";
+          after-resume = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
+        };
       };
 
       services.poweralertd.enable = true;

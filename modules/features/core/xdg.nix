@@ -2,14 +2,40 @@
 {
 
   flake.homeModules.xdg =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
       files = [ "org.gnome.Nautilus.desktop" ];
       browser = [ "firefox.desktop" ];
-      images = [ "Image-Roll.desktop" ];
-      terminal = [ "Alacritty.desktop" ];
+      images = [ "com.github.weclaw1.ImageRoll.desktop" ];
+      editor = [ "helix.desktop" ];
+
+      editorMimes = [
+        "text/plain"
+        "text/markdown"
+        "text/javascript"
+        "text/vnd.trolltech.linguist"
+        "text/x-java"
+      ];
     in
     {
+      xdg.desktopEntries.helix = {
+        name = "Helix";
+        genericName = "Text Editor";
+        exec = "${lib.getExe pkgs.alacritty} -e ${config.programs.helix.package}/bin/hx %F";
+        icon = "text-editor";
+        terminal = false;
+        categories = [
+          "Utility"
+          "TextEditor"
+        ];
+        mimeType = editorMimes;
+      };
+
       xdg.userDirs = {
         enable = true;
         createDirectories = true;
@@ -37,13 +63,8 @@
           "image/png" = images;
           "image/tiff" = images;
           "image/heif" = images;
-
-          "text/plain" = terminal;
-          "text/markdown" = terminal;
-          "text/javascript" = terminal;
-          "text/vnd.trolltech.linguist" = terminal;
-          "text/x-java" = terminal;
-        };
+        }
+        // lib.genAttrs editorMimes (_: editor);
       };
     };
 }

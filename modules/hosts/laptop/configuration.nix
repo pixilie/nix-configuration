@@ -34,15 +34,9 @@
       services.geoclue2 = {
         enable = true;
         enableDemoAgent = true;
-        geoProviderUrl = "https://beacondb.net/v1/geolocate";
-        submissionUrl = "https://beacondb.net/v1/geolocate";
+        geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+        submissionUrl = "https://beacondb.net/v2/geosubmit";
         submitData = true;
-      };
-
-      location = {
-        provider = "manual";
-        latitude = 56.504668;
-        longitude = 21.010806;
       };
 
       services.avahi = {
@@ -67,8 +61,11 @@
       };
 
       # User related settings
+      programs.fish.enable = true;
+
       users.users.kristen = {
         isNormalUser = true;
+        shell = pkgs.fish;
         extraGroups = [
           "wheel"
           "networkmanager"
@@ -83,7 +80,13 @@
       # System related settings
       system = {
         autoUpgrade.enable = true;
+        autoUpgrade.flake = "github:pixilie/nix-configuration#laptop";
+        autoUpgrade.upgrade = false;
         autoUpgrade.allowReboot = true;
+        autoUpgrade.rebootWindow = {
+          lower = "02:00";
+          upper = "06:00";
+        };
         stateVersion = "25.11";
       };
 
