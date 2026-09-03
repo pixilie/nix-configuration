@@ -24,12 +24,18 @@
       self.homeModules.ssh
 
       self.homeModules.options
+      self.homeModules.identity
       self.homeModules.specialPackages
     ];
 
     config = {
       useHelixCache = true;
       isSchoolProfile = false;
+
+      identity = {
+        name = "Kristen Couty";
+        email = "kristen.couty@gmail.com";
+      };
 
       # General informations
       home.username = "kristen";
