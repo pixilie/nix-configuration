@@ -47,7 +47,9 @@
 
       # Garbage collection is handled by programs.nh.clean (see nh.nix),
       # so the native nix.gc.automatic is left disabled to avoid conflict.
-      nix.settings.auto-optimise-store = true;
+      nix.optimise.automatic = true;
+
+      zramSwap.enable = true;
 
       # Boot settings
       boot = {
