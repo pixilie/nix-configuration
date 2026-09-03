@@ -75,7 +75,7 @@
 
       services.gpg-agent = {
         enable = true;
-        pinentry.package = pkgs.pinentry-qt;
+        pinentry.package = if config.isSchoolProfile then pkgs.pinentry-curses else pkgs.pinentry-qt;
         defaultCacheTtl = 31536000;
         maxCacheTtl = 31536000;
       };
