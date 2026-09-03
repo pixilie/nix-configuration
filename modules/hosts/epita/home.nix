@@ -17,6 +17,7 @@
         self.homeModules.sh
         self.homeModules.fonts
         self.homeModules.options
+        self.homeModules.identity
 
         self.homeModules.specialPackages
       ];
@@ -24,6 +25,12 @@
       config = {
         useHelixCache = true;
         isSchoolProfile = true;
+
+        identity = {
+          name = "Kristen Couty";
+          email = "kristen.couty@epita.fr";
+          signingKey = "${config.home.homeDirectory}/.ssh/epita.pub";
+        };
 
         # General informations
         home.username = "kristen.couty";

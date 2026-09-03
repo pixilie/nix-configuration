@@ -47,7 +47,9 @@
 
       # Garbage collection is handled by programs.nh.clean (see nh.nix),
       # so the native nix.gc.automatic is left disabled to avoid conflict.
-      nix.settings.auto-optimise-store = true;
+      nix.optimise.automatic = true;
+
+      zramSwap.enable = true;
 
       # Boot settings
       boot = {
@@ -95,9 +97,19 @@
       services.udisks2.enable = true;
       services.devmon.enable = true;
 
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      nix.settings = {
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+
+        trusted-users = [ "kristen" ];
+
+        substituters = [ "https://nix-community.cachix.org" ];
+
+        trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
+      };
     };
 }

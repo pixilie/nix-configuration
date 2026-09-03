@@ -11,6 +11,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+    wrapper-modules.inputs.nixpkgs.follows = "nixpkgs";
 
     wakatime-ls.url = "github:mrnossiom/wakatime-ls";
     wakatime-ls.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +19,7 @@
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
 
-  claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
+    claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
   };
 
   outputs = inputs:

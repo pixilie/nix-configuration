@@ -62,7 +62,7 @@
           format = "{icon}";
           format-icons = { normal = " "; dnd = " "; };
           tooltip = false;
-          interval = 5;
+          interval = "once";
           return-type = "json";
           exec = ''
             MODE=$(${makoctlExe} mode 2>/dev/null || echo "default")

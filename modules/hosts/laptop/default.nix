@@ -1,12 +1,8 @@
-{ self, inputs, ... }:
+{ self, inputs, upkgsBySystem, ... }:
 let
   system = "x86_64-linux";
   pkgs = inputs.nixpkgs.legacyPackages.${system};
-
-  upkgs = import inputs.nixpkgs-unstable {
-    inherit system;
-    config.allowUnfree = true;
-  };
+  upkgs = upkgsBySystem.${system};
 in
 {
   flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {

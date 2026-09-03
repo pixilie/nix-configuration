@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-nix --extra-experimental-features "nix-command flakes" run home-manager/release-26.05 -- switch --flake .#epita_light "$@"

@@ -9,8 +9,7 @@
       ...
     }:
     let
-      email = "kristen.couty@gmail.com";
-      signingKey = "${config.home.homeDirectory}/.ssh/github.pub";
+      inherit (config.identity) name email signingKey;
       allowedSigners = "${config.home.homeDirectory}/.ssh/allowed_signers";
     in
     {
@@ -19,7 +18,7 @@
         lfs.enable = true;
 
         settings = {
-          user.name = "Kristen Couty";
+          user.name = name;
           user.email = email;
 
           alias = {

@@ -39,9 +39,8 @@
     };
   };
 
-  perSystem = { pkgs, system, lib, self', ... }:
-    let upkgs = import inputs.nixpkgs-unstable { inherit system; };
-    in {
+  perSystem = { pkgs, lib, self', upkgs, ... }:
+    {
       packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
         pkgs = upkgs;
         settings = {
