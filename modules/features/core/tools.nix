@@ -27,6 +27,7 @@
         nix-inspect
         nixos-anywhere
         nix-tree
+        gnumake
         killall
         tokei
         television
