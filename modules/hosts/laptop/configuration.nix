@@ -80,7 +80,13 @@
       # System related settings
       system = {
         autoUpgrade.enable = true;
+        autoUpgrade.flake = "github:pixilie/nix-configuration#laptop";
+        autoUpgrade.upgrade = false;
         autoUpgrade.allowReboot = true;
+        autoUpgrade.rebootWindow = {
+          lower = "02:00";
+          upper = "06:00";
+        };
         stateVersion = "25.11";
       };
 
