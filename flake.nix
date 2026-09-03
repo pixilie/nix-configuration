@@ -22,10 +22,11 @@
     claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       imports = [ (inputs.import-tree ./modules) ];
-      perSystem = { pkgs, ... }: { formatter = pkgs.nixfmt-rfc-style; };
+      perSystem = { pkgs, ... }: { formatter = pkgs.nixfmt-tree; };
     };
 }
