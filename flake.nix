@@ -27,6 +27,14 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       imports = [ (inputs.import-tree ./modules) ];
-      perSystem = { pkgs, ... }: { formatter = pkgs.nixfmt-tree; };
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-tree;
+
+          devShells.default = pkgs.mkShellNoCC {
+            packages = [ pkgs.gnumake ];
+          };
+        };
     };
 }

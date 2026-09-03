@@ -6,7 +6,9 @@
       enableDefaultConfig = false;
 
       settings = {
-        "*" = { addKeysToAgent = "yes"; };
+        "*" = {
+          addKeysToAgent = "yes";
+        };
 
         "github.com" = {
           hostname = "github.com";

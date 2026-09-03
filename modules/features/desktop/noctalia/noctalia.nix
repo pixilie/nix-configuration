@@ -1,5 +1,6 @@
 { self, inputs, ... }: {
-  perSystem = { upkgs, ... }:
+  perSystem =
+    { upkgs, ... }:
     {
 
       packages.noctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {

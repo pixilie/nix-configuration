@@ -1,4 +1,9 @@
-{ self, inputs, upkgsBySystem, ... }:
+{
+  self,
+  inputs,
+  upkgsBySystem,
+  ...
+}:
 let
   system = "x86_64-linux";
   pkgs = inputs.nixpkgs.legacyPackages.${system};

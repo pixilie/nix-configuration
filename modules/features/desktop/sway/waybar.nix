@@ -1,6 +1,12 @@
 { self, inputs, ... }: {
 
-  flake.homeModules.waybar = { pkgs, lib, config, ... }:
+  flake.homeModules.waybar =
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
       makoctlExe = "${pkgs.mako}/bin/makoctl";
       pavucontrolExe = "${pkgs.pavucontrol}/bin/pavucontrol";
@@ -51,7 +57,11 @@
 
         "group/misc" = {
           orientation = "inherit";
-          modules = [ "custom/notifications" "tray" "idle_inhibitor" ];
+          modules = [
+            "custom/notifications"
+            "tray"
+            "idle_inhibitor"
+          ];
           drawer = {
             transition-duration = 250;
             transition-left-to-right = false;
@@ -60,7 +70,10 @@
 
         "custom/notifications" = {
           format = "{icon}";
-          format-icons = { normal = " "; dnd = " "; };
+          format-icons = {
+            normal = " ";
+            dnd = " ";
+          };
           tooltip = false;
           interval = "once";
           return-type = "json";
@@ -78,7 +91,10 @@
 
         idle_inhibitor = {
           format = "{icon}";
-          format-icons = { activated = " "; deactivated = " "; };
+          format-icons = {
+            activated = " ";
+            deactivated = " ";
+          };
           tooltip = false;
         };
 
@@ -93,13 +109,23 @@
         };
 
         battery = {
-          states = { good = 60; warning = 30; critical = 10; };
+          states = {
+            good = 60;
+            warning = 30;
+            critical = 10;
+          };
           format-time = "{H}h {M}min";
           format = "{capacity}% {icon}";
           format-alt = "{time} {icon}";
           format-charging = "{capacity}%  ({time})";
           format-plugged = "{capacity}% ";
-          format-icons = [ " " " " " " " " " " ];
+          format-icons = [
+            " "
+            " "
+            " "
+            " "
+            " "
+          ];
           tooltip = true;
           tooltip-format = "{timeTo}";
         };
@@ -114,9 +140,17 @@
           format-source = "";
           format-source-muted = "  ";
           format-icons = {
-            headset = " "; headphone = " "; hands-free = " ";
-            phone = " "; portable = " "; car = " ";
-            default = [ "" " " "  " ];
+            headset = " ";
+            headphone = " ";
+            hands-free = " ";
+            phone = " ";
+            portable = " ";
+            car = " ";
+            default = [
+              ""
+              " "
+              "  "
+            ];
           };
           on-click = "${pavucontrolExe}";
         };
@@ -161,7 +195,12 @@
     in
     {
       home.packages = with pkgs; [
-        playerctl ripgrep pavucontrol font-awesome procps blueman
+        playerctl
+        ripgrep
+        pavucontrol
+        font-awesome
+        procps
+        blueman
       ];
 
       services.playerctld.enable = true;
@@ -189,8 +228,18 @@
             ipc = true;
             position = "bottom";
             modules-left = [ "sway/workspaces" ];
-            modules-right = [ "mpris" "gamemode" "bluetooth" "pulseaudio" "network" "battery" "clock" "group/misc" ];
-          } // modules-settings;
+            modules-right = [
+              "mpris"
+              "gamemode"
+              "bluetooth"
+              "pulseaudio"
+              "network"
+              "battery"
+              "clock"
+              "group/misc"
+            ];
+          }
+          // modules-settings;
         };
 
         style = ''
@@ -217,7 +266,11 @@
       };
 
       wayland.windowManager.sway.config.bars = [
-        { command = "${waybarExe}"; mode = "hide"; hiddenState = "hide"; }
+        {
+          command = "${waybarExe}";
+          mode = "hide";
+          hiddenState = "hide";
+        }
       ];
     };
 }
