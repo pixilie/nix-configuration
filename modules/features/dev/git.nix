@@ -16,6 +16,7 @@
       programs.git = {
         enable = true;
         lfs.enable = true;
+        package = if config.isLightProfile then pkgs.gitMinimal else pkgs.git;
 
         settings = {
           user.name = name;
