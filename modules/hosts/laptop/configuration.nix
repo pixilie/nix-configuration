@@ -61,8 +61,11 @@
       };
 
       # User related settings
+      programs.fish.enable = true;
+
       users.users.kristen = {
         isNormalUser = true;
+        shell = pkgs.fish;
         extraGroups = [
           "wheel"
           "networkmanager"
