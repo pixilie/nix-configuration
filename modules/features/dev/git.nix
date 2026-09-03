@@ -16,6 +16,7 @@
       programs.git = {
         enable = true;
         lfs.enable = true;
+        package = if config.isLightProfile then pkgs.gitMinimal else pkgs.git;
 
         settings = {
           user.name = name;
@@ -75,7 +76,7 @@
 
       services.gpg-agent = {
         enable = true;
-        pinentry.package = pkgs.pinentry-qt;
+        pinentry.package = if config.isSchoolProfile then pkgs.pinentry-curses else pkgs.pinentry-qt;
         defaultCacheTtl = 31536000;
         maxCacheTtl = 31536000;
       };
