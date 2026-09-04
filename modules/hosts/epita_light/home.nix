@@ -32,7 +32,7 @@
         home.homeDirectory = "/home/kristen.couty";
         home.stateVersion = "25.11";
 
-        xsession.windowManager.i3.config.bars = [ ];
+        programs.i3status.enable = true;
 
         programs.vim.defaultEditor = true;
 
