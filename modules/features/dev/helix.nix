@@ -17,9 +17,9 @@
           else
             inputs.helix-editor.packages.${pkgs.stdenv.hostPlatform.system}.helix;
 
-        defaultEditor = true;
+        defaultEditor = !config.isLightProfile;
 
-        extraPackages =
+        extraPackages = lib.optionals (!config.isLightProfile) (
           with pkgs;
           [
             wakatime-cli
@@ -35,7 +35,8 @@
             typescript-language-server
             nil
             nixfmt
-          ];
+          ]
+        );
 
         ignores = [
           "*.png"
@@ -95,7 +96,7 @@
           };
         };
 
-        languages = {
+        languages = lib.mkIf (!config.isLightProfile) {
           language-server = {
             wakatime.command = "wakatime-ls";
             rust-analyzer.config = {

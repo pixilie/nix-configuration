@@ -2,7 +2,12 @@
 {
 
   flake.homeModules.i3 =
-    { pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       modifier = "Mod4";
       terminal = "alacritty";
@@ -10,6 +15,13 @@
       down = "j";
       left = "h";
       right = "l";
+
+      fehExe = "${pkgs.feh}/bin/feh";
+      lockExe =
+        if config.isLightProfile then
+          "${lib.getExe pkgs.i3lock}"
+        else
+          "${lib.getExe pkgs.i3lock-fancy-rapid} 0 1";
     in
     {
       home.packages = with pkgs; [
@@ -17,7 +29,7 @@
         maim
         xclip
         feh
-        i3lock-fancy-rapid
+        (if config.isLightProfile then i3lock else i3lock-fancy-rapid)
       ];
 
       xsession.enable = true;
@@ -33,7 +45,7 @@
             "${modifier}+Return" = "exec ${terminal}";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+Return" = "exec firefox";
-            "${modifier}+Escape" = "exec sleep 0.3 && i3lock-fancy-rapid 0 1";
+            "${modifier}+Escape" = "exec sleep 0.3 && ${lockExe}";
             "${modifier}+Shift+e" = "exit";
 
             # Movements
@@ -88,7 +100,11 @@
           };
 
           startup = [
-            { command = "feh --bg-fill ${../../../../assets/media/wallpaper_dark.png}"; }
+            {
+              command = "${fehExe} --bg-fill ${../../../../assets/media/wallpaper_dark.png}";
+              always = true;
+              notification = false;
+            }
           ];
 
           fonts = {

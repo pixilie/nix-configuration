@@ -6,6 +6,7 @@
     {
       imports = [
         self.homeModules.i3
+        self.homeModules.helix
         self.homeModules.vim
         self.homeModules.sh
         self.homeModules.git
@@ -16,6 +17,7 @@
       ];
 
       config = {
+        useHelixCache = true;
         isSchoolProfile = true;
         isLightProfile = true;
 
@@ -30,7 +32,7 @@
         home.homeDirectory = "/home/kristen.couty";
         home.stateVersion = "25.11";
 
-        xsession.windowManager.i3.config.bars = [ ];
+        programs.i3status.enable = true;
 
         programs.vim.defaultEditor = true;
 
