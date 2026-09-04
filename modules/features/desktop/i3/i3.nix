@@ -100,7 +100,11 @@
           };
 
           startup = [
-            { command = "feh --bg-fill ${../../../../assets/media/wallpaper_dark.png}"; }
+            {
+              command = "${fehExe} --bg-fill ${../../../../assets/media/wallpaper_dark.png}";
+              always = true;
+              notification = false;
+            }
           ];
 
           fonts = {
