@@ -10,6 +10,7 @@
         self.homeModules.vim
         self.homeModules.sh
         self.homeModules.git
+        self.homeModules.fonts
 
         self.homeModules.options
         self.homeModules.identity
