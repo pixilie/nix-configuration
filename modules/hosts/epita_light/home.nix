@@ -27,6 +27,10 @@
           signingKey = "${config.home.homeDirectory}/.ssh/epita.pub";
         };
 
+        home.packages = with pkgs; [
+          wakatime-cli
+        ];
+
         # General informations
         home.username = "kristen.couty";
         home.homeDirectory = "/home/kristen.couty";
