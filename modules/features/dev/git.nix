@@ -37,7 +37,7 @@
             ca = "commit --amend";
           };
 
-          init.defaultBranch = "main";
+          init.defaultBranch = if config.isSchoolProfile then "master" else "main";
           push.autoSetupRemote = true;
           pull.rebase = true;
 
