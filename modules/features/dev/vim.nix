@@ -10,6 +10,7 @@
         plugins = with pkgs.vimPlugins; [
           vim-sensible
           onedark-vim
+          vim-wakatime
         ];
 
         settings = {
