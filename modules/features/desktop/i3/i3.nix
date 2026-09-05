@@ -2,12 +2,7 @@
 {
 
   flake.homeModules.i3 =
-    {
-      config,
-      pkgs,
-      lib,
-      ...
-    }:
+    { pkgs, lib, ... }:
     let
       modifier = "Mod4";
       terminal = "alacritty";
@@ -16,12 +11,10 @@
       left = "h";
       right = "l";
 
+      wallpaper = ../../../../assets/media/wallpaper_dark.png;
+
       fehExe = "${pkgs.feh}/bin/feh";
-      lockExe =
-        if config.isLightProfile then
-          "${lib.getExe pkgs.i3lock}"
-        else
-          "${lib.getExe pkgs.i3lock-fancy-rapid} 0 1";
+      lockExe = "i3lock --ignore-empty-password --image ${wallpaper}";
     in
     {
       home.packages = with pkgs; [
@@ -29,7 +22,6 @@
         maim
         xclip
         feh
-        (if config.isLightProfile then i3lock else i3lock-fancy-rapid)
       ];
 
       xsession.enable = true;
@@ -101,7 +93,7 @@
 
           startup = [
             {
-              command = "${fehExe} --bg-fill ${../../../../assets/media/wallpaper_dark.png}";
+              command = "${fehExe} --bg-fill ${wallpaper}";
               always = true;
               notification = false;
             }

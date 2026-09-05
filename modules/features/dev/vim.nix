@@ -2,7 +2,7 @@
 {
 
   flake.homeModules.vim =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       programs.vim = {
         enable = true;
@@ -27,6 +27,8 @@
         };
 
         extraConfig = ''
+          let g:wakatime_CLIPath = '${lib.getExe pkgs.wakatime-cli}'
+
           set termguicolors
           colorscheme onedark
 

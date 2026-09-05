@@ -2,7 +2,7 @@
 {
 
   flake.homeModules.epitaLightHome =
-    { config, pkgs, ... }:
+    { config, ... }:
     {
       imports = [
         self.homeModules.i3
@@ -10,6 +10,7 @@
         self.homeModules.vim
         self.homeModules.sh
         self.homeModules.git
+        self.homeModules.fonts
 
         self.homeModules.options
         self.homeModules.identity
@@ -26,10 +27,6 @@
           email = "kristen.couty@epita.fr";
           signingKey = "${config.home.homeDirectory}/.ssh/epita.pub";
         };
-
-        home.packages = with pkgs; [
-          wakatime-cli
-        ];
 
         # General informations
         home.username = "kristen.couty";
