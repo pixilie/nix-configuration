@@ -19,24 +19,25 @@
 
         defaultEditor = !config.isLightProfile;
 
-        extraPackages = lib.optionals (!config.isLightProfile) (
+        extraPackages =
           with pkgs;
           [
             wakatime-cli
             inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.wakatime-ls
-            clang-tools
-            lldb_21
           ]
-          ++ lib.optionals (!config.isSchoolProfile) [
-            ruff
-            pyright
-            marksman
-            vscode-langservers-extracted
-            typescript-language-server
-            nil
-            nixfmt
-          ]
-        );
+          ++ lib.optionals (!config.isLightProfile) (
+            with pkgs;
+            [
+              clang-tools
+              lldb_21
+            ]
+            ++ lib.optionals (!config.isSchoolProfile) [
+              ruff
+              pyright
+              nil
+              nixfmt
+            ]
+          );
 
         ignores = [
           "*.png"
@@ -96,9 +97,11 @@
           };
         };
 
-        languages = lib.mkIf (!config.isLightProfile) {
+        languages = {
           language-server = {
             wakatime.command = "wakatime-ls";
+          }
+          // lib.optionalAttrs (!config.isLightProfile) {
             rust-analyzer.config = {
               check.command = "clippy";
             };
@@ -119,11 +122,18 @@
               language-servers = [
                 "clangd"
                 "wakatime"
-                "lldb"
               ];
               formatter = {
                 command = "clang-format";
               };
+            }
+            {
+              name = "bash";
+              auto-format = false;
+              language-servers = [
+                "bash-language-server"
+                "wakatime"
+              ];
             }
           ]
           ++ lib.optionals (!config.isSchoolProfile) [
@@ -153,61 +163,6 @@
                 "rust-analyzer"
                 "wakatime"
               ];
-            }
-            {
-              name = "markdown";
-              language-servers = [ "marksman" ];
-            }
-            {
-              name = "javascript";
-              auto-format = false;
-              language-servers = [
-                "typescript-language-server"
-                "vscode-eslint-language-server"
-                "wakatime"
-              ];
-            }
-            {
-              name = "typescript";
-              auto-format = false;
-              language-servers = [
-                "typescript-language-server"
-                "vscode-eslint-language-server"
-                "wakatime"
-              ];
-            }
-            {
-              name = "html";
-              auto-format = false;
-              language-servers = [
-                "vscode-html-language-server"
-                "wakatime"
-              ];
-            }
-            {
-              name = "css";
-              auto-format = false;
-              language-servers = [
-                "vscode-css-language-server"
-                "wakatime"
-              ];
-            }
-            {
-              name = "json";
-              auto-format = false;
-              language-servers = [ "vscode-json-language-server" ];
-            }
-            {
-              name = "cpp";
-              auto-format = false;
-              language-servers = [
-                "clangd"
-                "wakatime"
-                "lldb"
-              ];
-              formatter = {
-                command = "clang-format";
-              };
             }
           ];
         };
