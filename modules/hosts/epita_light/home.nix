@@ -6,7 +6,6 @@
     {
       imports = [
         self.homeModules.i3
-        self.homeModules.helix
         self.homeModules.vim
         self.homeModules.sh
         self.homeModules.git
