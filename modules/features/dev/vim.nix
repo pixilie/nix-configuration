@@ -11,6 +11,7 @@
           vim-sensible
           onedark-vim
           vim-wakatime
+          vim-clang-format
         ];
 
         settings = {
