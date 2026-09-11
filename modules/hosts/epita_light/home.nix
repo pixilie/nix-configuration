@@ -7,6 +7,7 @@
       imports = [
         self.homeModules.i3
         self.homeModules.vim
+        self.homeModules.helix
         self.homeModules.sh
         self.homeModules.git
         self.homeModules.fonts

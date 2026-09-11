@@ -11,7 +11,7 @@
       left = "h";
       right = "l";
 
-      wallpaper = ../../../../assets/media/wallpaper_dark.png;
+      wallpaper = ../../../../assets/media/wallpaper_dark_resized.png;
 
       fehExe = "${pkgs.feh}/bin/feh";
       lockExe = "i3lock --ignore-empty-password --image ${wallpaper}";
