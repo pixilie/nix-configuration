@@ -24,6 +24,8 @@
         self.homeModules.helix
         self.homeModules.vim
         self.homeModules.zed
+        self.homeModules.wakatime
+        self.homeModules.secrets
         self.homeModules.sh
         self.homeModules.fonts
         self.homeModules.tools

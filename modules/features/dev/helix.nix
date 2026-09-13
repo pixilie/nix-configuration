@@ -1,4 +1,5 @@
-{ self, inputs, ... }: {
+{ self, inputs, ... }:
+{
 
   flake.homeModules.helix =
     {
@@ -7,6 +8,115 @@
       lib,
       ...
     }:
+    let
+      upstreamServers = {
+        bash = [ "bash-language-server" ];
+        c = [ "clangd" ];
+        cpp = [ "clangd" ];
+        git-commit = [ ];
+        go = [ "gopls" ];
+        haskell = [ "haskell-language-server" ];
+        java = [ "jdtls" ];
+        json = [ "vscode-json-language-server" ];
+        latex = [ "texlab" ];
+        make = [ ];
+        markdown = [ "marksman" ];
+        nasm = [ "asm-lsp" ];
+        nix = [ "nil" ];
+        ocaml = [ "ocamllsp" ];
+        ocaml-interface = [ "ocamllsp" ];
+        python = [
+          "ruff"
+          "pylsp"
+        ];
+        rust = [ "rust-analyzer" ];
+        sql = [ ];
+        toml = [ "taplo" ];
+        xml = [ ];
+        yaml = [ "yaml-language-server" ];
+      };
+
+      schoolLanguages = lib.mapAttrsToList (name: servers: {
+        inherit name;
+        auto-format = false;
+        language-servers = servers ++ [ "wakatime" ];
+      }) upstreamServers;
+
+      personalLanguages = [
+        {
+          name = "c";
+          auto-format = false;
+          language-servers = [
+            "clangd"
+            "wakatime"
+          ];
+          formatter = {
+            command = "clang-format";
+          };
+        }
+        {
+          name = "cpp";
+          auto-format = false;
+          language-servers = [
+            "clangd"
+            "wakatime"
+          ];
+          formatter = {
+            command = "clang-format";
+          };
+        }
+        {
+          name = "bash";
+          auto-format = false;
+          language-servers = [
+            "bash-language-server"
+            "wakatime"
+          ];
+        }
+        {
+          name = "python";
+          auto-format = false;
+          language-servers = [
+            "pyright"
+            "ruff"
+            "wakatime"
+          ];
+        }
+        {
+          name = "nix";
+          formatter = {
+            command = "nixfmt";
+          };
+          language-servers = [
+            "nil"
+            "wakatime"
+          ];
+        }
+        {
+          name = "rust";
+          auto-format = false;
+          language-servers = [
+            "rust-analyzer"
+            "wakatime"
+          ];
+        }
+        {
+          name = "markdown";
+          auto-format = false;
+          language-servers = [
+            "marksman"
+            "wakatime"
+          ];
+        }
+        {
+          name = "toml";
+          language-servers = [
+            "taplo"
+            "wakatime"
+          ];
+        }
+      ];
+    in
     {
       programs.helix = {
         enable = true;
@@ -19,25 +129,24 @@
 
         defaultEditor = !config.isLightProfile;
 
-        extraPackages =
+        extraPackages = [
+          pkgs.wakatime-cli
+          inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.wakatime-ls
+        ]
+        ++ lib.optionals (!config.isSchoolProfile) (
           with pkgs;
           [
-            wakatime-cli
-            inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.wakatime-ls
+            bash-language-server
+            clang-tools
+            lldb_21
+            marksman
+            nil
+            nixfmt
+            pyright
+            ruff
+            taplo
           ]
-          ++ lib.optionals (!config.isLightProfile) (
-            with pkgs;
-            [
-              clang-tools
-              lldb_21
-            ]
-            ++ lib.optionals (!config.isSchoolProfile) [
-              ruff
-              pyright
-              nil
-              nixfmt
-            ]
-          );
+        );
 
         ignores = [
           "*.png"
@@ -101,7 +210,7 @@
           language-server = {
             wakatime.command = "wakatime-ls";
           }
-          // lib.optionalAttrs (!config.isLightProfile) {
+          // lib.optionalAttrs (!config.isSchoolProfile) {
             rust-analyzer.config = {
               check.command = "clippy";
             };
@@ -115,56 +224,7 @@
             };
           };
 
-          language = [
-            {
-              name = "c";
-              auto-format = false;
-              language-servers = [
-                "clangd"
-                "wakatime"
-              ];
-              formatter = {
-                command = "clang-format";
-              };
-            }
-            {
-              name = "bash";
-              auto-format = false;
-              language-servers = [
-                "bash-language-server"
-                "wakatime"
-              ];
-            }
-          ]
-          ++ lib.optionals (!config.isSchoolProfile) [
-            {
-              name = "python";
-              auto-format = false;
-              language-servers = [
-                "pyright"
-                "ruff"
-                "wakatime"
-              ];
-            }
-            {
-              name = "nix";
-              formatter = {
-                command = "nixfmt";
-              };
-              language-servers = [
-                "nil"
-                "wakatime"
-              ];
-            }
-            {
-              name = "rust";
-              auto-format = false;
-              language-servers = [
-                "rust-analyzer"
-                "wakatime"
-              ];
-            }
-          ];
+          language = if config.isSchoolProfile then schoolLanguages else personalLanguages;
         };
       };
     };
