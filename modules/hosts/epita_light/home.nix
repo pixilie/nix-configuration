@@ -8,6 +8,8 @@
         self.homeModules.i3
         self.homeModules.vim
         self.homeModules.helix
+        self.homeModules.wakatime
+        self.homeModules.secrets
         self.homeModules.sh
         self.homeModules.git
         self.homeModules.fonts
@@ -21,6 +23,8 @@
         useHelixCache = true;
         isSchoolProfile = true;
         isLightProfile = true;
+
+        secrets.identityFile = "${config.home.homeDirectory}/.ssh/epita";
 
         identity = {
           name = "Kristen Couty";

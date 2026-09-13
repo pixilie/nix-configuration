@@ -205,6 +205,7 @@
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "sops-nix": "sops-nix",
         "wakatime-ls": "wakatime-ls",
         "wrapper-modules": "wrapper-modules"
       }
@@ -248,6 +249,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788914643,
+        "narHash": "sha256-4GuMPW90JSxXWDPUB9M+1m7fYbe3H0apOd86/zBQ2Kw=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "13616fff713a9f94055c66f15687ebdc17a335df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     },

@@ -15,7 +15,7 @@ This repository contains declarative configurations for my personal laptop and m
 │   ├── features/    # Reusable modular blocks
 │   │   ├── core/    # CLI tools, Fish shell, Git, SSH, XDG, per-profile identity
 │   │   ├── desktop/ # WMs (Niri, Sway, i3), Waybar, Fonts, GTK, SDDM, Noctalia
-│   │   ├── dev/     # Helix, Zed, Git configurations
+│   │   ├── dev/     # Helix, Zed, Vim, Git, WakaTime configurations
 │   │   ├── gaming/  # Steam, Gamemode
 │   │   └── system/  # Network, Bluetooth, Audio (Pipewire), Docker, Power Management
 │   └── hosts/            # Host-specific configurations
@@ -25,6 +25,7 @@ This repository contains declarative configurations for my personal laptop and m
 ├── templates/       # Nix flake templates for various programming languages
 ├── Makefile         # Entry point for every profile
 ├── .envrc           # direnv hook loading the flake dev shell (provides make)
+├── .sops.yaml       # age recipients allowed to decrypt the secrets
 └── flake.nix        # The entry point of the system
 ```
 
@@ -46,6 +47,31 @@ identity = {
 them on every activation so git can verify its own signatures.
 
 ---
+
+## 🔐 Secrets
+
+Secrets live encrypted in `secrets/secrets.yaml`, handled by
+[sops-nix](https://github.com/Mic92/sops-nix). `.sops.yaml` lists the age recipients allowed to
+decrypt them, derived from the ssh public key of each profile.
+
+Every profile decrypts with the ssh private key it already owns — ``~/.ssh/github`` on the
+laptop, ``~/.ssh/epita`` at school — selected through ``secrets.identityFile``. Decryption runs
+in the ``sops-nix`` user service, at login and on every activation. Rendered files land in
+``$XDG_RUNTIME_DIR``, never in the nix store nor in the repository.
+
+``~/.wakatime.cfg`` is produced that way through ``sops.templates``, so the wakapi API key
+only ever exists in clear in a ``0400`` file inside the runtime directory.
+
+To edit the secrets:
+
+```bash
+make secrets                          # decrypts with ~/.ssh/github
+make secrets IDENTITY=~/.ssh/epita    # from a school machine
+```
+
+Adding a machine means appending its age recipient to ``.sops.yaml``
+(``ssh-to-age < ~/.ssh/<key>.pub``) then running ``sops updatekeys secrets/secrets.yaml``.
+Keys must be ed25519 and passphrase-less.
 
 ## 🚀 Installation & Usage
 

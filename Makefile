@@ -1,6 +1,8 @@
 NIX ?= nix
 NIX_FLAGS := --extra-experimental-features "nix-command flakes"
 
+IDENTITY ?= $(HOME)/.ssh/github
+
 WALLPAPER := assets/media/wallpaper_dark.png
 
 hm-switch = out=$$($(NIX) $(NIX_FLAGS) build --no-link --print-out-paths .\#homeConfigurations.$(1).activationPackage) && "$$out/activate"
@@ -30,3 +32,7 @@ epita:
 epita-light:
 	@$(call hm-switch,epita_light)
 	@$(call i3-refresh)
+
+secrets:
+	@SOPS_AGE_KEY="$$($(NIX) $(NIX_FLAGS) run nixpkgs#ssh-to-age -- -private-key -i $(IDENTITY))" \
+		$(NIX) $(NIX_FLAGS) run nixpkgs#sops -- secrets/secrets.yaml
