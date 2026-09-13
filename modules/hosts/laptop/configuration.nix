@@ -89,7 +89,7 @@
           lower = "02:00";
           upper = "06:00";
         };
-        stateVersion = "25.11";
+        stateVersion = "26.05";
       };
 
       services.thermald.enable = true;
