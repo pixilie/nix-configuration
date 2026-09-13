@@ -49,7 +49,7 @@
         # General informations
         home.username = "kristen";
         home.homeDirectory = "/home/kristen";
-        home.stateVersion = "25.11";
+        home.stateVersion = "26.05";
 
         # Packages
         home.packages = with pkgs; [

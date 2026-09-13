@@ -35,7 +35,7 @@
         # General informations
         home.username = "kristen.couty";
         home.homeDirectory = "/home/kristen.couty";
-        home.stateVersion = "25.11";
+        home.stateVersion = "26.05";
 
         programs.i3status.enable = true;
 
