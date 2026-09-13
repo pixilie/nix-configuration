@@ -8,6 +8,8 @@
         enable = true;
         package = upkgs.zed-editor;
 
+        mutableUserSettings = false;
+
         extraPackages = with pkgs; [
           wakatime-cli
         ];
