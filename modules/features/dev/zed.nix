@@ -71,6 +71,16 @@
             line_width = 1;
             active_line_width = 2;
           };
+
+          lsp = {
+            vtsls = {
+              enable_lsp_tasks = true;
+              settings = {
+                typescript.updateImportsOnFileMove.enabled = "always";
+                javascript.updateImportsOnFileMove.enabled = "always";
+              };
+            };
+          };
         };
       };
     };
