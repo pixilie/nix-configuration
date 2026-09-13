@@ -8,6 +8,8 @@
         enable = true;
         package = upkgs.zed-editor;
 
+        mutableUserSettings = false;
+
         extraPackages = with pkgs; [
           wakatime-cli
         ];
@@ -32,6 +34,9 @@
           show_edit_predictions = false;
           features = {
             edit_prediction_provider = "none";
+          };
+          edit_predictions = {
+            provider = "none";
           };
           show_completions_on_input = true;
 
@@ -65,6 +70,16 @@
           indent_guides = {
             line_width = 1;
             active_line_width = 2;
+          };
+
+          lsp = {
+            vtsls = {
+              enable_lsp_tasks = true;
+              settings = {
+                typescript.updateImportsOnFileMove.enabled = "always";
+                javascript.updateImportsOnFileMove.enabled = "always";
+              };
+            };
           };
         };
       };
