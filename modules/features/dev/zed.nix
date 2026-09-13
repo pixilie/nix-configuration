@@ -35,6 +35,9 @@
           features = {
             edit_prediction_provider = "none";
           };
+          edit_predictions = {
+            provider = "none";
+          };
           show_completions_on_input = true;
 
           auto_install_extensions = {
