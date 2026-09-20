@@ -1,10 +1,8 @@
 keys:
-  - &laptop age15vy242jmy8fzf2er007uphq3lk2yx2dcx8u8r4ed6wwgmu293plq79s7tg
-  - &epita age1r9v6eq26s55sy0urlrt6uy7ggm3gq440fkzcfcw8yj5a0zxjsdhqln7zse
+  - &secret age12ejz2wlm46zluaehjwv8hswg0wvacdfxv9lwqwjfm8f6k7n8v3es74npad
 
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:
-          - *laptop
-          - *epita
+          - *secret
