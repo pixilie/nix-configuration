@@ -52,26 +52,31 @@ them on every activation so git can verify its own signatures.
 
 Secrets live encrypted in `secrets/secrets.yaml`, handled by
 [sops-nix](https://github.com/Mic92/sops-nix). `.sops.yaml` lists the age recipients allowed to
-decrypt them, derived from the ssh public key of each profile.
+decrypt them.
 
-Every profile decrypts with the ssh private key it already owns — ``~/.ssh/github`` on the
-laptop, ``~/.ssh/epita`` at school — selected through ``secrets.identityFile``. Decryption runs
-in the ``sops-nix`` user service, at login and on every activation. Rendered files land in
+A single dedicated ssh key, ``~/.ssh/secret``, is the age identity of every profile — it exists
+only to unlock these secrets, and is deliberately separate from the git signing and
+authentication keys. Its path is exposed as ``secrets.identityFile``. Decryption runs in the
+``sops-nix`` user service, at login and on every activation. Rendered files land in
 ``$XDG_RUNTIME_DIR``, never in the nix store nor in the repository.
 
 ``~/.wakatime.cfg`` is produced that way through ``sops.templates``, so the wakapi API key
 only ever exists in clear in a ``0400`` file inside the runtime directory.
 
+Every new machine needs ``~/.ssh/secret`` copied over, mode ``0600``. Nothing else: the
+encrypted payload comes from the repository.
+
 To edit the secrets:
 
 ```bash
-make secrets                          # decrypts with ~/.ssh/github
-make secrets IDENTITY=~/.ssh/epita    # from a school machine
+make secrets                        # decrypts with ~/.ssh/secret
+make secrets IDENTITY=~/.ssh/other  # override the identity
 ```
 
-Adding a machine means appending its age recipient to ``.sops.yaml``
-(``ssh-to-age < ~/.ssh/<key>.pub``) then running ``sops updatekeys secrets/secrets.yaml``.
-Keys must be ed25519 and passphrase-less.
+Rotating the key means generating a new one, replacing the recipient in ``.sops.yaml``
+(``ssh-to-age < ~/.ssh/secret.pub``) and running ``sops updatekeys secrets/secrets.yaml``
+while the old key is still available to decrypt. The key must be ed25519 and passphrase-less,
+since the service decrypts unattended.
 
 ## 🚀 Installation & Usage
 

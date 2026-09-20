@@ -24,8 +24,6 @@
         isSchoolProfile = true;
         isLightProfile = true;
 
-        secrets.identityFile = "${config.home.homeDirectory}/.ssh/epita";
-
         identity = {
           name = "Kristen Couty";
           email = "kristen.couty@epita.fr";

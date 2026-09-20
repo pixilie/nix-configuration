@@ -1,7 +1,7 @@
 NIX ?= nix
 NIX_FLAGS := --extra-experimental-features "nix-command flakes"
 
-IDENTITY ?= $(HOME)/.ssh/github
+IDENTITY ?= $(HOME)/.ssh/secret
 
 WALLPAPER := assets/media/wallpaper_dark.png
 

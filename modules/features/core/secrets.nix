@@ -12,10 +12,10 @@
 
       options.secrets.identityFile = lib.mkOption {
         type = lib.types.str;
-        default = "${config.home.homeDirectory}/.ssh/github";
+        default = "${config.home.homeDirectory}/.ssh/secret";
         description = ''
-          Passphrase-less ed25519 ssh private key used as an age identity to
-          decrypt the sops files of this profile
+          Dedicated passphrase-less ed25519 ssh private key used as an age
+          identity to decrypt the sops files of this profile
         '';
       };
 
