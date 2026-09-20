@@ -130,6 +130,10 @@
             auto-save = true;
             mouse = false;
             bufferline = "multiple";
+            cursorline = true;
+            color-modes = true;
+            undercurl = true;
+            popup-border = "all";
 
             end-of-line-diagnostics = "hint";
             inline-diagnostics = {
@@ -150,6 +154,7 @@
 
             lsp = {
               display-inlay-hints = true;
+              display-progress-messages = true;
             };
           };
 
