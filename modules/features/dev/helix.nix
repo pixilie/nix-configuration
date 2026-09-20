@@ -126,7 +126,7 @@
         settings = {
           theme = "onedark";
           editor = {
-            auto-format = true;
+            auto-format = !config.isSchoolProfile;
             auto-save = true;
             mouse = false;
             bufferline = "multiple";
