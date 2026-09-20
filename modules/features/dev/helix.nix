@@ -9,40 +9,7 @@
       ...
     }:
     let
-      upstreamServers = {
-        bash = [ "bash-language-server" ];
-        c = [ "clangd" ];
-        cpp = [ "clangd" ];
-        git-commit = [ ];
-        go = [ "gopls" ];
-        haskell = [ "haskell-language-server" ];
-        java = [ "jdtls" ];
-        json = [ "vscode-json-language-server" ];
-        latex = [ "texlab" ];
-        make = [ ];
-        markdown = [ "marksman" ];
-        nasm = [ "asm-lsp" ];
-        nix = [ "nil" ];
-        ocaml = [ "ocamllsp" ];
-        ocaml-interface = [ "ocamllsp" ];
-        python = [
-          "ruff"
-          "pylsp"
-        ];
-        rust = [ "rust-analyzer" ];
-        sql = [ ];
-        toml = [ "taplo" ];
-        xml = [ ];
-        yaml = [ "yaml-language-server" ];
-      };
-
-      schoolLanguages = lib.mapAttrsToList (name: servers: {
-        inherit name;
-        auto-format = false;
-        language-servers = servers ++ [ "wakatime" ];
-      }) upstreamServers;
-
-      personalLanguages = [
+      schoolLanguages = [
         {
           name = "c";
           auto-format = false;
@@ -50,12 +17,25 @@
             "clangd"
             "wakatime"
           ];
-          formatter = {
-            command = "clang-format";
-          };
         }
         {
-          name = "cpp";
+          name = "bash";
+          auto-format = false;
+          language-servers = [
+            "bash-language-server"
+            "wakatime"
+          ];
+        }
+        {
+          name = "make";
+          auto-format = false;
+          language-servers = [ "wakatime" ];
+        }
+      ];
+
+      personalLanguages = [
+        {
+          name = "c";
           auto-format = false;
           language-servers = [
             "clangd"
@@ -100,21 +80,6 @@
             "wakatime"
           ];
         }
-        {
-          name = "markdown";
-          auto-format = false;
-          language-servers = [
-            "marksman"
-            "wakatime"
-          ];
-        }
-        {
-          name = "toml";
-          language-servers = [
-            "taplo"
-            "wakatime"
-          ];
-        }
       ];
     in
     {
@@ -139,12 +104,10 @@
             bash-language-server
             clang-tools
             lldb_21
-            marksman
             nil
             nixfmt
             pyright
             ruff
-            taplo
           ]
         );
 
