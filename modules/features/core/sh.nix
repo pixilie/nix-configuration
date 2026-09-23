@@ -1,4 +1,5 @@
-{ self, inputs, ... }: {
+{ self, inputs, ... }:
+{
 
   flake.homeModules.sh =
     {
@@ -7,6 +8,67 @@
       config,
       ...
     }:
+    let
+      tomlFormat = pkgs.formats.toml { };
+
+      darkColors = {
+        primary = {
+          background = "#000000";
+          foreground = "#fffaf3";
+        };
+
+        normal = {
+          black = "#222222";
+          red = "#ff000f";
+          green = "#8ce00a";
+          yellow = "#ffb900";
+          blue = "#008df8";
+          magenta = "#FF00FF";
+          cyan = "#00d7eb";
+          white = "#ffffff";
+        };
+
+        bright = {
+          black = "#444444";
+          red = "#ff273f";
+          green = "#abe05a";
+          yellow = "#ffd141";
+          blue = "#0092ff";
+          magenta = "#6c43a5";
+          cyan = "#67ffef";
+          white = "#ffffff";
+        };
+      };
+
+      lightColors = {
+        primary = {
+          background = "#fafafa";
+          foreground = "#383a42";
+        };
+
+        normal = {
+          black = "#383a42";
+          red = "#e45649";
+          green = "#50a14f";
+          yellow = "#c18401";
+          blue = "#4078f2";
+          magenta = "#a626a4";
+          cyan = "#0184bc";
+          white = "#fafafa";
+        };
+
+        bright = {
+          black = "#4f525e";
+          red = "#e06c75";
+          green = "#98c379";
+          yellow = "#e5c07b";
+          blue = "#61afef";
+          magenta = "#c678dd";
+          cyan = "#56b6c2";
+          white = "#ffffff";
+        };
+      };
+    in
     lib.mkMerge [
       {
         programs.alacritty = {
@@ -32,38 +94,6 @@
               style = {
                 shape = "Beam";
                 blinking = "Always";
-              };
-            };
-
-            colors = {
-              # Default colors
-              primary = {
-                background = "#000000";
-                foreground = "#fffaf3";
-              };
-
-              # Normal colors
-              normal = {
-                black = "#222222";
-                red = "#ff000f";
-                green = "#8ce00a";
-                yellow = "#ffb900";
-                blue = "#008df8";
-                magenta = "#FF00FF";
-                cyan = "#00d7eb";
-                white = "#ffffff";
-              };
-
-              # Bright colors
-              bright = {
-                black = "#444444";
-                red = "#ff273f";
-                green = "#abe05a";
-                yellow = "#ffd141";
-                blue = "#0092ff";
-                magenta = "#6c43a5";
-                cyan = "#67ffef";
-                white = "#ffffff";
               };
             };
           };
@@ -92,6 +122,25 @@
           };
         };
       }
+
+      (lib.mkIf config.isSchoolProfile {
+        programs.alacritty.settings.colors = darkColors;
+      })
+
+      (lib.mkIf (!config.isSchoolProfile) {
+        programs.alacritty.settings.general.import = [
+          "${config.xdg.configHome}/alacritty/colors.toml"
+        ];
+
+        xdg.configFile = {
+          "alacritty/colors-dark.toml".source = tomlFormat.generate "alacritty-colors-dark" {
+            colors = darkColors;
+          };
+          "alacritty/colors-light.toml".source = tomlFormat.generate "alacritty-colors-light" {
+            colors = lightColors;
+          };
+        };
+      })
 
       (lib.mkIf (!config.isLightProfile) {
         home.packages = with pkgs; [
