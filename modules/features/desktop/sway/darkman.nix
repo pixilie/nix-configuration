@@ -10,6 +10,8 @@
     let
       pkillExe = "${pkgs.procps}/bin/pkill";
       lnExe = "${pkgs.coreutils}/bin/ln";
+      catExe = "${pkgs.coreutils}/bin/cat";
+      alacrittyColors = "${config.xdg.configHome}/alacritty";
     in
     {
       services.darkman = {
@@ -42,6 +44,10 @@
             ${lnExe} -sf ${config.xdg.configHome}/waybar/colors-dark.css ${config.xdg.configHome}/waybar/colors.css
             ${pkillExe} -x -SIGUSR2 waybar
           '';
+
+          alacritty = ''
+            ${catExe} ${alacrittyColors}/colors-dark.toml > ${alacrittyColors}/colors.toml
+          '';
         };
 
         lightModeScripts = {
@@ -64,6 +70,10 @@
           waybar-theme = ''
             ${lnExe} -sf ${config.xdg.configHome}/waybar/colors-light.css ${config.xdg.configHome}/waybar/colors.css
             ${pkillExe} -x -SIGUSR2 waybar
+          '';
+
+          alacritty = ''
+            ${catExe} ${alacrittyColors}/colors-light.toml > ${alacrittyColors}/colors.toml
           '';
         };
       };
