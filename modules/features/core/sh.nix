@@ -20,21 +20,21 @@
         normal = {
           black = "#222222";
           red = "#ff000f";
-          green = "#8ce00a";
+          green = "#9bff00";
           yellow = "#ffb900";
-          blue = "#008df8";
-          magenta = "#FF00FF";
-          cyan = "#00d7eb";
+          blue = "#0091ff";
+          magenta = "#ff00ff";
+          cyan = "#00e9ff";
           white = "#ffffff";
         };
 
         bright = {
           black = "#444444";
-          red = "#ff273f";
-          green = "#abe05a";
-          yellow = "#ffd141";
-          blue = "#0092ff";
-          magenta = "#6c43a5";
+          red = "#ff4d60";
+          green = "#b8ff4d";
+          yellow = "#ffd44d";
+          blue = "#4db3ff";
+          magenta = "#ff4dff";
           cyan = "#67ffef";
           white = "#ffffff";
         };
