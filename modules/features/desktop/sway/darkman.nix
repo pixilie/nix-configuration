@@ -12,6 +12,9 @@
       lnExe = "${pkgs.coreutils}/bin/ln";
       catExe = "${pkgs.coreutils}/bin/cat";
       alacrittyColors = "${config.xdg.configHome}/alacritty";
+      helixThemes = "${config.xdg.configHome}/helix/themes";
+      mkdirExe = "${pkgs.coreutils}/bin/mkdir";
+      echoExe = "${pkgs.coreutils}/bin/echo";
     in
     {
       services.darkman = {
@@ -48,6 +51,13 @@
           alacritty = ''
             ${catExe} ${alacrittyColors}/colors-dark.toml > ${alacrittyColors}/colors.toml
           '';
+
+          helix = ''
+            ${mkdirExe} -p ${helixThemes}
+            ${echoExe} 'inherits = "onedark"' > ${helixThemes}/current.toml
+            ${pkillExe} -USR1 -x hx || true
+            ${pkillExe} -USR1 -x .hx-wrapped_ || true
+          '';
         };
 
         lightModeScripts = {
@@ -74,6 +84,13 @@
 
           alacritty = ''
             ${catExe} ${alacrittyColors}/colors-light.toml > ${alacrittyColors}/colors.toml
+          '';
+
+          helix = ''
+            ${mkdirExe} -p ${helixThemes}
+            ${echoExe} 'inherits = "onelight"' > ${helixThemes}/current.toml
+            ${pkillExe} -USR1 -x hx || true
+            ${pkillExe} -USR1 -x .hx-wrapped_ || true
           '';
         };
       };

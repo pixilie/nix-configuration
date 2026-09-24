@@ -124,7 +124,7 @@
         ];
 
         settings = {
-          theme = "onedark";
+          theme = if config.isSchoolProfile then "onedark" else "current";
           editor = {
             auto-format = !config.isSchoolProfile;
             auto-save = true;
