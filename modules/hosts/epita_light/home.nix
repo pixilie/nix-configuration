@@ -11,6 +11,7 @@
         self.homeModules.wakatime
         self.homeModules.secrets
         self.homeModules.sh
+        self.homeModules.alacritty
         self.homeModules.git
         self.homeModules.fonts
 

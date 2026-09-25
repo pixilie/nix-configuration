@@ -27,6 +27,13 @@
           user = "ubuntu";
           identityFile = "~/.ssh/vps";
         };
+
+        "rpi" = {
+          hostname = "rpi.local";
+          user = "kristen";
+          identityFile = "~/.ssh/rpi";
+          identitiesOnly = true;
+        };
       };
     };
   };
