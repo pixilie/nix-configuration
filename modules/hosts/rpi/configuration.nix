@@ -10,6 +10,7 @@
       ];
 
       networking.hostName = "rpi";
+      networking.networkmanager.enable = true;
 
       time.timeZone = "Europe/Paris";
 
@@ -38,7 +39,10 @@
       users.users.kristen = {
         isNormalUser = true;
         shell = pkgs.fish;
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
         openssh.authorizedKeys.keyFiles = [ ../../../assets/keys/rpi.pub ];
       };
 
