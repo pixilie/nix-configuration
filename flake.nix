@@ -19,6 +19,18 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    kalnu.url = "git+ssh://git@github.com/pixilie/kalnu";
+    kalnu.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    garmin-claude-mcp.url = "git+ssh://git@github.com/pixilie/garmin-claude-mcp";
+    garmin-claude-mcp.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    vocal-time-counter.url = "github:pixilie/vocal-time-counter";
+    vocal-time-counter.flake = false;
+
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
 

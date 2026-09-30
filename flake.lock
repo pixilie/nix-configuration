@@ -19,6 +19,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789770686,
+        "narHash": "sha256-uZkBR7yHdIKUFB5SZdfgh1qkGfI3XmYmI/lTiquxbck=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "725ea35e410ad83be4931d1bff7e090eacaf3563",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -53,6 +73,63 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "garmin-claude-mcp": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790802532,
+        "narHash": "sha256-T6P7c8mZfQ0JDMmWs0ncGfIgclLUjXT4kZdmFyJoZyc=",
+        "ref": "refs/heads/main",
+        "rev": "891e7a52631e452c514e007b0fa14397768430c2",
+        "revCount": 116,
+        "type": "git",
+        "url": "ssh://git@github.com/pixilie/garmin-claude-mcp"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/pixilie/garmin-claude-mcp"
       }
     },
     "gitignore": {
@@ -133,6 +210,27 @@
         "type": "github"
       }
     },
+    "kalnu": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790789321,
+        "narHash": "sha256-rlVpgzbgIlfTcywQ8wkPpE6yMq4uBjoea2DA6gD60bU=",
+        "ref": "refs/heads/main",
+        "rev": "f3031343c238ae2b95b52749906b70f0caf2abf3",
+        "revCount": 186,
+        "type": "git",
+        "url": "ssh://git@github.com/pixilie/kalnu"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/pixilie/kalnu"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1749174413,
@@ -199,13 +297,17 @@
     "root": {
       "inputs": {
         "claude-desktop": "claude-desktop",
+        "disko": "disko",
         "flake-parts": "flake-parts",
+        "garmin-claude-mcp": "garmin-claude-mcp",
         "helix-editor": "helix-editor",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
+        "kalnu": "kalnu",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
+        "vocal-time-counter": "vocal-time-counter",
         "wakatime-ls": "wakatime-ls",
         "wrapper-modules": "wrapper-modules"
       }
@@ -284,6 +386,52 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "vocal-time-counter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777361883,
+        "narHash": "sha256-KTEXRwd50oVopLnpOknPhovZpIYNkfMhqfqXSVHP+iI=",
+        "owner": "pixilie",
+        "repo": "vocal-time-counter",
+        "rev": "0b0b0aa8b4eeac7679823ede653f169d00ac629f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pixilie",
+        "repo": "vocal-time-counter",
         "type": "github"
       }
     },
