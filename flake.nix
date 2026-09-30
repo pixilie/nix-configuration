@@ -28,6 +28,9 @@
     garmin-claude-mcp.url = "git+ssh://git@github.com/pixilie/garmin-claude-mcp";
     garmin-claude-mcp.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    calendar-syncer.url = "git+ssh://git@github.com/pixilie/calendar_syncer";
+    calendar-syncer.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     vocal-time-counter.url = "github:pixilie/vocal-time-counter";
     vocal-time-counter.flake = false;
 

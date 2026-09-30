@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "calendar-syncer": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790805411,
+        "narHash": "sha256-mQyZpZTge+v12o038VWrPRdZDvy2YhD+izGNHtI3PJU=",
+        "ref": "refs/heads/main",
+        "rev": "ac53127e863b735e920b4265393b47dc52c176d9",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/pixilie/calendar_syncer"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/pixilie/calendar_syncer"
+      }
+    },
     "claude-desktop": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -296,6 +316,7 @@
     },
     "root": {
       "inputs": {
+        "calendar-syncer": "calendar-syncer",
         "claude-desktop": "claude-desktop",
         "disko": "disko",
         "flake-parts": "flake-parts",

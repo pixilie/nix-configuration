@@ -10,6 +10,7 @@
       self.nixosModules.vpsVocalTimeCounter
       self.nixosModules.vpsKalnu
       self.nixosModules.vpsGarminCoach
+      self.nixosModules.vpsCalendarSyncer
     ];
 
     services.caddy.enable = true;
