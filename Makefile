@@ -2,6 +2,7 @@ NIX ?= nix
 NIX_FLAGS := --extra-experimental-features "nix-command flakes"
 
 IDENTITY ?= $(HOME)/.ssh/secret
+SECRETS ?= secrets/secrets.yaml
 
 RPI_HOST ?= rpi
 
@@ -22,7 +23,7 @@ help:
 	@echo "make epita-light  Home Manager  (epita)"
 	@echo "make rpi          NixOS system  (raspberry pi, over ssh, RPI_HOST=rpi-lan on the home network)"
 	@echo "make rpi-image    Flashable SD image (raspberry pi)"
-	@echo "make secrets      Edit the sops encrypted secrets"
+	@echo "make secrets      Edit the sops encrypted secrets (SECRETS=secrets/rpi.yaml for the pi)"
 
 rebuild:
 	nh os switch . -H laptop
@@ -43,4 +44,4 @@ rpi-image:
 
 secrets:
 	@SOPS_AGE_KEY="$$($(NIX) $(NIX_FLAGS) run nixpkgs#ssh-to-age -- -private-key -i $(IDENTITY))" \
-		$(NIX) $(NIX_FLAGS) run nixpkgs#sops -- secrets/secrets.yaml
+		$(NIX) $(NIX_FLAGS) run nixpkgs#sops -- $(SECRETS)
