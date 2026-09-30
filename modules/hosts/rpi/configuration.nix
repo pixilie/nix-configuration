@@ -21,8 +21,13 @@
           PermitRootLogin = "no";
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
+          AllowUsers = [ "kristen" ];
+          AuthenticationMethods = "publickey";
+          MaxAuthTries = 3;
         };
       };
+
+      services.fail2ban.enable = true;
 
       services.avahi = {
         enable = true;
