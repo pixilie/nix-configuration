@@ -5,6 +5,7 @@ IDENTITY ?= $(HOME)/.ssh/secret
 SECRETS ?= secrets/secrets.yaml
 
 RPI_HOST ?= rpi
+VPS_HOST ?= kristen@vps
 
 WALLPAPER := assets/media/wallpaper_dark.png
 
@@ -15,7 +16,7 @@ i3-refresh = export PATH="$$HOME/.nix-profile/bin:$$PATH"; \
 	|| echo "i3 not reachable, the config will apply on next login"
 
 .DEFAULT_GOAL := help
-.PHONY: help home rebuild epita-light rpi rpi-image secrets
+.PHONY: help home rebuild epita-light rpi rpi-image vps secrets
 
 help:
 	@echo "make rebuild      NixOS system  (laptop)"
@@ -23,6 +24,7 @@ help:
 	@echo "make epita-light  Home Manager  (epita)"
 	@echo "make rpi          NixOS system  (raspberry pi, over ssh, RPI_HOST=rpi-lan on the home network)"
 	@echo "make rpi-image    Flashable SD image (raspberry pi)"
+	@echo "make vps          NixOS system  (ovh vps, over ssh)"
 	@echo "make secrets      Edit the sops encrypted secrets (SECRETS=secrets/rpi.yaml for the pi)"
 
 rebuild:
@@ -37,6 +39,9 @@ epita-light:
 
 rpi:
 	nh os switch . -H rpi --target-host $(RPI_HOST) -e passwordless
+
+vps:
+	nh os switch . -H vps --target-host $(VPS_HOST) -e passwordless
 
 rpi-image:
 	$(NIX) $(NIX_FLAGS) build .\#nixosConfigurations.rpi.config.system.build.sdImage

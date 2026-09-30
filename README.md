@@ -89,6 +89,7 @@ make home         # Home Manager  (laptop)
 make epita-light  # Home Manager  (epita)
 make rpi          # NixOS system  (raspberry pi, over ssh)
 make rpi-image    # Flashable SD image (raspberry pi)
+make vps          # NixOS system  (ovh vps, over ssh)
 ```
 
 ``rebuild`` and ``home`` go through [nh](https://github.com/nix-community/nh). The ``epita-light``
