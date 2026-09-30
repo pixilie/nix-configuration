@@ -1,7 +1,14 @@
 keys:
   - &secret age12ejz2wlm46zluaehjwv8hswg0wvacdfxv9lwqwjfm8f6k7n8v3es74npad
+  - &rpi age1xu0n7wa5u7jd7tepac6dxw865ktztzef8n3c900ncrfv4m70c99s7qhqqq
 
 creation_rules:
+  - path_regex: secrets/rpi\.yaml$
+    key_groups:
+      - age:
+          - *secret
+          - *rpi
+
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:

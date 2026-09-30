@@ -7,6 +7,7 @@
       imports = [
         inputs.home-manager.nixosModules.home-manager
         self.nixosModules.rpiHardware
+        self.nixosModules.rpiMonitoring
       ];
 
       networking.hostName = "rpi";
