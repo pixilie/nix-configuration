@@ -10,6 +10,7 @@
         self.homeModules.helix
         self.homeModules.wakatime
         self.homeModules.secrets
+        self.homeModules.ssh
         self.homeModules.sh
         self.homeModules.alacritty
         self.homeModules.git
