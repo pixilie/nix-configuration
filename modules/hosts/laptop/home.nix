@@ -66,6 +66,7 @@
           localsend
           gnome-calculator
           gnome-calendar
+          zotero
 
           baobab
           vlc
