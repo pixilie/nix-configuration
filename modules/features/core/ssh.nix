@@ -34,6 +34,13 @@
         };
 
         "rpi" = {
+          hostname = "rpi.pixilie.net";
+          user = "kristen";
+          identityFile = "~/.ssh/rpi";
+          identitiesOnly = true;
+        };
+
+        "rpi-lan" = {
           hostname = "rpi.local";
           user = "kristen";
           identityFile = "~/.ssh/rpi";

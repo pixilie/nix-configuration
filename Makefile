@@ -3,6 +3,8 @@ NIX_FLAGS := --extra-experimental-features "nix-command flakes"
 
 IDENTITY ?= $(HOME)/.ssh/secret
 
+RPI_HOST ?= rpi
+
 WALLPAPER := assets/media/wallpaper_dark.png
 
 hm-switch = out=$$($(NIX) $(NIX_FLAGS) build --no-link --print-out-paths .\#homeConfigurations.$(1).activationPackage) && "$$out/activate"
@@ -18,7 +20,7 @@ help:
 	@echo "make rebuild      NixOS system  (laptop)"
 	@echo "make home         Home Manager  (laptop)"
 	@echo "make epita-light  Home Manager  (epita)"
-	@echo "make rpi          NixOS system  (raspberry pi, over ssh)"
+	@echo "make rpi          NixOS system  (raspberry pi, over ssh, RPI_HOST=rpi-lan on the home network)"
 	@echo "make rpi-image    Flashable SD image (raspberry pi)"
 	@echo "make secrets      Edit the sops encrypted secrets"
 
@@ -33,7 +35,7 @@ epita-light:
 	@$(call i3-refresh)
 
 rpi:
-	nh os switch . -H rpi --target-host rpi -e passwordless
+	nh os switch . -H rpi --target-host $(RPI_HOST) -e passwordless
 
 rpi-image:
 	$(NIX) $(NIX_FLAGS) build .\#nixosConfigurations.rpi.config.system.build.sdImage
