@@ -65,9 +65,10 @@
           obs-studio
           localsend
           gnome-calculator
+          gnome-calendar
 
-          # baobab
-          # vlc
+          baobab
+          vlc
           image-roll
           pavucontrol
           wdisplays
