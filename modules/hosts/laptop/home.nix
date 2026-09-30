@@ -57,11 +57,9 @@
           # vesktop
           discord
           spotify
-          psst
           bitwarden-desktop
           nautilus
           upkgs.firefox
-
           gimp-with-plugins
           onlyoffice-desktopeditors
           obs-studio
@@ -85,7 +83,6 @@
           # arduino-ide
           # simulide
           # jetbrains.rider
-          inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
         ];
 
         # Reload system units when switching config
