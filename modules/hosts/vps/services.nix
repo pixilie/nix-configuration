@@ -11,6 +11,7 @@
       self.nixosModules.vpsKalnu
       self.nixosModules.vpsGarminCoach
       self.nixosModules.vpsCalendarSyncer
+      self.nixosModules.vpsPgadmin
     ];
 
     services.caddy.enable = true;
