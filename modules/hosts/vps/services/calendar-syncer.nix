@@ -9,7 +9,6 @@
     {
       imports = [ inputs.calendar-syncer.nixosModules.default ];
 
-      # CALSYNC_WEB_PASSWORD=…, GOOGLE_CLIENT_ID=…, GOOGLE_CLIENT_SECRET=…
       sops.secrets.calendar_syncer_env.restartUnits = [ "calendar-syncer.service" ];
 
       services.calendar-syncer = {
@@ -19,7 +18,6 @@
         environmentFile = config.sops.secrets.calendar_syncer_env.path;
       };
 
-      # Rustical is reached locally at http://127.0.0.1:4000/caldav/
       systemd.services.calendar-syncer = {
         after = [ "rustical.service" ];
         wants = [ "rustical.service" ];
