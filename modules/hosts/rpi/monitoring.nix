@@ -50,7 +50,7 @@
           };
           endpoints = [
             {
-              name = "vps";
+              name = "VPS";
               group = "Server";
               url = "icmp://vps.pixilie.net";
               interval = "60s";
@@ -61,10 +61,13 @@
 
             (https "Garmin dashboard" "garmin.pixilie.net")
             (https "Garmin dashboard" "garmin.mcp.pixilie.net")
+
             (https "Wakapi" "wakapi.pixilie.net")
+
             (https "Calendar" "rustical.pixilie.net")
             (https "Calendar" "calino.pixilie.net")
             (https "Calendar" "calsync.pixilie.net")
+
             (https "Monitoring" "beszel.pixilie.net")
             (https "Monitoring" "pgadmin.pixilie.net")
           ];
