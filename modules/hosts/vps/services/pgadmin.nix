@@ -77,6 +77,7 @@
     {
       sops.secrets = {
         pgadmin_password.owner = "pgadmin";
+        maddy_noreply_password.restartUnits = [ "pgadmin.service" ];
       }
       // lib.mapAttrs' (
         _: secret:
@@ -94,6 +95,14 @@
         initialEmail = "kristen@pixilie.net";
         initialPasswordFile = config.sops.secrets.pgadmin_password.path;
         settings.DEFAULT_SERVER = "127.0.0.1";
+        emailServer = {
+          enable = true;
+          address = "127.0.0.1";
+          port = 587;
+          username = "noreply@pixilie.net";
+          sender = "noreply@pixilie.net";
+          passwordFile = config.sops.secrets.maddy_noreply_password.path;
+        };
       };
 
       systemd.services.postgresql-access = {
