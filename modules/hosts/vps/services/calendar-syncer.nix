@@ -19,6 +19,7 @@
       };
 
       systemd.services.calendar-syncer = {
+        environment.CALSYNC_WEB_USER = "kristen";
         after = [ "rustical.service" ];
         wants = [ "rustical.service" ];
       };
