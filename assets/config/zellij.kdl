@@ -1,8 +1,5 @@
-// If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -81,8 +78,6 @@ keybinds {
         bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
         bind "d" { HalfPageScrollDown; }
         bind "u" { HalfPageScrollUp; }
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
     }
     search {
         bind "Ctrl s" { SwitchToMode "Normal"; }
@@ -151,29 +146,6 @@ keybinds {
             SwitchToMode "Normal"
         }
     }
-    // tmux {
-    //     bind "[" { SwitchToMode "Scroll"; }
-    //     bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
-    //     bind "\"" { NewPane "Down"; SwitchToMode "Normal"; }
-    //     bind "%" { NewPane "Right"; SwitchToMode "Normal"; }
-    //     bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
-    //     bind "c" { NewTab; SwitchToMode "Normal"; }
-    //     bind "," { SwitchToMode "RenameTab"; }
-    //     bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
-    //     bind "n" { GoToNextTab; SwitchToMode "Normal"; }
-    //     bind "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
-    //     bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
-    //     bind "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
-    //     bind "Up" { MoveFocus "Up"; SwitchToMode "Normal"; }
-    //     bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
-    //     bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
-    //     bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
-    //     bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
-    //     bind "o" { FocusNextPane; }
-    //     bind "d" { Detach; }
-    //     bind "Space" { NextSwapLayout; }
-    //     bind "x" { CloseFocus; SwitchToMode "Normal"; }
-    // }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
@@ -218,8 +190,6 @@ keybinds {
     }
 }
 
-// Plugin aliases - can be used to change the implementation of Zellij
-// changing these requires a restart to take effect
 plugins {
     tab-bar location="zellij:tab-bar"
     status-bar location="zellij:status-bar"
@@ -237,10 +207,7 @@ plugins {
     about location="zellij:about"
 }
 
-// Plugins to load in the background when a new session starts
 load_plugins {
-  // "file:/path/to/my-plugin.wasm"
-  // "https://example.com/my-plugin.wasm"
 }
 
 default_shell "fish"
@@ -251,7 +218,7 @@ themes {
         fg "#3B4048"
         bg "#2C323C"
         red "#E06C75"
-        green "#98C379" // borders
+        green "#98C379"
         yellow "#E5C07B"
         blue "#61AFEF"
         magenta "#C678DD"
@@ -272,8 +239,6 @@ scroll_buffer_size 10000
 session_serialization true
 
 env {
-    // Overrides `TERM` values for all windows.
-    // Prevent `xterm-kitty` to interfere with programs output.
     TERM "xterm-256color"
 }
 web_client {

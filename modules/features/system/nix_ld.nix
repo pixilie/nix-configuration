@@ -7,7 +7,6 @@
       programs.nix-ld.enable = true;
 
       programs.nix-ld.libraries = with pkgs; [
-        # General
         stdenv.cc.cc.lib
         zlib
         openssl
@@ -15,7 +14,6 @@
         glib
         util-linux
 
-        # UI
         gtk3
         cairo
         pango
@@ -23,7 +21,6 @@
         freetype
         fontconfig
 
-        # X11 & Wayland
         libx11
         libxcomposite
         libxdamage
@@ -35,16 +32,13 @@
         libxi
         libxtst
 
-        # Rendu 3D
         libGL
         vulkan-loader
         mesa
 
-        # Son
         alsa-lib
         pulseaudio
 
-        # Web / Electron
         nss
         nspr
         cups

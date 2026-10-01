@@ -107,13 +107,11 @@
             "${modifier}+Shift+z" = "exec makoctl dismiss";
             "${modifier}+Shift+f" = "exec nautilus";
 
-            # Focus
             "${modifier}+${left}" = "focus left";
             "${modifier}+${right}" = "focus right";
             "${modifier}+${up}" = "focus up";
             "${modifier}+${down}" = "focus down";
 
-            # Workspaces (1-0)
             "${modifier}+1" = "workspace 1";
             "${modifier}+2" = "workspace 2";
             "${modifier}+3" = "workspace 3";
@@ -138,7 +136,6 @@
 
             "${modifier}+r" = "mode resize";
 
-            # Multimedia (SwayOSD)
             "XF86AudioNext" = "exec swayosd-client --playerctl next";
             "XF86AudioPrev" = "exec swayosd-client --playerctl previous";
             "XF86AudioPlay" = "exec swayosd-client --playerctl play-pause";

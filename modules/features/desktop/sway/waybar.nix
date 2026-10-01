@@ -221,8 +221,6 @@
         systemd.enable = false;
 
         settings = {
-          # No `output` key: waybar spawns an identical bar on every connected
-          # output, whatever its name (eDP-1, DP-1, HDMI-A-1, ...).
           main = {
             mode = "hide";
             ipc = true;

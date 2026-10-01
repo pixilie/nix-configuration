@@ -47,14 +47,11 @@
           email = "kristen.couty@gmail.com";
         };
 
-        # General informations
         home.username = "kristen";
         home.homeDirectory = "/home/kristen";
         home.stateVersion = "26.05";
 
-        # Packages
         home.packages = with pkgs; [
-          # vesktop
           discord
           spotify
           bitwarden-desktop
@@ -82,15 +79,10 @@
           heroic
 
           dbeaver-bin
-          # arduino-ide
-          # simulide
-          # jetbrains.rider
         ];
 
-        # Reload system units when switching config
         systemd.user.startServices = "sd-switch";
 
-        # Let Home Manager install and manage itself.
         programs.home-manager.enable = true;
       };
     };

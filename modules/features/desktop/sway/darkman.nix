@@ -31,7 +31,6 @@
           '';
 
           wallpaper = ''
-            # Ajustez le nombre de ../ si nécessaire selon l'emplacement du fichier
             ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_dark.png} fill
           '';
 

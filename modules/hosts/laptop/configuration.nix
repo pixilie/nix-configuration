@@ -28,7 +28,6 @@
 
       networking.hostName = "kristen-nixos";
 
-      # Localisation services
       services.automatic-timezoned.enable = true;
 
       services.geoclue2 = {
@@ -45,13 +44,10 @@
         openFirewall = true;
       };
 
-      # Garbage collection is handled by programs.nh.clean (see nh.nix),
-      # so the native nix.gc.automatic is left disabled to avoid conflict.
       nix.optimise.automatic = true;
 
       zramSwap.enable = true;
 
-      # Boot settings
       boot = {
         kernelParams = [ "quiet" ];
         binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -63,7 +59,6 @@
         };
       };
 
-      # User related settings
       programs.fish.enable = true;
 
       users.users.kristen = {
@@ -80,7 +75,6 @@
         ];
       };
 
-      # System related settings
       system = {
         autoUpgrade.enable = true;
         autoUpgrade.flake = "github:pixilie/nix-configuration#laptop";

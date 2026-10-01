@@ -32,7 +32,6 @@
           signingKey = "${config.home.homeDirectory}/.ssh/epita.pub";
         };
 
-        # General informations
         home.username = "kristen.couty";
         home.homeDirectory = "/home/kristen.couty";
         home.stateVersion = "26.05";
@@ -41,7 +40,6 @@
 
         programs.vim.defaultEditor = true;
 
-        # Let Home Manager install and manage itself.
         programs.home-manager.enable = true;
       };
     };

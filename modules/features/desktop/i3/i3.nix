@@ -33,20 +33,17 @@
           terminal = terminal;
 
           keybindings = lib.mkOptionDefault {
-            # Basic keys
             "${modifier}+Return" = "exec ${terminal}";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+Return" = "exec firefox";
             "${modifier}+Escape" = "exec sleep 0.3 && ${lockExe}";
             "${modifier}+Shift+e" = "exit";
 
-            # Movements
             "${modifier}+${left}" = "focus left";
             "${modifier}+${right}" = "focus right";
             "${modifier}+${up}" = "focus up";
             "${modifier}+${down}" = "focus down";
 
-            # Workspaces
             "${modifier}+1" = "workspace 1";
             "${modifier}+2" = "workspace 2";
             "${modifier}+3" = "workspace 3";
@@ -69,15 +66,12 @@
             "${modifier}+Shift+9" = "move container to workspace 9";
             "${modifier}+Shift+0" = "move container to workspace 10";
 
-            # Resize mode
             "${modifier}+r" = "mode resize";
 
-            # Media
             "XF86AudioPrev" = "exec playerctl previous";
             "XF86AudioNext" = "exec playerctl next";
             "XF86AudioPlay" = "exec playerctl play-pause";
 
-            # Screenshot with maim
             "Print" = "exec --no-startup-id bash -c 'maim -s | xclip -selection clipboard -t image/png'";
           };
 

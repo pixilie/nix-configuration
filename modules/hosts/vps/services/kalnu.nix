@@ -2,12 +2,15 @@
 {
 
   flake.nixosModules.vpsKalnu =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       backend = "127.0.0.1:${toString config.services.kalnu.port}";
 
-      # BRouter (routage vélo de l'éditeur GPX) : absent de nixpkgs, et le module kalnu ne le gère pas.
-      # Release officielle, même version et même hash que server/brouter/Dockerfile de kalnu.
       brouterVersion = "1.7.10";
       brouterJar =
         pkgs.runCommand "brouter-${brouterVersion}-jar" { nativeBuildInputs = [ pkgs.unzip ]; }
@@ -20,7 +23,6 @@
             }
             install -Dm444 brouter-${brouterVersion}/brouter-${brouterVersion}-all.jar $out/brouter.jar
           '';
-      # Profils Kalnu + lookups.dat : suivent les mises à jour de l'input kalnu.
       brouterProfiles = "${inputs.kalnu}/server/brouter/profiles";
       brouterState = "/var/lib/kalnu-brouter";
     in
@@ -38,8 +40,6 @@
         environmentFile = config.sops.secrets.kalnu_env.path;
         settings = {
           BROUTER_URL = "http://127.0.0.1:17777";
-          # E-mails de réinitialisation du mot de passe : maddy local (submission 127.0.0.1:587, sans TLS),
-          # compte noreply. Le mot de passe est celui de maddy, passé en credential systemd (ci-dessous).
           SMTP_HOST = "127.0.0.1";
           SMTP_PORT = 587;
           SMTP_SECURITY = "none";
@@ -49,13 +49,9 @@
         };
       };
 
-      # Le secret appartient à maddy : systemd en donne une copie lisible au seul service kalnu.
       systemd.services.kalnu = {
         after = [ "maddy.service" ];
         serviceConfig.LoadCredential = "smtp_password:${config.sops.secrets.maddy_noreply_password.path}";
-        # Valeurs IMPOSÉES, lues APRÈS kalnu_env (avec systemd, un EnvironmentFile l'emporte sur
-        # Environment=, et le dernier fichier lu gagne) : Strava coupé (API devenue payante), même si
-        # le secret contient encore STRAVA_ENABLED=true.
         serviceConfig.EnvironmentFile = lib.mkAfter [
           (pkgs.writeText "kalnu-overrides.env" ''
             STRAVA_ENABLED=false
@@ -80,7 +76,6 @@
         };
       };
 
-      # Tuiles .rd5 : mise à jour hebdomadaire et conditionnelle, rollback si l'itinéraire de test échoue.
       systemd.services.kalnu-brouter-segments = {
         description = "Mise à jour des segments BRouter (Kalnu)";
         after = [
@@ -113,8 +108,6 @@
       systemd.timers.kalnu-brouter-segments = {
         wantedBy = [ "timers.target" ];
         timerConfig = {
-          # Aussi 5 min après l'activation du timer (déploiement, boot) : remplit les tuiles dès le
-          # premier déploiement ; ensuite le script sort aussitôt (garde de 6 jours, cf. .last_update).
           OnActiveSec = "5min";
           OnCalendar = "Thu 04:30";
           RandomizedDelaySec = "2h";

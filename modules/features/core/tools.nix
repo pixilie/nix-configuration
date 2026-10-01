@@ -5,7 +5,6 @@
     { pkgs, upkgs, ... }:
     {
       home.packages = with pkgs; [
-        # System utilities
         wl-clipboard
         poweralertd
         dconf
@@ -14,7 +13,6 @@
         xdg-utils
         direnv
 
-        # CLI / TUI
         dust
         btop
         fastfetch

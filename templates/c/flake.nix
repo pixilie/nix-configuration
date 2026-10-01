@@ -47,7 +47,6 @@
               ]);
 
             buildInputs = with pkgs; [
-              # add lib here
             ];
 
             LD_LIBRARY_PATH = makeLibraryPath buildInputs;
