@@ -29,8 +29,9 @@
 
         "vps" = {
           hostname = "vps.pixilie.net";
-          user = "ubuntu";
+          user = "kristen";
           identityFile = "~/.ssh/vps";
+          identitiesOnly = true;
         };
 
         "rpi" = {
