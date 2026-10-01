@@ -56,7 +56,10 @@
         isNormalUser = true;
         shell = pkgs.fish;
         extraGroups = [ "wheel" ];
-        openssh.authorizedKeys.keyFiles = [ ../../../assets/keys/vps.pub ];
+        openssh.authorizedKeys.keyFiles = [
+          ../../../assets/keys/vps.pub
+          ../../../assets/keys/vps-windows.pub
+        ];
       };
 
       security.sudo.wheelNeedsPassword = false;
