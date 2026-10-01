@@ -2,7 +2,7 @@
 {
 
   flake.nixosModules.vpsKalnu =
-    { config, pkgs, ... }:
+    { config, lib, pkgs, ... }:
     let
       backend = "127.0.0.1:${toString config.services.kalnu.port}";
 
@@ -53,6 +53,14 @@
       systemd.services.kalnu = {
         after = [ "maddy.service" ];
         serviceConfig.LoadCredential = "smtp_password:${config.sops.secrets.maddy_noreply_password.path}";
+        # Valeurs IMPOSÉES, lues APRÈS kalnu_env (avec systemd, un EnvironmentFile l'emporte sur
+        # Environment=, et le dernier fichier lu gagne) : Strava coupé (API devenue payante), même si
+        # le secret contient encore STRAVA_ENABLED=true.
+        serviceConfig.EnvironmentFile = lib.mkAfter [
+          (pkgs.writeText "kalnu-overrides.env" ''
+            STRAVA_ENABLED=false
+          '')
+        ];
       };
       sops.secrets.maddy_noreply_password.restartUnits = [ "kalnu.service" ];
 
