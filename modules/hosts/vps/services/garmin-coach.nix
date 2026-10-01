@@ -27,7 +27,7 @@
         mcpDomain = "garmin.mcp.pixilie.net";
         environmentFile = config.sops.secrets.garmin_coach_env.path;
         googleClientSecretsFile = config.sops.secrets.garmin_coach_google_client.path;
-        settings.DASHBOARD_USER = "admin";
+        settings.DASHBOARD_USER = "kristen";
         caddy.enable = true;
       };
     };
