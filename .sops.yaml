@@ -1,6 +1,7 @@
 keys:
   - &secret age12ejz2wlm46zluaehjwv8hswg0wvacdfxv9lwqwjfm8f6k7n8v3es74npad
   - &rpi age1xu0n7wa5u7jd7tepac6dxw865ktztzef8n3c900ncrfv4m70c99s7qhqqq
+  - &vps age1w90kszcxgt9vpxvg7aj96m278cdq6gt53tc2287up2wly9tugv7szdqxsx
 
 creation_rules:
   - path_regex: secrets/rpi\.yaml$
@@ -8,6 +9,12 @@ creation_rules:
       - age:
           - *secret
           - *rpi
+
+  - path_regex: secrets/vps\.yaml$
+    key_groups:
+      - age:
+          - *secret
+          - *vps
 
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
