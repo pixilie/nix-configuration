@@ -48,6 +48,8 @@
         package = pkgs.postgresql_17;
       };
 
+      environment.systemPackages = [ pkgs.sqlite ];
+
       programs.fish.enable = true;
 
       users.users.kristen = {
