@@ -1,4 +1,4 @@
-{ upkgsBySystem, ... }:
+{ inputs, upkgsBySystem, ... }:
 {
 
   flake.nixosModules.vpsBeszel =
@@ -7,6 +7,15 @@
       beszel = upkgsBySystem.x86_64-linux.beszel;
     in
     {
+      disabledModules = [
+        "services/monitoring/beszel-hub.nix"
+        "services/monitoring/beszel-agent.nix"
+      ];
+      imports = [
+        "${inputs.nixpkgs-unstable}/nixos/modules/services/monitoring/beszel-hub.nix"
+        "${inputs.nixpkgs-unstable}/nixos/modules/services/monitoring/beszel-agent.nix"
+      ];
+
       services.beszel.hub = {
         enable = true;
         package = beszel;

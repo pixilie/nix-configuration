@@ -1,16 +1,19 @@
-{ upkgsBySystem, ... }:
+{ inputs, upkgsBySystem, ... }:
 {
 
   flake.nixosModules.vpsRustical =
-    { config, ... }:
+    { ... }:
+    let
+      bind = "127.0.0.1:4000";
+    in
     {
+      disabledModules = [ "services/web-apps/rustical.nix" ];
+      imports = [ "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/rustical.nix" ];
+
       services.rustical = {
         enable = true;
         package = upkgsBySystem.x86_64-linux.rustical;
-        settings.http = {
-          host = "127.0.0.1";
-          port = 4000;
-        };
+        settings.http.bind = bind;
       };
 
       services.caddy.virtualHosts."rustical.pixilie.net".extraConfig = ''
@@ -34,7 +37,7 @@
           respond 204
         }
 
-        reverse_proxy 127.0.0.1:${toString config.services.rustical.settings.http.port}
+        reverse_proxy ${bind}
       '';
     };
 }
