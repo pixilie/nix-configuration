@@ -36,8 +36,25 @@
         enable = true;
         domain = "kalnu.pixilie.net";
         environmentFile = config.sops.secrets.kalnu_env.path;
-        settings.BROUTER_URL = "http://127.0.0.1:17777";
+        settings = {
+          BROUTER_URL = "http://127.0.0.1:17777";
+          # E-mails de réinitialisation du mot de passe : maddy local (submission 127.0.0.1:587, sans TLS),
+          # compte noreply. Le mot de passe est celui de maddy, passé en credential systemd (ci-dessous).
+          SMTP_HOST = "127.0.0.1";
+          SMTP_PORT = 587;
+          SMTP_SECURITY = "none";
+          SMTP_USER = "noreply@pixilie.net";
+          SMTP_PASSWORD_FILE = "/run/credentials/kalnu.service/smtp_password";
+          MAIL_FROM = "Kalnu <noreply@pixilie.net>";
+        };
       };
+
+      # Le secret appartient à maddy : systemd en donne une copie lisible au seul service kalnu.
+      systemd.services.kalnu = {
+        after = [ "maddy.service" ];
+        serviceConfig.LoadCredential = "smtp_password:${config.sops.secrets.maddy_noreply_password.path}";
+      };
+      sops.secrets.maddy_noreply_password.restartUnits = [ "kalnu.service" ];
 
       systemd.services.kalnu-brouter = {
         description = "BRouter — routage vélo de l'éditeur GPX Kalnu";
