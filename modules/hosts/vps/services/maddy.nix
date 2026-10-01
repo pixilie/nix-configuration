@@ -2,11 +2,49 @@
 {
 
   flake.nixosModules.vpsMaddy =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
       sops.secrets.maddy_noreply_password = {
         owner = config.services.maddy.user;
         restartUnits = [ "maddy-ensure-accounts.service" ];
+      };
+      sops.secrets.gatus_maddy_token = { };
+
+      systemd.services.maddy-gatus = {
+        description = "Report maddy health to Gatus";
+        after = [
+          "maddy.service"
+          "network-online.target"
+        ];
+        wants = [ "network-online.target" ];
+        path = [
+          pkgs.bash
+          pkgs.coreutils
+          pkgs.curl
+        ];
+        serviceConfig = {
+          Type = "oneshot";
+          DynamicUser = true;
+          LoadCredential = "token:${config.sops.secrets.gatus_maddy_token.path}";
+        };
+        script = ''
+          if banner=$(timeout 5 bash -c 'exec 3<>/dev/tcp/127.0.0.1/587 && head -n1 <&3') && [[ $banner == 220* ]]; then
+            query="success=true"
+          else
+            query="success=false&error=no+SMTP+banner+on+127.0.0.1:587"
+          fi
+          curl -fsS --max-time 10 -X POST \
+            -H "Authorization: Bearer $(cat "$CREDENTIALS_DIRECTORY/token")" \
+            "https://status.pixilie.net/api/v1/endpoints/mail_maddy/external?$query"
+        '';
+      };
+
+      systemd.timers.maddy-gatus = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnBootSec = "1min";
+          OnUnitActiveSec = "1min";
+        };
       };
 
       services.maddy = {

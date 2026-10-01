@@ -22,6 +22,7 @@
         defaultSopsFile = ../../../secrets/rpi.yaml;
         age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
         secrets.beszel_agent_env.restartUnits = [ "beszel-agent.service" ];
+        secrets.gatus_env.restartUnits = [ "gatus.service" ];
       };
 
       services.beszel.agent = {
@@ -35,7 +36,16 @@
 
       services.gatus = {
         enable = true;
+        environmentFile = config.sops.secrets.gatus_env.path;
         settings = {
+          external-endpoints = [
+            {
+              name = "Maddy";
+              group = "Mail";
+              token = "\${GATUS_MADDY_TOKEN}";
+              heartbeat.interval = "5m";
+            }
+          ];
           web = {
             address = "127.0.0.1";
             port = 8080;
