@@ -38,15 +38,7 @@
         enable = true;
         domain = "kalnu.pixilie.net";
         environmentFile = config.sops.secrets.kalnu_env.path;
-        settings = {
-          BROUTER_URL = "http://127.0.0.1:17777";
-          SMTP_HOST = "127.0.0.1";
-          SMTP_PORT = 587;
-          SMTP_SECURITY = "none";
-          SMTP_USER = "noreply@pixilie.net";
-          SMTP_PASSWORD_FILE = "/run/credentials/kalnu.service/smtp_password";
-          MAIL_FROM = "Kalnu <noreply@pixilie.net>";
-        };
+        settings.BROUTER_URL = "http://127.0.0.1:17777";
       };
 
       systemd.services.kalnu = {
@@ -55,6 +47,12 @@
         serviceConfig.EnvironmentFile = lib.mkAfter [
           (pkgs.writeText "kalnu-overrides.env" ''
             STRAVA_ENABLED=false
+            SMTP_HOST=127.0.0.1
+            SMTP_PORT=587
+            SMTP_SECURITY=none
+            SMTP_USER=noreply@pixilie.net
+            SMTP_PASSWORD_FILE=/run/credentials/kalnu.service/smtp_password
+            MAIL_FROM=Kalnu <noreply@pixilie.net>
           '')
         ];
       };
