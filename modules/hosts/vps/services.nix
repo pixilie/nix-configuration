@@ -13,6 +13,7 @@
       self.nixosModules.vpsCalendarSyncer
       self.nixosModules.vpsPgadmin
       self.nixosModules.vpsMaddy
+      self.nixosModules.vpsVaultwarden
     ];
 
     services.caddy.enable = true;
