@@ -4,6 +4,8 @@
   flake.nixosModules.rpiMonitoring =
     { config, ... }:
     let
+      alerts = [ { type = "ntfy"; } ];
+
       https = group: host: {
         name = host;
         inherit group;
@@ -12,7 +14,9 @@
         conditions = [
           "[STATUS] < 500"
           "[CERTIFICATE_EXPIRATION] > 168h"
+          "[RESPONSE_TIME] < 500"
         ];
+        inherit alerts;
       };
     in
     {
@@ -44,8 +48,20 @@
               group = "Mail";
               token = "\${GATUS_MADDY_TOKEN}";
               heartbeat.interval = "5m";
+              inherit alerts;
             }
           ];
+          alerting.ntfy = {
+            url = "http://${config.services.ntfy-sh.settings.listen-http}";
+            topic = "alerts";
+            token = "\${GATUS_NTFY_TOKEN}";
+            priority = 4;
+            default-alert = {
+              failure-threshold = 3;
+              success-threshold = 2;
+              send-on-resolved = true;
+            };
+          };
           web = {
             address = "127.0.0.1";
             port = 8080;
@@ -64,7 +80,11 @@
               group = "Server";
               url = "icmp://vps.pixilie.net";
               interval = "60s";
-              conditions = [ "[CONNECTED] == true" ];
+              conditions = [
+                "[CONNECTED] == true"
+                "[RESPONSE_TIME] < 500"
+              ];
+              inherit alerts;
             }
             (https "Kalnu" "kalnu.pixilie.net")
             (https "Kalnu" "api.kalnu.pixilie.net")
@@ -74,12 +94,26 @@
 
             (https "Wakapi" "wakapi.pixilie.net")
 
+            (https "Vaultwarden" "vault.pixilie.net")
+
             (https "Calendar" "rustical.pixilie.net")
             (https "Calendar" "calino.pixilie.net")
             (https "Calendar" "calsync.pixilie.net")
 
             (https "Monitoring" "beszel.pixilie.net")
             (https "Monitoring" "pgadmin.pixilie.net")
+            {
+              name = "ntfy.pixilie.net";
+              group = "Monitoring";
+              url = "https://ntfy.pixilie.net/v1/health";
+              interval = "60s";
+              conditions = [
+                "[STATUS] == 200"
+                "[BODY].healthy == true"
+                "[CERTIFICATE_EXPIRATION] > 168h"
+                "[RESPONSE_TIME] < 500"
+              ];
+            }
           ];
         };
       };
