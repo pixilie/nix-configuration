@@ -32,6 +32,7 @@
         self.homeModules.tools
         self.homeModules.xdg
         self.homeModules.ssh
+        self.homeModules.firefox
         self.homeModules.thunderbird
 
         self.homeModules.options
@@ -57,7 +58,6 @@
           spotify
           bitwarden-desktop
           nautilus
-          upkgs.firefox
           gimp-with-plugins
           onlyoffice-desktopeditors
           obs-studio
