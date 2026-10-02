@@ -8,6 +8,7 @@
         inputs.home-manager.nixosModules.home-manager
         self.nixosModules.rpiHardware
         self.nixosModules.rpiMonitoring
+        self.nixosModules.rpiNtfy
       ];
 
       networking.hostName = "rpi";
