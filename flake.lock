@@ -139,11 +139,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790802532,
-        "narHash": "sha256-T6P7c8mZfQ0JDMmWs0ncGfIgclLUjXT4kZdmFyJoZyc=",
+        "lastModified": 1790975801,
+        "narHash": "sha256-HQj2BNojVMfZQBZtO9746e+QUhUGfBE2FocS3SGZ16w=",
         "ref": "refs/heads/main",
-        "rev": "891e7a52631e452c514e007b0fa14397768430c2",
-        "revCount": 116,
+        "rev": "3702894a0152e8df255c52d58e06c49826be51f9",
+        "revCount": 126,
         "type": "git",
         "url": "ssh://git@github.com/pixilie/garmin-claude-mcp"
       },
@@ -238,11 +238,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790890674,
-        "narHash": "sha256-zToLn7d1byWZS2AJ8fZ4RL9p/x+iLNWKeyZ10pAo8KA=",
+        "lastModified": 1790893480,
+        "narHash": "sha256-W3w7TK4441MYM0p8cCfCbn47OtOfBllKn82/5flje0s=",
         "ref": "refs/heads/main",
-        "rev": "f620f62cd2d430c9d3d545f14883783577160f6d",
-        "revCount": 206,
+        "rev": "7d3837fa4884d3b043f5dc431342f719101eff8b",
+        "revCount": 212,
         "type": "git",
         "url": "ssh://git@github.com/pixilie/kalnu"
       },
