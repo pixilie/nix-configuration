@@ -32,6 +32,7 @@
         self.homeModules.tools
         self.homeModules.xdg
         self.homeModules.ssh
+        self.homeModules.thunderbird
 
         self.homeModules.options
         self.homeModules.identity
@@ -63,8 +64,8 @@
           localsend
           gnome-calculator
           gnome-calendar
-          zotero
 
+          zotero
           baobab
           vlc
           image-roll
