@@ -14,6 +14,10 @@
       self.nixosModules.vpsPgadmin
       self.nixosModules.vpsMaddy
       self.nixosModules.vpsVaultwarden
+      self.nixosModules.vpsTailscale
+      self.nixosModules.vpsNas
+      self.nixosModules.vpsImmich
+      self.nixosModules.vpsNextcloud
     ];
 
     services.caddy.enable = true;

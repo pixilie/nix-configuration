@@ -96,6 +96,9 @@
 
             (https "Vaultwarden" "vault.pixilie.net")
 
+            (https "Cloud" "cloud.pixilie.net")
+            (https "Cloud" "photos.pixilie.net")
+
             (https "Calendar" "rustical.pixilie.net")
             (https "Calendar" "calino.pixilie.net")
             (https "Calendar" "calsync.pixilie.net")
