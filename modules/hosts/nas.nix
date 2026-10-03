@@ -1,6 +1,6 @@
 { ... }:
 {
   _module.args.homeNas = {
-    address = "NAS_LAN_IP";
+    address = "192.168.1.82";
   };
 }

@@ -39,13 +39,13 @@
 
       fileSystems = {
         ${config.services.immich.mediaLocation} = share {
-          name = "immich";
+          name = "vps/photos";
           owner = config.services.immich.user;
           fileMode = "0600";
           dirMode = "0700";
         };
         "${config.services.nextcloud.datadir}/data" = share {
-          name = "nextcloud";
+          name = "vps/cloud";
           owner = "nextcloud";
           fileMode = "0640";
           dirMode = "0750";
