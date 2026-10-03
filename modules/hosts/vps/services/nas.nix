@@ -1,11 +1,9 @@
-{ ... }:
+{ homeNas, ... }:
 {
 
   flake.nixosModules.vpsNas =
     { config, ... }:
     let
-      nas = "NAS_TAILSCALE_IP";
-
       share =
         {
           name,
@@ -14,11 +12,10 @@
           dirMode,
         }:
         {
-          device = "//${nas}/${name}";
+          device = "//${homeNas.address}/${name}";
           fsType = "cifs";
           options = [
             "credentials=${config.sops.templates."nas-smb-credentials".path}"
-            "vers=3"
             "uid=${owner}"
             "gid=${owner}"
             "file_mode=${fileMode}"
