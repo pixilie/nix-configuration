@@ -44,12 +44,6 @@
           fileMode = "0600";
           dirMode = "0700";
         };
-        "${config.services.nextcloud.datadir}/data" = share {
-          name = "vps/cloud";
-          owner = "nextcloud";
-          fileMode = "0640";
-          dirMode = "0750";
-        };
       };
     };
 }
