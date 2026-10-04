@@ -10,6 +10,7 @@
         self.nixosModules.rpiMonitoring
         self.nixosModules.rpiNtfy
         self.nixosModules.rpiTailscale
+        self.nixosModules.rpiGatus
       ];
 
       networking.hostName = "rpi";
