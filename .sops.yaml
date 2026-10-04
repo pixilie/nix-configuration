@@ -16,6 +16,18 @@ creation_rules:
           - *secret
           - *vps
 
+  - path_regex: secrets/kalnu/vps\.yaml$
+    key_groups:
+      - age:
+          - *secret
+          - *vps
+
+  - path_regex: secrets/kalnu/rpi\.yaml$
+    key_groups:
+      - age:
+          - *secret
+          - *rpi
+
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
       - age:

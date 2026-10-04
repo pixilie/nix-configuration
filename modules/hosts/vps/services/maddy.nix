@@ -51,6 +51,7 @@
         enable = true;
         hostname = "vps.pixilie.net";
         primaryDomain = "pixilie.net";
+        localDomains = [ "$(primary_domain)" ];
         tls.loader = "off";
         ensureCredentials."noreply@pixilie.net".passwordFile =
           config.sops.secrets.maddy_noreply_password.path;

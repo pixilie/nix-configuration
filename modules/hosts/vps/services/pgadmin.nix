@@ -135,9 +135,6 @@
           encode zstd gzip
           reverse_proxy ${upstream}
         '';
-        "pgadmin.kalnu.pixilie.net".extraConfig = ''
-          redir https://pgadmin.pixilie.net{uri} 308
-        '';
       };
     };
 }

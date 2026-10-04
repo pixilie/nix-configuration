@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
 
-  flake.nixosModules.vpsKalnu =
+  flake.nixosModules.vpsKalnuApp =
     {
       config,
       lib,
@@ -25,38 +25,48 @@
           '';
       brouterProfiles = "${inputs.kalnu}/server/brouter/profiles";
       brouterState = "/var/lib/kalnu-brouter";
+
+      inherit (import ./_settings.nix) sopsFile;
     in
     {
       imports = [ inputs.kalnu.nixosModules.default ];
 
       sops.secrets.kalnu_env = {
+        inherit sopsFile;
         owner = config.services.kalnu.user;
         restartUnits = [ "kalnu.service" ];
       };
+      sops.secrets.kalnu_postgres_password = { inherit sopsFile; };
 
       services.kalnu = {
         enable = true;
-        domain = "kalnu.pixilie.net";
+        domain = "kalnu.fr";
+        apiDomain = "api.kalnu.fr";
+        mcpDomain = "mcp.kalnu.fr";
+        adminMcpDomain = "mcp.admin.kalnu.fr";
         environmentFile = config.sops.secrets.kalnu_env.path;
-        settings.BROUTER_URL = "http://127.0.0.1:17777";
+        settings = {
+          BROUTER_URL = "http://127.0.0.1:17777";
+          STATUS_PAGE_URL = "https://status.kalnu.fr";
+        };
       };
 
       systemd.services.kalnu = {
         after = [ "maddy.service" ];
-        serviceConfig.LoadCredential = "smtp_password:${config.sops.secrets.maddy_noreply_password.path}";
+        serviceConfig.LoadCredential = "smtp_password:${config.sops.secrets.maddy_kalnu_noreply_password.path}";
         serviceConfig.EnvironmentFile = lib.mkAfter [
           (pkgs.writeText "kalnu-overrides.env" ''
             STRAVA_ENABLED=false
             SMTP_HOST=127.0.0.1
             SMTP_PORT=587
             SMTP_SECURITY=none
-            SMTP_USER=noreply@pixilie.net
+            SMTP_USER=noreply@kalnu.fr
             SMTP_PASSWORD_FILE=/run/credentials/kalnu.service/smtp_password
-            MAIL_FROM=Kalnu <noreply@pixilie.net>
+            MAIL_FROM=Kalnu <noreply@kalnu.fr>
           '')
         ];
       };
-      sops.secrets.maddy_noreply_password.restartUnits = [ "kalnu.service" ];
+      sops.secrets.maddy_kalnu_noreply_password.restartUnits = [ "kalnu.service" ];
 
       systemd.services.kalnu-brouter = {
         description = "BRouter — routage vélo de l'éditeur GPX Kalnu";
@@ -114,11 +124,20 @@
       };
 
       services.caddy.virtualHosts = {
-        "kalnu.pixilie.net".extraConfig = ''
+        "kalnu.fr".extraConfig = ''
           reverse_proxy ${backend}
         '';
-        "api.kalnu.pixilie.net".extraConfig = ''
+        "api.kalnu.fr".extraConfig = ''
           reverse_proxy ${backend}
+        '';
+        "mcp.kalnu.fr".extraConfig = ''
+          reverse_proxy ${backend}
+        '';
+        "mcp.admin.kalnu.fr".extraConfig = ''
+          reverse_proxy ${backend}
+        '';
+        "www.kalnu.fr".extraConfig = ''
+          redir https://kalnu.fr{uri} 308
         '';
       };
     };
