@@ -50,6 +50,7 @@
         https = true;
         maxUploadSize = "16G";
         appstoreEnable = false;
+        phpOptions."opcache.interned_strings_buffer" = "32";
         database.createLocally = true;
         config = {
           dbtype = "pgsql";
