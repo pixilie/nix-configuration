@@ -49,6 +49,7 @@
         hostName = domain;
         https = true;
         maxUploadSize = "16G";
+        fastcgiTimeout = 3600;
         appstoreEnable = false;
         phpOptions."opcache.interned_strings_buffer" = "32";
         database.createLocally = true;
