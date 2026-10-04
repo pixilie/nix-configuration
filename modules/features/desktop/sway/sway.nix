@@ -43,17 +43,14 @@
     in
     {
       home.packages = with pkgs; [
-        swaylock-effects
         swaybg
         playerctl
         brightnessctl
         qt6.qtwayland
-        xwayland-satellite
         notify-desktop
         grim
         slurp
         satty
-        wlroots
       ];
 
       wayland.windowManager.sway = {
@@ -174,7 +171,6 @@
             scale = "1.0";
             pos = "0 0";
           };
-          startup = [ { command = "${pkgs.geoclue2}/libexec/geoclue-2.0/demos/agent"; } ];
         };
 
         extraConfig = ''

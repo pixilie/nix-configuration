@@ -6,7 +6,6 @@
     {
       home.packages = with pkgs; [
         wl-clipboard
-        poweralertd
         dconf
         openssl
         pkg-config

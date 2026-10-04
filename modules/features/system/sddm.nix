@@ -7,7 +7,6 @@
 
       environment.systemPackages = with pkgs; [
         where-is-my-sddm-theme
-        qt6Packages.qt6ct
       ];
 
       services.displayManager.defaultSession = "sway";

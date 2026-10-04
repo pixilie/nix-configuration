@@ -195,10 +195,6 @@
     in
     {
       home.packages = with pkgs; [
-        playerctl
-        ripgrep
-        pavucontrol
-        font-awesome
         procps
         blueman
       ];

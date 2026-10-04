@@ -11,13 +11,9 @@ let
           "steam-unwrapped"
           "steam-run"
           "lunarclient"
-          "libsciter"
-          "castlabs-electron"
           "discord"
           "spotify"
-          "rider"
           "claude-code"
-          "gemini-cli"
         ];
     };
 in
