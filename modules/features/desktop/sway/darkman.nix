@@ -38,10 +38,6 @@
             ${pkgs.mako}/bin/makoctl mode -r light
           '';
 
-          rofi = ''
-            ${lnExe} -sf ${config.xdg.dataHome}/rofi/themes/dark.rasi ${config.xdg.dataHome}/rofi/themes/current.rasi
-          '';
-
           waybar-theme = ''
             ${lnExe} -sf ${config.xdg.configHome}/waybar/colors-dark.css ${config.xdg.configHome}/waybar/colors.css
             ${pkillExe} -x -SIGUSR2 waybar
@@ -70,10 +66,6 @@
 
           mako = ''
             ${pkgs.mako}/bin/makoctl mode -a light
-          '';
-
-          rofi = ''
-            ${lnExe} -sf ${config.xdg.dataHome}/rofi/themes/light.rasi ${config.xdg.dataHome}/rofi/themes/current.rasi
           '';
 
           waybar-theme = ''

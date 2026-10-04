@@ -16,7 +16,7 @@
         self.homeModules.swaylock
         self.homeModules.mako
         self.homeModules.waybar
-        self.homeModules.rofi
+        self.homeModules.vicinae
 
         self.homeModules.gammastep
 
