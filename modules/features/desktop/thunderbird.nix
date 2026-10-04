@@ -2,7 +2,7 @@
 {
 
   flake.homeModules.thunderbird =
-    { config, ... }:
+    { config, lib, ... }:
     let
       profile = "6j069bhm.default";
       rustical = "https://rustical.pixilie.net";
@@ -34,6 +34,13 @@
         };
     in
     {
+      xdg.mimeApps.defaultApplications = lib.genAttrs [
+        "x-scheme-handler/mailto"
+        "message/rfc822"
+        "text/calendar"
+        "text/x-vcard"
+      ] (_: [ "thunderbird.desktop" ]);
+
       programs.thunderbird = {
         enable = true;
 
@@ -48,6 +55,7 @@
           "mail.spellcheck.inline" = false;
           "mail.threadpane.cardsview.rowcount" = 2;
           "mailnews.start_page.url" = "";
+          "mail.shell.checkDefaultClient" = false;
           "offline.download.download_messages" = 1;
           "offline.send.unsent_messages" = 1;
           "searchintegration.enable" = false;
