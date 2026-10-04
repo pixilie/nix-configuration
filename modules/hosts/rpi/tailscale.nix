@@ -12,6 +12,7 @@
         useRoutingFeatures = "server";
         authKeyFile = config.sops.secrets.tailscale_auth_key.path;
         extraUpFlags = [
+          "--reset"
           "--hostname=rpi"
           "--accept-dns=false"
         ];
