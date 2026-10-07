@@ -44,8 +44,6 @@
         };
 
         settings = {
-          lock.hide_cursor = true;
-
           background = {
             path = screenshot;
             blur_strength = 8;
