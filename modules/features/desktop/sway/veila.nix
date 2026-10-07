@@ -44,77 +44,28 @@
         };
 
         settings = {
-          background = {
-            path = screenshot;
-            blur_strength = 8;
-            dim_strength = 35;
-          };
+          theme = "normandy";
+
+          background.path = screenshot;
 
           battery.enabled = true;
-          weather.enabled = false;
+
+          weather = {
+            enabled = true;
+            location = "Paris";
+            unit = "celsius";
+          };
 
           visuals = {
-            avatar.enabled = false;
-            username.enabled = false;
+            keyboard.enabled = false;
+            battery.x = -24;
 
-            clock = {
-              format = "24h";
-              font_family = "Noto Sans";
-              font_weight = 600;
-              font_size = 96;
-              color = "#DCDFE4";
-              halign = "center";
-              valign = "center";
-              x = 0;
-              y = -110;
-            };
+            now_playing.enabled = true;
 
-            date = {
-              format = "long";
-              font_family = "Noto Sans";
-              font_weight = 400;
-              font_size = 20;
-              color = "#ABB2BF";
-              halign = "center";
-              valign = "center";
-              x = 0;
-              y = -40;
-            };
-
-            input = {
-              placeholder = "Password";
-              background_color = "rgba(30, 33, 39, 0.72)";
-              width = 340;
-              height = 56;
-              radius = 10;
-              mask_color = "#61AFEF";
-              font_family = "Noto Sans";
-              font_weight = 400;
-              font_size = 17;
-              halign = "center";
-              valign = "center";
-              x = 0;
-              y = 50;
-            };
-
-            placeholder.color = "rgba(171, 178, 191, 0.85)";
-            eye.color = "rgba(171, 178, 191, 0.72)";
-            caps_lock.color = "#D19A66";
-
-            status = {
-              mode = "inline";
-              rejected_color = "#E06C75";
-              pending_color = "#ABB2BF";
-            };
-
-            keyboard = {
-              background_color = "rgba(30, 33, 39, 0.72)";
-              color = "#ABB2BF";
-            };
-
-            battery = {
-              background_color = "rgba(30, 33, 39, 0.72)";
-              color = "#98C379";
+            weather = {
+              icon.enabled = true;
+              temperature.enabled = true;
+              location.enabled = true;
             };
           };
         };
