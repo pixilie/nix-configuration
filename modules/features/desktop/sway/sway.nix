@@ -4,6 +4,14 @@
     programs.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+      extraPackages = with pkgs; [
+        brightnessctl
+        foot
+        grim
+        pulseaudio
+        swayidle
+        wmenu
+      ];
     };
 
     environment.sessionVariables = {
@@ -22,8 +30,6 @@
         "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
       };
     };
-
-    security.pam.services.swaylock = { };
   };
 
   flake.homeModules.sway =
@@ -96,10 +102,8 @@
             "${modifier}+Shift+Return" = "exec firefox";
             "${modifier}+Shift+r" = "exec reboot";
             "${modifier}+Shift+p" = "exec shutdown -h now";
-            "${modifier}+Escape" = "exec sleep 0.3 && swaylock -C ~/.config/swaylock/config";
             "${modifier}" = "exec swaymsg bar mode toggle";
-            "${modifier}+Shift+s" =
-              "exec ${pkgs.swaylock-effects}/bin/swaylock -f -C ~/.config/swaylock/config && systemctl suspend";
+            "${modifier}+Shift+s" = "exec systemctl suspend";
             "${modifier}+Shift+n" = "swaymsg exit";
             "${modifier}+Shift+z" = "exec makoctl dismiss";
             "${modifier}+Shift+f" = "exec nautilus";
@@ -191,10 +195,6 @@
             command = "${pkgs.playerctl}/bin/playerctl pause";
           }
           {
-            timeout = 180;
-            command = "${pkgs.swaylock-effects}/bin/swaylock";
-          }
-          {
             timeout = 190;
             command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'";
             resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
@@ -206,8 +206,6 @@
         ];
 
         events = {
-          before-sleep = "${pkgs.swaylock-effects}/bin/swaylock -f";
-          lock = "${pkgs.swaylock-effects}/bin/swaylock -f";
           after-resume = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
         };
       };

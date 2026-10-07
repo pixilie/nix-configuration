@@ -97,6 +97,13 @@
             };
           };
 
+          font.normal.size = 12.25;
+
+          launcher_window.size = {
+            width = 900;
+            height = 560;
+          };
+
           launcher_window.layer_shell = {
             enabled = true;
             keyboard_interactivity = "exclusive";

@@ -2,7 +2,7 @@
 
 Welcome to my personal, modular, and flake-based [NixOS](https://nixos.org/) and [Home Manager](https://github.com/nix-community/home-manager) configuration.
 
-This repository contains declarative configurations for my personal laptop and my school (EPITA) environment, featuring dynamic theming, multiple window managers, and dedicated development environments.
+This repository contains declarative configurations for my personal laptop and my school (EPITA) environment, featuring dynamic theming, multiple window managers, dedicated development environments, and the self-hosted Raspberry Pi and VPS servers.
 
 ---
 
@@ -10,19 +10,23 @@ This repository contains declarative configurations for my personal laptop and m
 
 ```text
 .
-├── assets/          # Media (wallpapers), static configs (Zellij), themes (Rofi, Waybar), public ssh keys
-├── modules/         # Core configuration modules
+├── assets/          # Wallpapers, Rofi themes, public ssh keys
+├── modules/         # Every file is a flake-parts module, loaded through import-tree
 │   ├── features/    # Reusable modular blocks
-│   │   ├── core/    # CLI tools, Fish shell, Git, SSH, XDG, per-profile identity
-│   │   ├── desktop/ # WMs (Niri, Sway, i3), Waybar, Fonts, GTK, SDDM, Noctalia
+│   │   ├── core/    # CLI tools, Fish shell, SSH, XDG, secrets, per-profile identity, templates
+│   │   ├── desktop/ # Alacritty, Firefox, Thunderbird, Fonts, GTK, Gammastep, Rofi, Vicinae
+│   │   │   ├── i3/      # i3 (school profile)
+│   │   │   └── sway/    # Sway, Waybar, Mako, SwayOSD, Darkman, Veila lock screen
 │   │   ├── dev/     # Helix, Zed, Vim, Git, WakaTime configurations
 │   │   ├── gaming/  # Steam, Gamemode
-│   │   └── system/  # Network, Bluetooth, Audio (Pipewire), Docker, Power Management
+│   │   └── system/  # Network, Bluetooth, Audio (Pipewire), Docker, SDDM, Power Management
 │   └── hosts/            # Host-specific configurations
-│       ├── laptop/       # Personal NixOS + Home Manager setup (Niri/Sway)
+│       ├── laptop/       # Personal NixOS + Home Manager setup (Sway)
 │       ├── epita_light/  # Standalone Home Manager setup (i3) for school
-│       └── rpi/          # Headless Raspberry Pi 3 (SD image, ssh, fish)
-├── secrets/         # sops encrypted secrets
+│       ├── rpi/          # Headless Raspberry Pi 3: tailscale subnet router, gatus, ntfy, monitoring
+│       ├── vps/          # OVH VPS: kalnu, immich, vaultwarden, maddy and other services
+│       └── nas.nix       # Home NAS address shared by the rpi and vps hosts
+├── secrets/         # sops encrypted secrets, one file per host
 ├── templates/       # Nix flake templates for various programming languages
 ├── Makefile         # Entry point for every profile
 ├── .envrc           # direnv hook loading the flake dev shell (provides make)

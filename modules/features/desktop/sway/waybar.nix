@@ -187,7 +187,7 @@
           use-icon = true;
           icon-name = "input-gaming-symbolic";
           icon-spacing = 4;
-          icon-size = 20;
+          icon-size = 23;
           tooltip = true;
           tooltip-format = "Games running: {count}";
         };
@@ -238,12 +238,12 @@
 
         style = ''
           @import "colors.css";
-          * { font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", sans-serif; font-size: 13px; border-radius: 0; }
+          * { font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", sans-serif; font-size: 15px; border-radius: 0; }
           #waybar { background: alpha(white, 0); color: @base00; }
           tooltip { border-color: @base0D; background-color: @base00; }
           tooltip label { color: @base05; }
-          #workspaces button { border-bottom: 3px solid transparent; color: @base07; background-color: @base03; }
-          #workspaces button.focused, #workspaces button.active { border-bottom: 3px solid @base05; }
+          #workspaces button { border-bottom: 4px solid transparent; color: @base07; background-color: @base03; }
+          #workspaces button.focused, #workspaces button.active { border-bottom: 4px solid @base05; }
           #workspaces button.urgent { color: @base08; }
           #tray, #idle_inhibitor, #custom-notifications, #clock { background-color: @base03; }
           #battery { color: @base00; background-color: @base0B; }

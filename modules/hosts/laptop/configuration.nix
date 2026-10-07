@@ -24,6 +24,7 @@
         self.nixosModules.specialPackages
         self.nixosModules.nh
         self.nixosModules.sway
+        self.nixosModules.veila
       ];
 
       networking.hostName = "kristen-nixos";

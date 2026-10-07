@@ -13,7 +13,7 @@
         self.homeModules.darkmanSway
         self.homeModules.sway
         self.homeModules.sway_osd
-        self.homeModules.swaylock
+        self.homeModules.veila
         self.homeModules.mako
         self.homeModules.waybar
         self.homeModules.vicinae
@@ -63,7 +63,6 @@
           obs-studio
           localsend
           gnome-calculator
-          gnome-calendar
 
           zotero
           baobab
@@ -79,7 +78,9 @@
           jdk25
           heroic
 
-          dbeaver-bin
+          gns3-gui
+          gns3-server
+          wireshark-cli
         ];
 
         systemd.user.startServices = "sd-switch";

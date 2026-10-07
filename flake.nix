@@ -32,6 +32,9 @@
     vocal-time-counter.url = "github:pixilie/vocal-time-counter";
     vocal-time-counter.flake = false;
 
+    veila.url = "github:naurissteins/Veila";
+    veila.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
   };

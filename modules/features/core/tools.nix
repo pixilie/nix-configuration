@@ -31,6 +31,10 @@
         miniserve
         unzip
         upkgs.claude-code
+        wireshark-cli
+
+        # concord-tui
+        # discordo
       ];
     };
 }

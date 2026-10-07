@@ -274,6 +274,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
+        "veila": "veila",
         "vocal-time-counter": "vocal-time-counter",
         "wakatime-ls": "wakatime-ls"
       }
@@ -367,6 +368,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "veila": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791387197,
+        "narHash": "sha256-n79oGow+PGu/TCj1oEpQ1njIpYpbRmYK3IedlRjVy1k=",
+        "owner": "naurissteins",
+        "repo": "Veila",
+        "rev": "d78c0271facb1a7ff51f7e855e8c63d8429c9d33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "naurissteins",
+        "repo": "Veila",
         "type": "github"
       }
     },
