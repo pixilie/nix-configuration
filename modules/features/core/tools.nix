@@ -32,6 +32,7 @@
         unzip
         upkgs.claude-code
         wireshark-cli
+        man-pages
 
         # concord-tui
         # discordo
