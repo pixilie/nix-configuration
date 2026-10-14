@@ -40,6 +40,8 @@
                 bear
                 gnumake
                 gcc
+                gdb
+                colorgrind
               ]
               ++ (with llvmPackages; [
                 clang
