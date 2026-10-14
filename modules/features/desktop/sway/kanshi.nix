@@ -34,6 +34,22 @@
             }
           ];
         }
+        {
+          profile.name = "external";
+          profile.outputs = [
+            {
+              criteria = "eDP-1";
+              status = "enable";
+              mode = "1920x1080@60.033Hz";
+              position = "0,0";
+            }
+            {
+              criteria = "*";
+              status = "enable";
+              position = "1920,0";
+            }
+          ];
+        }
       ];
     };
   };
