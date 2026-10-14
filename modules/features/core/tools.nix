@@ -11,6 +11,7 @@
         pkg-config
         xdg-utils
         direnv
+        man-pages
 
         dust
         btop
@@ -31,10 +32,6 @@
         miniserve
         unzip
         upkgs.claude-code
-        man-pages
-
-        # concord-tui
-        # discordo
       ];
     };
 }
