@@ -253,6 +253,7 @@
           #pulseaudio.muted { background-color: @base09; }
           #bluetooth { color: @base00; background-color: @base0D; }
           #network { color: @base00; background-color: @base0C; }
+          #mpris { color: @base00; background-color: @base0E; }
           #gamemode { color: @base00; background-color: @base08; padding: 0 .7rem; }
           .modules-right widget .module { padding: 0 .7rem; color: @base07; }
           @keyframes blink { to { background-color: #ffffff; color: #000000; } }
