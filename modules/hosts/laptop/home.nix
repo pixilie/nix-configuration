@@ -13,6 +13,7 @@
         self.homeModules.darkmanSway
         self.homeModules.sway
         self.homeModules.sway_osd
+        self.homeModules.kanshi
         self.homeModules.veila
         self.homeModules.mako
         self.homeModules.waybar

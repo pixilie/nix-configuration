@@ -169,12 +169,6 @@
               xkb_options = "grp:ctrl_alt_toggle";
             };
           };
-
-          output."eDP-1" = {
-            resolution = "1920x1080";
-            scale = "1.0";
-            pos = "0 0";
-          };
         };
 
         extraConfig = ''
