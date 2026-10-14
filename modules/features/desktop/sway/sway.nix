@@ -59,6 +59,8 @@
         satty
       ];
 
+      services.autotiling.enable = true;
+
       wayland.windowManager.sway = {
         enable = true;
         xwayland = true;
