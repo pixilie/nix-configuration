@@ -24,6 +24,9 @@
         feh
       ];
 
+      services.autotiling.enable = true;
+      systemd.user.services.autotiling.Service.RestartSec = 1;
+
       xsession.enable = true;
 
       xsession.windowManager.i3 = {
