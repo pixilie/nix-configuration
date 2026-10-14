@@ -107,7 +107,7 @@
           launcher_window.layer_shell = {
             enabled = true;
             keyboard_interactivity = "exclusive";
-            layer = "top";
+            layer = "overlay";
           };
 
           favorites = [
