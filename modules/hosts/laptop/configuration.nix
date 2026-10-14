@@ -73,6 +73,7 @@
           "gamemode"
           "libvirtd"
           "dialout"
+          "wireshark"
         ];
       };
 

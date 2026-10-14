@@ -81,7 +81,6 @@
 
           gns3-gui
           gns3-server
-          wireshark-cli
         ];
 
         systemd.user.startServices = "sd-switch";
