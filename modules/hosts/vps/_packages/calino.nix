@@ -11,20 +11,20 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "calino";
-  version = "0.35.0";
+  version = "0.39.1";
 
   src = fetchFromGitHub {
     owner = "Ivan-Malinovski";
     repo = "calino";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-iIqZ7hcEml4p7H9IgArzm1v3IcBQCQjEXkiwGcPkgWI=";
+    hash = "sha256-WSSLIRnoBXEBYVivy5Tjt446hhgExoxTg6vQYONe+u0=";
   };
 
   pnpmDeps = fetchPnpmDeps {
     inherit (finalAttrs) pname version src;
     pnpm = pnpm_10;
     fetcherVersion = 3;
-    hash = "sha256-YPz46fYGSoZptQXnsXFWySDgVjx1VTIT11T6l0dYGZA=";
+    hash = "sha256-VB/DQoqIv5OWmoSqBr0LEHxtxrG9C/4MUPUu8N+9up4=";
   };
 
   nativeBuildInputs = [
