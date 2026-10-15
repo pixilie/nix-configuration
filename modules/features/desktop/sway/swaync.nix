@@ -15,6 +15,7 @@
       wpctlExe = lib.getExe' pkgs.wireplumber "wpctl";
       systemctlExe = lib.getExe' pkgs.systemd "systemctl";
       grepExe = lib.getExe pkgs.gnugrep;
+      darkmanExe = lib.getExe pkgs.darkman;
 
       toggle = name: label: on: off: isOn: {
         inherit label;
@@ -31,13 +32,17 @@
         ''}";
       };
 
-      action = name: label: script: {
-        inherit label;
-        command = "${pkgs.writeShellScript "swaync-${name}" ''
+      closePanelThen =
+        name: script:
+        "${pkgs.writeShellScript "swaync-${name}" ''
           ${swayncClientExe} --close-panel
           ${pkgs.coreutils}/bin/sleep 0.3
           ${script}
         ''}";
+
+      action = name: label: script: {
+        inherit label;
+        command = closePanelThen name script;
       };
 
       themeDark = ''
@@ -67,11 +72,11 @@
       themeLight = ''
         :root {
           --cc-bg: #f0f0f1;
-          --noti-bg: 250, 250, 250;
+          --noti-bg: 255, 255, 255;
           --noti-bg-alpha: 1;
           --noti-bg-darker: #f0f0f1;
-          --noti-bg-hover: #ffffff;
-          --noti-border-color: #e0e0e2;
+          --noti-bg-hover: #f5f5f6;
+          --noti-border-color: #dcdce0;
           --noti-close-bg: #e5e5e6;
           --noti-close-bg-hover: #dbdbdc;
           --noti-critical: #e45649;
@@ -79,9 +84,9 @@
           --text-color-secondary: #696c77;
           --text-color-disabled: #a0a1a7;
           --bg-selected: #4078f2;
-          --accent-fg: #fafafa;
-          --tile-bg: #fafafa;
-          --tile-bg-hover: #ffffff;
+          --accent-fg: #ffffff;
+          --tile-bg: #ffffff;
+          --tile-bg-hover: #f5f5f6;
           --popup-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
           --mpris-album-art-overlay: rgba(250, 250, 250, 0.7);
           --mpris-button-hover: rgba(229, 229, 230, 0.8);
@@ -103,13 +108,16 @@
       services.swaync = {
         enable = true;
         package = pkgs.swaynotificationcenter.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./swaync-mpris-hide-idle-players.patch ];
+          patches = (old.patches or [ ]) ++ [
+            ./swaync-mpris-hide-idle-players.patch
+            ./swaync-volume-label-command.patch
+          ];
         });
 
         settings = {
           timeout = 5;
           notification-window-width = 560;
-          control-center-width = 560;
+          control-center-width = 470;
           control-center-margin-top = 10;
           control-center-margin-bottom = 10;
           control-center-margin-right = 10;
@@ -128,10 +136,13 @@
               blacklist = [ "playerctld" ];
             };
 
-            volume.label = "󰕾";
+            volume = {
+              label = "󰕾";
+              label-command = closePanelThen "mixer" (lib.getExe pkgs.pavucontrol);
+            };
 
             buttons-grid = {
-              buttons-per-row = 4;
+              buttons-per-row = 8;
               actions = [
                 (toggle "wifi" "󰖩" "${nmcliExe} radio wifi on" "${nmcliExe} radio wifi off"
                   ''[ "$(${nmcliExe} radio wifi)" = enabled ]''
@@ -151,10 +162,12 @@
                   "${systemctlExe} --user stop gammastep"
                   "${systemctlExe} --user is-active --quiet gammastep"
                 )
+                (toggle "theme" "󰔎" "${darkmanExe} set dark" "${darkmanExe} set light"
+                  ''[ "$(${darkmanExe} get)" = dark ]''
+                )
                 (action "screenshot" "󰹑"
                   ''${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" - | ${lib.getExe pkgs.satty} -f - --action-on-enter save-to-clipboard''
                 )
-                (action "mixer" "󰕾" (lib.getExe pkgs.pavucontrol))
                 (action "lock" "󰌾" "veila-lock")
               ];
             };
@@ -240,12 +253,17 @@
             background: var(--tile-bg);
           }
           .widget-volume label { font-family: "CaskaydiaCove Nerd Font Propo"; font-size: 20px; }
+          .widget-volume label.clickable { padding: 0 4px; border-radius: 6px; }
+          .widget-volume label.clickable:hover { color: var(--bg-selected); }
           .widget-volume scale trough { background: var(--noti-border-color); }
           .widget-volume scale highlight { background: var(--bg-selected); }
 
-          .widget-buttons-grid { margin: 2px 12px 12px; padding: 0; }
+          .widget-buttons-grid { margin: 2px 10px 12px; padding: 0; }
+          .widget-buttons-grid flowboxchild { padding: 0 3px; }
           .widget-buttons-grid flowboxchild > button {
             min-height: 44px;
+            min-width: 0;
+            padding: 0;
             border: 1px solid var(--noti-border-color);
             border-radius: var(--border-radius);
             box-shadow: none;

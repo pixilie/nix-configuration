@@ -1,0 +1,18 @@
+--- a/src/controlCenter/widgets/volume/volume.vala
++++ b/src/controlCenter/widgets/volume/volume.vala
+@@ -56,6 +56,15 @@
+                 string ?label = get_prop<string> (config, "label");
+                 label_widget.set_label (label ?? "Volume");
+ 
++                string ?label_command = get_prop<string> (config, "label-command");
++                if (label_command != null && label_command.length > 0) {
++                    Gtk.GestureClick label_click = new Gtk.GestureClick ();
++                    label_click.released.connect (() => execute_command.begin (label_command));
++                    label_widget.add_controller (label_click);
++                    label_widget.set_cursor_from_name ("pointer");
++                    label_widget.add_css_class ("clickable");
++                }
++
+                 bool show_per_app_found;
+                 bool ?show_per_app = get_prop<bool> (config, "show-per-app",
+                                                      out show_per_app_found);
