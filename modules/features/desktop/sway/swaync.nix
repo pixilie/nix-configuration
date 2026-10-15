@@ -193,6 +193,12 @@
             border-radius: 12px;
           }
 
+          @keyframes control-center-open {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: none; }
+          }
+          .open .control-center { animation: control-center-open 250ms cubic-bezier(0.22, 1, 0.36, 1); }
+
           .widget-title { margin: 10px 14px 4px; padding: 0; }
           .widget-title > label { font-size: 1.1rem; font-weight: 600; }
           .widget-title > button {
