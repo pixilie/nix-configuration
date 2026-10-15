@@ -64,6 +64,7 @@
       wayland.windowManager.sway = {
         enable = true;
         xwayland = true;
+        systemd.variables = lib.mkOptionDefault [ "GNOME_KEYRING_CONTROL" ];
         config = {
           inherit
             modifier
@@ -175,6 +176,7 @@
         extraConfig = ''
           exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP SSH_AUTH_SOCK
           exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP SSH_AUTH_SOCK
+          exec ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
         '';
       };
 
