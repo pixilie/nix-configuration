@@ -12,7 +12,6 @@ let
           "steam-run"
           "lunarclient"
           "discord"
-          "spotify"
           "claude-code"
         ];
     };

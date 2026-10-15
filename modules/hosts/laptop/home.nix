@@ -56,7 +56,7 @@
 
         home.packages = with pkgs; [
           discord
-          spotify
+          upkgs.spotifast
           bitwarden-desktop
           nautilus
           gimp-with-plugins
