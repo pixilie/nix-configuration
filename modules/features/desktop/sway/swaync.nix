@@ -116,7 +116,7 @@
 
         settings = {
           timeout = 5;
-          notification-window-width = 560;
+          notification-window-width = 400;
           control-center-width = 470;
           control-center-margin-top = 10;
           control-center-margin-bottom = 10;
