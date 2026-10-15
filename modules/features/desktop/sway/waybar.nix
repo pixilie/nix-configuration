@@ -161,6 +161,7 @@
 
         mpris = {
           format = "{title:.30} - {artist:.30}";
+          format-paused = "";
           format-stopped = "";
           tooltip-format = "{album} ({player})";
         };
