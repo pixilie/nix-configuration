@@ -107,7 +107,6 @@
             "${modifier}" = "exec swaymsg bar mode toggle";
             "${modifier}+Shift+s" = "exec systemctl suspend";
             "${modifier}+Shift+n" = "swaymsg exit";
-            "${modifier}+Shift+z" = "exec makoctl dismiss";
             "${modifier}+Shift+f" = "exec nautilus";
 
             "${modifier}+${left}" = "focus left";

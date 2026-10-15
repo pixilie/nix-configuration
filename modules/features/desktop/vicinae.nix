@@ -13,7 +13,7 @@
             meta = {
               version = 1;
               name = "Desktop Dark";
-              description = "One Dark, matching waybar, mako and rofi";
+              description = "One Dark, matching waybar, swaync and rofi";
               variant = "dark";
               inherits = "vicinae-dark";
             };
@@ -48,7 +48,7 @@
             meta = {
               version = 1;
               name = "Desktop Light";
-              description = "One Light, matching waybar, mako and alacritty";
+              description = "One Light, matching waybar, swaync and alacritty";
               variant = "light";
               inherits = "vicinae-light";
             };

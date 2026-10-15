@@ -15,6 +15,8 @@
       helixThemes = "${config.xdg.configHome}/helix/themes";
       mkdirExe = "${pkgs.coreutils}/bin/mkdir";
       echoExe = "${pkgs.coreutils}/bin/echo";
+      swayncClientExe = "${config.services.swaync.package}/bin/swaync-client";
+      swayncColors = "${config.xdg.configHome}/swaync";
     in
     {
       services.darkman = {
@@ -34,8 +36,9 @@
             ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_dark.png} fill
           '';
 
-          mako = ''
-            ${pkgs.mako}/bin/makoctl mode -r light
+          swaync = ''
+            ${lnExe} -sf ${swayncColors}/colors-dark.css ${swayncColors}/colors.css
+            ${swayncClientExe} --reload-css --skip-wait || true
           '';
 
           waybar-theme = ''
@@ -64,8 +67,9 @@
             ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_light.png} fill
           '';
 
-          mako = ''
-            ${pkgs.mako}/bin/makoctl mode -a light
+          swaync = ''
+            ${lnExe} -sf ${swayncColors}/colors-light.css ${swayncColors}/colors.css
+            ${swayncClientExe} --reload-css --skip-wait || true
           '';
 
           waybar-theme = ''

@@ -8,10 +8,9 @@
       ...
     }:
     let
-      makoctlExe = "${pkgs.mako}/bin/makoctl";
+      swayncClientExe = "${config.services.swaync.package}/bin/swaync-client";
       pavucontrolExe = "${pkgs.pavucontrol}/bin/pavucontrol";
       waybarExe = "${pkgs.waybar}/bin/waybar";
-      pkillExe = "${pkgs.procps}/bin/pkill";
       bluemanExe = "${pkgs.blueman}/bin/blueman-manager";
 
       themeDark = ''
@@ -71,22 +70,18 @@
         "custom/notifications" = {
           format = "{icon}";
           format-icons = {
-            normal = " ";
-            dnd = " ";
+            default = " ";
+            dnd-none = " ";
+            dnd-notification = " ";
+            dnd-inhibited-none = " ";
+            dnd-inhibited-notification = " ";
           };
           tooltip = false;
-          interval = "once";
           return-type = "json";
-          exec = ''
-            MODE=$(${makoctlExe} mode 2>/dev/null || echo "default")
-            if echo "$MODE" | grep -q "dnd"; then
-              echo '{"alt":"dnd", "class":"dnd"}'
-            else
-              echo '{"alt":"normal", "class":"normal"}'
-            fi
-          '';
-          on-click = "${makoctlExe} mode -t dnd && ${pkillExe} -SIGRTMIN+10 waybar";
-          signal = 10;
+          exec = "${swayncClientExe} --subscribe-waybar";
+          on-click = "${swayncClientExe} --toggle-panel --skip-wait";
+          on-click-right = "${swayncClientExe} --toggle-dnd --skip-wait";
+          escape = true;
         };
 
         idle_inhibitor = {
@@ -246,6 +241,7 @@
           #workspaces button.focused, #workspaces button.active { border-bottom: 4px solid @base05; }
           #workspaces button.urgent { color: @base08; }
           #tray, #idle_inhibitor, #custom-notifications, #clock { background-color: @base03; }
+          #custom-notifications.notification, #custom-notifications.dnd-notification, #custom-notifications.inhibited-notification, #custom-notifications.dnd-inhibited-notification { color: @base0D; }
           #battery { color: @base00; background-color: @base0B; }
           #battery.warning:not(.charging) { background-color: @base09; }
           #battery.critical:not(.charging) { background-color: @base08; animation: blink 0.5s linear infinite alternate; }

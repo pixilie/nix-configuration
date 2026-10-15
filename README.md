@@ -16,7 +16,7 @@ This repository contains declarative configurations for my personal laptop, my s
 │   │   ├── core/    # CLI tools, Fish shell, SSH, XDG, secrets, per-profile identity, templates
 │   │   ├── desktop/ # Alacritty, Firefox, Thunderbird, Fonts, GTK, Gammastep, Rofi, Vicinae
 │   │   │   ├── i3/      # i3 (school profile)
-│   │   │   └── sway/    # Sway, Waybar, Mako, SwayOSD, Darkman, Veila lock screen
+│   │   │   └── sway/    # Sway, Waybar, SwayNC, SwayOSD, Darkman, Veila lock screen
 │   │   ├── dev/     # Helix, Zed, Vim, Git, WakaTime configurations
 │   │   ├── gaming/  # Steam, Gamemode
 │   │   └── system/  # Network, Bluetooth, Audio (Pipewire), Docker, SDDM, Power Management

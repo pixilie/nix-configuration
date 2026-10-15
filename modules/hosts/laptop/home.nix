@@ -15,7 +15,7 @@
         self.homeModules.sway_osd
         self.homeModules.kanshi
         self.homeModules.veila
-        self.homeModules.mako
+        self.homeModules.swaync
         self.homeModules.waybar
         self.homeModules.vicinae
 
