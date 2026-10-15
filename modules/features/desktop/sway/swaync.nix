@@ -24,6 +24,8 @@
           --text-color: #abb2bf;
           --text-color-disabled: #5c6370;
           --bg-selected: #61afef;
+          --mpris-album-art-overlay: rgba(23, 25, 30, 0.6);
+          --mpris-button-hover: rgba(53, 59, 69, 0.8);
         }
       '';
 
@@ -42,6 +44,9 @@
           --text-color: #383a42;
           --text-color-disabled: #a0a1a7;
           --bg-selected: #4078f2;
+          --mpris-album-art-overlay: rgba(250, 250, 250, 0.6);
+          --mpris-button-hover: rgba(229, 229, 230, 0.8);
+          --notification-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.12);
         }
       '';
     in
@@ -62,28 +67,24 @@
 
         settings = {
           timeout = 5;
-          notification-window-width = 350;
-          control-center-width = 420;
 
           widgets = [
             "title"
-            "dnd"
             "mpris"
+            "dnd"
             "notifications"
           ];
 
-          widget-config.mpris.autohide = true;
+          widget-config.mpris = {
+            autohide = true;
+            blacklist = [ "playerctld" ];
+          };
         };
 
         style = ''
           @import url("colors.css");
 
           * { font-family: "Noto Sans"; }
-
-          :root {
-            --border-radius: 5px;
-            --notification-icon-size: 55px;
-          }
 
           .notification-row .notification-background .notification.critical { border-color: var(--noti-critical); }
         '';
