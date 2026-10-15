@@ -29,7 +29,7 @@
         ${swaymsgExe} bar bar-0 mode "''${barMode:-hide}" >/dev/null 2>&1
       '';
 
-      lockWithScreenshot = pkgs.writeShellScript "veila-lock-screenshot" ''
+      lockWithScreenshot = pkgs.writeShellScriptBin "veila-lock" ''
         ${prepareLock}
         exec ${veilaExe} lock --wait-ready
       '';
@@ -43,6 +43,8 @@
     in
     {
       imports = [ inputs.veila.homeModules.default ];
+
+      home.packages = [ lockWithScreenshot ];
 
       programs.veila = {
         enable = true;
@@ -82,7 +84,7 @@
       };
 
       wayland.windowManager.sway.config.keybindings = lib.mkOptionDefault {
-        "Mod4+Escape" = "exec ${lockWithScreenshot}";
+        "Mod4+Escape" = "exec ${lib.getExe lockWithScreenshot}";
       };
 
       services.swayidle = {
@@ -94,8 +96,8 @@
         ];
 
         events = {
-          before-sleep = "${lockWithScreenshot}";
-          lock = "${lockWithScreenshot}";
+          before-sleep = "${lib.getExe lockWithScreenshot}";
+          lock = "${lib.getExe lockWithScreenshot}";
         };
       };
     };
