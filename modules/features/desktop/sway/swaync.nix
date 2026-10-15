@@ -246,7 +246,7 @@
           .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle { font-size: 0.9rem; color: var(--text-color-secondary); }
 
           .widget-volume {
-            margin: 6px 14px 2px;
+            margin: 6px 14px 6px;
             padding: 6px 12px;
             border: 1px solid var(--noti-border-color);
             border-radius: var(--border-radius);
@@ -258,7 +258,7 @@
           .widget-volume scale trough { background: var(--noti-border-color); }
           .widget-volume scale highlight { background: var(--bg-selected); }
 
-          .widget-buttons-grid { margin: 2px 10px 12px; padding: 0; }
+          .widget-buttons-grid { margin: 4px 10px 12px; padding: 0; }
           .widget-buttons-grid flowboxchild { padding: 0 3px; }
           .widget-buttons-grid flowboxchild > button {
             min-height: 44px;
