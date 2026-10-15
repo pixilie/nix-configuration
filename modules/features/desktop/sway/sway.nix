@@ -184,10 +184,6 @@
         enable = true;
         timeouts = [
           {
-            timeout = 175;
-            command = "${pkgs.notify-desktop}/bin/notify-desktop 'Screen locking in 5 seconds'";
-          }
-          {
             timeout = 179;
             command = "${pkgs.playerctl}/bin/playerctl pause";
           }

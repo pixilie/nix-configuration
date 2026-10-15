@@ -17,7 +17,7 @@
       veilaExe = lib.getExe config.programs.veila.package;
       swaymsgExe = "${pkgs.sway}/bin/swaymsg";
 
-      lockWithScreenshot = pkgs.writeShellScript "veila-lock-screenshot" ''
+      prepareLock = ''
         if ${veilaExe} status 2>/dev/null | ${pkgs.gnugrep}/bin/grep -qx 'active_lock=true'; then
           exit 0
         fi
@@ -27,7 +27,17 @@
         ${pkgs.coreutils}/bin/sleep 0.15
         ${lib.getExe pkgs.grim} -t png -l 0 ${screenshot}.new && ${pkgs.coreutils}/bin/mv -f ${screenshot}.new ${screenshot}
         ${swaymsgExe} bar bar-0 mode "''${barMode:-hide}" >/dev/null 2>&1
+      '';
 
+      lockWithScreenshot = pkgs.writeShellScript "veila-lock-screenshot" ''
+        ${prepareLock}
+        exec ${veilaExe} lock --wait-ready
+      '';
+
+      fadeThenLock = pkgs.writeShellScript "veila-fade-lock" ''
+        ${prepareLock}
+        ${lib.getExe pkgs.chayang} -d 5
+        [ $? -eq 2 ] && exit 0
         exec ${veilaExe} lock --wait-ready
       '';
     in
@@ -78,8 +88,8 @@
       services.swayidle = {
         timeouts = [
           {
-            timeout = 180;
-            command = "${lockWithScreenshot}";
+            timeout = 175;
+            command = "${fadeThenLock}";
           }
         ];
 
