@@ -1,8 +1,9 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.sway = { pkgs, ... }: {
+  flake.nixosModules.sway = { pkgs, upkgs, ... }: {
     programs.sway = {
       enable = true;
+      package = upkgs.swayfx;
       wrapperFeatures.gtk = true;
       extraPackages = with pkgs; [
         brightnessctl
@@ -35,6 +36,7 @@
   flake.homeModules.sway =
     {
       pkgs,
+      upkgs,
       config,
       lib,
       ...
@@ -63,6 +65,8 @@
 
       wayland.windowManager.sway = {
         enable = true;
+        package = upkgs.swayfx;
+        checkConfig = false;
         xwayland = true;
         systemd.variables = lib.mkOptionDefault [ "GNOME_KEYRING_CONTROL" ];
         config = {
@@ -95,6 +99,13 @@
                   instance = "^Unity$";
                 };
                 command = "floating enable";
+              }
+              {
+                criteria = {
+                  app_id = "firefox";
+                  title = "^Extension ?: \\(Bitwarden";
+                };
+                command = "floating enable, resize set 420 px 700 px, move position center";
               }
             ];
           };
@@ -174,6 +185,7 @@
         };
 
         extraConfig = ''
+          animation_duration_ms 250
           exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP SSH_AUTH_SOCK
           exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP SSH_AUTH_SOCK
           exec ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
