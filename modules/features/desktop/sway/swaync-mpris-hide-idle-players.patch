@@ -1,0 +1,50 @@
+--- a/src/controlCenter/widgets/mpris/mpris_player.vala
++++ b/src/controlCenter/widgets/mpris/mpris_player.vala
+@@ -112,6 +112,9 @@
+                         update_desktop_entry ();
+                         break;
+                     case "PlaybackStatus":
++                        update_button_play_pause (metadata);
++                        content_updated ();
++                        break;
+                     case "CanPause":
+                     case "CanPlay":
+                         update_button_play_pause (metadata);
+--- a/src/controlCenter/widgets/mpris/mpris.vala
++++ b/src/controlCenter/widgets/mpris/mpris.vala
+@@ -34,6 +34,7 @@
+         const string MPRIS_PREFIX = "org.mpris.MediaPlayer2.";
+         HashTable<string, MprisPlayer> players = new HashTable<string, MprisPlayer> (str_hash,
+                                                                                      str_equal);
++        GenericSet<string> played_players = new GenericSet<string> (str_hash, str_equal);
+ 
+         DBusInterface dbus_iface;
+ 
+@@ -210,6 +211,19 @@
+             if (player == null) {
+                 return true;
+             }
++            switch (player.source.media_player.playback_status) {
++                case "Playing":
++                    played_players.add (name);
++                    break;
++                case "Paused":
++                    if (!played_players.contains (name)) {
++                        return true;
++                    }
++                    break;
++                default:
++                    played_players.remove (name);
++                    return true;
++            }
+             HashTable<string, Variant> metadata = player.source.media_player.metadata;
+             if (metadata == null || metadata.size () == 0) {
+                 debug ("Metadata is empty");
+@@ -292,6 +306,7 @@
+             }
+ 
+             remove_player_from_carousel (name);
++            played_players.remove (name);
+ 
+             player.before_destroy ();
+             players.remove (name);

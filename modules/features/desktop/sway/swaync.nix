@@ -66,7 +66,7 @@
       services.swaync = {
         enable = true;
         package = pkgs.swaynotificationcenter.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./swaync-mpris-playing-only.patch ];
+          patches = (old.patches or [ ]) ++ [ ./swaync-mpris-hide-idle-players.patch ];
         });
 
         settings = {
@@ -91,6 +91,10 @@
           * { font-family: "Noto Sans"; }
 
           .notification-row .notification-background .notification.critical { border-color: var(--noti-critical); }
+          .notification-group,
+          .notification-group:hover,
+          .notification-group:focus,
+          .notification-group:selected { background: transparent; }
         '';
       };
 
