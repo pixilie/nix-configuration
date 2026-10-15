@@ -32,6 +32,7 @@
         miniserve
         unzip
         upkgs.claude-code
+        ipcalc
       ];
     };
 }
