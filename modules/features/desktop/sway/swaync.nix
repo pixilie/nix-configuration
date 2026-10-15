@@ -2,6 +2,7 @@
 
   flake.homeModules.swaync =
     {
+      pkgs,
       lib,
       config,
       ...
@@ -64,6 +65,9 @@
 
       services.swaync = {
         enable = true;
+        package = pkgs.swaynotificationcenter.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [ ./swaync-mpris-playing-only.patch ];
+        });
 
         settings = {
           timeout = 5;
