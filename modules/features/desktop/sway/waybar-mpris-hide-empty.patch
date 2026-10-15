@@ -1,0 +1,32 @@
+--- a/src/modules/mpris/mpris.cpp
++++ b/src/modules/mpris/mpris.cpp
+@@ -677,15 +677,15 @@
+   auto tooltipstr = tooltip_;
+   switch (info.status) {
+     case PLAYERCTL_PLAYBACK_STATUS_PLAYING:
+-      if (!format_playing_.empty()) formatstr = format_playing_;
++      if (config_["format-playing"].isString()) formatstr = format_playing_;
+       if (!tooltip_playing_.empty()) tooltipstr = tooltip_playing_;
+       break;
+     case PLAYERCTL_PLAYBACK_STATUS_PAUSED:
+-      if (!format_paused_.empty()) formatstr = format_paused_;
++      if (config_["format-paused"].isString()) formatstr = format_paused_;
+       if (!tooltip_paused_.empty()) tooltipstr = tooltip_paused_;
+       break;
+     case PLAYERCTL_PLAYBACK_STATUS_STOPPED:
+-      if (!format_stopped_.empty()) formatstr = format_stopped_;
++      if (config_["format-stopped"].isString()) formatstr = format_stopped_;
+       if (!tooltip_stopped_.empty()) tooltipstr = tooltip_stopped_;
+       break;
+   }
+@@ -712,7 +712,9 @@
+         fmt::arg("status_icon", getIconFromJson(config_["status-icons"], info.status_string)));
+ 
+     if (label_format.empty()) {
+-      label_.hide();
++      event_box_.set_visible(false);
++      ALabel::update();
++      return;
+     } else {
+       label_.set_markup(label_format);
+       label_.show();

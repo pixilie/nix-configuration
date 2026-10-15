@@ -10,7 +10,7 @@
     let
       swayncClientExe = "${config.services.swaync.package}/bin/swaync-client";
       pavucontrolExe = "${pkgs.pavucontrol}/bin/pavucontrol";
-      waybarExe = "${pkgs.waybar}/bin/waybar";
+      waybarExe = lib.getExe config.programs.waybar.package;
       bluemanExe = "${pkgs.blueman}/bin/blueman-manager";
 
       themeDark = ''
@@ -210,6 +210,9 @@
 
       programs.waybar = {
         enable = true;
+        package = pkgs.waybar.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [ ./waybar-mpris-hide-empty.patch ];
+        });
         systemd.enable = false;
 
         settings = {
@@ -241,6 +244,8 @@
           #workspaces button { border-bottom: 4px solid transparent; color: @base07; background-color: @base03; }
           #workspaces button.focused, #workspaces button.active { border-bottom: 4px solid @base05; }
           #workspaces button.urgent { color: @base08; }
+          #workspaces button:last-child { border-top-right-radius: 8px; }
+          .modules-right > widget:first-child > * { border-top-left-radius: 8px; }
           #tray, #idle_inhibitor, #custom-notifications, #clock { background-color: @base03; }
           #custom-notifications.notification, #custom-notifications.dnd-notification, #custom-notifications.inhibited-notification, #custom-notifications.dnd-inhibited-notification { color: @base0D; }
           #battery { color: @base00; background-color: @base0B; }
