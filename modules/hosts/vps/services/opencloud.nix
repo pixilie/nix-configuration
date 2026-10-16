@@ -32,7 +32,10 @@
           OC_ADD_RUN_SERVICES = "notifications";
         };
         settings = {
-          proxy.http.tls = false;
+          proxy = {
+            http.tls = false;
+            allow_app_auth = true;
+          };
           storage-users = {
             driver = "decomposed";
             drivers.decomposed.root = "/mnt/nas/opencloud";
