@@ -10,6 +10,7 @@
           owner,
           fileMode,
           dirMode,
+          extraOptions ? [ ],
         }:
         {
           device = "//${homeNas.address}/${name}";
@@ -26,7 +27,8 @@
             "x-systemd.automount"
             "x-systemd.mount-timeout=30s"
             "x-systemd.after=tailscaled.service"
-          ];
+          ]
+          ++ extraOptions;
         };
     in
     {
@@ -43,6 +45,13 @@
           owner = config.services.immich.user;
           fileMode = "0600";
           dirMode = "0700";
+        };
+        ${config.services.opencloud.settings.storage-users.drivers.decomposed.root} = share {
+          name = "vps/cloud";
+          owner = config.services.opencloud.user;
+          fileMode = "0600";
+          dirMode = "0700";
+          extraOptions = [ "mfsymlinks" ];
         };
       };
     };

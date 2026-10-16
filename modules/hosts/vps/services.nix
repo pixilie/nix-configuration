@@ -17,6 +17,7 @@
       self.nixosModules.vpsTailscale
       self.nixosModules.vpsNas
       self.nixosModules.vpsImmich
+      self.nixosModules.vpsOpencloud
     ];
 
     services.caddy.enable = true;
