@@ -62,6 +62,8 @@
 
           battery.enabled = true;
 
+          fingerprint.enabled = true;
+
           weather = {
             enabled = true;
             location = "Paris";
