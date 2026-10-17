@@ -51,7 +51,10 @@
           owner = config.services.opencloud.user;
           fileMode = "0600";
           dirMode = "0700";
-          extraOptions = [ "mfsymlinks" ];
+          extraOptions = [
+            "mfsymlinks"
+            "nobrl"
+          ];
         };
       };
     };
