@@ -1,7 +1,7 @@
 { ... }:
 {
 
-  flake.nixosModules.vpsPgadmin =
+  flake.nixosModules.vpsPostgresqlAccess =
     {
       config,
       lib,
@@ -71,15 +71,9 @@
           ) people
         )
       );
-
-      upstream = "127.0.0.1:${toString config.services.pgadmin.port}";
     in
     {
-      sops.secrets = {
-        pgadmin_password.owner = "pgadmin";
-        maddy_noreply_password.restartUnits = [ "pgadmin.service" ];
-      }
-      // lib.mapAttrs' (
+      sops.secrets = lib.mapAttrs' (
         _: secret:
         lib.nameValuePair secret {
           owner = "postgres";
@@ -88,22 +82,6 @@
       ) rolePasswords;
 
       services.postgresql.ensureUsers = map (name: { inherit name; }) (lib.attrNames people);
-
-      services.pgadmin = {
-        enable = true;
-        port = 5051;
-        initialEmail = "kristen@pixilie.net";
-        initialPasswordFile = config.sops.secrets.pgadmin_password.path;
-        settings.DEFAULT_SERVER = "127.0.0.1";
-        emailServer = {
-          enable = true;
-          address = "127.0.0.1";
-          port = 587;
-          username = "noreply@pixilie.net";
-          sender = "noreply@pixilie.net";
-          passwordFile = config.sops.secrets.maddy_noreply_password.path;
-        };
-      };
 
       systemd.services.postgresql-access = {
         description = "Apply PostgreSQL role passwords and database access";
@@ -128,13 +106,6 @@
           + ''
             ${psql} -q -v ON_ERROR_STOP=1 -f ${accessSql}
           '';
-      };
-
-      services.caddy.virtualHosts = {
-        "pgadmin.pixilie.net".extraConfig = ''
-          encode zstd gzip
-          reverse_proxy ${upstream}
-        '';
       };
     };
 }

@@ -11,7 +11,7 @@
       self.nixosModules.vpsKalnu
       self.nixosModules.vpsGarminCoach
       self.nixosModules.vpsCalendarSyncer
-      self.nixosModules.vpsPgadmin
+      self.nixosModules.vpsPostgresqlAccess
       self.nixosModules.vpsMaddy
       self.nixosModules.vpsVaultwarden
       self.nixosModules.vpsTailscale

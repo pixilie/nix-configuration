@@ -85,7 +85,6 @@
             (https "Calendar" "calsync.pixilie.net")
 
             (https "Monitoring" "beszel.pixilie.net")
-            (https "Monitoring" "pgadmin.pixilie.net")
             {
               name = "ntfy.pixilie.net";
               group = "Monitoring";
