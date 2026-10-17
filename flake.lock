@@ -274,6 +274,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
+        "tether": "tether",
         "veila": "veila",
         "vocal-time-counter": "vocal-time-counter",
         "wakatime-ls": "wakatime-ls"
@@ -368,6 +369,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tether": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792117551,
+        "narHash": "sha256-rBGYybDDl4z3PVDqcufcBpVlut7lUmJBT82gB4+Vxj0=",
+        "owner": "zackb",
+        "repo": "tether",
+        "rev": "1ba845485358c6777fc5c12f8143488c5d524cb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zackb",
+        "repo": "tether",
         "type": "github"
       }
     },

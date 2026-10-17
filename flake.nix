@@ -37,6 +37,9 @@
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
+
+    tether.url = "github:zackb/tether";
+    tether.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs =

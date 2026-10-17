@@ -35,6 +35,7 @@
         self.homeModules.ssh
         self.homeModules.firefox
         self.homeModules.thunderbird
+        self.homeModules.tether
 
         self.homeModules.options
         self.homeModules.identity
