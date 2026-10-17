@@ -16,6 +16,7 @@
       self.nixosModules.vpsVaultwarden
       self.nixosModules.vpsTailscale
       self.nixosModules.vpsNas
+      self.nixosModules.vpsStorageBox
       self.nixosModules.vpsImmich
       self.nixosModules.vpsOpencloud
     ];
