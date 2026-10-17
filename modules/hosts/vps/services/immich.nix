@@ -14,7 +14,7 @@
         enable = true;
         host = "127.0.0.1";
         port = 2283;
-        mediaLocation = "/mnt/nas/immich";
+        mediaLocation = "/mnt/storagebox/immich";
         settings = {
           server.externalDomain = "https://${domain}";
           notifications.smtp = {
