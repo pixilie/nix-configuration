@@ -38,7 +38,7 @@
           };
           storage-users = {
             driver = "decomposed";
-            drivers.decomposed.root = "/mnt/nas/opencloud";
+            drivers.decomposed.root = "/mnt/storagebox/opencloud";
             events.num_consumers = 10;
           };
           notifications.notifications.SMTP = {
