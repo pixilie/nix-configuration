@@ -39,6 +39,7 @@
           storage-users = {
             driver = "decomposed";
             drivers.decomposed.root = "/mnt/nas/opencloud";
+            events.num_consumers = 10;
           };
           notifications.notifications.SMTP = {
             smtp_host = "127.0.0.1";
