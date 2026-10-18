@@ -12,7 +12,7 @@ in
 {
 
   flake.nixosModules.tether =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [ inputs.tether.nixosModules.default ];
 
@@ -24,6 +24,14 @@ in
           openFirewall = true;
         };
         bluetooth.enable = true;
+      };
+
+      hardware.bluetooth = {
+        disabledPlugins = [ "hostname" ];
+        settings.General = {
+          Class = "0x000408";
+          Name = config.networking.hostName;
+        };
       };
 
       services.pipewire.wireplumber.extraConfig."51-no-phone-audio"."monitor.bluez.properties" = {
