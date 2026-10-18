@@ -265,8 +265,8 @@
           .widget-volume scale trough { background: var(--noti-border-color); }
           .widget-volume scale highlight { background: var(--bg-selected); }
 
-          .widget-buttons-grid { margin: 4px 10px 12px; padding: 0; }
-          .widget-buttons-grid flowboxchild { padding: 0 3px; }
+          .widget-buttons-grid { margin: 1px 10px 9px; padding: 0; }
+          .widget-buttons-grid flowboxchild { padding: 3px; }
           .widget-buttons-grid flowboxchild > button {
             min-height: 44px;
             min-width: 0;
