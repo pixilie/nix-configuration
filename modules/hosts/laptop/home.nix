@@ -36,6 +36,7 @@
         self.homeModules.firefox
         self.homeModules.thunderbird
         self.homeModules.tether
+        self.homeModules.omdrop
 
         self.homeModules.options
         self.homeModules.identity

@@ -142,7 +142,7 @@
             };
 
             buttons-grid = {
-              buttons-per-row = 8;
+              buttons-per-row = 5;
               actions = [
                 (toggle "wifi" "󰖩" "${nmcliExe} radio wifi on" "${nmcliExe} radio wifi off"
                   ''[ "$(${nmcliExe} radio wifi)" = enabled ]''

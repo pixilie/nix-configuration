@@ -27,6 +27,7 @@
         self.nixosModules.veila
         self.nixosModules.fingerprint
         self.nixosModules.tether
+        self.nixosModules.omdrop
       ];
 
       networking.hostName = "kristen-nixos";
