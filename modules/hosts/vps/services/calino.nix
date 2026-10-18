@@ -1,10 +1,13 @@
-{ ... }:
+{ upkgsBySystem, ... }:
 {
 
   flake.nixosModules.vpsCalino =
     { pkgs, lib, ... }:
     let
-      calino = pkgs.callPackage ../_packages/calino.nix { siteUrl = "https://calino.pixilie.net"; };
+      calino = pkgs.callPackage ../_packages/calino.nix {
+        siteUrl = "https://calino.pixilie.net";
+        inherit (upkgsBySystem.x86_64-linux) pnpm_10;
+      };
       proxyPort = 8081;
     in
     {

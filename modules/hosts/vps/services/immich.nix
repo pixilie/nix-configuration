@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, upkgsBySystem, ... }:
 {
 
   flake.nixosModules.vpsImmich =
@@ -8,10 +8,14 @@
       cfg = config.services.immich;
     in
     {
+      disabledModules = [ "services/web-apps/immich.nix" ];
+      imports = [ "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/immich.nix" ];
+
       sops.secrets.maddy_noreply_password.restartUnits = [ "immich-server.service" ];
 
       services.immich = {
         enable = true;
+        package = upkgsBySystem.x86_64-linux.immich;
         host = "127.0.0.1";
         port = 2283;
         mediaLocation = "/mnt/storagebox/immich";
