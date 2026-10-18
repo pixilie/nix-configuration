@@ -111,6 +111,7 @@
           patches = (old.patches or [ ]) ++ [
             ./swaync-mpris-hide-idle-players.patch
             ./swaync-volume-label-command.patch
+            ./swaync-label-update-command.patch
           ];
         });
 

@@ -36,9 +36,95 @@ in
     };
 
   flake.homeModules.tether =
-    { lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       tether = tetherFor pkgs;
+      swayncClientExe = "${config.services.swaync.package}/bin/swaync-client";
+
+      phoneFormat = ''
+        def battery_icon: ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"][. / 10 | floor];
+        def signal_icon: ["󰢿", "󰢼", "󰢼", "󰢽", "󰢽", "󰢾"][. | if . > 5 then 5 elif . < 0 then 0 else . end];
+
+        ($connection.calls // {}) as $calls
+        | ([$snapshot.connected_clients[]? | select(.paired)] | first) as $wifi
+        | ($connection.classic_connected == true or $connection.le_connected == true) as $bluetooth
+        | (if $battery != null then $battery.data
+           elif $calls.available == true and ($calls.battery // 0) > 0 then $calls.battery * 20
+           else null end) as $level
+        | ($name.data // $wifi.device_name // "iPhone" | @html) as $phone
+        | if ($status | has("command") | not) then empty
+          elif ($bluetooth or $wifi != null | not) then
+            "<span alpha=\"55%\">󰄜  \($phone) · non connecté</span>"
+          else
+            "<b>󰄜  \($phone)</b>\n<small>"
+            + ([
+                (if $level != null then "\($level | battery_icon) \($level) %" else empty end),
+                (if $calls.available == true and $calls.indicators != false
+                 then "\($calls.signal // 0 | signal_icon) \($calls.operator // "" | @html)"
+                   + (if $calls.roaming == true then " (itinérance)" else "" end)
+                 else empty end),
+                (if $bluetooth then "󰂱 Bluetooth" else empty end),
+                (if $wifi != null then "󰖩 Wi-Fi" else empty end)
+              ] | join("   "))
+            + "</small>"
+          end
+      '';
+
+      phoneStatus = pkgs.writeShellApplication {
+        name = "tether-phone-status";
+        runtimeInputs = [
+          pkgs.socat
+          pkgs.jq
+          pkgs.coreutils
+          pkgs.systemd
+        ];
+        text = ''
+          socket="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/tether/tetherd.sock"
+          [[ -S "$socket" ]] || exit 0
+
+          query() {
+            local reply
+            reply=$(printf '{"command":"%s"}\n' "$1" | timeout 2 socat -t1 - "UNIX-CONNECT:$socket" 2>/dev/null | head -n 1) || true
+            jq -ce 'objects' <<<"$reply" 2>/dev/null || echo '{}'
+          }
+
+          bluez() {
+            busctl --system --json=short get-property org.bluez "$1" "$2" "$3" 2>/dev/null || echo null
+          }
+
+          status=$(query bt_status)
+          connection=$(query bt_connection)
+          snapshot=$(query state_snapshot)
+
+          name=null
+          battery=null
+          address=$(jq -r '.device_address // ""' <<<"$status")
+          if [[ -n "$address" ]]; then
+            device="/org/bluez/$(jq -r '.capability.adapter_id // "hci0"' <<<"$status")/dev_''${address//:/_}"
+            name=$(bluez "$device" org.bluez.Device1 Alias)
+            battery=$(bluez "$device" org.bluez.Battery1 Percentage)
+          fi
+
+          jq -nr \
+            --argjson status "$status" \
+            --argjson connection "$connection" \
+            --argjson snapshot "$snapshot" \
+            --argjson name "$name" \
+            --argjson battery "$battery" \
+            ${lib.escapeShellArg phoneFormat}
+        '';
+      };
+
+      openTether = pkgs.writeShellScript "swaync-tether" ''
+        ${swayncClientExe} --close-panel
+        ${pkgs.coreutils}/bin/sleep 0.3
+        exec ${lib.getExe' tether "tether-gtk"}
+      '';
     in
     {
       systemd.user.services.tetherd = {
@@ -73,5 +159,31 @@ in
         nativeMessagingHosts = [ tether ];
         policies.ExtensionSettings = extension "https://addons.thunderbird.net/thunderbird" "tether-mail-extension";
       };
+
+      services.swaync.settings = {
+        widgets = lib.mkAfter [ "label#phone" ];
+        widget-config."label#phone" = {
+          max-lines = 2;
+          use-markup = true;
+          update-command = lib.getExe phoneStatus;
+          command = "${openTether}";
+        };
+      };
+
+      services.swaync.style = lib.mkAfter ''
+        .widget-label.phone {
+          margin: 0 14px 12px;
+          padding: 8px 12px;
+          border: 1px solid var(--noti-border-color);
+          border-radius: var(--border-radius);
+          background: var(--tile-bg);
+        }
+        .widget-label.phone:hover { background: var(--tile-bg-hover); }
+        .widget-label.phone > label {
+          font-family: "Noto Sans", "CaskaydiaCove Nerd Font Propo";
+          font-size: 14px;
+          color: var(--text-color);
+        }
+      '';
     };
 }

@@ -1,0 +1,85 @@
+--- a/src/controlCenter/widgets/label/label.vala
++++ b/src/controlCenter/widgets/label/label.vala
+@@ -11,6 +11,9 @@
+         // Default config values
+         string text = "Label Text";
+         int max_lines = 5;
++        string update_command = "";
++        string command = "";
++        bool use_markup = false;
+ 
+         public Label (string suffix) {
+             base (suffix);
+@@ -27,6 +30,18 @@
+                 if (max_lines != null) {
+                     this.max_lines = max_lines;
+                 }
++                string ?update_command = get_prop<string> (config, "update-command");
++                if (update_command != null) {
++                    this.update_command = update_command;
++                }
++                string ?command = get_prop<string> (config, "command");
++                if (command != null) {
++                    this.command = command;
++                }
++                bool ?use_markup = get_prop<bool> (config, "use-markup");
++                if (use_markup != null) {
++                    this.use_markup = use_markup;
++                }
+             }
+ 
+             label_widget = new Gtk.Label (null);
+@@ -46,6 +61,53 @@
+             label_widget.set_hexpand (true);
+ 
+             append (label_widget);
++
++            if (command.length > 0) {
++                Gtk.GestureClick click = new Gtk.GestureClick ();
++                click.released.connect (() => execute_command.begin (command));
++                add_controller (click);
++                set_cursor_from_name ("pointer");
++                add_css_class ("clickable");
++            }
++
++            if (update_command.length > 0) {
++                set_visible (false);
++                refresh.begin ();
++            }
++        }
++
++        public override void on_cc_visibility_change (bool value) {
++            if (value && update_command.length > 0) {
++                refresh.begin ();
++            }
++        }
++
++        private async void refresh () {
++            string ?output = null;
++            string ?errors = null;
++            try {
++                Subprocess process = new Subprocess.newv ({ "/bin/sh", "-c", update_command },
++                                                          SubprocessFlags.STDOUT_PIPE);
++                yield process.communicate_utf8_async (null, null, out output, out errors);
++            } catch (Error e) {
++                warning ("%s: update-command failed: %s", key, e.message);
++            }
++
++            string result = (output ?? "").strip ();
++            set_visible (result.length > 0);
++            if (use_markup) {
++                try {
++                    Pango.AttrList attrs;
++                    string plain;
++                    unichar accel;
++                    Pango.parse_markup (result, -1, 0, out attrs, out plain, out accel);
++                    label_widget.set_markup (result);
++                    return;
++                } catch (Error e) {
++                    warning ("%s: invalid markup: %s", key, e.message);
++                }
++            }
++            label_widget.set_text (result);
+         }
+     }
+ }
