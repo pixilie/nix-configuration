@@ -57,9 +57,7 @@ in
            elif $calls.available == true and ($calls.battery // 0) > 0 then $calls.battery * 20
            else null end) as $level
         | ($name.data // $wifi.device_name // "iPhone" | @html) as $phone
-        | if ($status | has("command") | not) then empty
-          elif ($bluetooth or $wifi != null | not) then
-            "<span alpha=\"55%\">󰄜  \($phone) · non connecté</span>"
+        | if ($status | has("command") | not) or ($bluetooth or $wifi != null | not) then empty
           else
             "<b>󰄜  \($phone)</b>\n<small>"
             + ([
