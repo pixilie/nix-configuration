@@ -18,6 +18,7 @@
       self.nixosModules.vpsStorageBox
       self.nixosModules.vpsImmich
       self.nixosModules.vpsOpencloud
+      self.nixosModules.vpsMiniflux
     ];
 
     services.caddy.enable = true;

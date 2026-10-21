@@ -83,6 +83,20 @@
             (https "Calendar" "calino.pixilie.net")
             (https "Calendar" "calsync.pixilie.net")
 
+            {
+              name = "rss.pixilie.net";
+              group = "Miniflux";
+              url = "https://rss.pixilie.net/healthcheck";
+              interval = "60s";
+              conditions = [
+                "[STATUS] == 200"
+                "[BODY] == OK"
+                "[CERTIFICATE_EXPIRATION] > 168h"
+                "[RESPONSE_TIME] < 500"
+              ];
+              inherit alerts;
+            }
+
             (https "Monitoring" "beszel.pixilie.net")
             {
               name = "ntfy.pixilie.net";
