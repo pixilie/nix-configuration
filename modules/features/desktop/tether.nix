@@ -1,6 +1,10 @@
 { inputs, ... }:
 let
-  tetherFor = pkgs: inputs.tether.packages.${pkgs.stdenv.hostPlatform.system}.tether;
+  tetherFor =
+    pkgs:
+    inputs.tether.packages.${pkgs.stdenv.hostPlatform.system}.tether.overrideAttrs (old: {
+      patches = (old.patches or [ ]) ++ [ ./tether-no-tray.patch ];
+    });
 
   extension = store: slug: {
     "tether@tether.com" = {
