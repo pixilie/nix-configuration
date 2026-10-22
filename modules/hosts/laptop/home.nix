@@ -38,6 +38,7 @@
         self.homeModules.tether
         self.homeModules.omdrop
         self.homeModules.opencloud
+        self.homeModules.gns3
 
         self.homeModules.options
         self.homeModules.identity
@@ -81,9 +82,6 @@
           r2modman
           jdk25
           heroic
-
-          gns3-gui
-          gns3-server
         ];
 
         systemd.user.startServices = "sd-switch";

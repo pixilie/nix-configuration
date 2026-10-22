@@ -28,6 +28,7 @@
         self.nixosModules.fingerprint
         self.nixosModules.tether
         self.nixosModules.omdrop
+        self.nixosModules.gns3
       ];
 
       networking.hostName = "kristen-nixos";
@@ -77,6 +78,8 @@
           "libvirtd"
           "dialout"
           "wireshark"
+          "docker"
+          "ubridge"
         ];
       };
 
