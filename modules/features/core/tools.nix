@@ -33,6 +33,7 @@
         unzip
         upkgs.claude-code
         ipcalc
+        wl-mirror
       ];
     };
 }
