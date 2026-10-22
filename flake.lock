@@ -201,11 +201,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791106954,
-        "narHash": "sha256-8AOYXHjVXER25OCClCA3q1bNH0cdeNIWnvCIQuv95Sc=",
+        "lastModified": 1792531265,
+        "narHash": "sha256-ZQWda4oJ7jlxx36f+pUfPZJYKFzs0oeZ+w6ovcrG9y8=",
         "ref": "refs/heads/main",
-        "rev": "b59a3f5b3b8357c3c8fe3a0b50dca13ac696cb50",
-        "revCount": 267,
+        "rev": "3ee10ea3a0b42b83bdf401e6e0dc84bb28c1cdbc",
+        "revCount": 363,
         "type": "git",
         "url": "ssh://git@github.com/pixilie/kalnu"
       },
