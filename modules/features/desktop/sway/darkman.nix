@@ -17,6 +17,18 @@
       echoExe = "${pkgs.coreutils}/bin/echo";
       swayncClientExe = "${config.services.swaync.package}/bin/swaync-client";
       swayncColors = "${config.xdg.configHome}/swaync";
+
+      qtTheme = mode: scheme: ''
+        place() {
+          ${pkgs.coreutils}/bin/install -m 644 "$1" "$2.tmp"
+          ${pkgs.coreutils}/bin/mv -f "$2.tmp" "$2"
+        }
+        for qtct in qt5ct qt6ct; do
+          place ${config.xdg.configHome}/$qtct/colors/${mode}.conf ${config.xdg.configHome}/$qtct/colors.conf
+        done
+        place ${config.xdg.dataHome}/color-schemes/${scheme}.colors ${config.xdg.configHome}/kdeglobals
+        ${pkgs.systemd}/bin/busctl --user emit /kdeglobals org.kde.kconfig.notify ConfigChanged "a{saay}" 1 Colors:Header 0 || true
+      '';
     in
     {
       services.darkman = {
@@ -31,6 +43,8 @@
           gtk-theme = ''
             ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
           '';
+
+          qt-theme = qtTheme "dark" "OneDark";
 
           wallpaper = ''
             ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_dark.png} fill
@@ -62,6 +76,8 @@
           gtk-theme = ''
             ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
           '';
+
+          qt-theme = qtTheme "light" "OneLight";
 
           wallpaper = ''
             ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_light.png} fill
