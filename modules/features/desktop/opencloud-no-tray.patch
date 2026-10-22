@@ -1,0 +1,10 @@
+--- a/src/gui/systray.cpp
++++ b/src/gui/systray.cpp
+@@ -46,7 +46,6 @@
+     // init systray
+     slotComputeOverallSyncStatus();
+     computeContextMenu();
+-    show();
+ }
+ 
+ void Systray::setToolTip(const QString &tip)

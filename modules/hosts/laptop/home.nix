@@ -37,6 +37,7 @@
         self.homeModules.thunderbird
         self.homeModules.tether
         self.homeModules.omdrop
+        self.homeModules.opencloud
 
         self.homeModules.options
         self.homeModules.identity
