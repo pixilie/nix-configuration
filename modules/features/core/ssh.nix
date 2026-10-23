@@ -27,6 +27,13 @@
           identitiesOnly = true;
         };
 
+        "gitlab-epita" = {
+          hostname = "gitlab.cri.epita.fr";
+          user = "git";
+          identityFile = "~/.ssh/gitlab-epita";
+          identitiesOnly = true;
+        };
+
         "vps" = {
           hostname = "vps.pixilie.net";
           user = "kristen";
