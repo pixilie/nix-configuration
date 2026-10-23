@@ -10,7 +10,6 @@
         self.nixosModules.rpiMonitoring
         self.nixosModules.rpiGatus
         self.nixosModules.rpiNtfy
-        self.nixosModules.rpiTailscale
         self.nixosModules.rpiKalnu
       ];
 

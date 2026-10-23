@@ -14,7 +14,6 @@
       self.nixosModules.vpsPostgresqlAccess
       self.nixosModules.vpsMaddy
       self.nixosModules.vpsVaultwarden
-      self.nixosModules.vpsTailscale
       self.nixosModules.vpsStorageBox
       self.nixosModules.vpsImmich
       self.nixosModules.vpsOpencloud
