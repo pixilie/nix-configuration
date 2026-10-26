@@ -2,7 +2,12 @@
 {
 
   flake.homeModules.opencloud =
-    { lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       package = pkgs.opencloud-desktop.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [ ./opencloud-no-tray.patch ];
@@ -11,6 +16,8 @@
     in
     {
       home.packages = [ package ];
+
+      gtk.gtk3.bookmarks = lib.mkBefore [ "file://${config.home.homeDirectory}/OpenCloud OpenCloud" ];
 
       systemd.user.services.opencloud = {
         Unit = {

@@ -29,6 +29,7 @@
         self.nixosModules.tether
         self.nixosModules.omdrop
         self.nixosModules.gns3
+        self.nixosModules.storageBox
       ];
 
       networking.hostName = "kristen-nixos";

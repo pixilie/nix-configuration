@@ -42,6 +42,13 @@
         setSessionVariables = false;
       };
 
+      gtk.gtk3.bookmarks = map (dir: "file://${config.home.homeDirectory}/${dir} ${dir}") [
+        "Documents"
+        "Downloads"
+        "Developement"
+        "Pictures"
+      ];
+
       xdg.mimeApps = {
         enable = true;
 

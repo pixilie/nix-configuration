@@ -39,6 +39,7 @@
         self.homeModules.omdrop
         self.homeModules.opencloud
         self.homeModules.gns3
+        self.homeModules.storageBox
 
         self.homeModules.options
         self.homeModules.identity
