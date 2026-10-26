@@ -62,16 +62,15 @@
           discord
           upkgs.spotifast
           bitwarden-desktop
-          nautilus
           gimp-with-plugins
           onlyoffice-desktopeditors
           obs-studio
           localsend
           gnome-calculator
-
-          zotero
           baobab
+
           vlc
+          nautilus
           image-roll
           pavucontrol
           wdisplays
