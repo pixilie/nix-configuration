@@ -1,17 +1,14 @@
-{ inputs, upkgsBySystem, ... }:
+{ ... }:
 {
 
   flake.nixosModules.vpsOpencloud =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       domain = "cloud.pixilie.net";
       cfg = config.services.opencloud;
       storageRoot = cfg.settings.storage-users.drivers.decomposed.root;
     in
     {
-      disabledModules = [ "services/web-apps/opencloud.nix" ];
-      imports = [ "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/opencloud.nix" ];
-
       sops.secrets.opencloud_admin_password = { };
 
       sops.templates."opencloud.env" = {
@@ -24,7 +21,7 @@
 
       services.opencloud = {
         enable = true;
-        package = upkgsBySystem.x86_64-linux.opencloud-production;
+        package = pkgs.opencloud-production;
         url = "https://${domain}";
         environmentFile = config.sops.templates."opencloud.env".path;
         environment = {

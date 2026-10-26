@@ -1,4 +1,4 @@
-{ inputs, upkgsBySystem, ... }:
+{ ... }:
 {
 
   flake.nixosModules.vpsRustical =
@@ -7,12 +7,8 @@
       bind = "127.0.0.1:4000";
     in
     {
-      disabledModules = [ "services/web-apps/rustical.nix" ];
-      imports = [ "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/rustical.nix" ];
-
       services.rustical = {
         enable = true;
-        package = upkgsBySystem.x86_64-linux.rustical;
         settings.http.bind = bind;
       };
 

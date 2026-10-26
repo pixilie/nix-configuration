@@ -5,7 +5,7 @@
     { pkgs, ... }:
     {
       imports = [
-        inputs.home-manager.nixosModules.home-manager
+        inputs.home-manager-unstable.nixosModules.home-manager
         inputs.sops-nix.nixosModules.sops
         self.nixosModules.vpsHardware
         self.nixosModules.vpsServices

@@ -1,4 +1,4 @@
-{ upkgsBySystem, ... }:
+{ ... }:
 {
 
   flake.nixosModules.vpsWakapi =
@@ -8,7 +8,6 @@
 
       services.wakapi = {
         enable = true;
-        package = upkgsBySystem.x86_64-linux.wakapi;
         settings = {
           server = {
             listen_ipv4 = "127.0.0.1";
