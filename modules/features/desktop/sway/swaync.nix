@@ -144,32 +144,40 @@
 
             buttons-grid = {
               buttons-per-row = 5;
-              actions = [
-                (toggle "wifi" "󰖩" "${nmcliExe} radio wifi on" "${nmcliExe} radio wifi off"
-                  ''[ "$(${nmcliExe} radio wifi)" = enabled ]''
-                )
-                (toggle "bluetooth" "󰂯" "${rfkillExe} unblock bluetooth; ${bluetoothctlExe} power on"
-                  "${bluetoothctlExe} power off"
-                  "${bluetoothctlExe} show | ${grepExe} -q 'Powered: yes'"
-                )
-                (toggle "mic" "󰍬" "${wpctlExe} set-mute @DEFAULT_AUDIO_SOURCE@ 0"
-                  "${wpctlExe} set-mute @DEFAULT_AUDIO_SOURCE@ 1"
-                  "! ${wpctlExe} get-volume @DEFAULT_AUDIO_SOURCE@ | ${grepExe} -q MUTED"
-                )
-                (toggle "dnd" "󰂛" "${swayncClientExe} --dnd-on" "${swayncClientExe} --dnd-off"
-                  ''[ "$(${swayncClientExe} --get-dnd)" = true ]''
-                )
-                (toggle "night-light" "󰖔" "${systemctlExe} --user start gammastep"
-                  "${systemctlExe} --user stop gammastep"
-                  "${systemctlExe} --user is-active --quiet gammastep"
-                )
-                (toggle "theme" "󰔎" "${darkmanExe} set dark" "${darkmanExe} set light"
-                  ''[ "$(${darkmanExe} get)" = dark ]''
-                )
-                (action "screenshot" "󰹑"
-                  ''${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" - | ${lib.getExe pkgs.satty} -f - --action-on-enter save-to-clipboard''
-                )
-                (action "lock" "󰌾" "veila-lock")
+              actions = lib.mkMerge [
+                (lib.mkOrder 1600 [
+                  (toggle "idle-inhibitor" "󰈈" "${systemctlExe} --user start idle-inhibitor"
+                    "${systemctlExe} --user stop idle-inhibitor"
+                    "${systemctlExe} --user is-active --quiet idle-inhibitor"
+                  )
+                ])
+                [
+                  (toggle "wifi" "󰖩" "${nmcliExe} radio wifi on" "${nmcliExe} radio wifi off"
+                    ''[ "$(${nmcliExe} radio wifi)" = enabled ]''
+                  )
+                  (toggle "bluetooth" "󰂯" "${rfkillExe} unblock bluetooth; ${bluetoothctlExe} power on"
+                    "${bluetoothctlExe} power off"
+                    "${bluetoothctlExe} show | ${grepExe} -q 'Powered: yes'"
+                  )
+                  (toggle "mic" "󰍬" "${wpctlExe} set-mute @DEFAULT_AUDIO_SOURCE@ 0"
+                    "${wpctlExe} set-mute @DEFAULT_AUDIO_SOURCE@ 1"
+                    "! ${wpctlExe} get-volume @DEFAULT_AUDIO_SOURCE@ | ${grepExe} -q MUTED"
+                  )
+                  (toggle "dnd" "󰂛" "${swayncClientExe} --dnd-on" "${swayncClientExe} --dnd-off"
+                    ''[ "$(${swayncClientExe} --get-dnd)" = true ]''
+                  )
+                  (toggle "night-light" "󰖔" "${systemctlExe} --user start gammastep"
+                    "${systemctlExe} --user stop gammastep"
+                    "${systemctlExe} --user is-active --quiet gammastep"
+                  )
+                  (toggle "theme" "󰔎" "${darkmanExe} set dark" "${darkmanExe} set light"
+                    ''[ "$(${darkmanExe} get)" = dark ]''
+                  )
+                  (action "screenshot" "󰹑"
+                    ''${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" - | ${lib.getExe pkgs.satty} -f - --action-on-enter save-to-clipboard''
+                  )
+                  (action "lock" "󰌾" "veila-lock")
+                ]
               ];
             };
           };
@@ -281,6 +289,15 @@
           .widget-buttons-grid flowboxchild > button:hover { background: var(--tile-bg-hover); }
           .widget-buttons-grid flowboxchild > button.toggle:checked { border-color: var(--bg-selected); background: var(--bg-selected); color: var(--accent-fg); }
         '';
+      };
+
+      systemd.user.services.idle-inhibitor = {
+        Unit = {
+          Description = "Keep the session from going idle";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Service.ExecStart = lib.getExe pkgs.wlinhibit;
       };
 
       wayland.windowManager.sway.config.keybindings = lib.mkOptionDefault {

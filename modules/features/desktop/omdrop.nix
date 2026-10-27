@@ -47,7 +47,6 @@
           pkgs.libnotify
           pkgs.coreutils
           config.programs.vicinae.package
-          config.services.swaync.package
         ];
         text = ''
           title=AirDrop
@@ -81,7 +80,6 @@
           }
 
           send() {
-            swaync-client --close-panel >/dev/null 2>&1 || true
             notify --expire-time=5000 "$title" "Recherche des appareils à proximité…"
             receiving || run on 10m
             run peers -n --json
@@ -152,11 +150,19 @@
           command = "${desktopExe} toggle";
           update-command = "${desktopExe} state";
         }
-        {
-          label = "󰒊";
-          command = "${desktopExe} send";
-        }
       ];
+
+      xdg.desktopEntries.omdrop-send = {
+        name = "Send via AirDrop";
+        genericName = "AirDrop";
+        exec = "${desktopExe} send";
+        icon = "document-send";
+        terminal = false;
+        categories = [
+          "Network"
+          "FileTransfer"
+        ];
+      };
 
       programs.waybar.settings.main = {
         modules-right = lib.mkBefore [ "custom/airdrop" ];

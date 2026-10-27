@@ -59,7 +59,6 @@
           modules = [
             "custom/notifications"
             "tray"
-            "idle_inhibitor"
           ];
           drawer = {
             transition-duration = 250;
@@ -82,15 +81,6 @@
           on-click = "${swayncClientExe} --toggle-panel --skip-wait";
           on-click-right = "${swayncClientExe} --toggle-dnd --skip-wait";
           escape = true;
-        };
-
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = " ";
-            deactivated = " ";
-          };
-          tooltip = false;
         };
 
         tray.spacing = 10;
@@ -246,7 +236,7 @@
           #workspaces button.urgent { color: @base08; }
           #workspaces button:last-child { border-top-right-radius: 8px; }
           .modules-right > widget:first-child > * { border-top-left-radius: 8px; }
-          #tray, #idle_inhibitor, #custom-notifications, #clock { background-color: @base03; }
+          #tray, #custom-notifications, #clock { background-color: @base03; }
           #custom-notifications.notification, #custom-notifications.dnd-notification, #custom-notifications.inhibited-notification, #custom-notifications.dnd-inhibited-notification { color: @base0D; }
           #battery { color: @base00; background-color: @base0B; }
           #battery.warning:not(.charging) { background-color: @base09; }
