@@ -93,14 +93,6 @@
               }
               {
                 criteria = {
-                  title = "^((?!^Unity - ).)*$";
-                  class = "^Unity$";
-                  instance = "^Unity$";
-                };
-                command = "floating enable";
-              }
-              {
-                criteria = {
                   app_id = "firefox";
                   title = "^Extension ?: \\(Bitwarden";
                 };
@@ -113,12 +105,10 @@
             "${modifier}+Return" = "exec ${terminal}";
             "${modifier}+Shift+q" = "kill";
             "${modifier}+Shift+Return" = "exec firefox";
-            "${modifier}+Shift+r" = "exec reboot";
-            "${modifier}+Shift+p" = "exec shutdown -h now";
+            "${modifier}+Shift+f" = "exec nautilus";
             "${modifier}" = "exec swaymsg bar mode toggle";
             "${modifier}+Shift+s" = "exec systemctl suspend";
             "${modifier}+Shift+n" = "swaymsg exit";
-            "${modifier}+Shift+f" = "exec nautilus";
 
             "${modifier}+${left}" = "focus left";
             "${modifier}+${right}" = "focus right";
@@ -163,8 +153,8 @@
           };
 
           modes.resize = {
-            "${left}" = "resize shrink width 10 px";
-            "${right}" = "resize grow width 10 px";
+            "${right}" = "resize shrink width 10 px";
+            "${left}" = "resize grow width 10 px";
             "${up}" = "resize shrink height 10 px";
             "${down}" = "resize grow height 10 px";
             "Escape" = "mode default";
