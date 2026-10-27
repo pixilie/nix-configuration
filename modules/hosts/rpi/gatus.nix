@@ -97,6 +97,20 @@
               inherit alerts;
             }
 
+            {
+              name = "media.pixilie.net";
+              group = "Jellyfin";
+              url = "https://media.pixilie.net/health";
+              interval = "60s";
+              conditions = [
+                "[STATUS] == 200"
+                "[BODY] == Healthy"
+                "[CERTIFICATE_EXPIRATION] > 168h"
+                "[RESPONSE_TIME] < 500"
+              ];
+              inherit alerts;
+            }
+
             (https "Monitoring" "beszel.pixilie.net")
             {
               name = "ntfy.pixilie.net";

@@ -20,6 +20,11 @@
             "nobrl"
           ];
         };
+        jellyfin = {
+          sub = "sub3";
+          owner = config.services.jellyfin.user;
+          extraOptions = [ ];
+        };
       };
 
       user = account: "${box}-${account.sub}";
