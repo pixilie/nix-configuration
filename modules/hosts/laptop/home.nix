@@ -77,9 +77,7 @@
           wdisplays
           networkmanagerapplet
 
-          lunar-client
           prismlauncher
-          r2modman
           jdk25
           heroic
         ];
