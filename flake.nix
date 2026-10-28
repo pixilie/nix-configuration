@@ -26,8 +26,6 @@
     kalnu.url = "git+ssh://git@github.com/pixilie/kalnu";
     kalnu.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    garmin-claude-mcp.url = "git+ssh://git@github.com/pixilie/garmin-claude-mcp";
-
     calendar-syncer.url = "git+ssh://git@github.com/pixilie/calendar_syncer";
     calendar-syncer.inputs.nixpkgs.follows = "nixpkgs-unstable";
 

@@ -11,14 +11,12 @@
     let
       rolePasswords = {
         kalnu = "kalnu_postgres_password";
-        coach = "garmin_postgres_password";
         alexandre = "alexandre_postgres_password";
         kristen = "kristen_postgres_password";
       };
 
       appRoles = {
         kalnu = [ "kalnu" ];
-        garmin_coach = [ "coach" ];
         postgres = [ ];
       };
 
@@ -28,7 +26,6 @@
         };
         kristen = {
           kalnu = "kalnu";
-          garmin_coach = "coach";
         };
       };
 

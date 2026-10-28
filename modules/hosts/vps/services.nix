@@ -9,7 +9,6 @@
       self.nixosModules.vpsBeszel
       self.nixosModules.vpsVocalTimeCounter
       self.nixosModules.vpsKalnu
-      self.nixosModules.vpsGarminCoach
       self.nixosModules.vpsCalendarSyncer
       self.nixosModules.vpsPostgresqlAccess
       self.nixosModules.vpsMaddy

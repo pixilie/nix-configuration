@@ -69,9 +69,6 @@
               ];
               inherit alerts;
             }
-            (https "Garmin dashboard" "garmin.pixilie.net")
-            (https "Garmin dashboard" "garmin.mcp.pixilie.net")
-
             (https "Wakapi" "wakapi.pixilie.net")
 
             (https "Vaultwarden" "vault.pixilie.net")
