@@ -9,7 +9,31 @@
       ...
     }:
     let
-      schoolLanguages = [
+      asmLanguages = [
+        {
+          name = "gas";
+          auto-format = false;
+          file-types = [
+            "s"
+            "S"
+          ];
+          language-servers = [
+            "asm-lsp"
+            "wakatime"
+          ];
+        }
+        {
+          name = "nasm";
+          file-types = [
+            "asm"
+            "nasm"
+          ];
+        }
+      ];
+
+      asmCompiler = if config.isSchoolProfile then "gcc" else lib.getExe pkgs.gcc;
+
+      schoolLanguages = asmLanguages ++ [
         {
           name = "c";
           auto-format = false;
@@ -33,7 +57,7 @@
         }
       ];
 
-      personalLanguages = [
+      personalLanguages = asmLanguages ++ [
         {
           name = "c";
           auto-format = false;
@@ -95,6 +119,7 @@
         defaultEditor = !config.isLightProfile;
 
         extraPackages = [
+          pkgs.asm-lsp
           pkgs.wakatime-cli
           inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.wakatime-ls
         ]
@@ -193,6 +218,23 @@
           };
 
           language = if config.isSchoolProfile then schoolLanguages else personalLanguages;
+        };
+      };
+
+      xdg.configFile."asm-lsp/.asm-lsp.toml".source = (pkgs.formats.toml { }).generate "asm-lsp.toml" {
+        default_config = {
+          assembler = "gas";
+          instruction_set = "x86-64";
+          opts = {
+            compiler = asmCompiler;
+            compile_flags_txt = [
+              "-c"
+              "-o"
+              "/dev/null"
+            ];
+            diagnostics = true;
+            default_diagnostics = true;
+          };
         };
       };
     };
