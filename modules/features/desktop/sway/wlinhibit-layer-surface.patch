@@ -1,0 +1,122 @@
+--- a/meson.build
++++ b/meson.build
+@@ -2,8 +2,11 @@
+ 
+ wl_dep = dependency('wayland-client')
+ wl_mod = import('unstable-wayland')
++wlr_protocols = dependency('wlr-protocols').get_variable('pkgdatadir')
+ 
+ xml = wl_mod.find_protocol('idle-inhibit', state: 'unstable', version: 1)
+ idle_inhibit = wl_mod.scan_xml(xml)
++xdg_shell = wl_mod.scan_xml(wl_mod.find_protocol('xdg-shell'))
++layer_shell = wl_mod.scan_xml(wlr_protocols / 'unstable' / 'wlr-layer-shell-unstable-v1.xml')
+ 
+-executable('wlinhibit', 'wlinhibit.c', idle_inhibit, dependencies : wl_dep, install: true)
++executable('wlinhibit', 'wlinhibit.c', idle_inhibit, xdg_shell, layer_shell, dependencies : wl_dep, install: true)
+--- a/wlinhibit.c
++++ b/wlinhibit.c
+@@ -1,15 +1,23 @@
++#define _GNU_SOURCE
+ #include <signal.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <sys/mman.h>
++#include <unistd.h>
+ 
+ #include <idle-inhibit-unstable-v1-client-protocol.h>
++#include <wlr-layer-shell-unstable-v1-client-protocol.h>
+ #include <wayland-client-protocol.h>
+ #include <wayland-client.h>
+ 
+ struct wl_compositor *compositor;
++struct wl_shm *shm;
++struct zwlr_layer_shell_v1 *layer_shell;
+ struct zwp_idle_inhibit_manager_v1 *idle_inhibit_manager;
+ struct wl_surface *surface;
++struct zwlr_layer_surface_v1 *layer_surface;
++struct wl_buffer *buffer;
+ struct zwp_idle_inhibitor_v1 *idle_inhibitor;
+ 
+ void registry_global_handler(void *data, struct wl_registry *registry,
+@@ -18,6 +26,11 @@
+     if (strcmp(interface, "wl_compositor") == 0) {
+         compositor =
+             wl_registry_bind(registry, name, &wl_compositor_interface, 3);
++    } else if (strcmp(interface, "wl_shm") == 0) {
++        shm = wl_registry_bind(registry, name, &wl_shm_interface, 1);
++    } else if (strcmp(interface, "zwlr_layer_shell_v1") == 0) {
++        layer_shell =
++            wl_registry_bind(registry, name, &zwlr_layer_shell_v1_interface, 1);
+     } else if (strcmp(interface, "zwp_idle_inhibit_manager_v1") == 0) {
+         idle_inhibit_manager = wl_registry_bind(
+             registry, name, &zwp_idle_inhibit_manager_v1_interface, 1);
+@@ -33,6 +46,8 @@
+ void shutdown(int sig) {
+     // destroy the inhibitor on process exit
+     zwp_idle_inhibitor_v1_destroy(idle_inhibitor);
++    if (layer_surface)
++        zwlr_layer_surface_v1_destroy(layer_surface);
+     wl_surface_destroy(surface);
+     exit(EXIT_SUCCESS);
+ }
+@@ -41,6 +56,35 @@
+     .global = registry_global_handler,
+     .global_remove = registry_global_remove_handler};
+ 
++struct wl_buffer *create_buffer(void) {
++    int fd = memfd_create("wlinhibit", MFD_CLOEXEC);
++    if (fd < 0 || ftruncate(fd, 4) < 0)
++        return NULL;
++
++    struct wl_shm_pool *pool = wl_shm_create_pool(shm, fd, 4);
++    struct wl_buffer *buf =
++        wl_shm_pool_create_buffer(pool, 0, 1, 1, 4, WL_SHM_FORMAT_ARGB8888);
++    wl_shm_pool_destroy(pool);
++    close(fd);
++    return buf;
++}
++
++void layer_surface_configure(void *data, struct zwlr_layer_surface_v1 *ls,
++                             uint32_t serial, uint32_t width,
++                             uint32_t height) {
++    zwlr_layer_surface_v1_ack_configure(ls, serial);
++    wl_surface_attach(surface, buffer, 0, 0);
++    wl_surface_commit(surface);
++}
++
++void layer_surface_closed(void *data, struct zwlr_layer_surface_v1 *ls) {
++    shutdown(0);
++}
++
++const struct zwlr_layer_surface_v1_listener layer_surface_listener = {
++    .configure = layer_surface_configure,
++    .closed = layer_surface_closed};
++
+ int main(void) {
+     struct wl_display *display = wl_display_connect(NULL);
+ 
+@@ -77,6 +121,23 @@
+         return 1;
+     }
+ 
++    if (layer_shell && shm && (buffer = create_buffer())) {
++        struct wl_region *region = wl_compositor_create_region(compositor);
++        wl_surface_set_input_region(surface, region);
++        wl_region_destroy(region);
++
++        layer_surface = zwlr_layer_shell_v1_get_layer_surface(
++            layer_shell, surface, NULL, ZWLR_LAYER_SHELL_V1_LAYER_BACKGROUND,
++            "wlinhibit");
++        zwlr_layer_surface_v1_add_listener(layer_surface,
++                                           &layer_surface_listener, NULL);
++        zwlr_layer_surface_v1_set_size(layer_surface, 1, 1);
++        zwlr_layer_surface_v1_set_exclusive_zone(layer_surface, -1);
++        wl_surface_commit(surface);
++        wl_display_roundtrip(display);
++        wl_display_roundtrip(display);
++    }
++
+     idle_inhibitor = zwp_idle_inhibit_manager_v1_create_inhibitor(
+         idle_inhibit_manager, surface);
+ 

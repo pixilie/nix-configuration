@@ -297,7 +297,12 @@
           PartOf = [ "graphical-session.target" ];
           After = [ "graphical-session.target" ];
         };
-        Service.ExecStart = lib.getExe pkgs.wlinhibit;
+        Service.ExecStart = lib.getExe (
+          pkgs.wlinhibit.overrideAttrs (old: {
+            patches = (old.patches or [ ]) ++ [ ./wlinhibit-layer-surface.patch ];
+            buildInputs = old.buildInputs ++ [ pkgs.wlr-protocols ];
+          })
+        );
       };
 
       wayland.windowManager.sway.config.keybindings = lib.mkOptionDefault {
