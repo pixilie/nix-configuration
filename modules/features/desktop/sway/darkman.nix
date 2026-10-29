@@ -42,6 +42,7 @@
         darkModeScripts = {
           gtk-theme = ''
             ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+            ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3-dark'"
           '';
 
           qt-theme = qtTheme "dark" "OneDark";
@@ -75,6 +76,7 @@
         lightModeScripts = {
           gtk-theme = ''
             ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+            ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'"
           '';
 
           qt-theme = qtTheme "light" "OneLight";
