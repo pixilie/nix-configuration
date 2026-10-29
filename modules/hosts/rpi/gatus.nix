@@ -17,6 +17,22 @@
         ];
         inherit alerts;
       };
+
+      health = group: host: path: checks: {
+        name = host;
+        inherit group;
+        url = "https://${host}${path}";
+        interval = "60s";
+        conditions = [
+          "[STATUS] == 200"
+        ]
+        ++ checks
+        ++ [
+          "[CERTIFICATE_EXPIRATION] > 168h"
+          "[RESPONSE_TIME] < 500"
+        ];
+        inherit alerts;
+      };
     in
     {
       sops.secrets.gatus_env.restartUnits = [ "gatus.service" ];
@@ -58,6 +74,19 @@
             header = "Status";
           };
           endpoints = [
+            (health "Wakapi" "wakapi.pixilie.net" "/api/health" [ "[BODY] == pat(*app=1*db=1*)" ])
+
+            (health "Vaultwarden" "vault.pixilie.net" "/alive" [ ])
+
+            (health "Cloud" "cloud.pixilie.net" "/status.php" [
+              "[BODY].installed == true"
+              "[BODY].maintenance == false"
+            ])
+            (health "Cloud" "photos.pixilie.net" "/api/server/ping" [ "[BODY].res == pong" ])
+
+            (health "Calendar" "rustical.pixilie.net" "/ping" [ "[BODY] == Pong!" ])
+            (https "Calendar" "calsync.pixilie.net")
+
             {
               name = "VPS";
               group = "Server";
@@ -69,45 +98,12 @@
               ];
               inherit alerts;
             }
-            (https "Wakapi" "wakapi.pixilie.net")
 
-            (https "Vaultwarden" "vault.pixilie.net")
+            (health "Miniflux" "rss.pixilie.net" "/healthcheck" [ "[BODY] == OK" ])
 
-            (https "Cloud" "cloud.pixilie.net")
-            (https "Cloud" "photos.pixilie.net")
+            (health "Jellyfin" "media.pixilie.net" "/health" [ "[BODY] == Healthy" ])
 
-            (https "Calendar" "rustical.pixilie.net")
-            (https "Calendar" "calsync.pixilie.net")
-
-            {
-              name = "rss.pixilie.net";
-              group = "Miniflux";
-              url = "https://rss.pixilie.net/healthcheck";
-              interval = "60s";
-              conditions = [
-                "[STATUS] == 200"
-                "[BODY] == OK"
-                "[CERTIFICATE_EXPIRATION] > 168h"
-                "[RESPONSE_TIME] < 500"
-              ];
-              inherit alerts;
-            }
-
-            {
-              name = "media.pixilie.net";
-              group = "Jellyfin";
-              url = "https://media.pixilie.net/health";
-              interval = "60s";
-              conditions = [
-                "[STATUS] == 200"
-                "[BODY] == Healthy"
-                "[CERTIFICATE_EXPIRATION] > 168h"
-                "[RESPONSE_TIME] < 500"
-              ];
-              inherit alerts;
-            }
-
-            (https "Monitoring" "beszel.pixilie.net")
+            (health "Monitoring" "beszel.pixilie.net" "/api/health" [ ])
             {
               name = "ntfy.pixilie.net";
               group = "Monitoring";
