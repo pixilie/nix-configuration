@@ -103,6 +103,8 @@
 
             (health "Jellyfin" "media.pixilie.net" "/health" [ "[BODY] == Healthy" ])
 
+            (https "Games" "games.pixilie.net")
+
             (health "Monitoring" "beszel.pixilie.net" "/api/health" [ ])
             {
               name = "ntfy.pixilie.net";

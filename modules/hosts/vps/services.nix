@@ -17,6 +17,7 @@
       self.nixosModules.vpsOpencloud
       self.nixosModules.vpsMiniflux
       self.nixosModules.vpsJellyfin
+      self.nixosModules.vpsPufferpanel
     ];
 
     services.caddy.enable = true;
