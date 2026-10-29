@@ -77,7 +77,6 @@
             (https "Cloud" "photos.pixilie.net")
 
             (https "Calendar" "rustical.pixilie.net")
-            (https "Calendar" "calino.pixilie.net")
             (https "Calendar" "calsync.pixilie.net")
 
             {

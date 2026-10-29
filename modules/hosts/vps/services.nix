@@ -5,7 +5,6 @@
     imports = [
       self.nixosModules.vpsWakapi
       self.nixosModules.vpsRustical
-      self.nixosModules.vpsCalino
       self.nixosModules.vpsBeszel
       self.nixosModules.vpsVocalTimeCounter
       self.nixosModules.vpsKalnu
