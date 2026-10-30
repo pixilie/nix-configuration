@@ -16,6 +16,52 @@
       systemctlExe = lib.getExe' pkgs.systemd "systemctl";
       grepExe = lib.getExe pkgs.gnugrep;
       darkmanExe = lib.getExe pkgs.darkman;
+      brightnessctlExe = lib.getExe pkgs.brightnessctl;
+      swaymsgExe = lib.getExe' config.wayland.windowManager.sway.package "swaymsg";
+      jqExe = lib.getExe pkgs.jq;
+
+      batterySaver = pkgs.writeShellScript "battery-saver" ''
+        saved="$XDG_RUNTIME_DIR/battery-saver-brightness"
+
+        panel_mode() {
+          ${swaymsgExe} -t get_outputs -r | ${jqExe} -r --arg pick "$1" '
+            .[] | select(.name == "eDP-1" and .active)
+            | .current_mode as $cur
+            | [.modes[] | select(.width == $cur.width and .height == $cur.height)]
+            | (if $pick == "min" then min_by(.refresh) else max_by(.refresh) end)
+            | "\(.width)x\(.height)@\(.refresh / 1000)Hz"
+          '
+        }
+
+        set_panel_mode() {
+          mode=$(panel_mode "$1")
+          [ -n "$mode" ] && ${swaymsgExe} output eDP-1 mode "$mode" >/dev/null
+        }
+
+        case "$1" in
+          on)
+            /run/wrappers/bin/sudo -n /run/current-system/sw/bin/battery-saver-cpu on
+            current=$(${brightnessctlExe} g)
+            max=$(${brightnessctlExe} m)
+            echo "$current" > "$saved"
+            if [ $((current * 100)) -gt $((max * 30)) ]; then
+              ${brightnessctlExe} -q set 30%
+            fi
+            set_panel_mode min
+            ;;
+          off)
+            /run/wrappers/bin/sudo -n /run/current-system/sw/bin/battery-saver-cpu off
+            if [ -f "$saved" ]; then
+              ${brightnessctlExe} -q set "$(cat "$saved")"
+              rm -f "$saved"
+            fi
+            set_panel_mode max
+            ;;
+          state)
+            ${grepExe} -qs powersave /run/override.pickle
+            ;;
+        esac
+      '';
 
       toggle = name: label: on: off: isOn: {
         inherit label;
@@ -171,9 +217,7 @@
                   (toggle "theme" "󰔎" "${darkmanExe} set dark" "${darkmanExe} set light"
                     ''[ "$(${darkmanExe} get)" = dark ]''
                   )
-                  (action "screenshot" "󰹑"
-                    ''${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" - | ${lib.getExe pkgs.satty} -f - --action-on-enter save-to-clipboard''
-                  )
+                  (toggle "battery-saver" "󰌪" "${batterySaver} on" "${batterySaver} off" "${batterySaver} state")
                   (action "lock" "󰌾" "veila-lock")
                 ]
               ];
