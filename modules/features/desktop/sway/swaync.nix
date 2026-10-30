@@ -64,8 +64,7 @@
           --tile-bg: #282c34;
           --tile-bg-hover: #323842;
           --popup-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-          --mpris-album-art-overlay: rgba(30, 33, 39, 0.65);
-          --mpris-button-hover: rgba(53, 59, 69, 0.8);
+          --mpris-button-hover: #353b45;
         }
       '';
 
@@ -88,8 +87,7 @@
           --tile-bg: #ffffff;
           --tile-bg-hover: #f5f5f6;
           --popup-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-          --mpris-album-art-overlay: rgba(250, 250, 250, 0.7);
-          --mpris-button-hover: rgba(229, 229, 230, 0.8);
+          --mpris-button-hover: #e5e5e6;
         }
       '';
     in
@@ -242,7 +240,8 @@
           .floating-notifications .notification-row .notification-background .notification { box-shadow: var(--popup-shadow); }
 
           .notification-default-action { padding: 10px 12px; }
-          .notification-content .image { border-radius: 8px; margin: 0 12px 0 0; }
+          .notification-content .image { border-radius: 8px; margin: 0; }
+          .notification-content .text-box { margin-left: 12px; }
           .notification-content .text-box .summary { font-size: var(--font-size-summary); font-weight: 600; }
           .notification-content .text-box .time { font-size: 12px; font-weight: normal; color: var(--text-color-disabled); margin-right: 28px; }
           .notification-content .text-box .body { font-size: var(--font-size-body); color: var(--text-color-secondary); }
@@ -255,7 +254,8 @@
 
           .widget-mpris { margin: 4px; }
           .widget-mpris .widget-mpris-player { margin: 6px 10px; border: 1px solid var(--noti-border-color); box-shadow: none; }
-          .widget-mpris .widget-mpris-player .mpris-overlay { padding: 12px; }
+          .widget-mpris .widget-mpris-player .mpris-background { opacity: 0; }
+          .widget-mpris .widget-mpris-player .mpris-overlay { padding: 12px; background: var(--tile-bg); }
           .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art { border-radius: 6px; box-shadow: none; }
           .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title { font-size: 1rem; font-weight: 600; }
           .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle { font-size: 0.9rem; color: var(--text-color-secondary); }
