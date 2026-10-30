@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790848001,
-        "narHash": "sha256-Z+17P+pcDPg6D8hyW3YMUnUqhhmKFXzzRoCOTW4M4vs=",
+        "lastModified": 1793398191,
+        "narHash": "sha256-dYpHBe3wsqI8vlCJ0qwnBKANcHJnZMuWS42JohwyNpY=",
         "ref": "refs/heads/main",
-        "rev": "322122647a538a9e26219ab8ef79b1432b33b11b",
-        "revCount": 8,
+        "rev": "f162beb9a98b9063c67017d19f6c261f4c12145b",
+        "revCount": 9,
         "type": "git",
         "url": "ssh://git@github.com/pixilie/calendar_syncer"
       },
