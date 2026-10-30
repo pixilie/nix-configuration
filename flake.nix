@@ -41,8 +41,8 @@
     tether.url = "github:zackb/tether";
     tether.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    omdrop-owl.url = "github:t4t5/omdrop-owl";
-    omdrop-owl.inputs.nixpkgs.follows = "nixpkgs";
+    owly.url = "github:t4t5/owly";
+    owly.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

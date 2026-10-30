@@ -76,13 +76,13 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "omdrop";
-  version = "0.18.0";
+  version = "0.18.7";
 
   src = fetchFromGitHub {
     owner = "netmojo-systems";
     repo = "omdrop-plugin";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-T0TZKuWpDwBHcNuFulMEgnuN86R16FVsx8mwSvhtjEs=";
+    hash = "sha256-GV1MH4mf4ATghy9MPN8kfyMTHkPcVLSkNg1xFt2qG4U=";
   };
 
   buildInputs = [

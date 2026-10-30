@@ -1,14 +1,20 @@
 { inputs, ... }:
 {
 
-  flake.nixosModules.omdrop = {
-    imports = [ inputs.omdrop-owl.nixosModules.default ];
+  flake.nixosModules.omdrop =
+    { pkgs, ... }:
+    {
+      imports = [ inputs.owly.nixosModules.default ];
 
-    services.omdrop-owl = {
-      enable = true;
-      allowUntested = true;
+      services.owly = {
+        enable = true;
+        settings.allow_untested = true;
+      };
+
+      environment.systemPackages = [
+        (pkgs.callPackage ./_packages/omdrop-owl.nix { src = inputs.owly; })
+      ];
     };
-  };
 
   flake.homeModules.omdrop =
     {
