@@ -85,7 +85,7 @@
             (health "Cloud" "photos.pixilie.net" "/api/server/ping" [ "[BODY].res == pong" ])
 
             (health "Calendar" "rustical.pixilie.net" "/ping" [ "[BODY] == Pong!" ])
-            (https "Calendar" "calsync.pixilie.net")
+            (health "Calendar" "calsync.pixilie.net" "/health" [ "[BODY] == ok" ])
 
             {
               name = "VPS";
