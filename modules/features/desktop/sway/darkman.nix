@@ -18,6 +18,10 @@
       swayncClientExe = "${config.services.swaync.package}/bin/swaync-client";
       swayncColors = "${config.xdg.configHome}/swaync";
 
+      swayBorders = focused: unfocused: text: ''
+        ${pkgs.sway}/bin/swaymsg 'client.focused ${focused} ${focused} ${text} ${focused} ${focused}; client.focused_inactive ${unfocused} ${unfocused} ${text} ${unfocused} ${unfocused}; client.unfocused ${unfocused} ${unfocused} ${text} ${unfocused} ${unfocused}'
+      '';
+
       qtTheme = mode: scheme: ''
         place() {
           ${pkgs.coreutils}/bin/install -m 644 "$1" "$2.tmp"
@@ -50,6 +54,8 @@
           wallpaper = ''
             ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_dark.png} fill
           '';
+
+          sway-borders = swayBorders "#61afef" "#000000" "#fffaf3";
 
           swaync = ''
             ${lnExe} -sf ${swayncColors}/colors-dark.css ${swayncColors}/colors.css
@@ -84,6 +90,8 @@
           wallpaper = ''
             ${pkgs.sway}/bin/swaymsg output "*" bg ${../../../../assets/media/wallpaper_light.png} fill
           '';
+
+          sway-borders = swayBorders "#1f4fbf" "#fafafa" "#383a42";
 
           swaync = ''
             ${lnExe} -sf ${swayncColors}/colors-light.css ${swayncColors}/colors.css

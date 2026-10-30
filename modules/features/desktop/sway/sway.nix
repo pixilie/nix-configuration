@@ -78,6 +78,21 @@
             right
             ;
           defaultWorkspace = "workspace 1";
+          colors =
+            let
+              border = color: {
+                border = color;
+                background = color;
+                text = "#fffaf3";
+                indicator = color;
+                childBorder = color;
+              };
+            in
+            {
+              focused = border "#61afef";
+              focusedInactive = border "#000000";
+              unfocused = border "#000000";
+            };
           fonts = {
             names = [ "Noto Sans" ];
             size = 12.0;
@@ -85,7 +100,8 @@
 
           window = {
             titlebar = false;
-            border = 0;
+            border = 1;
+            hideEdgeBorders = "smart";
             commands = [
               {
                 criteria.all = true;
