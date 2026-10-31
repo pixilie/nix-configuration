@@ -27,35 +27,25 @@
       };
 
       # One Kalnu component, from /api/health/<name> (services/health.py): 503 when down, `status` ok |
-      # degraded | down | disabled in the body. `[BODY].status == ok` also alerts on « degraded ».
-      component = name: label: {
+      # degraded | down | disabled in the body. « degraded » alerts too; « disabled » (not configured on
+      # the instance: BRouter, SMTP, MCP) is not a failure.
+      healthCheck = group: name: label: {
         name = label;
-        group = "Kalnu services";
+        inherit group;
         url = "https://api.kalnu.fr/api/health/${name}";
         interval = "60s";
         conditions = [
           "[STATUS] == 200"
-          "[BODY].status == ok"
+          "[BODY].status == any(ok, disabled)"
           "[RESPONSE_TIME] < 3000"
         ];
         inherit alerts;
       };
+      component = healthCheck "Kalnu services";
 
-      # One data source (Garmin, COROS, Suunto, Strava) or calendar provider. A source switched off on the
-      # instance is red too, with its own value: the failed condition reads « (disabled) » instead of
-      # « (degraded) » for a source that fails.
-      source = name: label: {
-        name = label;
-        group = "Kalnu sources";
-        url = "https://api.kalnu.fr/api/health/${name}";
-        interval = "60s";
-        conditions = [
-          "[STATUS] == 200"
-          "[BODY].status == ok"
-          "[RESPONSE_TIME] < 3000"
-        ];
-        inherit alerts;
-      };
+      # One data source (Garmin, COROS, Suunto, Strava) or calendar provider: a source switched off on the
+      # instance (or with no OAuth app and nobody linked) reads « disabled » and stays green.
+      source = healthCheck "Kalnu sources";
 
       # MCP hosts seen from outside: their public OAuth metadata, served by the MCP app itself.
       mcpHost = host: {
@@ -66,6 +56,7 @@
         conditions = [
           "[STATUS] == 200"
           "[BODY].resource == https://${host}/"
+          "[CERTIFICATE_EXPIRATION] > 168h"
           "[RESPONSE_TIME] < 1000"
         ];
         inherit alerts;
@@ -97,6 +88,14 @@
         };
         endpoints = [
           (https "kalnu.fr")
+          ((https "api.kalnu.fr") // {
+            url = "https://api.kalnu.fr/health";   # liveness only: cheap, but TLS setup can top 500 ms
+            conditions = [
+              "[STATUS] == 200"
+              "[CERTIFICATE_EXPIRATION] > 168h"
+              "[RESPONSE_TIME] < 1000"
+            ];
+          })
           (mcpHost "mcp.kalnu.fr")
           (mcpHost "mcp.admin.kalnu.fr")
           {
@@ -112,6 +111,7 @@
             # Shown on the page but silent: each component and source has its own alert.
           }
           (component "db" "Database")
+          (component "front" "Web app build")
           (component "mcp" "MCP server")
           (component "admin_mcp" "Admin MCP server")
           (component "brouter" "BRouter (GPX editor routing)")
@@ -124,6 +124,7 @@
           (source "google_calendar" "Google Calendar")
           (source "microsoft_calendar" "Microsoft calendar (Outlook)")
           (source "caldav" "CalDAV calendars")
+          (component "mail" "Outgoing mail (SMTP)")
           (component "storage" "Storage")
           {
             name = "ntfy.kalnu.fr";
