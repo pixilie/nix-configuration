@@ -163,7 +163,7 @@
             "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
             "XF86MonBrightnessUp" = "exec swayosd-client --brightness raise";
             "XF86MonBrightnessDown" = "exec swayosd-client --brightness lower";
-            "Caps_Lock" = "exec swayosd-client --caps-lock";
+            "--release Caps_Lock" = "exec swayosd-client --caps-lock";
 
             "Print" = ''exec grim -g "$(slurp)" - | satty -f - --action-on-enter save-to-clipboard'';
           };
