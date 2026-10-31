@@ -68,7 +68,6 @@
           obs-studio
           localsend
           gnome-calculator
-          baobab
 
           vlc
           nautilus
