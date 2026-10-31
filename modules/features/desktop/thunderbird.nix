@@ -2,13 +2,30 @@
 {
 
   flake.homeModules.thunderbird =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       profile = "6j069bhm.default";
       rustical = "https://rustical.pixilie.net";
       gmail = config.identity.email;
       gmailImap = "imap://${builtins.replaceStrings [ "@" ] [ "%40" ] gmail}@imap.gmail.com";
       gmailIdentity = "id_${builtins.hashString "sha256" "gmail"}";
+
+      dictionaries = pkgs.linkFarm "thunderbird-dictionaries" (
+        lib.concatMapAttrs
+          (lang: dict: {
+            "${lang}.dic" = "${dict}/share/hunspell/${lang}.dic";
+            "${lang}.aff" = "${dict}/share/hunspell/${lang}.aff";
+          })
+          {
+            fr_FR = pkgs.hunspellDicts.fr-moderne;
+            en_GB = pkgs.hunspellDicts.en_GB-ise;
+          }
+      );
 
       replySettings = id: {
         "mail.identity.id_${id}.reply_on_top" = 1;
@@ -44,6 +61,8 @@
       programs.thunderbird = {
         enable = true;
 
+        policies.SearchEngines.Default = "DuckDuckGo";
+
         policies.ExtensionSettings."languagetool-mailextension@languagetool.org" = {
           installation_mode = "normal_installed";
           install_url = "https://addons.thunderbird.net/thunderbird/downloads/latest/grammar-and-spell-checker/latest.xpi";
@@ -59,6 +78,10 @@
           "offline.download.download_messages" = 1;
           "offline.send.unsent_messages" = 1;
           "searchintegration.enable" = false;
+
+          "intl.accept_languages" = "fr-FR, fr, en-GB, en";
+          "spellchecker.dictionary_path" = "${dictionaries}";
+          "spellchecker.dictionary" = "fr-FR";
 
           "calendar.agenda.days" = 7;
           "calendar.notifications.times" = "-PT30M";
@@ -79,6 +102,7 @@
           calendarAccountsOrder = [
             "Family"
             "Training"
+            "Sports events"
             "Work"
             "Personal"
             "Birthdays"
@@ -135,10 +159,17 @@
         Family = caldav {
           color = "#ff80ff";
           path = "73e626da-d4fe-46e7-96f6-9472a936c9a6";
+          settings = id: {
+            "calendar.registry.calendar_${id}.calendar-main-in-composite" = false;
+          };
         };
         Training = caldav {
           color = "#ff7800";
           path = "80677bf9-55b8-4cef-b2b4-74f137811502";
+        };
+        "Sports events" = caldav {
+          color = "#ff0000";
+          path = "4f31d6ed-015b-43ec-baff-e2c1cfb171b0";
         };
         Work = caldav {
           color = "#77767b";
