@@ -57,8 +57,12 @@
         notify-desktop
         grim
         slurp
-        satty
       ];
+
+      programs.satty = {
+        enable = true;
+        settings.general.copy-command = lib.getExe' pkgs.wl-clipboard "wl-copy";
+      };
 
       services.autotiling.enable = true;
 
@@ -113,6 +117,10 @@
                   title = "^Extension ?: \\(Bitwarden";
                 };
                 command = "floating enable, resize set 420 px 700 px, move position center";
+              }
+              {
+                criteria.app_id = "com.gabm.satty";
+                command = "floating enable";
               }
             ];
           };
