@@ -38,7 +38,6 @@
         home.packages = with pkgs; [
           eza
           bat
-          fzf
           zoxide
           delta
           tlrc
@@ -64,6 +63,20 @@
             mkdir /tmp/$ash
             cd /tmp/$ash
           '';
+        };
+
+        programs.fzf = {
+          enable = true;
+          enableFishIntegration = true;
+          defaultCommand = "${lib.getExe pkgs.fd} --type f --hidden --exclude .git";
+          fileWidgetCommand = "${lib.getExe pkgs.fd} --type f --hidden --exclude .git";
+          fileWidgetOptions = [
+            "--preview '${lib.getExe pkgs.bat} --color=always --style=numbers --line-range=:200 {}'"
+          ];
+          changeDirWidgetCommand = "${lib.getExe pkgs.fd} --type d --hidden --exclude .git";
+          changeDirWidgetOptions = [
+            "--preview '${lib.getExe pkgs.eza} --tree --level=2 --color=always --icons=always {}'"
+          ];
         };
 
         programs.zoxide = {
