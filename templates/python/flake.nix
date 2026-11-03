@@ -28,10 +28,9 @@
         pkgs: with pkgs.lib; {
           default = pkgs.mkShell rec {
             nativeBuildInputs = with pkgs; [
-              python312Packages.ipython
               ruff
               pyright
-              python3
+              python315
             ];
             buildInputs = with pkgs; [ ];
 
