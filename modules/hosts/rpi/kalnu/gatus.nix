@@ -88,14 +88,17 @@
         };
         endpoints = [
           (https "kalnu.fr")
-          ((https "api.kalnu.fr") // {
-            url = "https://api.kalnu.fr/health";   # liveness only: cheap, but TLS setup can top 500 ms
-            conditions = [
-              "[STATUS] == 200"
-              "[CERTIFICATE_EXPIRATION] > 168h"
-              "[RESPONSE_TIME] < 1000"
-            ];
-          })
+          (
+            (https "api.kalnu.fr")
+            // {
+              url = "https://api.kalnu.fr/health"; # liveness only: cheap, but TLS setup can top 500 ms
+              conditions = [
+                "[STATUS] == 200"
+                "[CERTIFICATE_EXPIRATION] > 168h"
+                "[RESPONSE_TIME] < 1000"
+              ];
+            }
+          )
           (mcpHost "mcp.kalnu.fr")
           (mcpHost "mcp.admin.kalnu.fr")
           {
