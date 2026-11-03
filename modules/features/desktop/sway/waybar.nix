@@ -87,10 +87,7 @@
 
         clock = {
           format = "{:%d %b %H:%M:%S}";
-          tooltip-format = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
-          on-click = "xdg-open https://calendar.google.com/";
+          interval = 1;
         };
 
         battery = {
@@ -99,10 +96,9 @@
             warning = 30;
             critical = 10;
           };
-          format-time = "{H}h {M}min";
+          bat = "BAT0";
           format = "{capacity}% {icon}";
-          format-alt = "{time} {icon}";
-          format-charging = "{capacity}%  ({time})";
+          format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
           format-icons = [
             " "
@@ -111,8 +107,6 @@
             " "
             " "
           ];
-          tooltip = true;
-          tooltip-format = "{timeTo}";
         };
 
         pulseaudio = {
