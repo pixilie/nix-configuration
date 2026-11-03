@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793398871,
-        "narHash": "sha256-ihRzCiu5BU2ezlIRNdPN5wvkeRmEEqdQYr+xqSaJMak=",
+        "lastModified": 1793540794,
+        "narHash": "sha256-0I+SRR9kMwUMBEqBzMieSfVfAmYU4mBTPoTikw+7w2U=",
         "ref": "refs/heads/main",
-        "rev": "76ad0a175bdd9b60e2f6c1c210f137281bc2351d",
-        "revCount": 10,
+        "rev": "3756078f67df41b4b45942b44a469d5c5cd6375e",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@github.com/pixilie/calendar_syncer"
       },
@@ -182,11 +182,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793444948,
-        "narHash": "sha256-M4xllrNSxkddeKms1dYQ7xLMAOe5J0JfCYauBhSgmP8=",
+        "lastModified": 1793722946,
+        "narHash": "sha256-3sndnJ2mc/DaPosdH8qMkSO4M3Zvdj5IV5Rqn+9iz7A=",
         "ref": "refs/heads/main",
-        "rev": "3144b5c0bdd5964b1cf9614c7fdbf1ccf1c1caf5",
-        "revCount": 456,
+        "rev": "d5b3a154c4f80af49b58f08401bb1b852a52fde4",
+        "revCount": 474,
         "type": "git",
         "url": "ssh://git@github.com/pixilie/kalnu"
       },
