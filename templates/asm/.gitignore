@@ -1,0 +1,13 @@
+*.o
+*.obj
+*.elf
+*.out
+*.a
+*.so
+
+/build/
+/bin/
+
+.direnv/
+result
+result-*

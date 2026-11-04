@@ -11,6 +11,12 @@
     welcomeText = "direnv allow";
   };
 
+  asm = {
+    path = ./asm;
+    description = "Template for x86-64 GAS (AT&T) assembly project";
+    welcomeText = "direnv allow";
+  };
+
   rust = {
     path = ./rust;
     description = "Template for Rust project";
