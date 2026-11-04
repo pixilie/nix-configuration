@@ -13,12 +13,16 @@
         {
           name = "gas";
           auto-format = false;
-          file-types = [
-            "s"
-            "S"
-          ];
+          file-types = [ "S" ];
           language-servers = [
-            "asm-lsp"
+            {
+              name = "asm-lsp";
+              except-features = [
+                "completion"
+                "diagnostics"
+                "signature-help"
+              ];
+            }
             "wakatime"
           ];
         }
@@ -30,8 +34,6 @@
           ];
         }
       ];
-
-      asmCompiler = if config.isSchoolProfile then "gcc" else lib.getExe pkgs.gcc;
 
       schoolLanguages = asmLanguages ++ [
         {
@@ -226,14 +228,8 @@
           assembler = "gas";
           instruction_set = "x86-64";
           opts = {
-            compiler = asmCompiler;
-            compile_flags_txt = [
-              "-c"
-              "-o"
-              "/dev/null"
-            ];
-            diagnostics = true;
-            default_diagnostics = true;
+            diagnostics = false;
+            default_diagnostics = false;
           };
         };
       };
