@@ -88,6 +88,7 @@
         clock = {
           format = "{:%d %b %H:%M:%S}";
           interval = 1;
+          tooltip = false;
         };
 
         battery = {
@@ -97,6 +98,7 @@
             critical = 10;
           };
           bat = "BAT0";
+          tooltip = false;
           format = "{capacity}% {icon}";
           format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
@@ -147,16 +149,15 @@
           format = "{title:.30} - {artist:.30}";
           format-paused = "";
           format-stopped = "";
-          tooltip-format = "{album} ({player})";
+          tooltip = false;
         };
 
         network = {
           format-wifi = "{essid} ({signalStrength}%)  ";
           format-ethernet = "{ipaddr}/{cidr}  ";
-          tooltip-format = "{ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)  ";
           format-disconnected = "Disconnected <span size='130%'>󰤮</span> ";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
+          tooltip = false;
         };
 
         gamemode = {
@@ -168,8 +169,7 @@
           icon-name = "input-gaming-symbolic";
           icon-spacing = 4;
           icon-size = 23;
-          tooltip = true;
-          tooltip-format = "Games running: {count}";
+          tooltip = false;
         };
       };
     in
@@ -223,8 +223,7 @@
           @import "colors.css";
           * { font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", sans-serif; font-size: 15px; border-radius: 0; }
           #waybar { background: alpha(white, 0); color: @base00; }
-          tooltip { border-color: @base0D; background-color: @base00; }
-          tooltip label { color: @base05; }
+          tooltip { opacity: 0; }
           #workspaces button { border-bottom: 4px solid transparent; color: @base07; background-color: @base03; }
           #workspaces button.focused, #workspaces button.active { border-bottom: 4px solid @base05; }
           #workspaces button.urgent { color: @base08; }

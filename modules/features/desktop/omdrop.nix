@@ -177,6 +177,7 @@
           exec = "${desktopExe} waybar";
           on-click = "${desktopExe} off";
           on-click-right = "${desktopExe} send";
+          tooltip = false;
         };
       };
 
