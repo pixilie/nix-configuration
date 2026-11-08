@@ -113,8 +113,10 @@
         enable = true;
 
         package =
-          if config.useHelixCache then
+          if config.useHelixCache && config.isLightProfile then
             pkgs.helix
+          else if config.useHelixCache then
+            inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.helix
           else
             inputs.helix-editor.packages.${pkgs.stdenv.hostPlatform.system}.helix;
 

@@ -38,6 +38,11 @@
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
 
+    zed.url = "github:zed-industries/zed";
+
+    claude-code.url = "github:sadjow/claude-code-nix";
+    claude-code.inputs.nixpkgs.follows = "nixpkgs";
+
     tether.url = "github:zackb/tether";
     tether.inputs.nixpkgs.follows = "nixpkgs";
 

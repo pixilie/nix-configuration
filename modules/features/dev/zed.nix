@@ -2,11 +2,15 @@
 {
 
   flake.homeModules.zed =
-    { pkgs, upkgs, ... }:
+    { config, pkgs, ... }:
     {
       programs.zed-editor = {
         enable = true;
-        package = upkgs.zed-editor;
+        package =
+          if config.useZedCache then
+            inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zed-editor
+          else
+            inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
         mutableUserSettings = false;
 

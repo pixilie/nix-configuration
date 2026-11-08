@@ -2,7 +2,7 @@
 {
 
   flake.homeModules.tools =
-    { pkgs, upkgs, ... }:
+    { pkgs, ... }:
     {
       home.packages = with pkgs; [
         wl-clipboard
@@ -31,7 +31,7 @@
         television
         miniserve
         unzip
-        upkgs.claude-code
+        inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
         ipcalc
         wl-mirror
       ];

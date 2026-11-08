@@ -9,6 +9,12 @@ let
         description = "Whether to use nixpkgs cache or not";
       };
 
+      options.useZedCache = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether to use nixpkgs-unstable zed instead of the upstream flake";
+      };
+
       options.isSchoolProfile = lib.mkOption {
         type = lib.types.bool;
         default = false;
