@@ -1,13 +1,8 @@
 { self, inputs, ... }:
 {
 
-  flake.homeModules.alacritty =
-    {
-      pkgs,
-      lib,
-      config,
-      ...
-    }:
+  flake.homeModules.alacrittyPersonal =
+    { pkgs, config, ... }:
     let
       tomlFormat = pkgs.formats.toml { };
 
@@ -69,54 +64,46 @@
         };
       };
     in
-    lib.mkMerge [
-      {
-        programs.alacritty = {
-          enable = true;
+    {
+      programs.alacritty = {
+        enable = true;
 
-          settings = {
-            terminal.shell = {
-              program = "fish";
-            };
+        settings = {
+          general.import = [
+            "${config.xdg.configHome}/alacritty/colors.toml"
+          ];
 
-            window = {
-              decorations = "None";
-            };
+          terminal.shell = {
+            program = "fish";
+          };
 
-            font = {
-              size = 14.0;
-              normal.family = "CaskaydiaCoveNerdFont";
-              bold.family = "CaskaydiaCoveNerdFont";
-              italic.family = "CaskaydiaCoveNerdFont";
-            };
+          window = {
+            decorations = "None";
+          };
 
-            cursor = {
-              style = {
-                shape = "Beam";
-                blinking = "Always";
-              };
+          font = {
+            size = 14.0;
+            normal.family = "CaskaydiaCoveNerdFont";
+            bold.family = "CaskaydiaCoveNerdFont";
+            italic.family = "CaskaydiaCoveNerdFont";
+          };
+
+          cursor = {
+            style = {
+              shape = "Beam";
+              blinking = "Always";
             };
           };
         };
-      }
+      };
 
-      (lib.mkIf config.isSchoolProfile {
-        programs.alacritty.settings.colors = darkColors;
-      })
-
-      (lib.mkIf (!config.isSchoolProfile) {
-        programs.alacritty.settings.general.import = [
-          "${config.xdg.configHome}/alacritty/colors.toml"
-        ];
-
-        xdg.configFile = {
-          "alacritty/colors-dark.toml".source = tomlFormat.generate "alacritty-colors-dark" {
-            colors = darkColors;
-          };
-          "alacritty/colors-light.toml".source = tomlFormat.generate "alacritty-colors-light" {
-            colors = lightColors;
-          };
+      xdg.configFile = {
+        "alacritty/colors-dark.toml".source = tomlFormat.generate "alacritty-colors-dark" {
+          colors = darkColors;
         };
-      })
-    ];
+        "alacritty/colors-light.toml".source = tomlFormat.generate "alacritty-colors-light" {
+          colors = lightColors;
+        };
+      };
+    };
 }

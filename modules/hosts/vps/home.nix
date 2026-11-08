@@ -5,7 +5,7 @@
     { ... }:
     {
       imports = [
-        self.homeModules.sh
+        self.homeModules.shPersonal
 
         self.homeModules.options
       ];

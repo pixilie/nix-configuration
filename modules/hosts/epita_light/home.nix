@@ -7,13 +7,13 @@
       imports = [
         self.homeModules.i3
         self.homeModules.vim
-        self.homeModules.helix
+        self.homeModules.helixSchool
         self.homeModules.wakatime
         self.homeModules.secrets
         self.homeModules.ssh
-        self.homeModules.sh
-        self.homeModules.alacritty
-        self.homeModules.git
+        self.homeModules.shSchool
+        self.homeModules.alacrittySchool
+        self.homeModules.gitSchool
         self.homeModules.fonts
 
         self.homeModules.options
@@ -23,8 +23,6 @@
 
       config = {
         useHelixCache = true;
-        isSchoolProfile = true;
-        isLightProfile = true;
 
         identity = {
           name = "Kristen Couty";

@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 {
 
-  flake.homeModules.git =
+  flake.homeModules.gitPersonal =
     {
       pkgs,
       config,
@@ -16,7 +16,7 @@
       programs.git = {
         enable = true;
         lfs.enable = true;
-        package = if config.isLightProfile then pkgs.gitMinimal else pkgs.git;
+        package = pkgs.git;
 
         settings = {
           user.name = name;
@@ -37,7 +37,7 @@
             ca = "commit --amend";
           };
 
-          init.defaultBranch = if config.isSchoolProfile then "master" else "main";
+          init.defaultBranch = "main";
           push.autoSetupRemote = true;
           pull.rebase = true;
 
@@ -55,16 +55,16 @@
 
       programs.gh = {
         enable = true;
-        extensions = lib.optionals (!config.isSchoolProfile) [ pkgs.gh-dash ];
+        extensions = [ pkgs.gh-dash ];
       };
 
-      programs.lazygit.enable = !config.isSchoolProfile;
-      programs.difftastic.enable = !config.isSchoolProfile;
+      programs.lazygit.enable = true;
+      programs.difftastic.enable = true;
 
       home.packages = [
         config.programs.gpg.package
-      ]
-      ++ lib.optionals (!config.isSchoolProfile) (with pkgs; [ onefetch ]);
+        pkgs.onefetch
+      ];
 
       home.activation.gitAllowedSigners = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
         if [ -r "${signingKey}" ]; then
@@ -77,7 +77,7 @@
 
       services.gpg-agent = {
         enable = true;
-        pinentry.package = if config.isSchoolProfile then pkgs.pinentry-curses else pkgs.pinentry-qt;
+        pinentry.package = pkgs.pinentry-qt;
         defaultCacheTtl = 31536000;
         maxCacheTtl = 31536000;
       };

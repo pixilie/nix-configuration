@@ -21,14 +21,14 @@
 
         self.homeModules.gammastep
 
-        self.homeModules.git
-        self.homeModules.helix
+        self.homeModules.gitPersonal
+        self.homeModules.helixPersonal
         self.homeModules.vim
         self.homeModules.zed
         self.homeModules.wakatime
         self.homeModules.secrets
-        self.homeModules.sh
-        self.homeModules.alacritty
+        self.homeModules.shPersonal
+        self.homeModules.alacrittyPersonal
         self.homeModules.fonts
         self.homeModules.tools
         self.homeModules.xdg
@@ -48,7 +48,6 @@
 
       config = {
         useHelixCache = true;
-        isSchoolProfile = false;
 
         identity = {
           name = "Kristen Couty";
