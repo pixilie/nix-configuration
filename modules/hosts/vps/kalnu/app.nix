@@ -31,6 +31,20 @@
     {
       imports = [ inputs.kalnu.nixosModules.default ];
 
+      nixpkgs.overlays = [
+        (final: prev: {
+          pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+            (pyFinal: pyPrev: {
+              uvloop = pyPrev.uvloop.overridePythonAttrs (old: {
+                disabledTests = (old.disabledTests or [ ]) ++ [
+                  "test_process_delayed_stdio__not_paused__no_stdin"
+                ];
+              });
+            })
+          ];
+        })
+      ];
+
       sops.secrets.kalnu_env = {
         inherit sopsFile;
         owner = config.services.kalnu.user;
@@ -40,6 +54,7 @@
 
       services.kalnu = {
         enable = true;
+        package = pkgs.callPackage "${inputs.kalnu}/nix/package.nix" { };
         domain = "kalnu.fr";
         apiDomain = "api.kalnu.fr";
         mcpDomain = "mcp.kalnu.fr";
