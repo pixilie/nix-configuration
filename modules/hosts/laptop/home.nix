@@ -47,7 +47,7 @@
       ];
 
       config = {
-        useHelixCache = true;
+        useHelixCache = false;
 
         identity = {
           name = "Kristen Couty";

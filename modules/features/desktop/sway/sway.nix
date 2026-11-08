@@ -1,9 +1,9 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.sway = { pkgs, ... }: {
+  flake.nixosModules.sway = { pkgs, upkgs, ... }: {
     programs.sway = {
       enable = true;
-      package = pkgs.swayfx;
+      package = upkgs.swayfx;
       wrapperFeatures.gtk = true;
       extraPackages = with pkgs; [
         brightnessctl
@@ -35,6 +35,7 @@
   flake.homeModules.sway =
     {
       pkgs,
+      upkgs,
       config,
       lib,
       ...
@@ -67,7 +68,7 @@
 
       wayland.windowManager.sway = {
         enable = true;
-        package = pkgs.swayfx;
+        package = upkgs.swayfx;
         checkConfig = false;
         xwayland = true;
         systemd.variables = lib.mkOptionDefault [ "GNOME_KEYRING_CONTROL" ];
