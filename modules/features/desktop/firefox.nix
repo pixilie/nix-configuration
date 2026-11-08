@@ -2,7 +2,7 @@
 {
 
   flake.homeModules.firefox =
-    { config, upkgs, ... }:
+    { config, pkgs, ... }:
     let
       amo = slug: {
         installation_mode = "normal_installed";
@@ -14,7 +14,7 @@
     {
       programs.firefox = {
         enable = true;
-        package = upkgs.firefox;
+        package = pkgs.firefox;
         configPath = ".mozilla/firefox";
         languagePacks = [ "en-GB" ];
 

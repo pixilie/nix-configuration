@@ -33,13 +33,13 @@
     vocal-time-counter.flake = false;
 
     veila.url = "github:naurissteins/Veila";
-    veila.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    veila.inputs.nixpkgs.follows = "nixpkgs";
 
     helix-editor.url = "github:helix-editor/helix";
     helix-editor.inputs.nixpkgs.follows = "nixpkgs";
 
     tether.url = "github:zackb/tether";
-    tether.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    tether.inputs.nixpkgs.follows = "nixpkgs";
 
     owly.url = "github:t4t5/owly";
     owly.inputs.nixpkgs.follows = "nixpkgs";
