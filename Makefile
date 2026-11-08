@@ -9,7 +9,9 @@ VPS_HOST ?= kristen@vps
 
 WALLPAPER := assets/media/wallpaper_dark.png
 
-hm-switch = out=$$($(NIX) $(NIX_FLAGS) build --no-link --print-out-paths .\#homeConfigurations.$(1).activationPackage) && "$$out/activate"
+PIE_NIXPKGS ?= nixpkgs
+
+hm-switch = out=$$($(NIX) $(NIX_FLAGS) build --no-link --print-out-paths $(2) .\#homeConfigurations.$(1).activationPackage) && "$$out/activate"
 
 i3-refresh = export PATH="$$HOME/.nix-profile/bin:$$PATH"; \
 	i3-msg reload > /dev/null && feh --bg-fill $(WALLPAPER) \
@@ -34,7 +36,7 @@ home:
 	nh home switch . -c laptop
 
 epita-light:
-	@$(call hm-switch,epita_light)
+	@$(call hm-switch,epita_light,--no-write-lock-file --override-input nixpkgs-pie $(PIE_NIXPKGS))
 	@$(call i3-refresh)
 
 rpi:

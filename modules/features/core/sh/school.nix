@@ -5,7 +5,10 @@
     programs.fish = {
       enable = true;
       functions.fish_greeting = "";
+      generateCompletions = false;
     };
+
+    programs.man.generateCaches = false;
 
     programs.starship = {
       enable = true;

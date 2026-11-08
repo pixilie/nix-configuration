@@ -18,7 +18,7 @@
         extraPackages = [
           pkgs.asm-lsp
           pkgs.wakatime-cli
-          inputs.wakatime-ls.packages.${pkgs.stdenv.hostPlatform.system}.wakatime-ls
+          (pkgs.callPackage ../_packages/wakatime-ls-bin.nix { })
         ];
 
         ignores = [
