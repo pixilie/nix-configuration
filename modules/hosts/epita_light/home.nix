@@ -6,7 +6,6 @@
     {
       imports = [
         self.homeModules.i3
-        self.homeModules.vim
         self.homeModules.helixSchool
         self.homeModules.wakatime
         self.homeModules.secrets
@@ -14,7 +13,7 @@
         self.homeModules.shSchool
         self.homeModules.alacrittySchool
         self.homeModules.gitSchool
-        self.homeModules.fonts
+        self.homeModules.fontsSchool
 
         self.homeModules.options
         self.homeModules.identity
@@ -35,8 +34,6 @@
         home.stateVersion = "26.05";
 
         programs.i3status.enable = true;
-
-        programs.vim.defaultEditor = true;
 
         programs.home-manager.enable = true;
 

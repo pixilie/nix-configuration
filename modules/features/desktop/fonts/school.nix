@@ -1,27 +1,20 @@
 { self, inputs, ... }:
 {
 
-  flake.homeModules.fonts =
+  flake.homeModules.fontsSchool =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
         noto-fonts
         noto-fonts-color-emoji
         nerd-fonts.caskaydia-cove
-        font-awesome
-        cantarell-fonts
-        merriweather
-        inter
       ];
 
       fonts.fontconfig = {
         enable = true;
         defaultFonts = {
-          serif = [
-            "Noto Serif"
-            "Merriweather"
-          ];
-          sansSerif = [ "Inter" ];
+          serif = [ "Noto Serif" ];
+          sansSerif = [ "Noto Sans" ];
           monospace = [ "CaskaydiaCoveNerdFont" ];
           emoji = [ "Noto Color Emoji" ];
         };

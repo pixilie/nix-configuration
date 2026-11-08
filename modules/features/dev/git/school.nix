@@ -53,8 +53,6 @@
         ];
       };
 
-      programs.gh.enable = true;
-
       home.packages = [ config.programs.gpg.package ];
 
       home.activation.gitAllowedSigners = lib.hm.dag.entryAfter [ "linkGeneration" ] ''

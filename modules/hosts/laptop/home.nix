@@ -29,7 +29,7 @@
         self.homeModules.secrets
         self.homeModules.shPersonal
         self.homeModules.alacrittyPersonal
-        self.homeModules.fonts
+        self.homeModules.fontsPersonal
         self.homeModules.tools
         self.homeModules.xdg
         self.homeModules.ssh
