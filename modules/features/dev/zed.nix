@@ -12,8 +12,6 @@
           else
             inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-        mutableUserSettings = false;
-
         extraPackages = with pkgs; [
           wakatime-cli
         ];
