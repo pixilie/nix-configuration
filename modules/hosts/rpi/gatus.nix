@@ -103,6 +103,8 @@
 
             (health "Jellyfin" "media.pixilie.net" "/health" [ "[BODY] == Healthy" ])
 
+            (health "Dawarich" "maps.pixilie.net" "/api/v1/health" [ "[BODY].status == ok" ])
+
             (https "Games" "games.pixilie.net")
 
             (health "Monitoring" "beszel.pixilie.net" "/api/health" [ ])
