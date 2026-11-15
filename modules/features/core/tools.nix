@@ -18,17 +18,12 @@
         fastfetch
         glow
         doggo
-        speedtest-go
+        otree
         ripgrep
-        jless
-        jq
-        nix-inspect
-        nixos-anywhere
         nix-tree
         gnumake
         killall
         tokei
-        television
         miniserve
         unzip
         inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
