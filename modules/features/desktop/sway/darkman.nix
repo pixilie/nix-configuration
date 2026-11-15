@@ -66,11 +66,6 @@
             ${swayncClientExe} --reload-css --skip-wait || true
           '';
 
-          waybar-theme = ''
-            ${lnExe} -sf ${config.xdg.configHome}/waybar/colors-dark.css ${config.xdg.configHome}/waybar/colors.css
-            ${pkillExe} -x -SIGUSR2 waybar
-          '';
-
           alacritty = alacrittyTheme "dark";
 
           helix = ''
@@ -98,11 +93,6 @@
           swaync = ''
             ${lnExe} -sf ${swayncColors}/colors-light.css ${swayncColors}/colors.css
             ${swayncClientExe} --reload-css --skip-wait || true
-          '';
-
-          waybar-theme = ''
-            ${lnExe} -sf ${config.xdg.configHome}/waybar/colors-light.css ${config.xdg.configHome}/waybar/colors.css
-            ${pkillExe} -x -SIGUSR2 waybar
           '';
 
           alacritty = alacrittyTheme "light";

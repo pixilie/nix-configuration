@@ -181,16 +181,11 @@
 
       services.playerctld.enable = true;
 
-      xdg.configFile."waybar/colors-dark.css".text = themeDark;
-      xdg.configFile."waybar/colors-light.css".text = themeLight;
-
-      home.activation.waybarTheme = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-        waybarDir="${config.xdg.configHome}/waybar"
-        run mkdir -p "$waybarDir"
-        if [ ! -e "$waybarDir/colors.css" ]; then
-          run ln -sfn "$waybarDir/colors-dark.css" "$waybarDir/colors.css"
-        fi
-      '';
+      xdg.configFile."waybar/style-dark.css".text = themeDark + config.programs.waybar.style;
+      xdg.configFile."waybar/style-light.css".text = themeLight + config.programs.waybar.style;
+      xdg.configFile."waybar/style.css".source = lib.mkForce (
+        pkgs.writeText "waybar-style.css" (themeDark + config.programs.waybar.style)
+      );
 
       programs.waybar = {
         enable = true;
@@ -223,7 +218,6 @@
         };
 
         style = ''
-          @import "colors.css";
           * { font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", sans-serif; font-size: 15px; border-radius: 0; }
           #waybar { background: alpha(white, 0); color: @base00; }
           tooltip { opacity: 0; }
