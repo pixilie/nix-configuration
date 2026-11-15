@@ -16,7 +16,12 @@
     };
 
   flake.homeModules.gns3 =
-    { pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       home.packages = with pkgs; [
         gns3-gui
@@ -24,5 +29,12 @@
         dynamips
         inetutils
       ];
+
+      home.activation.gns3DockerResources = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        dir="${config.xdg.dataHome}/GNS3/docker"
+        if [ -d "$dir" ]; then
+          run chmod -R u+w "$dir"
+        fi
+      '';
     };
 }
