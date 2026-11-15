@@ -195,7 +195,10 @@
       programs.waybar = {
         enable = true;
         package = pkgs.waybar.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./waybar-mpris-hide-empty.patch ];
+          patches = (old.patches or [ ]) ++ [
+            ./waybar-mpris-hide-empty.patch
+            ./waybar-network-emit-outside-mutex.patch
+          ];
         });
         systemd.enable = false;
 

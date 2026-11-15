@@ -1,0 +1,77 @@
+diff --git a/include/modules/network.hpp b/include/modules/network.hpp
+index a74ffda..25e7b5c 100644
+--- a/include/modules/network.hpp
++++ b/include/modules/network.hpp
+@@ -72,6 +72,8 @@ class Network : public ALabel {
+   bool want_link_dump_{false};
+   bool want_addr_dump_{false};
+   bool dump_in_progress_{false};
++  // Set by handleEvents(); emitted by the event thread once mutex_ is released.
++  bool emit_pending_{false};
+   bool is_p2p_{false};
+ 
+   unsigned long long bandwidth_down_total_{0};
+diff --git a/src/modules/network.cpp b/src/modules/network.cpp
+index 3663262..376cf3f 100644
+--- a/src/modules/network.cpp
++++ b/src/modules/network.cpp
+@@ -252,8 +252,10 @@ void waybar::modules::Network::worker() {
+       if (ifid_ > 0) {
+         getInfo();
+       }
+-      dp.emit();
+     }
++    // Emit outside mutex_: emit() blocks once the dispatcher pipe is full, and the main thread
++    // that drains it blocks on mutex_ in update(), deadlocking the bar.
++    dp.emit();
+     thread_timer_.sleep_for(interval_);
+   };
+ #ifdef WANT_RFKILL
+@@ -315,6 +317,11 @@ void waybar::modules::Network::worker() {
+           break;
+         }
+       }
++      // handleEvents() runs under mutex_, so it defers emit() to here (see worker()).
++      if (emit_pending_) {
++        emit_pending_ = false;
++        dp.emit();
++      }
+     }
+   };
+ }
+@@ -617,7 +624,7 @@ int waybar::modules::Network::handleEvents(struct nl_msg* msg, void* data) {
+         // it have been deleted, so start looking for a new default route.
+         spdlog::debug("network: if{} down", net->ifid_);
+         net->clearIface();
+-        net->dp.emit();
++        net->emit_pending_ = true;
+         net->want_route_dump_ = true;
+         net->askForStateDump();
+         return NL_OK;
+@@ -704,7 +711,7 @@ int waybar::modules::Network::handleEvents(struct nl_msg* msg, void* data) {
+         spdlog::debug("network: interface {}/{} deleted", net->ifname_, net->ifid_);
+ 
+         net->clearIface();
+-        net->dp.emit();
++        net->emit_pending_ = true;
+       }
+       break;
+     }
+@@ -794,7 +801,7 @@ int waybar::modules::Network::handleEvents(struct nl_msg* msg, void* data) {
+                             inet_ntop(ifa->ifa_family, RTA_DATA(ifa_rta), ipaddr, sizeof(ipaddr)),
+                             ifa->ifa_prefixlen);
+             }
+-            net->dp.emit();
++            net->emit_pending_ = true;
+             break;
+         }
+       }
+@@ -915,7 +922,7 @@ int waybar::modules::Network::handleEvents(struct nl_msg* msg, void* data) {
+                         priority);
+ 
+           net->clearIface();
+-          net->dp.emit();
++          net->emit_pending_ = true;
+           /* Ask for a dump of all routes in case another one is already
+            * setup. If there's none, there'll be an event with new one
+            * later. */
