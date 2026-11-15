@@ -10,7 +10,6 @@
     let
       pkillExe = "${pkgs.procps}/bin/pkill";
       lnExe = "${pkgs.coreutils}/bin/ln";
-      catExe = "${pkgs.coreutils}/bin/cat";
       alacrittyColors = "${config.xdg.configHome}/alacritty";
       helixThemes = "${config.xdg.configHome}/helix/themes";
       mkdirExe = "${pkgs.coreutils}/bin/mkdir";
@@ -20,6 +19,11 @@
 
       swayBorders = focused: unfocused: text: ''
         ${pkgs.sway}/bin/swaymsg 'client.focused ${focused} ${focused} ${text} ${focused} ${focused}; client.focused_inactive ${unfocused} ${unfocused} ${text} ${unfocused} ${unfocused}; client.unfocused ${unfocused} ${unfocused} ${text} ${unfocused} ${unfocused}'
+      '';
+
+      alacrittyTheme = mode: ''
+        ${pkgs.coreutils}/bin/install -m 644 ${alacrittyColors}/colors-${mode}.toml ${alacrittyColors}/colors.toml.tmp
+        ${pkgs.coreutils}/bin/mv -f ${alacrittyColors}/colors.toml.tmp ${alacrittyColors}/colors.toml
       '';
 
       qtTheme = mode: scheme: ''
@@ -67,9 +71,7 @@
             ${pkillExe} -x -SIGUSR2 waybar
           '';
 
-          alacritty = ''
-            ${catExe} ${alacrittyColors}/colors-dark.toml > ${alacrittyColors}/colors.toml
-          '';
+          alacritty = alacrittyTheme "dark";
 
           helix = ''
             ${mkdirExe} -p ${helixThemes}
@@ -103,9 +105,7 @@
             ${pkillExe} -x -SIGUSR2 waybar
           '';
 
-          alacritty = ''
-            ${catExe} ${alacrittyColors}/colors-light.toml > ${alacrittyColors}/colors.toml
-          '';
+          alacritty = alacrittyTheme "light";
 
           helix = ''
             ${mkdirExe} -p ${helixThemes}
