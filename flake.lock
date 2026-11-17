@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793540794,
-        "narHash": "sha256-0I+SRR9kMwUMBEqBzMieSfVfAmYU4mBTPoTikw+7w2U=",
+        "lastModified": 1794944522,
+        "narHash": "sha256-nRV7wJRduFHduXeTzcgNoBMAkDOdB8B3FL8Y7jUcyy0=",
         "ref": "refs/heads/main",
-        "rev": "3756078f67df41b4b45942b44a469d5c5cd6375e",
-        "revCount": 12,
+        "rev": "8548927abbcccda0fc9618deb4b6f4b1a65d6d52",
+        "revCount": 13,
         "type": "git",
         "url": "ssh://git@github.com/pixilie/calendar_syncer"
       },
@@ -396,6 +396,27 @@
     "rust-overlay_2": {
       "inputs": {
         "nixpkgs": [
+          "vocal-time-counter",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794911270,
+        "narHash": "sha256-wrtn0XCNjqWbuyDOcN5H+4EwgpmxWy22fAyX8e5Ttuk=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "49f68bf7cd35f3ef31fca584a22cf3d4e13f6fec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_3": {
+      "inputs": {
+        "nixpkgs": [
           "wakatime-ls",
           "nixpkgs"
         ]
@@ -414,7 +435,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_3": {
+    "rust-overlay_4": {
       "inputs": {
         "nixpkgs": [
           "zed",
@@ -526,17 +547,23 @@
       }
     },
     "vocal-time-counter": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "rust-overlay": "rust-overlay_2"
+      },
       "locked": {
-        "lastModified": 1791370929,
-        "narHash": "sha256-LIFU2dLQ5zDljG2Vhu7SBMwN6GLAeu5NTs0Fi13E478=",
+        "lastModified": 1794944201,
+        "narHash": "sha256-Id0xf9Oj8485TvBjueRs/fU0lKmhqPjz7NrIE0ygGLc=",
         "owner": "pixilie",
         "repo": "vocal-time-counter",
-        "rev": "ad933b450b834f89ec8f1bd2ad167af5b9576a82",
+        "rev": "f1c8df207bf2c82545632d0fc6d595ebfa4ab7e7",
         "type": "github"
       },
       "original": {
         "owner": "pixilie",
+        "ref": "release",
         "repo": "vocal-time-counter",
         "type": "github"
       }
@@ -547,7 +574,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_2"
+        "rust-overlay": "rust-overlay_3"
       },
       "locked": {
         "lastModified": 1790102043,
@@ -568,7 +595,7 @@
         "crane": "crane",
         "flake-parts": "flake-parts_2",
         "nixpkgs": "nixpkgs_2",
-        "rust-overlay": "rust-overlay_3"
+        "rust-overlay": "rust-overlay_4"
       },
       "locked": {
         "lastModified": 1794044818,

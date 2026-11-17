@@ -30,8 +30,8 @@
     calendar-syncer.url = "git+ssh://git@github.com/pixilie/calendar_syncer";
     calendar-syncer.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    vocal-time-counter.url = "github:pixilie/vocal-time-counter";
-    vocal-time-counter.flake = false;
+    vocal-time-counter.url = "github:pixilie/vocal-time-counter/release";
+    vocal-time-counter.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     veila.url = "github:naurissteins/Veila";
     veila.inputs.nixpkgs.follows = "nixpkgs";
