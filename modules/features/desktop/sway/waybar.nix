@@ -193,6 +193,7 @@
           patches = (old.patches or [ ]) ++ [
             ./waybar-mpris-hide-empty.patch
             ./waybar-network-emit-outside-mutex.patch
+            ./waybar-battery-bluetooth-no-flood.patch
           ];
         });
         systemd.enable = false;

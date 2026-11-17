@@ -1,0 +1,151 @@
+--- a/include/modules/battery.hpp
++++ b/include/modules/battery.hpp
+@@ -9,6 +9,7 @@
+ #include <sys/poll.h>
+ 
+ #include <algorithm>
++#include <atomic>
+ #include <fstream>
+ #include <string>
+ #include <vector>
+@@ -38,6 +39,7 @@
+   const std::string formatTimeRemaining(float hoursRemaining);
+   void setBarClass(std::string&);
+   void processEvents(std::string& state, std::string& status, uint8_t capacity);
++  void requestUpdate();
+ 
+   std::map<fs::path, int> batteries_;
+   std::unique_ptr<udev, util::UdevDeleter> udev_;
+@@ -46,6 +48,7 @@
+   fs::path adapter_;
+   int battery_watch_fd_;
+   std::mutex battery_list_mutex_;
++  std::atomic<bool> update_pending_{false};
+   std::string old_status_;
+   std::string last_event_;
+   bool warnFirstTime_{true};
+--- a/include/modules/bluetooth.hpp
++++ b/include/modules/bluetooth.hpp
+@@ -49,6 +49,7 @@
+   auto update() -> void override;
+ 
+  private:
++  void updateNow();
+   static auto onObjectAdded(GDBusObjectManager*, GDBusObject*, gpointer) -> void;
+   static auto onObjectRemoved(GDBusObjectManager*, GDBusObject*, gpointer) -> void;
+ 
+--- a/src/modules/battery.cpp
++++ b/src/modules/battery.cpp
+@@ -66,7 +66,7 @@
+     // Make sure we eventually update the list of batteries even if we miss an
+     // inotify event for some reason
+     refreshBatteries();
+-    dp.emit();
++    requestUpdate();
+     thread_timer_.sleep_for(interval_);
+   };
+   thread_ = [this] {
+@@ -76,7 +76,7 @@
+       thread_.stop();
+       return;
+     }
+-    dp.emit();
++    requestUpdate();
+   };
+   thread_battery_update_ = [this] {
+     poll_fds_[0].revents = 0;
+@@ -92,11 +92,17 @@
+       read(poll_fds_[0].fd, &signal_info, sizeof(signal_info));
+     }
+     refreshBatteries();
+-    dp.emit();
++    requestUpdate();
+   };
+ #endif
+ }
+ 
++void waybar::modules::Battery::requestUpdate() {
++  if (!update_pending_.exchange(true)) {
++    dp.emit();
++  }
++}
++
+ void waybar::modules::Battery::refreshBatteries() {
+ #if defined(__linux__)
+   std::lock_guard<std::mutex> guard(battery_list_mutex_);
+@@ -675,6 +681,7 @@
+ }
+ 
+ auto waybar::modules::Battery::update() -> void {
++  update_pending_ = false;
+ #if defined(__linux__)
+   if (batteries_.empty()) {
+     event_box_.hide();
+--- a/src/modules/bluetooth.cpp
++++ b/src/modules/bluetooth.cpp
+@@ -291,7 +291,7 @@
+       (!bt->config_["controller-alias"].isString() ||
+        bt->config_["controller-alias"].asString() == info.alias)) {
+     bt->cur_controller_ = std::move(info);
+-    bt->dp.emit();
++    bt->updateNow();
+   }
+ }
+ 
+@@ -315,7 +315,7 @@
+         bt->connected_devices_.clear();
+         bt->findConnectedDevices(bt->cur_controller_->path, bt->connected_devices_);
+       }
+-      bt->dp.emit();
++      bt->updateNow();
+     }
+ 
+     g_object_unref(proxy_controller);
+@@ -337,7 +337,7 @@
+                                  [object_path](auto d) { return d.path == object_path; });
+       if (device != bt->connected_devices_.end()) {
+         device->battery_percentage = bt->getDeviceBatteryPercentage(object);
+-        bt->dp.emit();
++        bt->updateNow();
+       }
+     }
+   }
+@@ -359,7 +359,7 @@
+   if (interface_name == "org.bluez.Adapter1") {
+     if (object_path == bt->cur_controller_->path) {
+       bt->getControllerProperties(G_DBUS_OBJECT(object_proxy), *bt->cur_controller_);
+-      bt->dp.emit();
++      bt->updateNow();
+     }
+   } else if (interface_name == "org.bluez.Device1" || interface_name == "org.bluez.Battery1") {
+     DeviceInfo device;
+@@ -369,7 +369,7 @@
+     if (cur_device == bt->connected_devices_.end()) {
+       if (device.connected) {
+         bt->connected_devices_.push_back(device);
+-        bt->dp.emit();
++        bt->updateNow();
+       }
+     } else {
+       if (!device.connected) {
+@@ -377,7 +377,7 @@
+       } else {
+         *cur_device = device;
+       }
+-      bt->dp.emit();
++      bt->updateNow();
+     }
+   }
+ }
+@@ -476,3 +476,11 @@
+   }
+   g_list_free_full(objects, g_object_unref);
+ }
++
++void waybar::modules::Bluetooth::updateNow() {
++  try {
++    update();
++  } catch (const std::exception& e) {
++    spdlog::error("bluetooth: {}", e.what());
++  }
++}
