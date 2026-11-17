@@ -19,6 +19,7 @@
       self.nixosModules.vpsJellyfin
       self.nixosModules.vpsPufferpanel
       self.nixosModules.vpsDawarich
+      self.nixosModules.vpsMonitoring
     ];
 
     services.caddy.enable = true;
