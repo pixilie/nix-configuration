@@ -108,6 +108,7 @@
             (https "Games" "games.pixilie.net")
 
             (health "Monitoring" "beszel.pixilie.net" "/api/health" [ ])
+            (health "Monitoring" "monitoring.pixilie.net" "/api/health" [ "[BODY].database == ok" ])
             {
               name = "ntfy.pixilie.net";
               group = "Monitoring";
