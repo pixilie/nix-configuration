@@ -105,6 +105,9 @@
               command = "ruff";
               args = [ "server" ];
             };
+            epita-lsp = {
+              command = "/home/kristen/Developement/github.com/pixilie/epita-lsp/target/debug/epita_lsp";
+            };
           };
 
           language = [
@@ -174,6 +177,7 @@
               auto-format = false;
               language-servers = [
                 "rust-analyzer"
+                "epita-lsp"
                 "wakatime"
               ];
             }
