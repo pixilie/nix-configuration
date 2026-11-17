@@ -8,7 +8,7 @@
         enable = true;
         host = "127.0.0.1";
         port = 8090;
-        environment.APP_URL = "https://beszel.pixilie.net";
+        environment.APP_URL = "https://monitoring.pixilie.net";
       };
 
       services.beszel.agent = {
@@ -24,9 +24,13 @@
         PrivateUsers = lib.mkForce false;
       };
 
-      services.caddy.virtualHosts."beszel.pixilie.net".extraConfig = ''
+      services.caddy.virtualHosts."monitoring.pixilie.net".extraConfig = ''
         encode zstd gzip
         reverse_proxy 127.0.0.1:${toString config.services.beszel.hub.port}
+      '';
+
+      services.caddy.virtualHosts."beszel.pixilie.net".extraConfig = ''
+        redir https://monitoring.pixilie.net{uri} permanent
       '';
     };
 }

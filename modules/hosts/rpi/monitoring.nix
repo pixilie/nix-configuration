@@ -15,7 +15,7 @@
       services.beszel.agent = {
         enable = true;
         environment = {
-          HUB_URL = "https://beszel.pixilie.net";
+          HUB_URL = "https://monitoring.pixilie.net";
           KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICCgncTKfW/Obw8dipvTvisdQ4Qb1HEfWF5vEip2QVdx";
         };
         environmentFile = config.sops.secrets.beszel_agent_env.path;
