@@ -35,11 +35,16 @@
 
       services.caddy.virtualHosts.${domain}.extraConfig = ''
         encode zstd gzip
-        basic_auth {
-          kristen {$LOGS_AUTH_HASH}
+        handle /health {
+          reverse_proxy ${listen}
         }
-        redir / /select/vmui/ 302
-        reverse_proxy ${listen}
+        handle {
+          basic_auth {
+            kristen {$LOGS_AUTH_HASH}
+          }
+          redir / /select/vmui/ 302
+          reverse_proxy ${listen}
+        }
       '';
     };
 }
