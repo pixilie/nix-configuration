@@ -2,7 +2,7 @@
 {
 
   flake.nixosModules.vpsConfiguration =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       imports = [
         inputs.home-manager-unstable.nixosModules.home-manager
@@ -33,7 +33,10 @@
         };
       };
 
-      services.fail2ban.enable = true;
+      services.fail2ban = {
+        enable = true;
+        jails.DEFAULT.settings.backend = lib.mkForce "systemd[rotated=on]";
+      };
 
       networking.firewall = {
         allowedTCPPorts = [
