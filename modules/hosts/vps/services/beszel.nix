@@ -2,7 +2,7 @@
 {
 
   flake.nixosModules.vpsBeszel =
-    { config, ... }:
+    { config, lib, ... }:
     {
       services.beszel.hub = {
         enable = true;
@@ -17,6 +17,11 @@
           LISTEN = "127.0.0.1:45876";
           KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICCgncTKfW/Obw8dipvTvisdQ4Qb1HEfWF5vEip2QVdx";
         };
+      };
+
+      systemd.services.beszel-agent.serviceConfig = {
+        SupplementaryGroups = [ "systemd-journal" ];
+        PrivateUsers = lib.mkForce false;
       };
 
       services.caddy.virtualHosts."beszel.pixilie.net".extraConfig = ''
