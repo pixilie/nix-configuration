@@ -36,6 +36,7 @@
       services.caddy.virtualHosts.${domain}.extraConfig = ''
         encode zstd gzip
         handle /health {
+          rewrite * /health?
           reverse_proxy ${listen}
         }
         handle {
