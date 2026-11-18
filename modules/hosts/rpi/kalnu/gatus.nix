@@ -55,7 +55,7 @@
         interval = "60s";
         conditions = [
           "[STATUS] == 200"
-          "[BODY].resource == https://${host}/"
+          "[BODY].resource == https://${host}" # mcp 2: no trailing slash
           "[CERTIFICATE_EXPIRATION] > 168h"
           "[RESPONSE_TIME] < 1000"
         ];
