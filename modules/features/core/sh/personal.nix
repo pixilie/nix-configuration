@@ -18,14 +18,19 @@
 
         shellAliases = {
           ls = "${lib.getExe pkgs.eza} --color=auto --icons=auto --hyperlink";
-          cat = "${lib.getExe pkgs.bat}";
         };
 
         shellAbbrs = {
           ll = "ls -lhaF";
           tree = "ls -T";
-          ghd = "gh-dash";
-          findg = "find . -name .git -type d -prune";
+          cp = "cp -v";
+          mv = "mv -v";
+          rm = "rm -v -i";
+          ln = "ln -v";
+          mkdir = "mkdir -v";
+          rmdir = "rmdir -v";
+          chmod = "chmod -v";
+          chown = "chown -v";
         };
 
         functions = {

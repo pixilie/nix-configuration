@@ -6,6 +6,17 @@
       enable = true;
       functions.fish_greeting = "";
       generateCompletions = false;
+
+      shellAbbrs = {
+        cp = "cp -v";
+        mv = "mv -v";
+        rm = "rm -v -i";
+        ln = "ln -v";
+        mkdir = "mkdir -v";
+        rmdir = "rmdir -v";
+        chmod = "chmod -v";
+        chown = "chown -v";
+      };
     };
 
     programs.man.generateCaches = false;
