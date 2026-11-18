@@ -359,9 +359,6 @@
         "import-tree": "import-tree",
         "kalnu": "kalnu",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-pie": [
-          "nixpkgs"
-        ],
         "nixpkgs-unstable": "nixpkgs-unstable",
         "owly": "owly",
         "sops-nix": "sops-nix",

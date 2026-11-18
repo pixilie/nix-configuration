@@ -1,33 +1,20 @@
-NIX ?= nix
-NIX_FLAGS := --extra-experimental-features "nix-command flakes"
+NIX := nix --extra-experimental-features "nix-command flakes"
 
-IDENTITY ?= $(HOME)/.ssh/secret
 SECRETS ?= secrets/secrets.yaml
-
 RPI_HOST ?= rpi
 VPS_HOST ?= kristen@vps
 
-WALLPAPER := assets/media/wallpaper_dark.png
-
-PIE_NIXPKGS ?= nixpkgs
-
-hm-switch = out=$$($(NIX) $(NIX_FLAGS) build --no-link --print-out-paths $(2) .\#homeConfigurations.$(1).activationPackage) && "$$out/activate"
-
-i3-refresh = export PATH="$$HOME/.nix-profile/bin:$$PATH"; \
-	i3-msg reload > /dev/null && feh --bg-fill $(WALLPAPER) \
-	|| echo "i3 not reachable, the config will apply on next login"
-
 .DEFAULT_GOAL := help
-.PHONY: help home rebuild epita-light rpi rpi-image vps secrets
+.PHONY: help rebuild home epita-light rpi rpi-image vps secrets
 
 help:
 	@echo "make rebuild      NixOS system  (laptop)"
 	@echo "make home         Home Manager  (laptop)"
 	@echo "make epita-light  Home Manager  (epita)"
-	@echo "make rpi          NixOS system  (raspberry pi, over ssh, RPI_HOST=rpi-lan on the home network)"
+	@echo "make rpi          NixOS system  (raspberry pi, RPI_HOST=rpi-lan on the home network)"
 	@echo "make rpi-image    Flashable SD image (raspberry pi)"
-	@echo "make vps          NixOS system  (ovh vps, over ssh)"
-	@echo "make secrets      Edit the sops encrypted secrets (SECRETS=secrets/rpi.yaml for the pi)"
+	@echo "make vps          NixOS system  (ovh vps)"
+	@echo "make secrets      Edit the sops secrets (SECRETS=secrets/rpi.yaml for the pi)"
 
 rebuild:
 	nh os switch . -H laptop
@@ -36,8 +23,8 @@ home:
 	nh home switch . -c laptop
 
 epita-light:
-	@$(call hm-switch,epita_light,--no-write-lock-file --override-input nixpkgs-pie $(PIE_NIXPKGS))
-	@$(call i3-refresh)
+	$$($(NIX) build --no-link --print-out-paths .#homeConfigurations.epita_light.activationPackage)/activate
+	-i3-msg restart > /dev/null
 
 rpi:
 	nh os switch . -H rpi --target-host $(RPI_HOST) -e passwordless
@@ -46,9 +33,7 @@ vps:
 	nh os switch . -H vps --target-host $(VPS_HOST) -e passwordless
 
 rpi-image:
-	$(NIX) $(NIX_FLAGS) build .\#nixosConfigurations.rpi.config.system.build.sdImage
-	@ls result/sd-image/*.img
+	$(NIX) build .#nixosConfigurations.rpi.config.system.build.sdImage
 
 secrets:
-	@SOPS_AGE_KEY="$$($(NIX) $(NIX_FLAGS) run nixpkgs#ssh-to-age -- -private-key -i $(IDENTITY))" \
-		$(NIX) $(NIX_FLAGS) run nixpkgs#sops -- $(SECRETS)
+	@SOPS_AGE_KEY="$$($(NIX) run nixpkgs#ssh-to-age -- -private-key -i $(HOME)/.ssh/secret)" $(NIX) run nixpkgs#sops -- $(SECRETS)
